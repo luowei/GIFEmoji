@@ -7,28 +7,552 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BEF06006B314B5FD24701619 /* BitmapCropManipulator.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06CFD5E3C131475DE7212 /* BitmapCropManipulator.m */; };
+		BEF060110B96DE805E6D3AEC /* UIPrintPageRenderer+Extentsion.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF063C594F59312CD30ECB6 /* UIPrintPageRenderer+Extentsion.m */; };
+		BEF06012635574B049DAF125 /* FLEXToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF0681828A847DC64653168 /* FLEXToolbarItem.m */; };
+		BEF06044E219940DF8D68707 /* BitmapContextManipulator.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF065C192C395F6AD2ACD6B /* BitmapContextManipulator.m */; };
+		BEF060479B91EB0272357837 /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF068AB559AFBDACEA784A9 /* MASConstraint.m */; };
+		BEF06065876D3CABE898BFB9 /* SearchGIFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06DA9D7E1FBEC7A1ABB26 /* SearchGIFViewController.m */; };
+		BEF0606C2CAD25321257C1F9 /* FLEXHeapEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06A155300C39D7650E8AB /* FLEXHeapEnumerator.m */; };
+		BEF0608155CDED6D0A49FA6E /* FLEXGlobalsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06EED1467878393FF0CDE /* FLEXGlobalsTableViewController.m */; };
+		BEF060ADAB83D570D92BEFC8 /* FLEXDefaultsExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF0607D09AA3077AF309E9C /* FLEXDefaultsExplorerViewController.m */; };
+		BEF060B6BCED49C662CEBF83 /* UIImage+MWPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF0661D6B326CE7135F8E25 /* UIImage+MWPhotoBrowser.m */; };
+		BEF060D0BD4F9B886BF40F47 /* MASViewConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF061E9ED53135114BF5E41 /* MASViewConstraint.m */; };
+		BEF060F674411FB3F75B58CC /* FLEXObjectExplorerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF061B4514F7A9EEAB75183 /* FLEXObjectExplorerFactory.m */; };
+		BEF0613A22370DFA0D3574EB /* UIBarButtonItemArrowRight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEF06A30E15CB5E3DEE6699B /* UIBarButtonItemArrowRight@2x.png */; };
+		BEF06144E00EC408AA294DE0 /* FLEXLayerExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF0695CFA8ED2CDD4F3CCD0 /* FLEXLayerExplorerViewController.m */; };
+		BEF06146DF3641283C949C59 /* CGImageContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF060C8CC22209E96EE8565 /* CGImageContainer.m */; };
+		BEF061577C7C959ADF816DFB /* FLEXFieldEditorView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06448FA0A543B911EB27E /* FLEXFieldEditorView.m */; };
+		BEF06159043108D8D75867E3 /* FLEXArgumentInputStringView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF062DA11B0758471F35C60 /* FLEXArgumentInputStringView.m */; };
+		BEF06162BD12CA94ACD9AA45 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF0662F9F8AE66D4751D6D4 /* NSLayoutConstraint+MASDebugAdditions.m */; };
+		BEF06188F37482D257F3BDF0 /* FLEXWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF060DE9766FCFE8106EB15 /* FLEXWebViewController.m */; };
+		BEF0619CFA2254BD2053918C /* FLEXNetworkTransactionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF0648C6B1852C1F627A992 /* FLEXNetworkTransactionTableViewCell.m */; };
+		BEF061B2209DC87FB80EEE33 /* CGContextCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF069695CB8A4E6DF64588A /* CGContextCreator.m */; };
+		BEF061F26A0140E0151E1955 /* FLEXWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF0653575195466ACEC2574 /* FLEXWindow.m */; };
+		BEF06208105CA30E934306B7 /* UIView+extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF0667109502D3575B9FAB1 /* UIView+extensions.m */; };
+		BEF0620FD6BF5527068175E1 /* FLEXExplorerToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF061248346940FE30E0103 /* FLEXExplorerToolbar.m */; };
+		BEF06226321CBC4754C47F5E /* RSSelectionLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF066B85FC8E42CBCA51259 /* RSSelectionLayer.m */; };
+		BEF06228D4898B69607CE486 /* MWPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF066F6B4917387A5BE9F55 /* MWPhoto.m */; };
+		BEF062389273A530A7D5AA62 /* SDImageCacheConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06D36B1A513DED6FC2ADE /* SDImageCacheConfig.m */; };
+		BEF06239206FF12794183006 /* FLEXArgumentInputFontView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06B2A6FE0DC67DD9A0DAC /* FLEXArgumentInputFontView.m */; };
+		BEF06250BFC689628D4EFE52 /* RSBrightnessSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06961E15586DC576112DD /* RSBrightnessSlider.m */; };
+		BEF0625AE7BE78C691DB019C /* FLEXViewControllerExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF067B1B9FE60C43060D591 /* FLEXViewControllerExplorerViewController.m */; };
+		BEF0626E5F351A4059A85396 /* FLEXImageExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06D0D1275D3C6879A4C6E /* FLEXImageExplorerViewController.m */; };
+		BEF06279FE2F772EFCF1C7C6 /* FLEXNetworkObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF062920B6E27C3D31432EC /* FLEXNetworkObserver.m */; };
+		BEF062BA51F21616DBC137FC /* ImageSelectedOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEF06C061605349A3AF09D90 /* ImageSelectedOff@2x.png */; };
+		BEF062CD7C5736CA98FCF0FC /* ImageSelectedSmallOff.png in Resources */ = {isa = PBXBuildFile; fileRef = BEF062EB85416DF77021F9C3 /* ImageSelectedSmallOff.png */; };
+		BEF062DDCDC117BAB6E5C713 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = BEF06F220B39FD142D777A58 /* LICENSE */; };
+		BEF0631F8F29E32015ED1B83 /* RSGenerateOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF060418D950A7D8D968D87 /* RSGenerateOperation.m */; };
+		BEF0633E43979496CC186E68 /* UIBarButtonItemGrid.png in Resources */ = {isa = PBXBuildFile; fileRef = BEF06845F3AF9B69CA1BCBB6 /* UIBarButtonItemGrid.png */; };
+		BEF0637175B31064395333B0 /* VideoOverlay@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEF06F0B45AD3821B47F18A0 /* VideoOverlay@3x.png */; };
+		BEF0638E2E629B4FD8523323 /* BitmapContextRep.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF063E9198F9A06A95CDA1C /* BitmapContextRep.m */; };
+		BEF0638FF26E3FCE46BA5FF3 /* NSArray+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF0688AB6C0453DA55961F6 /* NSArray+MASAdditions.m */; };
+		BEF063AF725EF0D235A76618 /* BitmapScaleManipulator.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF068D37524943DB09A239D /* BitmapScaleManipulator.m */; };
+		BEF063AFA618D679CFB1D2AD /* LWPushManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06E6FC0087DC2EE97D769 /* LWPushManager.m */; };
+		BEF063E2202C3352B7F416F4 /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06660E5BF1413C2913836 /* NSData+ImageContentType.m */; };
+		BEF063E37CED9F122A7B2732 /* FLEXArgumentInputNotSupportedView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06E632D6C415CCDD87218 /* FLEXArgumentInputNotSupportedView.m */; };
+		BEF063F054FE623C54166F23 /* MASLayoutConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF064457C34FB500AAB352D /* MASLayoutConstraint.m */; };
+		BEF064125A60C7E97F198521 /* ImageSelectedSmallOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEF064A8349A544B61B3F848 /* ImageSelectedSmallOff@2x.png */; };
+		BEF0642BCC3B8E244B32F1CB /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06138740579B91354C052 /* UIImageView+WebCache.m */; };
+		BEF06435DDB5CFE904D14D16 /* FLEXMultiColumnTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF068EE50F26F61FAF1D8BF /* FLEXMultiColumnTableView.m */; };
+		BEF0644C4425A5D3DD795EA6 /* FLEXHierarchyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06AD2DD9A5CF88FA8FBDD /* FLEXHierarchyTableViewCell.m */; };
+		BEF06457A9F635D716243AC4 /* ANImageBitmapRep.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF0677C7894D753F2CA2E85 /* ANImageBitmapRep.m */; };
+		BEF064A6F176C984064F618E /* RSColorFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06315D17D41BFAEF89294 /* RSColorFunctions.m */; };
+		BEF064C65014A24C6BDE32CE /* GenGIFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF0655B5EA77495A06E9C36 /* GenGIFViewController.m */; };
+		BEF064DF68CE63BBF04921EC /* UIBarButtonItemArrowLeft@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEF06A35A1106306B39F2176 /* UIBarButtonItemArrowLeft@2x.png */; };
+		BEF064EAFF5C037A96B88D78 /* UIBarButtonItemArrowLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = BEF06573F214747E5B0CBD9D /* UIBarButtonItemArrowLeft.png */; };
+		BEF06503FD8BA26956F22E70 /* FLEXTableColumnHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF062AA1EB1BB03F90DAA0D /* FLEXTableColumnHeader.m */; };
+		BEF0650CF723426F0E3896D5 /* UIImage+MultiFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06E7C664E52AEEB834ED8 /* UIImage+MultiFormat.m */; };
+		BEF065516BADFB17A6B19553 /* ImageSelectedOn.png in Resources */ = {isa = PBXBuildFile; fileRef = BEF06F3EF1A168DF897F59F4 /* ImageSelectedOn.png */; };
+		BEF0655B82A0EE39E8EA397A /* PlayButtonOverlayLarge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEF066698A1A77D1A3A0B472 /* PlayButtonOverlayLarge@2x.png */; };
+		BEF065657FEC593A4D51A43C /* FLEXArrayExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06D869DAC1667A012EA32 /* FLEXArrayExplorerViewController.m */; };
+		BEF06575B2204574512E7E7A /* FLEXArgumentInputStructView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF063D113402F0026C44E8A /* FLEXArgumentInputStructView.m */; };
+		BEF065927B3FC696AC14D4E7 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06FE490AE2FC31B34B95B /* UIView+WebCacheOperation.m */; };
+		BEF06594BA90C4ED3618228A /* FLEXTableLeftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF067C839B21A4D979B522E /* FLEXTableLeftCell.m */; };
+		BEF065B79A963D824D5D7AF7 /* FLEXSystemLogMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF0623333BB45C69B6AFDB3 /* FLEXSystemLogMessage.m */; };
+		BEF065CC430E20D9CDF7C373 /* SDWebImageCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06F90772B74E81FD9BA03 /* SDWebImageCompat.m */; };
+		BEF065D0C01242797D5E1684 /* FLEXArgumentInputColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06C3E7F7D1BC080191CDC /* FLEXArgumentInputColorView.m */; };
+		BEF065D1EEAB9D4F6113F1FB /* VideoOverlay.png in Resources */ = {isa = PBXBuildFile; fileRef = BEF06511D60BFEDAB2604CC1 /* VideoOverlay.png */; };
+		BEF065F2743B016B3616AB6A /* FLEXGlobalsTableViewControllerEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF069B264C838F54340DDB0 /* FLEXGlobalsTableViewControllerEntry.m */; };
+		BEF065FEA65E86463CFE7415 /* FLEXNetworkTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06F02B848D8FB54B61B7C /* FLEXNetworkTransaction.m */; };
+		BEF0660A41DAF31641B7A366 /* PlayButtonOverlayLarge.png in Resources */ = {isa = PBXBuildFile; fileRef = BEF067452CB0F1A0CAF7575E /* PlayButtonOverlayLarge.png */; };
+		BEF06634901469E1B5210BA2 /* NSImage+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06971E6797326EFD2FA7F /* NSImage+WebCache.m */; };
+		BEF06655581D67BCD6149BE8 /* OSCommonImage.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF0642F9341DE76A850102A /* OSCommonImage.m */; };
+		BEF06675C9EE14B511E9C292 /* FLEXNetworkCurlLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF062A57269D986011CA89A /* FLEXNetworkCurlLogger.m */; };
+		BEF066893F8176522089FCD6 /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF0671E578C590DB45EB826 /* SDImageCache.m */; };
+		BEF066B54A8658F683BD440A /* FLEXUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF0605797657A76D3583463 /* FLEXUtility.m */; };
+		BEF066DA93A66A5D3AF6E350 /* FLEXRealmDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06A286C76F81A3F50CE64 /* FLEXRealmDatabaseManager.m */; };
+		BEF066E0448FE654BF41BFC6 /* RSColorPickerState.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06FBE21768F59043E29B7 /* RSColorPickerState.m */; };
+		BEF0671A8FB7ACD53D0BB200 /* MWTapDetectingView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF063385B978F695B21CCF8 /* MWTapDetectingView.m */; };
+		BEF06724F8D1E0826B0C10B9 /* PlayButtonOverlayLarge@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEF061E87F7CC6887A8EFA85 /* PlayButtonOverlayLarge@3x.png */; };
+		BEF06728CEFD557AA7C2CB17 /* MASViewAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF0657177A7E58D381A3646 /* MASViewAttribute.m */; };
+		BEF0674C8E90BA4366D49113 /* DACircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF064D5EE8C9B6556697E0B /* DACircularProgressView.m */; };
+		BEF0676D153CB38F33F2810E /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06BC55F6ABAD2AD2C2220 /* ViewController+MASAdditions.m */; };
+		BEF06798B428A308BFA4CD99 /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF065E4157A9C45AC9C2188 /* UIImageView+HighlightedWebCache.m */; };
+		BEF067BC2552A1C6097E7A0B /* SDWebImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF062C497E2CD5C9E9BF603 /* SDWebImageManager.m */; };
+		BEF067C648F59A31B72D374B /* FLEXInstancesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06CDE4617AAC9ACF93E47 /* FLEXInstancesTableViewController.m */; };
+		BEF067C6B32599B4CFC80AA5 /* FLEXRuntimeUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06B4A0B589FED02121122 /* FLEXRuntimeUtility.m */; };
+		BEF067D39A5CDDD359AB6904 /* ImageError.png in Resources */ = {isa = PBXBuildFile; fileRef = BEF064FE11F6748B7FEBBCC4 /* ImageError.png */; };
+		BEF067EA776F894550F1B745 /* ImageSelectedOff@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEF060A7CB2A560835A3A60E /* ImageSelectedOff@3x.png */; };
+		BEF067FD10207B8AC39E8B1F /* FLEXKeyboardHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06C1B3C83169E37E2EC1E /* FLEXKeyboardHelpViewController.m */; };
+		BEF0680194195732D3E6528A /* FLEXFileBrowserFileOperationController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06C4FBCEC47DC0264BBBC /* FLEXFileBrowserFileOperationController.m */; };
+		BEF0680AA13A302057F1DA65 /* UIBarButtonItemArrowRight@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEF0649E9F3E2A18DF10C803 /* UIBarButtonItemArrowRight@3x.png */; };
+		BEF06859A8BE8E07199E95C0 /* FLEXKeyboardShortcutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF062FE3D9F4370CA06EAE6 /* FLEXKeyboardShortcutManager.m */; };
+		BEF0686AE277DF63E0EB92A0 /* NSImage+ANImageBitmapRep.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF061D7272F35DA6D289951 /* NSImage+ANImageBitmapRep.m */; };
+		BEF068803A65660358BCF7DC /* FLEXMultilineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06598FE10F37BCB54DA98 /* FLEXMultilineTableViewCell.m */; };
+		BEF0689016B326EE371FE158 /* FLEXIvarEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF069EC90D6036F7BA1D04D /* FLEXIvarEditorViewController.m */; };
+		BEF068B5DED0061BB5784C56 /* ImageSelectedOn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEF06099AA11F9B8D71CFA0C /* ImageSelectedOn@3x.png */; };
+		BEF068CA31D530CE6406E805 /* FLEXViewExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06BF5EBFC7D98D7BEA424 /* FLEXViewExplorerViewController.m */; };
+		BEF068FB132C2A78C02D4F8F /* FLEXManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF0644012C9470A45F7EDC4 /* FLEXManager.m */; };
+		BEF06916263E2FA4B4AA26F0 /* FLEXFieldEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF065AD9CB0B999EB38054E /* FLEXFieldEditorViewController.m */; };
+		BEF0691E308CF11D5AD03A5F /* FLEXArgumentInputDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF066606F5F19B962FCFCBB /* FLEXArgumentInputDateView.m */; };
+		BEF0691FDE2DF5F74F9D2795 /* UIResponder+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF0628E0AB46E39CA447DA1 /* UIResponder+Extension.m */; };
+		BEF0692EA81DE92A5805B8A8 /* FLEXArgumentInputFontsPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06D9AD5682D4E1CAA48BE /* FLEXArgumentInputFontsPickerView.m */; };
+		BEF0692EB5FFFD387AD42FAE /* FLEXArgumentInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF068CF7DCC63481957AB7B /* FLEXArgumentInputView.m */; };
+		BEF06940420BFACE04D3F1FC /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF069FBAE5315601A5C6D22 /* MBProgressHUD.m */; };
+		BEF06958C975F274E7033DB5 /* MWGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06FC7124C308CFAF09D13 /* MWGridCell.m */; };
+		BEF0695992AB88F0E9984CD8 /* FLEXNetworkTransactionDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF067C4B8A32940C30502A6 /* FLEXNetworkTransactionDetailTableViewController.m */; };
+		BEF0696CA82C6A310CEECDB9 /* MWTapDetectingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06EE04049687F0D633F07 /* MWTapDetectingImageView.m */; };
+		BEF069758B32CE3F374369F7 /* FLEXHierarchyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF0667E9F52CD2C25429A24 /* FLEXHierarchyTableViewController.m */; };
+		BEF06977729569D12FC1E936 /* ImageSelectedOff.png in Resources */ = {isa = PBXBuildFile; fileRef = BEF065F7D29EE904C34B0D47 /* ImageSelectedOff.png */; };
+		BEF0698661F65FC92A4FB07D /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06634498625F56EF3D43E /* UIButton+WebCache.m */; };
+		BEF069A0EE9EE8B2DB915BFC /* FLEXResources.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF068641BB1D60FCD92008D /* FLEXResources.m */; };
+		BEF069A80F4668785B98D6ED /* FLEXClassesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06B3C01CBA243D8764760 /* FLEXClassesTableViewController.m */; };
+		BEF069A83C134F6352D270AF /* SDWebImagePrefetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF0622D6790A0E4AB95668C /* SDWebImagePrefetcher.m */; };
+		BEF069C4300C0ABF7270D347 /* ImageSelectedSmallOff@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEF06542BBA27BC74DBAA024 /* ImageSelectedSmallOff@3x.png */; };
+		BEF069D39C6F5219FED6756F /* ImageSelectedSmallOn.png in Resources */ = {isa = PBXBuildFile; fileRef = BEF06EBB86ABE98A4C755016 /* ImageSelectedSmallOn.png */; };
+		BEF06A10C4095DA46FEDC5F3 /* libXG-SDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF0611A0A8FE038D64C55B7 /* libXG-SDK.a */; };
+		BEF06A54B67B8CD992C5C619 /* ImageError@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEF067269DB49DC3958004EF /* ImageError@2x.png */; };
+		BEF06A5A52AEB07D10EF3F60 /* FLEXDefaultEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06B923E174FFA5D6D87B0 /* FLEXDefaultEditorViewController.m */; };
+		BEF06A6FF785E69BD869EE8C /* FLEXExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF0651A00E9BF14D29F71BF /* FLEXExplorerViewController.m */; };
+		BEF06A9BCA3A89381455BF92 /* FLEXArgumentInputJSONObjectView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF060931B7B34C5189F36CE /* FLEXArgumentInputJSONObjectView.m */; };
+		BEF06AD1F2ED6617499DD004 /* FLEXLibrariesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF0688F219F0508E6420A5D /* FLEXLibrariesTableViewController.m */; };
+		BEF06AE76E064B0E56E78AC1 /* BitmapDrawManipulator.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06C77DCF7A548002F1323 /* BitmapDrawManipulator.m */; };
+		BEF06B04D5F58E4C1782AA71 /* UIBarButtonItemArrowRight.png in Resources */ = {isa = PBXBuildFile; fileRef = BEF06512C17F1A5B134FD981 /* UIBarButtonItemArrowRight.png */; };
+		BEF06B093252BA8C8206680B /* BitmapRotationManipulator.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06B4EA56E43FFE2DBB3A8 /* BitmapRotationManipulator.m */; };
+		BEF06B3719196BCAF42917B6 /* RSOpacitySlider.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF064CAFF2331C024BF481F /* RSOpacitySlider.m */; };
+		BEF06B55ADBBA4CD1E93536E /* FLEXLiveObjectsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF067EA7CDE5865D5816AB1 /* FLEXLiveObjectsTableViewController.m */; };
+		BEF06B59D212246FB0913CFE /* FLEXObjectExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF0678B9B73A697EEB66B69 /* FLEXObjectExplorerViewController.m */; };
+		BEF06B73CEE5C8626F0FC456 /* MWGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF0680A8D097A35E96B156E /* MWGridViewController.m */; };
+		BEF06B82B28849E69DC280A2 /* FLEXFileBrowserSearchOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06256D2FF51EDCB500AE2 /* FLEXFileBrowserSearchOperation.m */; };
+		BEF06B85041553E2E96B3F39 /* MASConstraintMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06B5A269372684DE5C89A /* MASConstraintMaker.m */; };
+		BEF06B89FE42F67BA799F493 /* DALabeledCircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF068B7A52C267995824B59 /* DALabeledCircularProgressView.m */; };
+		BEF06BA3571B29CAEBE0FCDE /* UIImage+ANImageBitmapRep.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06770B60C0CAB75C45B94 /* UIImage+ANImageBitmapRep.m */; };
+		BEF06BAE17DD225642603FBD /* PlayButtonOverlayLargeTap.png in Resources */ = {isa = PBXBuildFile; fileRef = BEF0661D2F5ED50FD1FE691D /* PlayButtonOverlayLargeTap.png */; };
+		BEF06BD2724F61E0E9652C23 /* ImageSelectedSmallOn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEF06CB90360E41A3A52CDBC /* ImageSelectedSmallOn@3x.png */; };
+		BEF06BDBEC7D057EB6BDD817 /* FLEXSystemLogTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06325BF47037271F2C7C3 /* FLEXSystemLogTableViewCell.m */; };
+		BEF06BE93697736FD7C47F88 /* MWZoomingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF062C67813A2DFD323A2C0 /* MWZoomingScrollView.m */; };
+		BEF06C01A167DDCC9128AAE4 /* UIBarButtonItemGrid@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEF06F92A7CB4B0FA6CFFA3E /* UIBarButtonItemGrid@3x.png */; };
+		BEF06C04B1B419CC9B87A695 /* FLEXArgumentInputSwitchView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF061DCC66352C7D82A1FB8 /* FLEXArgumentInputSwitchView.m */; };
+		BEF06C651215E0B4F0776873 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF064B24449F6BC5738C5D0 /* Reachability.m */; };
+		BEF06C69D6DD23DCB6FA737F /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = BEF06566AB967139A58406F5 /* LICENSE */; };
+		BEF06C777C24796224FE015B /* FLEXClassExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF062481DC769B9460CBCE2 /* FLEXClassExplorerViewController.m */; };
+		BEF06C9524C8F801654F2B6D /* FLEXArgumentInputTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF066544A57DF66C4ED068A /* FLEXArgumentInputTextView.m */; };
+		BEF06CA072C3E0B6576111FD /* FLEXSetExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF064EE1CCF93ABC1ADA7B9 /* FLEXSetExplorerViewController.m */; };
+		BEF06CA523B6856425D66FCD /* FLEXNetworkHistoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06FC2083DC79904E6D06B /* FLEXNetworkHistoryTableViewController.m */; };
+		BEF06CB8AB87275625C3AB8F /* FLEXNetworkSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF0674FC1EBF4CF58D458F6 /* FLEXNetworkSettingsTableViewController.m */; };
+		BEF06CBB5D5760803D91319F /* UIView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06F4F33BCDDE895878DEF /* UIView+WebCache.m */; };
+		BEF06CFAA9680B43462636B3 /* FLEXPropertyEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06AEFBD9A7819A1A97D22 /* FLEXPropertyEditorViewController.m */; };
+		BEF06D106FB110D557AE1B4E /* ImageError@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEF069497CF831E6B9F2C000 /* ImageError@3x.png */; };
+		BEF06D383FB08CB8A904B1D5 /* FLEXMethodCallingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF064602A052F929CF0808F /* FLEXMethodCallingViewController.m */; };
+		BEF06D49400251CDA2FB41A9 /* FLEXCookiesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06193F2E4B71A6C1230F0 /* FLEXCookiesTableViewController.m */; };
+		BEF06D4A4BD0010B663394C7 /* FLEXArgumentInputNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06E87376BF4FABF789332 /* FLEXArgumentInputNumberView.m */; };
+		BEF06D553543A76AFE5068BD /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF069C7EE31A5739CFF61D9 /* View+MASAdditions.m */; };
+		BEF06D5E8B658E6FF558167A /* FLEXSystemLogTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF0692D608BC2038D96B583 /* FLEXSystemLogTableViewController.m */; };
+		BEF06D635F25D07AB248D25E /* Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF0641106AC63090B905684 /* Categories.m */; };
+		BEF06D81F6FE16D4EC7BAE79 /* SDWebImageDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF0634B5728DB30C5182627 /* SDWebImageDecoder.m */; };
+		BEF06DB3F35C0171AA585173 /* ImageSelectedSmallOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEF06178A68CA8ABAEBA046B /* ImageSelectedSmallOn@2x.png */; };
+		BEF06DB7E73D32160DD59DBC /* PlayButtonOverlayLargeTap@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEF06B700270641817A8F8E8 /* PlayButtonOverlayLargeTap@3x.png */; };
+		BEF06DD62B213BC1F40D0AAE /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06AA2E30FFA4F6CB84D04 /* UIImage+Extension.m */; };
+		BEF06DE3FA5D7A0208C878AA /* BGRSLoupeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06EA52A052229A16A4EF5 /* BGRSLoupeLayer.m */; };
+		BEF06DF1FB2023E61302368D /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF0673AED84E4DE62DDEE78 /* MASCompositeConstraint.m */; };
+		BEF06E10F9D16EA77D015926 /* RSColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF067D3769288BDEFC198B0 /* RSColorPickerView.m */; };
+		BEF06E1206E4D3BFF0A8545B /* UIBarButtonItemGrid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEF06B5D0623262D8C699912 /* UIBarButtonItemGrid@2x.png */; };
+		BEF06E126BE320F47FDA1EAD /* FLEXArgumentInputViewFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06C7536CABBB0BC887323 /* FLEXArgumentInputViewFactory.m */; };
+		BEF06E47F5D1C6A0987D2ABE /* FLEXDictionaryExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF069C9CB6DCF027789099A /* FLEXDictionaryExplorerViewController.m */; };
+		BEF06E4D6E8A6B4E17590CC8 /* SDWebImageDownloaderOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF0690CB4DA72267978744C /* SDWebImageDownloaderOperation.m */; };
+		BEF06E55CCE16FEA9EABDAFD /* FLEXImagePreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06B261E5662F3A5FCD0CF /* FLEXImagePreviewViewController.m */; };
+		BEF06E56B3B6CBF84F8D047C /* FLEXFileBrowserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06638F5E18D9C211D419A /* FLEXFileBrowserTableViewController.m */; };
+		BEF06E606305E34AF62A45CD /* UIImage+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF0653261D0B9911230467F /* UIImage+GIF.m */; };
+		BEF06E6ED540D6EC0B5DB47C /* MWPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF069DBB8F568B661490E89 /* MWPhotoBrowser.m */; };
+		BEF06EACBB73C57C94F1E632 /* PlayButtonOverlayLargeTap@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEF06C84396DCAB9A1DEF62F /* PlayButtonOverlayLargeTap@2x.png */; };
+		BEF06EE43F233DA546E53D06 /* FLEXSQLiteDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06A8F9B5EB9B223AA6C83 /* FLEXSQLiteDatabaseManager.m */; };
+		BEF06F3469CD55ADAFA366BF /* SDWebImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF064B235C0D4D002923C92 /* SDWebImageDownloader.m */; };
+		BEF06F3AFF148F1B89D32B1A /* VideoOverlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEF064CFE055B243E18A7FF2 /* VideoOverlay@2x.png */; };
+		BEF06F47A60B68AB887B375F /* FLEXNetworkRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF068BF4E2698330BD8D333 /* FLEXNetworkRecorder.m */; };
+		BEF06F47C32EDF66259AE651 /* FLEXTableListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF060F33B8EA94F03027968 /* FLEXTableListViewController.m */; };
+		BEF06F5A604AF35397D085C1 /* MWCaptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06EF3A0665589ADFA6B57 /* MWCaptionView.m */; };
+		BEF06F6D491D55411DC3FFD8 /* ImageSelectedOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEF067C5846022C77AE76A46 /* ImageSelectedOn@2x.png */; };
+		BEF06F98E9FDDABE0AE7ECB1 /* FLEXTableContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF0608FDDBF7659A0722027 /* FLEXTableContentViewController.m */; };
+		BEF06F9F0A1F49C051FA1DB0 /* UIBarButtonItemArrowLeft@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEF066A7861D6461088E77FE /* UIBarButtonItemArrowLeft@3x.png */; };
+		BEF06FD2E4A385FCCB0E8C56 /* FLEXTableContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF065016D000BFB9FB91411 /* FLEXTableContentCell.m */; };
+		BEF06FD6127E19BA6732205F /* UIColor+HexValue.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF060744E9805090E504349 /* UIColor+HexValue.m */; };
 		EA7437E91FFCA2E600AD0291 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7437E81FFCA2E600AD0291 /* AppDelegate.m */; };
-		EA7437EC1FFCA2E600AD0291 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7437EB1FFCA2E600AD0291 /* FirstViewController.m */; };
-		EA7437EF1FFCA2E600AD0291 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7437EE1FFCA2E600AD0291 /* SecondViewController.m */; };
 		EA7437F21FFCA2E600AD0291 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA7437F01FFCA2E600AD0291 /* Main.storyboard */; };
 		EA7437F41FFCA2E600AD0291 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA7437F31FFCA2E600AD0291 /* Assets.xcassets */; };
 		EA7437F71FFCA2E600AD0291 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA7437F51FFCA2E600AD0291 /* LaunchScreen.storyboard */; };
 		EA7437FA1FFCA2E600AD0291 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7437F91FFCA2E600AD0291 /* main.m */; };
+		EA7438031FFCBB3900AD0291 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA7438021FFCBB3900AD0291 /* CoreTelephony.framework */; };
+		EA7438051FFCBB4100AD0291 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA7438041FFCBB4100AD0291 /* SystemConfiguration.framework */; };
+		EA7438071FFCBB4D00AD0291 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA7438061FFCBB4D00AD0291 /* UserNotifications.framework */; };
+		EA7438091FFCBB5800AD0291 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EA7438081FFCBB5800AD0291 /* libz.tbd */; };
+		EA74380B1FFCBB5F00AD0291 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EA74380A1FFCBB5F00AD0291 /* libsqlite3.0.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BEF060175606E1A4E77FE7D6 /* BitmapScaleManipulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BitmapScaleManipulator.h; sourceTree = "<group>"; };
+		BEF060278E192004214E4EF2 /* FLEXTableListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXTableListViewController.h; sourceTree = "<group>"; };
+		BEF060418D950A7D8D968D87 /* RSGenerateOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSGenerateOperation.m; sourceTree = "<group>"; };
+		BEF0605797657A76D3583463 /* FLEXUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXUtility.m; sourceTree = "<group>"; };
+		BEF06066C9C93372CB4F78D5 /* BitmapDrawManipulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BitmapDrawManipulator.h; sourceTree = "<group>"; };
+		BEF060744E9805090E504349 /* UIColor+HexValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexValue.m"; sourceTree = "<group>"; };
+		BEF06078C58615B823359EA4 /* FLEXNetworkSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXNetworkSettingsTableViewController.h; sourceTree = "<group>"; };
+		BEF0607D09AA3077AF309E9C /* FLEXDefaultsExplorerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXDefaultsExplorerViewController.m; sourceTree = "<group>"; };
+		BEF0607E72C5C98558F7B511 /* FLEXImagePreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXImagePreviewViewController.h; sourceTree = "<group>"; };
+		BEF0607EC15E995D74D3F671 /* BGRSLoupeLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGRSLoupeLayer.h; sourceTree = "<group>"; };
+		BEF0608FDDBF7659A0722027 /* FLEXTableContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXTableContentViewController.m; sourceTree = "<group>"; };
+		BEF06090B12F4FD593B5CB50 /* UIImage+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extension.h"; sourceTree = "<group>"; };
+		BEF060931B7B34C5189F36CE /* FLEXArgumentInputJSONObjectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXArgumentInputJSONObjectView.m; sourceTree = "<group>"; };
+		BEF06099AA11F9B8D71CFA0C /* ImageSelectedOn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ImageSelectedOn@3x.png"; sourceTree = "<group>"; };
+		BEF060A7CB2A560835A3A60E /* ImageSelectedOff@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ImageSelectedOff@3x.png"; sourceTree = "<group>"; };
+		BEF060B4E57F720159DA8757 /* View+MASShorthandAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+MASShorthandAdditions.h"; sourceTree = "<group>"; };
+		BEF060C3E357F83BB44CB08B /* FLEXExplorerToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXExplorerToolbar.h; sourceTree = "<group>"; };
+		BEF060C637A4906968A6FCA6 /* MASConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASConstraint.h; sourceTree = "<group>"; };
+		BEF060C8CC22209E96EE8565 /* CGImageContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGImageContainer.m; sourceTree = "<group>"; };
+		BEF060DE9766FCFE8106EB15 /* FLEXWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXWebViewController.m; sourceTree = "<group>"; };
+		BEF060F33B8EA94F03027968 /* FLEXTableListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXTableListViewController.m; sourceTree = "<group>"; };
+		BEF060F52FD5DB761E41B7BE /* Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Categories.h; sourceTree = "<group>"; };
+		BEF060FCD8B6787D96717994 /* FLEXMethodCallingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXMethodCallingViewController.h; sourceTree = "<group>"; };
+		BEF0611A0A8FE038D64C55B7 /* libXG-SDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libXG-SDK.a"; sourceTree = "<group>"; };
+		BEF061248346940FE30E0103 /* FLEXExplorerToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXExplorerToolbar.m; sourceTree = "<group>"; };
+		BEF06138740579B91354C052 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
+		BEF0613B02CE1FACCF2B8EBF /* FLEXPropertyEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXPropertyEditorViewController.h; sourceTree = "<group>"; };
+		BEF06149FAA67D9E77D5B6C2 /* UIImageView+HighlightedWebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+HighlightedWebCache.h"; sourceTree = "<group>"; };
+		BEF0616585EDDE442D16076C /* FLEXDictionaryExplorerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXDictionaryExplorerViewController.h; sourceTree = "<group>"; };
+		BEF0616ACC560B1BE5A311B2 /* SDWebImageCompat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageCompat.h; sourceTree = "<group>"; };
+		BEF06178A68CA8ABAEBA046B /* ImageSelectedSmallOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ImageSelectedSmallOn@2x.png"; sourceTree = "<group>"; };
+		BEF06193F2E4B71A6C1230F0 /* FLEXCookiesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXCookiesTableViewController.m; sourceTree = "<group>"; };
+		BEF061A894184B114A5487E0 /* FLEXNetworkRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXNetworkRecorder.h; sourceTree = "<group>"; };
+		BEF061B4514F7A9EEAB75183 /* FLEXObjectExplorerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXObjectExplorerFactory.m; sourceTree = "<group>"; };
+		BEF061C97247CCB85C68AE08 /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
+		BEF061D7272F35DA6D289951 /* NSImage+ANImageBitmapRep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+ANImageBitmapRep.m"; sourceTree = "<group>"; };
+		BEF061DCC66352C7D82A1FB8 /* FLEXArgumentInputSwitchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXArgumentInputSwitchView.m; sourceTree = "<group>"; };
+		BEF061E87F7CC6887A8EFA85 /* PlayButtonOverlayLarge@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PlayButtonOverlayLarge@3x.png"; sourceTree = "<group>"; };
+		BEF061E9ED53135114BF5E41 /* MASViewConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASViewConstraint.m; sourceTree = "<group>"; };
+		BEF0622D6790A0E4AB95668C /* SDWebImagePrefetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImagePrefetcher.m; sourceTree = "<group>"; };
+		BEF0623333BB45C69B6AFDB3 /* FLEXSystemLogMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXSystemLogMessage.m; sourceTree = "<group>"; };
+		BEF062481DC769B9460CBCE2 /* FLEXClassExplorerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXClassExplorerViewController.m; sourceTree = "<group>"; };
+		BEF06251CBE40D8C804253A1 /* FLEXImageExplorerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXImageExplorerViewController.h; sourceTree = "<group>"; };
+		BEF06252BC94A15129DD06FF /* UIImage+GIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+GIF.h"; sourceTree = "<group>"; };
+		BEF06256D2FF51EDCB500AE2 /* FLEXFileBrowserSearchOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXFileBrowserSearchOperation.m; sourceTree = "<group>"; };
+		BEF0625916EF8D1F2A917BE1 /* FLEXHierarchyTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXHierarchyTableViewController.h; sourceTree = "<group>"; };
+		BEF06268DDAAD639777F8D28 /* FLEXArgumentInputStructView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXArgumentInputStructView.h; sourceTree = "<group>"; };
+		BEF0628A1FE6C249DF74B4C3 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		BEF0628E0AB46E39CA447DA1 /* UIResponder+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+Extension.m"; sourceTree = "<group>"; };
+		BEF062920B6E27C3D31432EC /* FLEXNetworkObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXNetworkObserver.m; sourceTree = "<group>"; };
+		BEF0629231720129B3B87A18 /* FLEXFieldEditorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXFieldEditorView.h; sourceTree = "<group>"; };
+		BEF062A57269D986011CA89A /* FLEXNetworkCurlLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXNetworkCurlLogger.m; sourceTree = "<group>"; };
+		BEF062A873158F263C8E660B /* OSCommonImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCommonImage.h; sourceTree = "<group>"; };
+		BEF062AA1EB1BB03F90DAA0D /* FLEXTableColumnHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXTableColumnHeader.m; sourceTree = "<group>"; };
+		BEF062C2E65B02C7923E3CB3 /* MWPhotoProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWPhotoProtocol.h; sourceTree = "<group>"; };
+		BEF062C497E2CD5C9E9BF603 /* SDWebImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageManager.m; sourceTree = "<group>"; };
+		BEF062C67813A2DFD323A2C0 /* MWZoomingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWZoomingScrollView.m; sourceTree = "<group>"; };
+		BEF062C6EB41448E78575DB6 /* FLEXNetworkTransactionDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXNetworkTransactionDetailTableViewController.h; sourceTree = "<group>"; };
+		BEF062D2AB48D388FF551350 /* UIImage+MWPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MWPhotoBrowser.h"; sourceTree = "<group>"; };
+		BEF062DA11B0758471F35C60 /* FLEXArgumentInputStringView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXArgumentInputStringView.m; sourceTree = "<group>"; };
+		BEF062EB85416DF77021F9C3 /* ImageSelectedSmallOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ImageSelectedSmallOff.png; sourceTree = "<group>"; };
+		BEF062FE3D9F4370CA06EAE6 /* FLEXKeyboardShortcutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXKeyboardShortcutManager.m; sourceTree = "<group>"; };
+		BEF062FF2E6190D4566C2D93 /* FLEXClassExplorerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXClassExplorerViewController.h; sourceTree = "<group>"; };
+		BEF06315D17D41BFAEF89294 /* RSColorFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSColorFunctions.m; sourceTree = "<group>"; };
+		BEF063183B3FF9C3E529EBBD /* FLEXNetworkTransactionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXNetworkTransactionTableViewCell.h; sourceTree = "<group>"; };
+		BEF06325BF47037271F2C7C3 /* FLEXSystemLogTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXSystemLogTableViewCell.m; sourceTree = "<group>"; };
+		BEF063385B978F695B21CCF8 /* MWTapDetectingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWTapDetectingView.m; sourceTree = "<group>"; };
+		BEF06344BB0434EEE4D08D2C /* UIResponder+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIResponder+Extension.h"; sourceTree = "<group>"; };
+		BEF0634B5728DB30C5182627 /* SDWebImageDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageDecoder.m; sourceTree = "<group>"; };
+		BEF0635DB1460450781F1CCB /* FLEXRealmDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXRealmDefines.h; sourceTree = "<group>"; };
+		BEF06364EA4722C5C1C6ED0D /* FLEXSystemLogTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXSystemLogTableViewCell.h; sourceTree = "<group>"; };
+		BEF0636DA6223C1F56540BF2 /* MASUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASUtilities.h; sourceTree = "<group>"; };
+		BEF0637AAEE67DA997535557 /* FLEXArgumentInputNotSupportedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXArgumentInputNotSupportedView.h; sourceTree = "<group>"; };
+		BEF0638181BA334F42BC0DE8 /* UIPrintPageRenderer+Extentsion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIPrintPageRenderer+Extentsion.h"; sourceTree = "<group>"; };
+		BEF0638D6DAA175EF0D7A83F /* RSColorPickerState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSColorPickerState.h; sourceTree = "<group>"; };
+		BEF063AE92FB8D8F4F975F71 /* FLEXSystemLogTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXSystemLogTableViewController.h; sourceTree = "<group>"; };
+		BEF063C594F59312CD30ECB6 /* UIPrintPageRenderer+Extentsion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIPrintPageRenderer+Extentsion.m"; sourceTree = "<group>"; };
+		BEF063D113402F0026C44E8A /* FLEXArgumentInputStructView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXArgumentInputStructView.m; sourceTree = "<group>"; };
+		BEF063D3B83228456BEA5295 /* ANImageBitmapRep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANImageBitmapRep.h; sourceTree = "<group>"; };
+		BEF063E9198F9A06A95CDA1C /* BitmapContextRep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BitmapContextRep.m; sourceTree = "<group>"; };
+		BEF063F9F72CEF47E7BF85C0 /* FLEXArgumentInputFontsPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXArgumentInputFontsPickerView.h; sourceTree = "<group>"; };
+		BEF0641106AC63090B905684 /* Categories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Categories.m; sourceTree = "<group>"; };
+		BEF06415B6B41721C46683F7 /* FLEXDefaultEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXDefaultEditorViewController.h; sourceTree = "<group>"; };
+		BEF0642F9341DE76A850102A /* OSCommonImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCommonImage.m; sourceTree = "<group>"; };
+		BEF0643C386D17C8F17EA8AA /* FLEXNetworkObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXNetworkObserver.h; sourceTree = "<group>"; };
+		BEF0643E0BB55DA0C843E15E /* XGPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XGPush.h; sourceTree = "<group>"; };
+		BEF0644012C9470A45F7EDC4 /* FLEXManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXManager.m; sourceTree = "<group>"; };
+		BEF0644442FA36E8768372A6 /* SDWebImageDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageDecoder.h; sourceTree = "<group>"; };
+		BEF064457C34FB500AAB352D /* MASLayoutConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASLayoutConstraint.m; sourceTree = "<group>"; };
+		BEF06448FA0A543B911EB27E /* FLEXFieldEditorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXFieldEditorView.m; sourceTree = "<group>"; };
+		BEF064602A052F929CF0808F /* FLEXMethodCallingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXMethodCallingViewController.m; sourceTree = "<group>"; };
+		BEF06466FEBC7306FD41CE47 /* FLEXDefaultsExplorerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXDefaultsExplorerViewController.h; sourceTree = "<group>"; };
+		BEF0648C6B1852C1F627A992 /* FLEXNetworkTransactionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXNetworkTransactionTableViewCell.m; sourceTree = "<group>"; };
+		BEF0649E9F3E2A18DF10C803 /* UIBarButtonItemArrowRight@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UIBarButtonItemArrowRight@3x.png"; sourceTree = "<group>"; };
+		BEF064A8349A544B61B3F848 /* ImageSelectedSmallOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ImageSelectedSmallOff@2x.png"; sourceTree = "<group>"; };
+		BEF064B0225A017B68C8A5D7 /* SDWebImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageManager.h; sourceTree = "<group>"; };
+		BEF064B235C0D4D002923C92 /* SDWebImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageDownloader.m; sourceTree = "<group>"; };
+		BEF064B24449F6BC5738C5D0 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		BEF064BD7A116AE10CB6E8B3 /* NSArray+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+MASAdditions.h"; sourceTree = "<group>"; };
+		BEF064BFB916412168D076D7 /* UIImage+ANImageBitmapRep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ANImageBitmapRep.h"; sourceTree = "<group>"; };
+		BEF064C50A14A9A0C74FC715 /* XGSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XGSetting.h; sourceTree = "<group>"; };
+		BEF064CAFF2331C024BF481F /* RSOpacitySlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSOpacitySlider.m; sourceTree = "<group>"; };
+		BEF064CFE055B243E18A7FF2 /* VideoOverlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "VideoOverlay@2x.png"; sourceTree = "<group>"; };
+		BEF064D5EE8C9B6556697E0B /* DACircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DACircularProgressView.m; sourceTree = "<group>"; };
+		BEF064EE1CCF93ABC1ADA7B9 /* FLEXSetExplorerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXSetExplorerViewController.m; sourceTree = "<group>"; };
+		BEF064F496CA841E0667338F /* MASConstraintMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASConstraintMaker.h; sourceTree = "<group>"; };
+		BEF064FE11F6748B7FEBBCC4 /* ImageError.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ImageError.png; sourceTree = "<group>"; };
+		BEF065016D000BFB9FB91411 /* FLEXTableContentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXTableContentCell.m; sourceTree = "<group>"; };
+		BEF06511D60BFEDAB2604CC1 /* VideoOverlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VideoOverlay.png; sourceTree = "<group>"; };
+		BEF06512C17F1A5B134FD981 /* UIBarButtonItemArrowRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UIBarButtonItemArrowRight.png; sourceTree = "<group>"; };
+		BEF0651A00E9BF14D29F71BF /* FLEXExplorerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXExplorerViewController.m; sourceTree = "<group>"; };
+		BEF0653261D0B9911230467F /* UIImage+GIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+GIF.m"; sourceTree = "<group>"; };
+		BEF0653575195466ACEC2574 /* FLEXWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXWindow.m; sourceTree = "<group>"; };
+		BEF06542BBA27BC74DBAA024 /* ImageSelectedSmallOff@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ImageSelectedSmallOff@3x.png"; sourceTree = "<group>"; };
+		BEF06543EF98EEB9579318D0 /* FLEXViewExplorerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXViewExplorerViewController.h; sourceTree = "<group>"; };
+		BEF0654D3A15559FC6546ED5 /* FLEXArgumentInputSwitchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXArgumentInputSwitchView.h; sourceTree = "<group>"; };
+		BEF0655B5EA77495A06E9C36 /* GenGIFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenGIFViewController.m; sourceTree = "<group>"; };
+		BEF06566AB967139A58406F5 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		BEF0656C93D287E5717394D5 /* SDImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDImageCache.h; sourceTree = "<group>"; };
+		BEF0656E68286794A8175FBA /* DACircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DACircularProgressView.h; sourceTree = "<group>"; };
+		BEF0657177A7E58D381A3646 /* MASViewAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASViewAttribute.m; sourceTree = "<group>"; };
+		BEF06573F214747E5B0CBD9D /* UIBarButtonItemArrowLeft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UIBarButtonItemArrowLeft.png; sourceTree = "<group>"; };
+		BEF0657DD0FF65AE08E41074 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
+		BEF06587C044C4CE7D465B18 /* NSImage+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+WebCache.h"; sourceTree = "<group>"; };
+		BEF065910E893D9C772AEC65 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
+		BEF06598FE10F37BCB54DA98 /* FLEXMultilineTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXMultilineTableViewCell.m; sourceTree = "<group>"; };
+		BEF065AD9CB0B999EB38054E /* FLEXFieldEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXFieldEditorViewController.m; sourceTree = "<group>"; };
+		BEF065C09D3ECB08D47E6B34 /* LWPushManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPushManager.h; sourceTree = "<group>"; };
+		BEF065C192C395F6AD2ACD6B /* BitmapContextManipulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BitmapContextManipulator.m; sourceTree = "<group>"; };
+		BEF065D4903D88C633B191C4 /* MASConstraint+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASConstraint+Private.h"; sourceTree = "<group>"; };
+		BEF065DCA92639B4548BF4A2 /* MWCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWCommon.h; sourceTree = "<group>"; };
+		BEF065E4157A9C45AC9C2188 /* UIImageView+HighlightedWebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+HighlightedWebCache.m"; sourceTree = "<group>"; };
+		BEF065F7D29EE904C34B0D47 /* ImageSelectedOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ImageSelectedOff.png; sourceTree = "<group>"; };
+		BEF0661D2F5ED50FD1FE691D /* PlayButtonOverlayLargeTap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayButtonOverlayLargeTap.png; sourceTree = "<group>"; };
+		BEF0661D6B326CE7135F8E25 /* UIImage+MWPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MWPhotoBrowser.m"; sourceTree = "<group>"; };
+		BEF0662F9F8AE66D4751D6D4 /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
+		BEF066326C2D32E9F26C6A26 /* UIImage+MultiFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MultiFormat.h"; sourceTree = "<group>"; };
+		BEF06634498625F56EF3D43E /* UIButton+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+WebCache.m"; sourceTree = "<group>"; };
+		BEF0663802A1DA346EC21BA4 /* MASViewConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASViewConstraint.h; sourceTree = "<group>"; };
+		BEF06638F5E18D9C211D419A /* FLEXFileBrowserTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXFileBrowserTableViewController.m; sourceTree = "<group>"; };
+		BEF06644ABA745262D1B000E /* BitmapCropManipulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BitmapCropManipulator.h; sourceTree = "<group>"; };
+		BEF06648408FB5BF45C21F4F /* UIColor+HexValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexValue.h"; sourceTree = "<group>"; };
+		BEF06650314C5E959F836129 /* FLEXFieldEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXFieldEditorViewController.h; sourceTree = "<group>"; };
+		BEF066544A57DF66C4ED068A /* FLEXArgumentInputTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXArgumentInputTextView.m; sourceTree = "<group>"; };
+		BEF066606F5F19B962FCFCBB /* FLEXArgumentInputDateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXArgumentInputDateView.m; sourceTree = "<group>"; };
+		BEF06660E5BF1413C2913836 /* NSData+ImageContentType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+ImageContentType.m"; sourceTree = "<group>"; };
+		BEF066698A1A77D1A3A0B472 /* PlayButtonOverlayLarge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PlayButtonOverlayLarge@2x.png"; sourceTree = "<group>"; };
+		BEF0666F40FC7849D51E40E9 /* SearchGIFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchGIFViewController.h; sourceTree = "<group>"; };
+		BEF0667109502D3575B9FAB1 /* UIView+extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+extensions.m"; sourceTree = "<group>"; };
+		BEF06672CF5B20B720C9EDB6 /* SDWebImageDownloaderOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageDownloaderOperation.h; sourceTree = "<group>"; };
+		BEF06679C8F61F6CD21E8D5D /* FLEXInstancesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXInstancesTableViewController.h; sourceTree = "<group>"; };
+		BEF0667E9F52CD2C25429A24 /* FLEXHierarchyTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXHierarchyTableViewController.m; sourceTree = "<group>"; };
+		BEF06685FA13BEB65FFBBFFC /* SDWebImagePrefetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImagePrefetcher.h; sourceTree = "<group>"; };
+		BEF06688C15DDDE5E4F126FA /* FLEXRuntimeUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXRuntimeUtility.h; sourceTree = "<group>"; };
+		BEF066A7861D6461088E77FE /* UIBarButtonItemArrowLeft@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UIBarButtonItemArrowLeft@3x.png"; sourceTree = "<group>"; };
+		BEF066B85FC8E42CBCA51259 /* RSSelectionLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSelectionLayer.m; sourceTree = "<group>"; };
+		BEF066C6ECE0506A16F5C195 /* FLEXArgumentInputStringView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXArgumentInputStringView.h; sourceTree = "<group>"; };
+		BEF066DABDA722C5C0BA94CA /* RSOpacitySlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSOpacitySlider.h; sourceTree = "<group>"; };
+		BEF066E63BF78DBC4248DF3C /* MWPhotoBrowserPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWPhotoBrowserPrivate.h; sourceTree = "<group>"; };
+		BEF066F6B4917387A5BE9F55 /* MWPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWPhoto.m; sourceTree = "<group>"; };
+		BEF0671E578C590DB45EB826 /* SDImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDImageCache.m; sourceTree = "<group>"; };
+		BEF067269DB49DC3958004EF /* ImageError@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ImageError@2x.png"; sourceTree = "<group>"; };
+		BEF0672B822A02405325FFA5 /* FLEXNetworkCurlLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXNetworkCurlLogger.h; sourceTree = "<group>"; };
+		BEF0672BC4A838156A7C2BEC /* UIView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCache.h"; sourceTree = "<group>"; };
+		BEF0673AED84E4DE62DDEE78 /* MASCompositeConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASCompositeConstraint.m; sourceTree = "<group>"; };
+		BEF067452CB0F1A0CAF7575E /* PlayButtonOverlayLarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayButtonOverlayLarge.png; sourceTree = "<group>"; };
+		BEF06746318FB8B948860A7F /* FLEXDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXDatabaseManager.h; sourceTree = "<group>"; };
+		BEF0674FC1EBF4CF58D458F6 /* FLEXNetworkSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXNetworkSettingsTableViewController.m; sourceTree = "<group>"; };
+		BEF0675E953FC01A1956D77B /* BitmapContextRep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BitmapContextRep.h; sourceTree = "<group>"; };
+		BEF0676190139C178CFE0F03 /* BitmapRotationManipulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BitmapRotationManipulator.h; sourceTree = "<group>"; };
+		BEF06770001F5ADAAB8F59B2 /* FLEXArgumentInputFontView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXArgumentInputFontView.h; sourceTree = "<group>"; };
+		BEF06770B60C0CAB75C45B94 /* UIImage+ANImageBitmapRep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ANImageBitmapRep.m"; sourceTree = "<group>"; };
+		BEF0677C7894D753F2CA2E85 /* ANImageBitmapRep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANImageBitmapRep.m; sourceTree = "<group>"; };
+		BEF0678B9B73A697EEB66B69 /* FLEXObjectExplorerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXObjectExplorerViewController.m; sourceTree = "<group>"; };
+		BEF067B0CEF7A781212A95E9 /* FLEXObjectExplorerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXObjectExplorerViewController.h; sourceTree = "<group>"; };
+		BEF067B1B9FE60C43060D591 /* FLEXViewControllerExplorerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXViewControllerExplorerViewController.m; sourceTree = "<group>"; };
+		BEF067C4B8A32940C30502A6 /* FLEXNetworkTransactionDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXNetworkTransactionDetailTableViewController.m; sourceTree = "<group>"; };
+		BEF067C5846022C77AE76A46 /* ImageSelectedOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ImageSelectedOn@2x.png"; sourceTree = "<group>"; };
+		BEF067C839B21A4D979B522E /* FLEXTableLeftCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXTableLeftCell.m; sourceTree = "<group>"; };
+		BEF067D3769288BDEFC198B0 /* RSColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSColorPickerView.m; sourceTree = "<group>"; };
+		BEF067EA7CDE5865D5816AB1 /* FLEXLiveObjectsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXLiveObjectsTableViewController.m; sourceTree = "<group>"; };
+		BEF067F9B86D26087EA26FAB /* FLEXHeapEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXHeapEnumerator.h; sourceTree = "<group>"; };
+		BEF0680A8D097A35E96B156E /* MWGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWGridViewController.m; sourceTree = "<group>"; };
+		BEF0681828A847DC64653168 /* FLEXToolbarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXToolbarItem.m; sourceTree = "<group>"; };
+		BEF0683C60F7AA4E9370754C /* FLEXNetworkTransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXNetworkTransaction.h; sourceTree = "<group>"; };
+		BEF06845F3AF9B69CA1BCBB6 /* UIBarButtonItemGrid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UIBarButtonItemGrid.png; sourceTree = "<group>"; };
+		BEF0684C0750B16A5B763F51 /* FLEXArgumentInputColorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXArgumentInputColorView.h; sourceTree = "<group>"; };
+		BEF068641BB1D60FCD92008D /* FLEXResources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXResources.m; sourceTree = "<group>"; };
+		BEF0687231E62A709E538570 /* MASViewAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASViewAttribute.h; sourceTree = "<group>"; };
+		BEF06872D7F5272517440552 /* FLEXKeyboardShortcutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXKeyboardShortcutManager.h; sourceTree = "<group>"; };
+		BEF0688AB6C0453DA55961F6 /* NSArray+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+MASAdditions.m"; sourceTree = "<group>"; };
+		BEF0688D7F292380011413A9 /* FLEXLibrariesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXLibrariesTableViewController.h; sourceTree = "<group>"; };
+		BEF0688F219F0508E6420A5D /* FLEXLibrariesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXLibrariesTableViewController.m; sourceTree = "<group>"; };
+		BEF068A5D103539B7D931217 /* FLEXHierarchyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXHierarchyTableViewCell.h; sourceTree = "<group>"; };
+		BEF068AB559AFBDACEA784A9 /* MASConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASConstraint.m; sourceTree = "<group>"; };
+		BEF068B7A52C267995824B59 /* DALabeledCircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DALabeledCircularProgressView.m; sourceTree = "<group>"; };
+		BEF068BF4E2698330BD8D333 /* FLEXNetworkRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXNetworkRecorder.m; sourceTree = "<group>"; };
+		BEF068CE5BAB8D6135019F21 /* RSColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSColorPickerView.h; sourceTree = "<group>"; };
+		BEF068CE610BDB669B8C1AEB /* MWTapDetectingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWTapDetectingImageView.h; sourceTree = "<group>"; };
+		BEF068CF7DCC63481957AB7B /* FLEXArgumentInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXArgumentInputView.m; sourceTree = "<group>"; };
+		BEF068D37524943DB09A239D /* BitmapScaleManipulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BitmapScaleManipulator.m; sourceTree = "<group>"; };
+		BEF068EE50F26F61FAF1D8BF /* FLEXMultiColumnTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXMultiColumnTableView.m; sourceTree = "<group>"; };
+		BEF068F13448E30634B39829 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		BEF0690CB4DA72267978744C /* SDWebImageDownloaderOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageDownloaderOperation.m; sourceTree = "<group>"; };
+		BEF06926488979228BB3C42C /* Masonry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Masonry.h; sourceTree = "<group>"; };
+		BEF069295B03AD55147BD209 /* FLEXSetExplorerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXSetExplorerViewController.h; sourceTree = "<group>"; };
+		BEF0692D608BC2038D96B583 /* FLEXSystemLogTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXSystemLogTableViewController.m; sourceTree = "<group>"; };
+		BEF06935048FF66E6DBB48D1 /* FLEXTableContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXTableContentViewController.h; sourceTree = "<group>"; };
+		BEF069497CF831E6B9F2C000 /* ImageError@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ImageError@3x.png"; sourceTree = "<group>"; };
+		BEF0695CFA8ED2CDD4F3CCD0 /* FLEXLayerExplorerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXLayerExplorerViewController.m; sourceTree = "<group>"; };
+		BEF06961E15586DC576112DD /* RSBrightnessSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSBrightnessSlider.m; sourceTree = "<group>"; };
+		BEF069695CB8A4E6DF64588A /* CGContextCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGContextCreator.m; sourceTree = "<group>"; };
+		BEF06971E6797326EFD2FA7F /* NSImage+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+WebCache.m"; sourceTree = "<group>"; };
+		BEF0698306B652B2F0BC24FE /* FLEXKeyboardHelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXKeyboardHelpViewController.h; sourceTree = "<group>"; };
+		BEF06987F28CDF64A2B675E3 /* FLEXWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXWebViewController.h; sourceTree = "<group>"; };
+		BEF06993D23272F5090D31FA /* FLEXArgumentInputDateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXArgumentInputDateView.h; sourceTree = "<group>"; };
+		BEF069AB08371818140E3A3E /* MWTapDetectingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWTapDetectingView.h; sourceTree = "<group>"; };
+		BEF069B264C838F54340DDB0 /* FLEXGlobalsTableViewControllerEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXGlobalsTableViewControllerEntry.m; sourceTree = "<group>"; };
+		BEF069B54D48E5FB57DB3751 /* FLEXMultiColumnTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXMultiColumnTableView.h; sourceTree = "<group>"; };
+		BEF069B787F54386A208E992 /* View+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+MASAdditions.h"; sourceTree = "<group>"; };
+		BEF069BBCF61E5AF22E5AB5E /* FLEX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEX.h; sourceTree = "<group>"; };
+		BEF069C6606AE6A71BF065D0 /* FLEXResources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXResources.h; sourceTree = "<group>"; };
+		BEF069C7EE31A5739CFF61D9 /* View+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "View+MASAdditions.m"; sourceTree = "<group>"; };
+		BEF069C9CB6DCF027789099A /* FLEXDictionaryExplorerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXDictionaryExplorerViewController.m; sourceTree = "<group>"; };
+		BEF069DBB8F568B661490E89 /* MWPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWPhotoBrowser.m; sourceTree = "<group>"; };
+		BEF069EC90D6036F7BA1D04D /* FLEXIvarEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXIvarEditorViewController.m; sourceTree = "<group>"; };
+		BEF069EE5E1505E8970C781B /* FLEXFileBrowserFileOperationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXFileBrowserFileOperationController.h; sourceTree = "<group>"; };
+		BEF069F74DD164E14B57E00C /* CGContextCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGContextCreator.h; sourceTree = "<group>"; };
+		BEF069FBAE5315601A5C6D22 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		BEF06A155300C39D7650E8AB /* FLEXHeapEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXHeapEnumerator.m; sourceTree = "<group>"; };
+		BEF06A286C76F81A3F50CE64 /* FLEXRealmDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXRealmDatabaseManager.m; sourceTree = "<group>"; };
+		BEF06A30E15CB5E3DEE6699B /* UIBarButtonItemArrowRight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UIBarButtonItemArrowRight@2x.png"; sourceTree = "<group>"; };
+		BEF06A35A1106306B39F2176 /* UIBarButtonItemArrowLeft@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UIBarButtonItemArrowLeft@2x.png"; sourceTree = "<group>"; };
+		BEF06A3A32CBBFD9DF969D99 /* MASLayoutConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASLayoutConstraint.h; sourceTree = "<group>"; };
+		BEF06A3BDF6C8FB7E4582341 /* UIButton+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+WebCache.h"; sourceTree = "<group>"; };
+		BEF06A8F9B5EB9B223AA6C83 /* FLEXSQLiteDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXSQLiteDatabaseManager.m; sourceTree = "<group>"; };
+		BEF06AA2E30FFA4F6CB84D04 /* UIImage+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extension.m"; sourceTree = "<group>"; };
+		BEF06ACF1AB98E0C4C5CD91A /* FLEXClassesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXClassesTableViewController.h; sourceTree = "<group>"; };
+		BEF06AD2DD9A5CF88FA8FBDD /* FLEXHierarchyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXHierarchyTableViewCell.m; sourceTree = "<group>"; };
+		BEF06AEFBD9A7819A1A97D22 /* FLEXPropertyEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXPropertyEditorViewController.m; sourceTree = "<group>"; };
+		BEF06B038E75F55ABDEF3D94 /* FLEXGlobalsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXGlobalsTableViewController.h; sourceTree = "<group>"; };
+		BEF06B0BFA20785BE5CCCFF0 /* FLEXManager+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLEXManager+Private.h"; sourceTree = "<group>"; };
+		BEF06B142F1CDCC4814E7F0B /* FLEXFileBrowserTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXFileBrowserTableViewController.h; sourceTree = "<group>"; };
+		BEF06B1B7E43DDD2BB765901 /* FLEXArgumentInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXArgumentInputView.h; sourceTree = "<group>"; };
+		BEF06B261E5662F3A5FCD0CF /* FLEXImagePreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXImagePreviewViewController.m; sourceTree = "<group>"; };
+		BEF06B2A6FE0DC67DD9A0DAC /* FLEXArgumentInputFontView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXArgumentInputFontView.m; sourceTree = "<group>"; };
+		BEF06B3B9C063062ADA3E8FF /* RSColorFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSColorFunctions.h; sourceTree = "<group>"; };
+		BEF06B3C01CBA243D8764760 /* FLEXClassesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXClassesTableViewController.m; sourceTree = "<group>"; };
+		BEF06B4A0B589FED02121122 /* FLEXRuntimeUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXRuntimeUtility.m; sourceTree = "<group>"; };
+		BEF06B4EA56E43FFE2DBB3A8 /* BitmapRotationManipulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BitmapRotationManipulator.m; sourceTree = "<group>"; };
+		BEF06B5A269372684DE5C89A /* MASConstraintMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASConstraintMaker.m; sourceTree = "<group>"; };
+		BEF06B5D0623262D8C699912 /* UIBarButtonItemGrid@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UIBarButtonItemGrid@2x.png"; sourceTree = "<group>"; };
+		BEF06B700270641817A8F8E8 /* PlayButtonOverlayLargeTap@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PlayButtonOverlayLargeTap@3x.png"; sourceTree = "<group>"; };
+		BEF06B923E174FFA5D6D87B0 /* FLEXDefaultEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXDefaultEditorViewController.m; sourceTree = "<group>"; };
+		BEF06B9CDF2B14C3020C4381 /* MWCaptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWCaptionView.h; sourceTree = "<group>"; };
+		BEF06BC55F6ABAD2AD2C2220 /* ViewController+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ViewController+MASAdditions.m"; sourceTree = "<group>"; };
+		BEF06BCB31B3C274F0C4AA66 /* FLEXSQLiteDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXSQLiteDatabaseManager.h; sourceTree = "<group>"; };
+		BEF06BD80314E87FC11BABFB /* RSSelectionLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSelectionLayer.h; sourceTree = "<group>"; };
+		BEF06BDBF146D394FF9A0B9C /* FLEXWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXWindow.h; sourceTree = "<group>"; };
+		BEF06BE8B577825E61FE99C2 /* FLEXObjectExplorerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXObjectExplorerFactory.h; sourceTree = "<group>"; };
+		BEF06BF5EBFC7D98D7BEA424 /* FLEXViewExplorerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXViewExplorerViewController.m; sourceTree = "<group>"; };
+		BEF06C061605349A3AF09D90 /* ImageSelectedOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ImageSelectedOff@2x.png"; sourceTree = "<group>"; };
+		BEF06C1B3C83169E37E2EC1E /* FLEXKeyboardHelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXKeyboardHelpViewController.m; sourceTree = "<group>"; };
+		BEF06C1B77E5CCE6133CF216 /* MWPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWPhoto.h; sourceTree = "<group>"; };
+		BEF06C1DB8966CE8FE661951 /* DALabeledCircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DALabeledCircularProgressView.h; sourceTree = "<group>"; };
+		BEF06C1EDCCD330C96B5B0CB /* NSImage+ANImageBitmapRep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+ANImageBitmapRep.h"; sourceTree = "<group>"; };
+		BEF06C2DCFA30C517A8B0556 /* CGImageContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGImageContainer.h; sourceTree = "<group>"; };
+		BEF06C3E7F7D1BC080191CDC /* FLEXArgumentInputColorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXArgumentInputColorView.m; sourceTree = "<group>"; };
+		BEF06C4FBCEC47DC0264BBBC /* FLEXFileBrowserFileOperationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXFileBrowserFileOperationController.m; sourceTree = "<group>"; };
+		BEF06C58F934DC635030CF9B /* FLEXNetworkHistoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXNetworkHistoryTableViewController.h; sourceTree = "<group>"; };
+		BEF06C6DC44CA5166F5ED3B9 /* ViewController+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ViewController+MASAdditions.h"; sourceTree = "<group>"; };
+		BEF06C74F094D2E67B8C2342 /* MWZoomingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWZoomingScrollView.h; sourceTree = "<group>"; };
+		BEF06C7536CABBB0BC887323 /* FLEXArgumentInputViewFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXArgumentInputViewFactory.m; sourceTree = "<group>"; };
+		BEF06C77DCF7A548002F1323 /* BitmapDrawManipulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BitmapDrawManipulator.m; sourceTree = "<group>"; };
+		BEF06C8216C70BC011D7E275 /* MWGridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWGridCell.h; sourceTree = "<group>"; };
+		BEF06C84396DCAB9A1DEF62F /* PlayButtonOverlayLargeTap@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PlayButtonOverlayLargeTap@2x.png"; sourceTree = "<group>"; };
+		BEF06C8910A8FAA8B4805EFC /* FLEXTableContentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXTableContentCell.h; sourceTree = "<group>"; };
+		BEF06CB90360E41A3A52CDBC /* ImageSelectedSmallOn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ImageSelectedSmallOn@3x.png"; sourceTree = "<group>"; };
+		BEF06CC2E78B5C30B7D7186B /* RSBrightnessSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSBrightnessSlider.h; sourceTree = "<group>"; };
+		BEF06CC76C1B8DB87D00CA49 /* BitmapContextManipulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BitmapContextManipulator.h; sourceTree = "<group>"; };
+		BEF06CD6B6D3C101FB26ADE3 /* GenGIFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenGIFViewController.h; sourceTree = "<group>"; };
+		BEF06CDE4617AAC9ACF93E47 /* FLEXInstancesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXInstancesTableViewController.m; sourceTree = "<group>"; };
+		BEF06CF1860EF1A479BACB01 /* FLEXViewControllerExplorerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXViewControllerExplorerViewController.h; sourceTree = "<group>"; };
+		BEF06CFD5E3C131475DE7212 /* BitmapCropManipulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BitmapCropManipulator.m; sourceTree = "<group>"; };
+		BEF06D0D1275D3C6879A4C6E /* FLEXImageExplorerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXImageExplorerViewController.m; sourceTree = "<group>"; };
+		BEF06D24A32A77F552F3B2B3 /* FLEXTableColumnHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXTableColumnHeader.h; sourceTree = "<group>"; };
+		BEF06D36B1A513DED6FC2ADE /* SDImageCacheConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDImageCacheConfig.m; sourceTree = "<group>"; };
+		BEF06D426CDB0223D611EAB7 /* FLEXArgumentInputTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXArgumentInputTextView.h; sourceTree = "<group>"; };
+		BEF06D450670874E0A1415AC /* FLEXSystemLogMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXSystemLogMessage.h; sourceTree = "<group>"; };
+		BEF06D505F97C4A2B24285F5 /* SDWebImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageDownloader.h; sourceTree = "<group>"; };
+		BEF06D5325F325C056FB8679 /* FLEXArgumentInputNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXArgumentInputNumberView.h; sourceTree = "<group>"; };
+		BEF06D78AC4C661A051AF96F /* FLEXArrayExplorerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXArrayExplorerViewController.h; sourceTree = "<group>"; };
+		BEF06D869DAC1667A012EA32 /* FLEXArrayExplorerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXArrayExplorerViewController.m; sourceTree = "<group>"; };
+		BEF06D9AD5682D4E1CAA48BE /* FLEXArgumentInputFontsPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXArgumentInputFontsPickerView.m; sourceTree = "<group>"; };
+		BEF06DA9D7E1FBEC7A1ABB26 /* SearchGIFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchGIFViewController.m; sourceTree = "<group>"; };
+		BEF06DB73C64BB8F51790B74 /* FLEXToolbarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXToolbarItem.h; sourceTree = "<group>"; };
+		BEF06DDE9B1A7D942DF3D979 /* FLEXExplorerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXExplorerViewController.h; sourceTree = "<group>"; };
+		BEF06DE10D9964861FC38CAC /* SDWebImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageOperation.h; sourceTree = "<group>"; };
+		BEF06E003373B9BC14897CCF /* FLEXArgumentInputViewFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXArgumentInputViewFactory.h; sourceTree = "<group>"; };
+		BEF06E01B9F473206A8FCA61 /* FLEXTableLeftCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXTableLeftCell.h; sourceTree = "<group>"; };
+		BEF06E0AB3C4E49172E0EA22 /* FLEXMultilineTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXMultilineTableViewCell.h; sourceTree = "<group>"; };
+		BEF06E14D04F2C4B9018E4DD /* FLEXLayerExplorerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXLayerExplorerViewController.h; sourceTree = "<group>"; };
+		BEF06E632D6C415CCDD87218 /* FLEXArgumentInputNotSupportedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXArgumentInputNotSupportedView.m; sourceTree = "<group>"; };
+		BEF06E6BD2062205CEA38C6E /* RSGenerateOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSGenerateOperation.h; sourceTree = "<group>"; };
+		BEF06E6FC0087DC2EE97D769 /* LWPushManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPushManager.m; sourceTree = "<group>"; };
+		BEF06E7C664E52AEEB834ED8 /* UIImage+MultiFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MultiFormat.m"; sourceTree = "<group>"; };
+		BEF06E87376BF4FABF789332 /* FLEXArgumentInputNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXArgumentInputNumberView.m; sourceTree = "<group>"; };
+		BEF06E8B5ED4B9B0C291A1C6 /* FLEXManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXManager.h; sourceTree = "<group>"; };
+		BEF06E92A609000BB7D75DC8 /* FLEXLiveObjectsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXLiveObjectsTableViewController.h; sourceTree = "<group>"; };
+		BEF06E9C4871FE004F9DA534 /* FLEXCookiesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXCookiesTableViewController.h; sourceTree = "<group>"; };
+		BEF06EA52A052229A16A4EF5 /* BGRSLoupeLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGRSLoupeLayer.m; sourceTree = "<group>"; };
+		BEF06EBB86ABE98A4C755016 /* ImageSelectedSmallOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ImageSelectedSmallOn.png; sourceTree = "<group>"; };
+		BEF06EDFD001D3D06DE3FF9A /* FLEXArgumentInputJSONObjectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXArgumentInputJSONObjectView.h; sourceTree = "<group>"; };
+		BEF06EE04049687F0D633F07 /* MWTapDetectingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWTapDetectingImageView.m; sourceTree = "<group>"; };
+		BEF06EE92AAE298C6346159E /* FLEXFileBrowserSearchOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXFileBrowserSearchOperation.h; sourceTree = "<group>"; };
+		BEF06EEC5C67B5D1E132614C /* FLEXIvarEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXIvarEditorViewController.h; sourceTree = "<group>"; };
+		BEF06EED1467878393FF0CDE /* FLEXGlobalsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXGlobalsTableViewController.m; sourceTree = "<group>"; };
+		BEF06EF3A0665589ADFA6B57 /* MWCaptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWCaptionView.m; sourceTree = "<group>"; };
+		BEF06EF3AF3B1E7F43CF0A00 /* FLEXRealmDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXRealmDatabaseManager.h; sourceTree = "<group>"; };
+		BEF06F02B848D8FB54B61B7C /* FLEXNetworkTransaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXNetworkTransaction.m; sourceTree = "<group>"; };
+		BEF06F0B45AD3821B47F18A0 /* VideoOverlay@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "VideoOverlay@3x.png"; sourceTree = "<group>"; };
+		BEF06F220B39FD142D777A58 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		BEF06F2247640E53FF4FD2CF /* SDImageCacheConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDImageCacheConfig.h; sourceTree = "<group>"; };
+		BEF06F3EF1A168DF897F59F4 /* ImageSelectedOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ImageSelectedOn.png; sourceTree = "<group>"; };
+		BEF06F4F33BCDDE895878DEF /* UIView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCache.m"; sourceTree = "<group>"; };
+		BEF06F4FBE32FB6950A8CFFE /* UIImageView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+WebCache.h"; sourceTree = "<group>"; };
+		BEF06F564AA6ED07C72BFA3A /* FLEXGlobalsTableViewControllerEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXGlobalsTableViewControllerEntry.h; sourceTree = "<group>"; };
+		BEF06F7D9697EB9238C8061C /* FLEXUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXUtility.h; sourceTree = "<group>"; };
+		BEF06F90772B74E81FD9BA03 /* SDWebImageCompat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageCompat.m; sourceTree = "<group>"; };
+		BEF06F92A7CB4B0FA6CFFA3E /* UIBarButtonItemGrid@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UIBarButtonItemGrid@3x.png"; sourceTree = "<group>"; };
+		BEF06F9C9EB3588D5B77A92A /* UIView+extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+extensions.h"; sourceTree = "<group>"; };
+		BEF06F9F835D98CBA7B7E19E /* MWPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWPhotoBrowser.h; sourceTree = "<group>"; };
+		BEF06FA01800A423AC919624 /* NSArray+MASShorthandAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+MASShorthandAdditions.h"; sourceTree = "<group>"; };
+		BEF06FBE21768F59043E29B7 /* RSColorPickerState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSColorPickerState.m; sourceTree = "<group>"; };
+		BEF06FC2083DC79904E6D06B /* FLEXNetworkHistoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXNetworkHistoryTableViewController.m; sourceTree = "<group>"; };
+		BEF06FC7124C308CFAF09D13 /* MWGridCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWGridCell.m; sourceTree = "<group>"; };
+		BEF06FDD9D631EBF3840B5B6 /* NSLayoutConstraint+MASDebugAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+MASDebugAdditions.h"; sourceTree = "<group>"; };
+		BEF06FE490AE2FC31B34B95B /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
+		BEF06FF2AABB8EB46A8A2E11 /* MWGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWGridViewController.h; sourceTree = "<group>"; };
 		EA7437E41FFCA2E600AD0291 /* GIFEmoji.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GIFEmoji.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA7437E71FFCA2E600AD0291 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EA7437E81FFCA2E600AD0291 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		EA7437EA1FFCA2E600AD0291 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		EA7437EB1FFCA2E600AD0291 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		EA7437ED1FFCA2E600AD0291 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		EA7437EE1FFCA2E600AD0291 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		EA7437F11FFCA2E600AD0291 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EA7437F31FFCA2E600AD0291 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EA7437F61FFCA2E600AD0291 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EA7437F81FFCA2E600AD0291 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA7437F91FFCA2E600AD0291 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		EA7438001FFCBA0300AD0291 /* AppDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDefines.h; sourceTree = "<group>"; };
+		EA7438021FFCBB3900AD0291 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		EA7438041FFCBB4100AD0291 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		EA7438061FFCBB4D00AD0291 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		EA7438081FFCBB5800AD0291 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		EA74380A1FFCBB5F00AD0291 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,17 +560,623 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA74380B1FFCBB5F00AD0291 /* libsqlite3.0.tbd in Frameworks */,
+				EA7438091FFCBB5800AD0291 /* libz.tbd in Frameworks */,
+				EA7438071FFCBB4D00AD0291 /* UserNotifications.framework in Frameworks */,
+				EA7438051FFCBB4100AD0291 /* SystemConfiguration.framework in Frameworks */,
+				EA7438031FFCBB3900AD0291 /* CoreTelephony.framework in Frameworks */,
+				BEF06A10C4095DA46FEDC5F3 /* libXG-SDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BEF0603F6F481D03AD751D4B /* ExplorerInterface */ = {
+			isa = PBXGroup;
+			children = (
+				BEF06BDBF146D394FF9A0B9C /* FLEXWindow.h */,
+				BEF0653575195466ACEC2574 /* FLEXWindow.m */,
+				BEF06DDE9B1A7D942DF3D979 /* FLEXExplorerViewController.h */,
+				BEF0651A00E9BF14D29F71BF /* FLEXExplorerViewController.m */,
+			);
+			path = ExplorerInterface;
+			sourceTree = "<group>";
+		};
+		BEF061061CAFAADC336D7299 /* DACircularProgress */ = {
+			isa = PBXGroup;
+			children = (
+				BEF0656E68286794A8175FBA /* DACircularProgressView.h */,
+				BEF064D5EE8C9B6556697E0B /* DACircularProgressView.m */,
+				BEF06C1DB8966CE8FE661951 /* DALabeledCircularProgressView.h */,
+				BEF068B7A52C267995824B59 /* DALabeledCircularProgressView.m */,
+			);
+			path = DACircularProgress;
+			sourceTree = "<group>";
+		};
+		BEF06125D96CC000CC162416 /* MWPhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				BEF06EFDB166E232365EED9D /* Classes */,
+				BEF06D3FE188D97D19A8265E /* MWPhotoBrowser.bundle */,
+			);
+			path = MWPhotoBrowser;
+			sourceTree = "<group>";
+		};
+		BEF0614BF9CDAD92705EEE36 /* GlobalStateExplorers */ = {
+			isa = PBXGroup;
+			children = (
+				BEF069A282A25F5A414BEB30 /* SystemLog */,
+				BEF06C1112EC24832786D5A4 /* DatabaseBrowser */,
+				BEF06987F28CDF64A2B675E3 /* FLEXWebViewController.h */,
+				BEF060DE9766FCFE8106EB15 /* FLEXWebViewController.m */,
+				BEF06ACF1AB98E0C4C5CD91A /* FLEXClassesTableViewController.h */,
+				BEF06B3C01CBA243D8764760 /* FLEXClassesTableViewController.m */,
+				BEF06E9C4871FE004F9DA534 /* FLEXCookiesTableViewController.h */,
+				BEF06193F2E4B71A6C1230F0 /* FLEXCookiesTableViewController.m */,
+				BEF06EE92AAE298C6346159E /* FLEXFileBrowserSearchOperation.h */,
+				BEF06256D2FF51EDCB500AE2 /* FLEXFileBrowserSearchOperation.m */,
+				BEF06B038E75F55ABDEF3D94 /* FLEXGlobalsTableViewController.h */,
+				BEF06EED1467878393FF0CDE /* FLEXGlobalsTableViewController.m */,
+				BEF06679C8F61F6CD21E8D5D /* FLEXInstancesTableViewController.h */,
+				BEF06CDE4617AAC9ACF93E47 /* FLEXInstancesTableViewController.m */,
+				BEF0688D7F292380011413A9 /* FLEXLibrariesTableViewController.h */,
+				BEF0688F219F0508E6420A5D /* FLEXLibrariesTableViewController.m */,
+				BEF06B142F1CDCC4814E7F0B /* FLEXFileBrowserTableViewController.h */,
+				BEF06638F5E18D9C211D419A /* FLEXFileBrowserTableViewController.m */,
+				BEF06E92A609000BB7D75DC8 /* FLEXLiveObjectsTableViewController.h */,
+				BEF067EA7CDE5865D5816AB1 /* FLEXLiveObjectsTableViewController.m */,
+				BEF069EE5E1505E8970C781B /* FLEXFileBrowserFileOperationController.h */,
+				BEF06C4FBCEC47DC0264BBBC /* FLEXFileBrowserFileOperationController.m */,
+			);
+			path = GlobalStateExplorers;
+			sourceTree = "<group>";
+		};
+		BEF0615E7B6D491E9A09E23C /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				BEF0666F40FC7849D51E40E9 /* SearchGIFViewController.h */,
+				BEF06DA9D7E1FBEC7A1ABB26 /* SearchGIFViewController.m */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		BEF0631CFFCC92B5B094BA9F /* FLAnimatedImage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = FLAnimatedImage;
+			sourceTree = "<group>";
+		};
+		BEF0637A49C15CE323B03F43 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				BEF0644012C9470A45F7EDC4 /* FLEXManager.m */,
+				BEF06B0BFA20785BE5CCCFF0 /* FLEXManager+Private.h */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		BEF06450ABA7B3F62FF7FF86 /* ArgumentInputViews */ = {
+			isa = PBXGroup;
+			children = (
+				BEF06B1B7E43DDD2BB765901 /* FLEXArgumentInputView.h */,
+				BEF068CF7DCC63481957AB7B /* FLEXArgumentInputView.m */,
+				BEF06993D23272F5090D31FA /* FLEXArgumentInputDateView.h */,
+				BEF066606F5F19B962FCFCBB /* FLEXArgumentInputDateView.m */,
+				BEF06770001F5ADAAB8F59B2 /* FLEXArgumentInputFontView.h */,
+				BEF06B2A6FE0DC67DD9A0DAC /* FLEXArgumentInputFontView.m */,
+				BEF06D426CDB0223D611EAB7 /* FLEXArgumentInputTextView.h */,
+				BEF066544A57DF66C4ED068A /* FLEXArgumentInputTextView.m */,
+				BEF0684C0750B16A5B763F51 /* FLEXArgumentInputColorView.h */,
+				BEF06C3E7F7D1BC080191CDC /* FLEXArgumentInputColorView.m */,
+				BEF06D5325F325C056FB8679 /* FLEXArgumentInputNumberView.h */,
+				BEF06E87376BF4FABF789332 /* FLEXArgumentInputNumberView.m */,
+				BEF066C6ECE0506A16F5C195 /* FLEXArgumentInputStringView.h */,
+				BEF062DA11B0758471F35C60 /* FLEXArgumentInputStringView.m */,
+				BEF06268DDAAD639777F8D28 /* FLEXArgumentInputStructView.h */,
+				BEF063D113402F0026C44E8A /* FLEXArgumentInputStructView.m */,
+				BEF0654D3A15559FC6546ED5 /* FLEXArgumentInputSwitchView.h */,
+				BEF061DCC66352C7D82A1FB8 /* FLEXArgumentInputSwitchView.m */,
+				BEF06E003373B9BC14897CCF /* FLEXArgumentInputViewFactory.h */,
+				BEF06C7536CABBB0BC887323 /* FLEXArgumentInputViewFactory.m */,
+				BEF06EDFD001D3D06DE3FF9A /* FLEXArgumentInputJSONObjectView.h */,
+				BEF060931B7B34C5189F36CE /* FLEXArgumentInputJSONObjectView.m */,
+				BEF063F9F72CEF47E7BF85C0 /* FLEXArgumentInputFontsPickerView.h */,
+				BEF06D9AD5682D4E1CAA48BE /* FLEXArgumentInputFontsPickerView.m */,
+				BEF0637AAEE67DA997535557 /* FLEXArgumentInputNotSupportedView.h */,
+				BEF06E632D6C415CCDD87218 /* FLEXArgumentInputNotSupportedView.m */,
+			);
+			path = ArgumentInputViews;
+			sourceTree = "<group>";
+		};
+		BEF065462929FB5FD6B38C3B /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				BEF0628A1FE6C249DF74B4C3 /* MBProgressHUD.h */,
+				BEF069FBAE5315601A5C6D22 /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		BEF06623B503DDA3BE707AAA /* Compatibility */ = {
+			isa = PBXGroup;
+			children = (
+				BEF062A873158F263C8E660B /* OSCommonImage.h */,
+				BEF0642F9341DE76A850102A /* OSCommonImage.m */,
+				BEF06C1EDCCD330C96B5B0CB /* NSImage+ANImageBitmapRep.h */,
+				BEF061D7272F35DA6D289951 /* NSImage+ANImageBitmapRep.m */,
+				BEF064BFB916412168D076D7 /* UIImage+ANImageBitmapRep.h */,
+				BEF06770B60C0CAB75C45B94 /* UIImage+ANImageBitmapRep.m */,
+			);
+			path = Compatibility;
+			sourceTree = "<group>";
+		};
+		BEF066A0457C91F79EC28E00 /* Toolbar */ = {
+			isa = PBXGroup;
+			children = (
+				BEF06DB73C64BB8F51790B74 /* FLEXToolbarItem.h */,
+				BEF0681828A847DC64653168 /* FLEXToolbarItem.m */,
+				BEF060C3E357F83BB44CB08B /* FLEXExplorerToolbar.h */,
+				BEF061248346940FE30E0103 /* FLEXExplorerToolbar.m */,
+			);
+			path = Toolbar;
+			sourceTree = "<group>";
+		};
+		BEF066C1FBDAEF22CBB55F8B /* Make */ = {
+			isa = PBXGroup;
+			children = (
+				BEF06CD6B6D3C101FB26ADE3 /* GenGIFViewController.h */,
+				BEF0655B5EA77495A06E9C36 /* GenGIFViewController.m */,
+			);
+			path = Make;
+			sourceTree = "<group>";
+		};
+		BEF066DFAD17E36B3E3FDA63 /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+				BEF061061CAFAADC336D7299 /* DACircularProgress */,
+				BEF06125D96CC000CC162416 /* MWPhotoBrowser */,
+				BEF06A73A1BA6B48FDF523BE /* SDWebImage */,
+				BEF06FAFD555CBEA8461B839 /* libXGPush */,
+				BEF06945C892460D9DAAD1AC /* FLEX */,
+				BEF067F7FF2E39D5A29FAF64 /* Reachability */,
+				BEF067161418F7BFD2E2811D /* RSColorPicker */,
+				BEF06E6311C0850E08D932DD /* Masonry */,
+				BEF065462929FB5FD6B38C3B /* MBProgressHUD */,
+			);
+			path = Libs;
+			sourceTree = "<group>";
+		};
+		BEF067161418F7BFD2E2811D /* RSColorPicker */ = {
+			isa = PBXGroup;
+			children = (
+				BEF068B13168CEB4593931DC /* ANImageBitmapRep */,
+				BEF0607EC15E995D74D3F671 /* BGRSLoupeLayer.h */,
+				BEF06EA52A052229A16A4EF5 /* BGRSLoupeLayer.m */,
+				BEF066DABDA722C5C0BA94CA /* RSOpacitySlider.h */,
+				BEF064CAFF2331C024BF481F /* RSOpacitySlider.m */,
+				BEF06B3B9C063062ADA3E8FF /* RSColorFunctions.h */,
+				BEF06315D17D41BFAEF89294 /* RSColorFunctions.m */,
+				BEF06BD80314E87FC11BABFB /* RSSelectionLayer.h */,
+				BEF066B85FC8E42CBCA51259 /* RSSelectionLayer.m */,
+				BEF068CE5BAB8D6135019F21 /* RSColorPickerView.h */,
+				BEF067D3769288BDEFC198B0 /* RSColorPickerView.m */,
+				BEF06CC2E78B5C30B7D7186B /* RSBrightnessSlider.h */,
+				BEF06961E15586DC576112DD /* RSBrightnessSlider.m */,
+				BEF0638D6DAA175EF0D7A83F /* RSColorPickerState.h */,
+				BEF06FBE21768F59043E29B7 /* RSColorPickerState.m */,
+				BEF06E6BD2062205CEA38C6E /* RSGenerateOperation.h */,
+				BEF060418D950A7D8D968D87 /* RSGenerateOperation.m */,
+			);
+			path = RSColorPicker;
+			sourceTree = "<group>";
+		};
+		BEF0676891E3E42A48150521 /* Editing */ = {
+			isa = PBXGroup;
+			children = (
+				BEF06450ABA7B3F62FF7FF86 /* ArgumentInputViews */,
+				BEF0629231720129B3B87A18 /* FLEXFieldEditorView.h */,
+				BEF06448FA0A543B911EB27E /* FLEXFieldEditorView.m */,
+				BEF06EEC5C67B5D1E132614C /* FLEXIvarEditorViewController.h */,
+				BEF069EC90D6036F7BA1D04D /* FLEXIvarEditorViewController.m */,
+				BEF06650314C5E959F836129 /* FLEXFieldEditorViewController.h */,
+				BEF065AD9CB0B999EB38054E /* FLEXFieldEditorViewController.m */,
+				BEF06415B6B41721C46683F7 /* FLEXDefaultEditorViewController.h */,
+				BEF06B923E174FFA5D6D87B0 /* FLEXDefaultEditorViewController.m */,
+				BEF060FCD8B6787D96717994 /* FLEXMethodCallingViewController.h */,
+				BEF064602A052F929CF0808F /* FLEXMethodCallingViewController.m */,
+				BEF0613B02CE1FACCF2B8EBF /* FLEXPropertyEditorViewController.h */,
+				BEF06AEFBD9A7819A1A97D22 /* FLEXPropertyEditorViewController.m */,
+			);
+			path = Editing;
+			sourceTree = "<group>";
+		};
+		BEF067F012524AA149A93FF4 /* CoreGraphics */ = {
+			isa = PBXGroup;
+			children = (
+				BEF069F74DD164E14B57E00C /* CGContextCreator.h */,
+				BEF069695CB8A4E6DF64588A /* CGContextCreator.m */,
+				BEF06C2DCFA30C517A8B0556 /* CGImageContainer.h */,
+				BEF060C8CC22209E96EE8565 /* CGImageContainer.m */,
+			);
+			path = CoreGraphics;
+			sourceTree = "<group>";
+		};
+		BEF067F7FF2E39D5A29FAF64 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				BEF068F13448E30634B39829 /* Reachability.h */,
+				BEF064B24449F6BC5738C5D0 /* Reachability.m */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
+		BEF068B13168CEB4593931DC /* ANImageBitmapRep */ = {
+			isa = PBXGroup;
+			children = (
+				BEF067F012524AA149A93FF4 /* CoreGraphics */,
+				BEF06B1FD10C637822765102 /* Manipulators */,
+				BEF06623B503DDA3BE707AAA /* Compatibility */,
+				BEF063D3B83228456BEA5295 /* ANImageBitmapRep.h */,
+				BEF0677C7894D753F2CA2E85 /* ANImageBitmapRep.m */,
+				BEF0675E953FC01A1956D77B /* BitmapContextRep.h */,
+				BEF063E9198F9A06A95CDA1C /* BitmapContextRep.m */,
+			);
+			path = ANImageBitmapRep;
+			sourceTree = "<group>";
+		};
+		BEF068DA64E7FF35488FC4A7 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				BEF06F7D9697EB9238C8061C /* FLEXUtility.h */,
+				BEF0605797657A76D3583463 /* FLEXUtility.m */,
+				BEF069C6606AE6A71BF065D0 /* FLEXResources.h */,
+				BEF068641BB1D60FCD92008D /* FLEXResources.m */,
+				BEF067F9B86D26087EA26FAB /* FLEXHeapEnumerator.h */,
+				BEF06A155300C39D7650E8AB /* FLEXHeapEnumerator.m */,
+				BEF06688C15DDDE5E4F126FA /* FLEXRuntimeUtility.h */,
+				BEF06B4A0B589FED02121122 /* FLEXRuntimeUtility.m */,
+				BEF06E0AB3C4E49172E0EA22 /* FLEXMultilineTableViewCell.h */,
+				BEF06598FE10F37BCB54DA98 /* FLEXMultilineTableViewCell.m */,
+				BEF06872D7F5272517440552 /* FLEXKeyboardShortcutManager.h */,
+				BEF062FE3D9F4370CA06EAE6 /* FLEXKeyboardShortcutManager.m */,
+				BEF0698306B652B2F0BC24FE /* FLEXKeyboardHelpViewController.h */,
+				BEF06C1B3C83169E37E2EC1E /* FLEXKeyboardHelpViewController.m */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		BEF06945C892460D9DAAD1AC /* FLEX */ = {
+			isa = PBXGroup;
+			children = (
+				BEF069BBCF61E5AF22E5AB5E /* FLEX.h */,
+				BEF0676891E3E42A48150521 /* Editing */,
+				BEF0637A49C15CE323B03F43 /* Manager */,
+				BEF06F95B58D36D960C611E3 /* Network */,
+				BEF066A0457C91F79EC28E00 /* Toolbar */,
+				BEF068DA64E7FF35488FC4A7 /* Utility */,
+				BEF06E8B5ED4B9B0C291A1C6 /* FLEXManager.h */,
+				BEF06D7B8DA0AFF297AA4CB4 /* ViewHierarchy */,
+				BEF06A84D758193BDDDB4000 /* ObjectExplorers */,
+				BEF0603F6F481D03AD751D4B /* ExplorerInterface */,
+				BEF0614BF9CDAD92705EEE36 /* GlobalStateExplorers */,
+			);
+			path = FLEX;
+			sourceTree = "<group>";
+		};
+		BEF06979C236DF80004398E2 /* PonyDebugger */ = {
+			isa = PBXGroup;
+			children = (
+				BEF06F220B39FD142D777A58 /* LICENSE */,
+				BEF0643C386D17C8F17EA8AA /* FLEXNetworkObserver.h */,
+				BEF062920B6E27C3D31432EC /* FLEXNetworkObserver.m */,
+			);
+			path = PonyDebugger;
+			sourceTree = "<group>";
+		};
+		BEF069A282A25F5A414BEB30 /* SystemLog */ = {
+			isa = PBXGroup;
+			children = (
+				BEF06D450670874E0A1415AC /* FLEXSystemLogMessage.h */,
+				BEF0623333BB45C69B6AFDB3 /* FLEXSystemLogMessage.m */,
+				BEF06364EA4722C5C1C6ED0D /* FLEXSystemLogTableViewCell.h */,
+				BEF06325BF47037271F2C7C3 /* FLEXSystemLogTableViewCell.m */,
+				BEF063AE92FB8D8F4F975F71 /* FLEXSystemLogTableViewController.h */,
+				BEF0692D608BC2038D96B583 /* FLEXSystemLogTableViewController.m */,
+			);
+			path = SystemLog;
+			sourceTree = "<group>";
+		};
+		BEF06A73A1BA6B48FDF523BE /* SDWebImage */ = {
+			isa = PBXGroup;
+			children = (
+				BEF06252BC94A15129DD06FF /* UIImage+GIF.h */,
+				BEF0653261D0B9911230467F /* UIImage+GIF.m */,
+				BEF0656C93D287E5717394D5 /* SDImageCache.h */,
+				BEF0671E578C590DB45EB826 /* SDImageCache.m */,
+				BEF0631CFFCC92B5B094BA9F /* FLAnimatedImage */,
+				BEF0672BC4A838156A7C2BEC /* UIView+WebCache.h */,
+				BEF06F4F33BCDDE895878DEF /* UIView+WebCache.m */,
+				BEF06587C044C4CE7D465B18 /* NSImage+WebCache.h */,
+				BEF06971E6797326EFD2FA7F /* NSImage+WebCache.m */,
+				BEF0616ACC560B1BE5A311B2 /* SDWebImageCompat.h */,
+				BEF06F90772B74E81FD9BA03 /* SDWebImageCompat.m */,
+				BEF0644442FA36E8768372A6 /* SDWebImageDecoder.h */,
+				BEF0634B5728DB30C5182627 /* SDWebImageDecoder.m */,
+				BEF064B0225A017B68C8A5D7 /* SDWebImageManager.h */,
+				BEF062C497E2CD5C9E9BF603 /* SDWebImageManager.m */,
+				BEF06A3BDF6C8FB7E4582341 /* UIButton+WebCache.h */,
+				BEF06634498625F56EF3D43E /* UIButton+WebCache.m */,
+				BEF06F2247640E53FF4FD2CF /* SDImageCacheConfig.h */,
+				BEF06D36B1A513DED6FC2ADE /* SDImageCacheConfig.m */,
+				BEF06DE10D9964861FC38CAC /* SDWebImageOperation.h */,
+				BEF066326C2D32E9F26C6A26 /* UIImage+MultiFormat.h */,
+				BEF06E7C664E52AEEB834ED8 /* UIImage+MultiFormat.m */,
+				BEF06D505F97C4A2B24285F5 /* SDWebImageDownloader.h */,
+				BEF064B235C0D4D002923C92 /* SDWebImageDownloader.m */,
+				BEF06685FA13BEB65FFBBFFC /* SDWebImagePrefetcher.h */,
+				BEF0622D6790A0E4AB95668C /* SDWebImagePrefetcher.m */,
+				BEF06F4FBE32FB6950A8CFFE /* UIImageView+WebCache.h */,
+				BEF06138740579B91354C052 /* UIImageView+WebCache.m */,
+				BEF061C97247CCB85C68AE08 /* NSData+ImageContentType.h */,
+				BEF06660E5BF1413C2913836 /* NSData+ImageContentType.m */,
+				BEF0657DD0FF65AE08E41074 /* UIView+WebCacheOperation.h */,
+				BEF06FE490AE2FC31B34B95B /* UIView+WebCacheOperation.m */,
+				BEF06672CF5B20B720C9EDB6 /* SDWebImageDownloaderOperation.h */,
+				BEF0690CB4DA72267978744C /* SDWebImageDownloaderOperation.m */,
+				BEF06149FAA67D9E77D5B6C2 /* UIImageView+HighlightedWebCache.h */,
+				BEF065E4157A9C45AC9C2188 /* UIImageView+HighlightedWebCache.m */,
+			);
+			path = SDWebImage;
+			sourceTree = "<group>";
+		};
+		BEF06A84D758193BDDDB4000 /* ObjectExplorers */ = {
+			isa = PBXGroup;
+			children = (
+				BEF06BE8B577825E61FE99C2 /* FLEXObjectExplorerFactory.h */,
+				BEF061B4514F7A9EEAB75183 /* FLEXObjectExplorerFactory.m */,
+				BEF069295B03AD55147BD209 /* FLEXSetExplorerViewController.h */,
+				BEF064EE1CCF93ABC1ADA7B9 /* FLEXSetExplorerViewController.m */,
+				BEF06543EF98EEB9579318D0 /* FLEXViewExplorerViewController.h */,
+				BEF06BF5EBFC7D98D7BEA424 /* FLEXViewExplorerViewController.m */,
+				BEF06D78AC4C661A051AF96F /* FLEXArrayExplorerViewController.h */,
+				BEF06D869DAC1667A012EA32 /* FLEXArrayExplorerViewController.m */,
+				BEF062FF2E6190D4566C2D93 /* FLEXClassExplorerViewController.h */,
+				BEF062481DC769B9460CBCE2 /* FLEXClassExplorerViewController.m */,
+				BEF06251CBE40D8C804253A1 /* FLEXImageExplorerViewController.h */,
+				BEF06D0D1275D3C6879A4C6E /* FLEXImageExplorerViewController.m */,
+				BEF06E14D04F2C4B9018E4DD /* FLEXLayerExplorerViewController.h */,
+				BEF0695CFA8ED2CDD4F3CCD0 /* FLEXLayerExplorerViewController.m */,
+				BEF067B0CEF7A781212A95E9 /* FLEXObjectExplorerViewController.h */,
+				BEF0678B9B73A697EEB66B69 /* FLEXObjectExplorerViewController.m */,
+				BEF06466FEBC7306FD41CE47 /* FLEXDefaultsExplorerViewController.h */,
+				BEF0607D09AA3077AF309E9C /* FLEXDefaultsExplorerViewController.m */,
+				BEF06F564AA6ED07C72BFA3A /* FLEXGlobalsTableViewControllerEntry.h */,
+				BEF069B264C838F54340DDB0 /* FLEXGlobalsTableViewControllerEntry.m */,
+				BEF0616585EDDE442D16076C /* FLEXDictionaryExplorerViewController.h */,
+				BEF069C9CB6DCF027789099A /* FLEXDictionaryExplorerViewController.m */,
+				BEF06CF1860EF1A479BACB01 /* FLEXViewControllerExplorerViewController.h */,
+				BEF067B1B9FE60C43060D591 /* FLEXViewControllerExplorerViewController.m */,
+			);
+			path = ObjectExplorers;
+			sourceTree = "<group>";
+		};
+		BEF06B1FD10C637822765102 /* Manipulators */ = {
+			isa = PBXGroup;
+			children = (
+				BEF06644ABA745262D1B000E /* BitmapCropManipulator.h */,
+				BEF06CFD5E3C131475DE7212 /* BitmapCropManipulator.m */,
+				BEF06066C9C93372CB4F78D5 /* BitmapDrawManipulator.h */,
+				BEF06C77DCF7A548002F1323 /* BitmapDrawManipulator.m */,
+				BEF060175606E1A4E77FE7D6 /* BitmapScaleManipulator.h */,
+				BEF068D37524943DB09A239D /* BitmapScaleManipulator.m */,
+				BEF06CC76C1B8DB87D00CA49 /* BitmapContextManipulator.h */,
+				BEF065C192C395F6AD2ACD6B /* BitmapContextManipulator.m */,
+				BEF0676190139C178CFE0F03 /* BitmapRotationManipulator.h */,
+				BEF06B4EA56E43FFE2DBB3A8 /* BitmapRotationManipulator.m */,
+			);
+			path = Manipulators;
+			sourceTree = "<group>";
+		};
+		BEF06C1112EC24832786D5A4 /* DatabaseBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				BEF06566AB967139A58406F5 /* LICENSE */,
+				BEF0635DB1460450781F1CCB /* FLEXRealmDefines.h */,
+				BEF06E01B9F473206A8FCA61 /* FLEXTableLeftCell.h */,
+				BEF067C839B21A4D979B522E /* FLEXTableLeftCell.m */,
+				BEF06746318FB8B948860A7F /* FLEXDatabaseManager.h */,
+				BEF06C8910A8FAA8B4805EFC /* FLEXTableContentCell.h */,
+				BEF065016D000BFB9FB91411 /* FLEXTableContentCell.m */,
+				BEF06D24A32A77F552F3B2B3 /* FLEXTableColumnHeader.h */,
+				BEF062AA1EB1BB03F90DAA0D /* FLEXTableColumnHeader.m */,
+				BEF069B54D48E5FB57DB3751 /* FLEXMultiColumnTableView.h */,
+				BEF068EE50F26F61FAF1D8BF /* FLEXMultiColumnTableView.m */,
+				BEF06EF3AF3B1E7F43CF0A00 /* FLEXRealmDatabaseManager.h */,
+				BEF06A286C76F81A3F50CE64 /* FLEXRealmDatabaseManager.m */,
+				BEF06BCB31B3C274F0C4AA66 /* FLEXSQLiteDatabaseManager.h */,
+				BEF06A8F9B5EB9B223AA6C83 /* FLEXSQLiteDatabaseManager.m */,
+				BEF060278E192004214E4EF2 /* FLEXTableListViewController.h */,
+				BEF060F33B8EA94F03027968 /* FLEXTableListViewController.m */,
+				BEF06935048FF66E6DBB48D1 /* FLEXTableContentViewController.h */,
+				BEF0608FDDBF7659A0722027 /* FLEXTableContentViewController.m */,
+			);
+			path = DatabaseBrowser;
+			sourceTree = "<group>";
+		};
+		BEF06CE8ABA44FB8B013262D /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				BEF060F52FD5DB761E41B7BE /* Categories.h */,
+				BEF0641106AC63090B905684 /* Categories.m */,
+				BEF065C09D3ECB08D47E6B34 /* LWPushManager.h */,
+				BEF06E6FC0087DC2EE97D769 /* LWPushManager.m */,
+				BEF06648408FB5BF45C21F4F /* UIColor+HexValue.h */,
+				BEF060744E9805090E504349 /* UIColor+HexValue.m */,
+				BEF06090B12F4FD593B5CB50 /* UIImage+Extension.h */,
+				BEF06AA2E30FFA4F6CB84D04 /* UIImage+Extension.m */,
+				BEF06F9C9EB3588D5B77A92A /* UIView+extensions.h */,
+				BEF0667109502D3575B9FAB1 /* UIView+extensions.m */,
+				BEF06344BB0434EEE4D08D2C /* UIResponder+Extension.h */,
+				BEF0628E0AB46E39CA447DA1 /* UIResponder+Extension.m */,
+				BEF0638181BA334F42BC0DE8 /* UIPrintPageRenderer+Extentsion.h */,
+				BEF063C594F59312CD30ECB6 /* UIPrintPageRenderer+Extentsion.m */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		BEF06D3FE188D97D19A8265E /* MWPhotoBrowser.bundle */ = {
+			isa = PBXGroup;
+			children = (
+				BEF064FE11F6748B7FEBBCC4 /* ImageError.png */,
+				BEF06511D60BFEDAB2604CC1 /* VideoOverlay.png */,
+				BEF067269DB49DC3958004EF /* ImageError@2x.png */,
+				BEF069497CF831E6B9F2C000 /* ImageError@3x.png */,
+				BEF06F3EF1A168DF897F59F4 /* ImageSelectedOn.png */,
+				BEF064CFE055B243E18A7FF2 /* VideoOverlay@2x.png */,
+				BEF06F0B45AD3821B47F18A0 /* VideoOverlay@3x.png */,
+				BEF065F7D29EE904C34B0D47 /* ImageSelectedOff.png */,
+				BEF067C5846022C77AE76A46 /* ImageSelectedOn@2x.png */,
+				BEF06099AA11F9B8D71CFA0C /* ImageSelectedOn@3x.png */,
+				BEF06C061605349A3AF09D90 /* ImageSelectedOff@2x.png */,
+				BEF060A7CB2A560835A3A60E /* ImageSelectedOff@3x.png */,
+				BEF06845F3AF9B69CA1BCBB6 /* UIBarButtonItemGrid.png */,
+				BEF06EBB86ABE98A4C755016 /* ImageSelectedSmallOn.png */,
+				BEF062EB85416DF77021F9C3 /* ImageSelectedSmallOff.png */,
+				BEF067452CB0F1A0CAF7575E /* PlayButtonOverlayLarge.png */,
+				BEF06B5D0623262D8C699912 /* UIBarButtonItemGrid@2x.png */,
+				BEF06F92A7CB4B0FA6CFFA3E /* UIBarButtonItemGrid@3x.png */,
+				BEF06178A68CA8ABAEBA046B /* ImageSelectedSmallOn@2x.png */,
+				BEF06CB90360E41A3A52CDBC /* ImageSelectedSmallOn@3x.png */,
+				BEF064A8349A544B61B3F848 /* ImageSelectedSmallOff@2x.png */,
+				BEF06542BBA27BC74DBAA024 /* ImageSelectedSmallOff@3x.png */,
+				BEF06573F214747E5B0CBD9D /* UIBarButtonItemArrowLeft.png */,
+				BEF066698A1A77D1A3A0B472 /* PlayButtonOverlayLarge@2x.png */,
+				BEF061E87F7CC6887A8EFA85 /* PlayButtonOverlayLarge@3x.png */,
+				BEF0661D2F5ED50FD1FE691D /* PlayButtonOverlayLargeTap.png */,
+				BEF06512C17F1A5B134FD981 /* UIBarButtonItemArrowRight.png */,
+				BEF06A35A1106306B39F2176 /* UIBarButtonItemArrowLeft@2x.png */,
+				BEF066A7861D6461088E77FE /* UIBarButtonItemArrowLeft@3x.png */,
+				BEF06C84396DCAB9A1DEF62F /* PlayButtonOverlayLargeTap@2x.png */,
+				BEF06B700270641817A8F8E8 /* PlayButtonOverlayLargeTap@3x.png */,
+				BEF06A30E15CB5E3DEE6699B /* UIBarButtonItemArrowRight@2x.png */,
+				BEF0649E9F3E2A18DF10C803 /* UIBarButtonItemArrowRight@3x.png */,
+			);
+			path = MWPhotoBrowser.bundle;
+			sourceTree = "<group>";
+		};
+		BEF06D7B8DA0AFF297AA4CB4 /* ViewHierarchy */ = {
+			isa = PBXGroup;
+			children = (
+				BEF068A5D103539B7D931217 /* FLEXHierarchyTableViewCell.h */,
+				BEF06AD2DD9A5CF88FA8FBDD /* FLEXHierarchyTableViewCell.m */,
+				BEF0607E72C5C98558F7B511 /* FLEXImagePreviewViewController.h */,
+				BEF06B261E5662F3A5FCD0CF /* FLEXImagePreviewViewController.m */,
+				BEF0625916EF8D1F2A917BE1 /* FLEXHierarchyTableViewController.h */,
+				BEF0667E9F52CD2C25429A24 /* FLEXHierarchyTableViewController.m */,
+			);
+			path = ViewHierarchy;
+			sourceTree = "<group>";
+		};
+		BEF06E6311C0850E08D932DD /* Masonry */ = {
+			isa = PBXGroup;
+			children = (
+				BEF06926488979228BB3C42C /* Masonry.h */,
+				BEF0636DA6223C1F56540BF2 /* MASUtilities.h */,
+				BEF060C637A4906968A6FCA6 /* MASConstraint.h */,
+				BEF068AB559AFBDACEA784A9 /* MASConstraint.m */,
+				BEF0687231E62A709E538570 /* MASViewAttribute.h */,
+				BEF0657177A7E58D381A3646 /* MASViewAttribute.m */,
+				BEF0663802A1DA346EC21BA4 /* MASViewConstraint.h */,
+				BEF061E9ED53135114BF5E41 /* MASViewConstraint.m */,
+				BEF069B787F54386A208E992 /* View+MASAdditions.h */,
+				BEF069C7EE31A5739CFF61D9 /* View+MASAdditions.m */,
+				BEF064F496CA841E0667338F /* MASConstraintMaker.h */,
+				BEF06B5A269372684DE5C89A /* MASConstraintMaker.m */,
+				BEF06A3A32CBBFD9DF969D99 /* MASLayoutConstraint.h */,
+				BEF064457C34FB500AAB352D /* MASLayoutConstraint.m */,
+				BEF064BD7A116AE10CB6E8B3 /* NSArray+MASAdditions.h */,
+				BEF0688AB6C0453DA55961F6 /* NSArray+MASAdditions.m */,
+				BEF065D4903D88C633B191C4 /* MASConstraint+Private.h */,
+				BEF065910E893D9C772AEC65 /* MASCompositeConstraint.h */,
+				BEF0673AED84E4DE62DDEE78 /* MASCompositeConstraint.m */,
+				BEF060B4E57F720159DA8757 /* View+MASShorthandAdditions.h */,
+				BEF06C6DC44CA5166F5ED3B9 /* ViewController+MASAdditions.h */,
+				BEF06BC55F6ABAD2AD2C2220 /* ViewController+MASAdditions.m */,
+				BEF06FA01800A423AC919624 /* NSArray+MASShorthandAdditions.h */,
+				BEF06FDD9D631EBF3840B5B6 /* NSLayoutConstraint+MASDebugAdditions.h */,
+				BEF0662F9F8AE66D4751D6D4 /* NSLayoutConstraint+MASDebugAdditions.m */,
+			);
+			path = Masonry;
+			sourceTree = "<group>";
+		};
+		BEF06EFDB166E232365EED9D /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				BEF06C1B77E5CCE6133CF216 /* MWPhoto.h */,
+				BEF066F6B4917387A5BE9F55 /* MWPhoto.m */,
+				BEF065DCA92639B4548BF4A2 /* MWCommon.h */,
+				BEF06C8216C70BC011D7E275 /* MWGridCell.h */,
+				BEF06FC7124C308CFAF09D13 /* MWGridCell.m */,
+				BEF06B9CDF2B14C3020C4381 /* MWCaptionView.h */,
+				BEF06EF3A0665589ADFA6B57 /* MWCaptionView.m */,
+				BEF06F9F835D98CBA7B7E19E /* MWPhotoBrowser.h */,
+				BEF069DBB8F568B661490E89 /* MWPhotoBrowser.m */,
+				BEF062C2E65B02C7923E3CB3 /* MWPhotoProtocol.h */,
+				BEF069AB08371818140E3A3E /* MWTapDetectingView.h */,
+				BEF063385B978F695B21CCF8 /* MWTapDetectingView.m */,
+				BEF06C74F094D2E67B8C2342 /* MWZoomingScrollView.h */,
+				BEF062C67813A2DFD323A2C0 /* MWZoomingScrollView.m */,
+				BEF06FF2AABB8EB46A8A2E11 /* MWGridViewController.h */,
+				BEF0680A8D097A35E96B156E /* MWGridViewController.m */,
+				BEF066E63BF78DBC4248DF3C /* MWPhotoBrowserPrivate.h */,
+				BEF062D2AB48D388FF551350 /* UIImage+MWPhotoBrowser.h */,
+				BEF0661D6B326CE7135F8E25 /* UIImage+MWPhotoBrowser.m */,
+				BEF068CE610BDB669B8C1AEB /* MWTapDetectingImageView.h */,
+				BEF06EE04049687F0D633F07 /* MWTapDetectingImageView.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		BEF06F95B58D36D960C611E3 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				BEF06979C236DF80004398E2 /* PonyDebugger */,
+				BEF061A894184B114A5487E0 /* FLEXNetworkRecorder.h */,
+				BEF068BF4E2698330BD8D333 /* FLEXNetworkRecorder.m */,
+				BEF0672B822A02405325FFA5 /* FLEXNetworkCurlLogger.h */,
+				BEF062A57269D986011CA89A /* FLEXNetworkCurlLogger.m */,
+				BEF0683C60F7AA4E9370754C /* FLEXNetworkTransaction.h */,
+				BEF06F02B848D8FB54B61B7C /* FLEXNetworkTransaction.m */,
+				BEF063183B3FF9C3E529EBBD /* FLEXNetworkTransactionTableViewCell.h */,
+				BEF0648C6B1852C1F627A992 /* FLEXNetworkTransactionTableViewCell.m */,
+				BEF06C58F934DC635030CF9B /* FLEXNetworkHistoryTableViewController.h */,
+				BEF06FC2083DC79904E6D06B /* FLEXNetworkHistoryTableViewController.m */,
+				BEF06078C58615B823359EA4 /* FLEXNetworkSettingsTableViewController.h */,
+				BEF0674FC1EBF4CF58D458F6 /* FLEXNetworkSettingsTableViewController.m */,
+				BEF062C6EB41448E78575DB6 /* FLEXNetworkTransactionDetailTableViewController.h */,
+				BEF067C4B8A32940C30502A6 /* FLEXNetworkTransactionDetailTableViewController.m */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		BEF06FAFD555CBEA8461B839 /* libXGPush */ = {
+			isa = PBXGroup;
+			children = (
+				BEF0643E0BB55DA0C843E15E /* XGPush.h */,
+				BEF0611A0A8FE038D64C55B7 /* libXG-SDK.a */,
+				BEF064C50A14A9A0C74FC715 /* XGSetting.h */,
+			);
+			path = libXGPush;
+			sourceTree = "<group>";
+		};
 		EA7437DB1FFCA2E600AD0291 = {
 			isa = PBXGroup;
 			children = (
 				EA7437E61FFCA2E600AD0291 /* GIFEmoji */,
 				EA7437E51FFCA2E600AD0291 /* Products */,
+				EA7438011FFCBB3900AD0291 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -63,17 +1193,30 @@
 			children = (
 				EA7437E71FFCA2E600AD0291 /* AppDelegate.h */,
 				EA7437E81FFCA2E600AD0291 /* AppDelegate.m */,
-				EA7437EA1FFCA2E600AD0291 /* FirstViewController.h */,
-				EA7437EB1FFCA2E600AD0291 /* FirstViewController.m */,
-				EA7437ED1FFCA2E600AD0291 /* SecondViewController.h */,
-				EA7437EE1FFCA2E600AD0291 /* SecondViewController.m */,
 				EA7437F01FFCA2E600AD0291 /* Main.storyboard */,
 				EA7437F31FFCA2E600AD0291 /* Assets.xcassets */,
 				EA7437F51FFCA2E600AD0291 /* LaunchScreen.storyboard */,
 				EA7437F81FFCA2E600AD0291 /* Info.plist */,
 				EA7437F91FFCA2E600AD0291 /* main.m */,
+				BEF066DFAD17E36B3E3FDA63 /* Libs */,
+				BEF066C1FBDAEF22CBB55F8B /* Make */,
+				BEF0615E7B6D491E9A09E23C /* Search */,
+				BEF06CE8ABA44FB8B013262D /* Helper */,
+				EA7438001FFCBA0300AD0291 /* AppDefines.h */,
 			);
 			path = GIFEmoji;
+			sourceTree = "<group>";
+		};
+		EA7438011FFCBB3900AD0291 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EA74380A1FFCBB5F00AD0291 /* libsqlite3.0.tbd */,
+				EA7438081FFCBB5800AD0291 /* libz.tbd */,
+				EA7438061FFCBB4D00AD0291 /* UserNotifications.framework */,
+				EA7438041FFCBB4100AD0291 /* SystemConfiguration.framework */,
+				EA7438021FFCBB3900AD0291 /* CoreTelephony.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,6 +1280,41 @@
 				EA7437F71FFCA2E600AD0291 /* LaunchScreen.storyboard in Resources */,
 				EA7437F41FFCA2E600AD0291 /* Assets.xcassets in Resources */,
 				EA7437F21FFCA2E600AD0291 /* Main.storyboard in Resources */,
+				BEF067D39A5CDDD359AB6904 /* ImageError.png in Resources */,
+				BEF065D1EEAB9D4F6113F1FB /* VideoOverlay.png in Resources */,
+				BEF06A54B67B8CD992C5C619 /* ImageError@2x.png in Resources */,
+				BEF06D106FB110D557AE1B4E /* ImageError@3x.png in Resources */,
+				BEF065516BADFB17A6B19553 /* ImageSelectedOn.png in Resources */,
+				BEF06F3AFF148F1B89D32B1A /* VideoOverlay@2x.png in Resources */,
+				BEF0637175B31064395333B0 /* VideoOverlay@3x.png in Resources */,
+				BEF06977729569D12FC1E936 /* ImageSelectedOff.png in Resources */,
+				BEF06F6D491D55411DC3FFD8 /* ImageSelectedOn@2x.png in Resources */,
+				BEF068B5DED0061BB5784C56 /* ImageSelectedOn@3x.png in Resources */,
+				BEF062BA51F21616DBC137FC /* ImageSelectedOff@2x.png in Resources */,
+				BEF067EA776F894550F1B745 /* ImageSelectedOff@3x.png in Resources */,
+				BEF0633E43979496CC186E68 /* UIBarButtonItemGrid.png in Resources */,
+				BEF069D39C6F5219FED6756F /* ImageSelectedSmallOn.png in Resources */,
+				BEF062CD7C5736CA98FCF0FC /* ImageSelectedSmallOff.png in Resources */,
+				BEF0660A41DAF31641B7A366 /* PlayButtonOverlayLarge.png in Resources */,
+				BEF06E1206E4D3BFF0A8545B /* UIBarButtonItemGrid@2x.png in Resources */,
+				BEF06C01A167DDCC9128AAE4 /* UIBarButtonItemGrid@3x.png in Resources */,
+				BEF06DB3F35C0171AA585173 /* ImageSelectedSmallOn@2x.png in Resources */,
+				BEF06BD2724F61E0E9652C23 /* ImageSelectedSmallOn@3x.png in Resources */,
+				BEF064125A60C7E97F198521 /* ImageSelectedSmallOff@2x.png in Resources */,
+				BEF069C4300C0ABF7270D347 /* ImageSelectedSmallOff@3x.png in Resources */,
+				BEF064EAFF5C037A96B88D78 /* UIBarButtonItemArrowLeft.png in Resources */,
+				BEF0655B82A0EE39E8EA397A /* PlayButtonOverlayLarge@2x.png in Resources */,
+				BEF06724F8D1E0826B0C10B9 /* PlayButtonOverlayLarge@3x.png in Resources */,
+				BEF06BAE17DD225642603FBD /* PlayButtonOverlayLargeTap.png in Resources */,
+				BEF06B04D5F58E4C1782AA71 /* UIBarButtonItemArrowRight.png in Resources */,
+				BEF064DF68CE63BBF04921EC /* UIBarButtonItemArrowLeft@2x.png in Resources */,
+				BEF06F9F0A1F49C051FA1DB0 /* UIBarButtonItemArrowLeft@3x.png in Resources */,
+				BEF06EACBB73C57C94F1E632 /* PlayButtonOverlayLargeTap@2x.png in Resources */,
+				BEF06DB7E73D32160DD59DBC /* PlayButtonOverlayLargeTap@3x.png in Resources */,
+				BEF0613A22370DFA0D3574EB /* UIBarButtonItemArrowRight@2x.png in Resources */,
+				BEF0680AA13A302057F1DA65 /* UIBarButtonItemArrowRight@3x.png in Resources */,
+				BEF062DDCDC117BAB6E5C713 /* LICENSE in Resources */,
+				BEF06C69D6DD23DCB6FA737F /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,10 +1325,152 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA7437EF1FFCA2E600AD0291 /* SecondViewController.m in Sources */,
 				EA7437E91FFCA2E600AD0291 /* AppDelegate.m in Sources */,
 				EA7437FA1FFCA2E600AD0291 /* main.m in Sources */,
-				EA7437EC1FFCA2E600AD0291 /* FirstViewController.m in Sources */,
+				BEF064C65014A24C6BDE32CE /* GenGIFViewController.m in Sources */,
+				BEF06065876D3CABE898BFB9 /* SearchGIFViewController.m in Sources */,
+				BEF0674C8E90BA4366D49113 /* DACircularProgressView.m in Sources */,
+				BEF06B89FE42F67BA799F493 /* DALabeledCircularProgressView.m in Sources */,
+				BEF06228D4898B69607CE486 /* MWPhoto.m in Sources */,
+				BEF06958C975F274E7033DB5 /* MWGridCell.m in Sources */,
+				BEF06F5A604AF35397D085C1 /* MWCaptionView.m in Sources */,
+				BEF06E6ED540D6EC0B5DB47C /* MWPhotoBrowser.m in Sources */,
+				BEF0671A8FB7ACD53D0BB200 /* MWTapDetectingView.m in Sources */,
+				BEF06BE93697736FD7C47F88 /* MWZoomingScrollView.m in Sources */,
+				BEF06B73CEE5C8626F0FC456 /* MWGridViewController.m in Sources */,
+				BEF060B6BCED49C662CEBF83 /* UIImage+MWPhotoBrowser.m in Sources */,
+				BEF0696CA82C6A310CEECDB9 /* MWTapDetectingImageView.m in Sources */,
+				BEF06E606305E34AF62A45CD /* UIImage+GIF.m in Sources */,
+				BEF066893F8176522089FCD6 /* SDImageCache.m in Sources */,
+				BEF06CBB5D5760803D91319F /* UIView+WebCache.m in Sources */,
+				BEF06634901469E1B5210BA2 /* NSImage+WebCache.m in Sources */,
+				BEF065CC430E20D9CDF7C373 /* SDWebImageCompat.m in Sources */,
+				BEF06D81F6FE16D4EC7BAE79 /* SDWebImageDecoder.m in Sources */,
+				BEF067BC2552A1C6097E7A0B /* SDWebImageManager.m in Sources */,
+				BEF0698661F65FC92A4FB07D /* UIButton+WebCache.m in Sources */,
+				BEF062389273A530A7D5AA62 /* SDImageCacheConfig.m in Sources */,
+				BEF0650CF723426F0E3896D5 /* UIImage+MultiFormat.m in Sources */,
+				BEF06F3469CD55ADAFA366BF /* SDWebImageDownloader.m in Sources */,
+				BEF069A83C134F6352D270AF /* SDWebImagePrefetcher.m in Sources */,
+				BEF0642BCC3B8E244B32F1CB /* UIImageView+WebCache.m in Sources */,
+				BEF063E2202C3352B7F416F4 /* NSData+ImageContentType.m in Sources */,
+				BEF065927B3FC696AC14D4E7 /* UIView+WebCacheOperation.m in Sources */,
+				BEF06E4D6E8A6B4E17590CC8 /* SDWebImageDownloaderOperation.m in Sources */,
+				BEF06798B428A308BFA4CD99 /* UIImageView+HighlightedWebCache.m in Sources */,
+				BEF0692EB5FFFD387AD42FAE /* FLEXArgumentInputView.m in Sources */,
+				BEF0691E308CF11D5AD03A5F /* FLEXArgumentInputDateView.m in Sources */,
+				BEF06239206FF12794183006 /* FLEXArgumentInputFontView.m in Sources */,
+				BEF06C9524C8F801654F2B6D /* FLEXArgumentInputTextView.m in Sources */,
+				BEF065D0C01242797D5E1684 /* FLEXArgumentInputColorView.m in Sources */,
+				BEF06D4A4BD0010B663394C7 /* FLEXArgumentInputNumberView.m in Sources */,
+				BEF06159043108D8D75867E3 /* FLEXArgumentInputStringView.m in Sources */,
+				BEF06575B2204574512E7E7A /* FLEXArgumentInputStructView.m in Sources */,
+				BEF06C04B1B419CC9B87A695 /* FLEXArgumentInputSwitchView.m in Sources */,
+				BEF06E126BE320F47FDA1EAD /* FLEXArgumentInputViewFactory.m in Sources */,
+				BEF06A9BCA3A89381455BF92 /* FLEXArgumentInputJSONObjectView.m in Sources */,
+				BEF0692EA81DE92A5805B8A8 /* FLEXArgumentInputFontsPickerView.m in Sources */,
+				BEF063E37CED9F122A7B2732 /* FLEXArgumentInputNotSupportedView.m in Sources */,
+				BEF061577C7C959ADF816DFB /* FLEXFieldEditorView.m in Sources */,
+				BEF0689016B326EE371FE158 /* FLEXIvarEditorViewController.m in Sources */,
+				BEF06916263E2FA4B4AA26F0 /* FLEXFieldEditorViewController.m in Sources */,
+				BEF06A5A52AEB07D10EF3F60 /* FLEXDefaultEditorViewController.m in Sources */,
+				BEF06D383FB08CB8A904B1D5 /* FLEXMethodCallingViewController.m in Sources */,
+				BEF06CFAA9680B43462636B3 /* FLEXPropertyEditorViewController.m in Sources */,
+				BEF068FB132C2A78C02D4F8F /* FLEXManager.m in Sources */,
+				BEF06279FE2F772EFCF1C7C6 /* FLEXNetworkObserver.m in Sources */,
+				BEF06F47A60B68AB887B375F /* FLEXNetworkRecorder.m in Sources */,
+				BEF06675C9EE14B511E9C292 /* FLEXNetworkCurlLogger.m in Sources */,
+				BEF065FEA65E86463CFE7415 /* FLEXNetworkTransaction.m in Sources */,
+				BEF0619CFA2254BD2053918C /* FLEXNetworkTransactionTableViewCell.m in Sources */,
+				BEF06CA523B6856425D66FCD /* FLEXNetworkHistoryTableViewController.m in Sources */,
+				BEF06CB8AB87275625C3AB8F /* FLEXNetworkSettingsTableViewController.m in Sources */,
+				BEF0695992AB88F0E9984CD8 /* FLEXNetworkTransactionDetailTableViewController.m in Sources */,
+				BEF06012635574B049DAF125 /* FLEXToolbarItem.m in Sources */,
+				BEF0620FD6BF5527068175E1 /* FLEXExplorerToolbar.m in Sources */,
+				BEF066B54A8658F683BD440A /* FLEXUtility.m in Sources */,
+				BEF069A0EE9EE8B2DB915BFC /* FLEXResources.m in Sources */,
+				BEF0606C2CAD25321257C1F9 /* FLEXHeapEnumerator.m in Sources */,
+				BEF067C6B32599B4CFC80AA5 /* FLEXRuntimeUtility.m in Sources */,
+				BEF068803A65660358BCF7DC /* FLEXMultilineTableViewCell.m in Sources */,
+				BEF06859A8BE8E07199E95C0 /* FLEXKeyboardShortcutManager.m in Sources */,
+				BEF067FD10207B8AC39E8B1F /* FLEXKeyboardHelpViewController.m in Sources */,
+				BEF0644C4425A5D3DD795EA6 /* FLEXHierarchyTableViewCell.m in Sources */,
+				BEF06E55CCE16FEA9EABDAFD /* FLEXImagePreviewViewController.m in Sources */,
+				BEF069758B32CE3F374369F7 /* FLEXHierarchyTableViewController.m in Sources */,
+				BEF060F674411FB3F75B58CC /* FLEXObjectExplorerFactory.m in Sources */,
+				BEF06CA072C3E0B6576111FD /* FLEXSetExplorerViewController.m in Sources */,
+				BEF068CA31D530CE6406E805 /* FLEXViewExplorerViewController.m in Sources */,
+				BEF065657FEC593A4D51A43C /* FLEXArrayExplorerViewController.m in Sources */,
+				BEF06C777C24796224FE015B /* FLEXClassExplorerViewController.m in Sources */,
+				BEF0626E5F351A4059A85396 /* FLEXImageExplorerViewController.m in Sources */,
+				BEF06144E00EC408AA294DE0 /* FLEXLayerExplorerViewController.m in Sources */,
+				BEF06B59D212246FB0913CFE /* FLEXObjectExplorerViewController.m in Sources */,
+				BEF060ADAB83D570D92BEFC8 /* FLEXDefaultsExplorerViewController.m in Sources */,
+				BEF065F2743B016B3616AB6A /* FLEXGlobalsTableViewControllerEntry.m in Sources */,
+				BEF06E47F5D1C6A0987D2ABE /* FLEXDictionaryExplorerViewController.m in Sources */,
+				BEF0625AE7BE78C691DB019C /* FLEXViewControllerExplorerViewController.m in Sources */,
+				BEF061F26A0140E0151E1955 /* FLEXWindow.m in Sources */,
+				BEF06A6FF785E69BD869EE8C /* FLEXExplorerViewController.m in Sources */,
+				BEF065B79A963D824D5D7AF7 /* FLEXSystemLogMessage.m in Sources */,
+				BEF06BDBEC7D057EB6BDD817 /* FLEXSystemLogTableViewCell.m in Sources */,
+				BEF06D5E8B658E6FF558167A /* FLEXSystemLogTableViewController.m in Sources */,
+				BEF06594BA90C4ED3618228A /* FLEXTableLeftCell.m in Sources */,
+				BEF06FD2E4A385FCCB0E8C56 /* FLEXTableContentCell.m in Sources */,
+				BEF06503FD8BA26956F22E70 /* FLEXTableColumnHeader.m in Sources */,
+				BEF06435DDB5CFE904D14D16 /* FLEXMultiColumnTableView.m in Sources */,
+				BEF066DA93A66A5D3AF6E350 /* FLEXRealmDatabaseManager.m in Sources */,
+				BEF06EE43F233DA546E53D06 /* FLEXSQLiteDatabaseManager.m in Sources */,
+				BEF06F47C32EDF66259AE651 /* FLEXTableListViewController.m in Sources */,
+				BEF06F98E9FDDABE0AE7ECB1 /* FLEXTableContentViewController.m in Sources */,
+				BEF06188F37482D257F3BDF0 /* FLEXWebViewController.m in Sources */,
+				BEF069A80F4668785B98D6ED /* FLEXClassesTableViewController.m in Sources */,
+				BEF06D49400251CDA2FB41A9 /* FLEXCookiesTableViewController.m in Sources */,
+				BEF06B82B28849E69DC280A2 /* FLEXFileBrowserSearchOperation.m in Sources */,
+				BEF0608155CDED6D0A49FA6E /* FLEXGlobalsTableViewController.m in Sources */,
+				BEF067C648F59A31B72D374B /* FLEXInstancesTableViewController.m in Sources */,
+				BEF06AD1F2ED6617499DD004 /* FLEXLibrariesTableViewController.m in Sources */,
+				BEF06E56B3B6CBF84F8D047C /* FLEXFileBrowserTableViewController.m in Sources */,
+				BEF06B55ADBBA4CD1E93536E /* FLEXLiveObjectsTableViewController.m in Sources */,
+				BEF0680194195732D3E6528A /* FLEXFileBrowserFileOperationController.m in Sources */,
+				BEF06C651215E0B4F0776873 /* Reachability.m in Sources */,
+				BEF061B2209DC87FB80EEE33 /* CGContextCreator.m in Sources */,
+				BEF06146DF3641283C949C59 /* CGImageContainer.m in Sources */,
+				BEF06006B314B5FD24701619 /* BitmapCropManipulator.m in Sources */,
+				BEF06AE76E064B0E56E78AC1 /* BitmapDrawManipulator.m in Sources */,
+				BEF063AF725EF0D235A76618 /* BitmapScaleManipulator.m in Sources */,
+				BEF06044E219940DF8D68707 /* BitmapContextManipulator.m in Sources */,
+				BEF06B093252BA8C8206680B /* BitmapRotationManipulator.m in Sources */,
+				BEF06655581D67BCD6149BE8 /* OSCommonImage.m in Sources */,
+				BEF0686AE277DF63E0EB92A0 /* NSImage+ANImageBitmapRep.m in Sources */,
+				BEF06BA3571B29CAEBE0FCDE /* UIImage+ANImageBitmapRep.m in Sources */,
+				BEF06457A9F635D716243AC4 /* ANImageBitmapRep.m in Sources */,
+				BEF0638E2E629B4FD8523323 /* BitmapContextRep.m in Sources */,
+				BEF06DE3FA5D7A0208C878AA /* BGRSLoupeLayer.m in Sources */,
+				BEF06B3719196BCAF42917B6 /* RSOpacitySlider.m in Sources */,
+				BEF064A6F176C984064F618E /* RSColorFunctions.m in Sources */,
+				BEF06226321CBC4754C47F5E /* RSSelectionLayer.m in Sources */,
+				BEF06E10F9D16EA77D015926 /* RSColorPickerView.m in Sources */,
+				BEF06250BFC689628D4EFE52 /* RSBrightnessSlider.m in Sources */,
+				BEF066E0448FE654BF41BFC6 /* RSColorPickerState.m in Sources */,
+				BEF0631F8F29E32015ED1B83 /* RSGenerateOperation.m in Sources */,
+				BEF060479B91EB0272357837 /* MASConstraint.m in Sources */,
+				BEF06728CEFD557AA7C2CB17 /* MASViewAttribute.m in Sources */,
+				BEF060D0BD4F9B886BF40F47 /* MASViewConstraint.m in Sources */,
+				BEF06D553543A76AFE5068BD /* View+MASAdditions.m in Sources */,
+				BEF06B85041553E2E96B3F39 /* MASConstraintMaker.m in Sources */,
+				BEF063F054FE623C54166F23 /* MASLayoutConstraint.m in Sources */,
+				BEF0638FF26E3FCE46BA5FF3 /* NSArray+MASAdditions.m in Sources */,
+				BEF06DF1FB2023E61302368D /* MASCompositeConstraint.m in Sources */,
+				BEF0676D153CB38F33F2810E /* ViewController+MASAdditions.m in Sources */,
+				BEF06162BD12CA94ACD9AA45 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
+				BEF06D635F25D07AB248D25E /* Categories.m in Sources */,
+				BEF063AFA618D679CFB1D2AD /* LWPushManager.m in Sources */,
+				BEF06FD6127E19BA6732205F /* UIColor+HexValue.m in Sources */,
+				BEF06DD62B213BC1F40D0AAE /* UIImage+Extension.m in Sources */,
+				BEF06208105CA30E934306B7 /* UIView+extensions.m in Sources */,
+				BEF0691FDE2DF5F74F9D2795 /* UIResponder+Extension.m in Sources */,
+				BEF060110B96DE805E6D3AEC /* UIPrintPageRenderer+Extentsion.m in Sources */,
+				BEF06940420BFACE04D3F1FC /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,6 +1608,7 @@
 				DEVELOPMENT_TEAM = G3A2KYKYBU;
 				INFOPLIST_FILE = GIFEmoji/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "\"${PROJECT_DIR}/GIFEmoji/Libs/libXGPush\"/**";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wodedata.GIFEmoji;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -302,6 +1623,7 @@
 				DEVELOPMENT_TEAM = G3A2KYKYBU;
 				INFOPLIST_FILE = GIFEmoji/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "\"${PROJECT_DIR}/GIFEmoji/Libs/libXGPush\"/**";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wodedata.GIFEmoji;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
