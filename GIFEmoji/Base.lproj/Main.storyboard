@@ -35,7 +35,7 @@
         <scene sceneID="qBj-Le-Ldg">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="poH-0f-P7k" userLabel="GenGIF Navigation" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="First" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Create" image="first" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="VPb-sX-wRj">
@@ -217,7 +217,7 @@
         <scene sceneID="oFB-lJ-0fJ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Aog-Xq-Nil" userLabel="SearchGIF Navigation" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Second" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Search" image="second" id="cPa-gy-q4n"/>
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="nnq-9E-hNX">
@@ -317,7 +317,7 @@
         <scene sceneID="azl-Jw-xqq">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fRG-ie-hoF" userLabel="MyGIF Navigation" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" image="first" id="lR9-0G-Kpi"/>
+                    <tabBarItem key="tabBarItem" title="My" image="first" id="lR9-0G-Kpi"/>
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="lee-Gj-yXn">
@@ -339,7 +339,7 @@
             <objects>
                 <pageViewController storyboardIdentifier="LWMyGIFPageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="6nR-xz-bjf" userLabel="MyGIF Page" customClass="LWMyGIFPageViewController" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <navigationItem key="navigationItem" id="a9w-Lw-Tji"/>
+                    <navigationItem key="navigationItem" title="MyGIF" id="a9w-Lw-Tji"/>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hcH-wc-gDh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
