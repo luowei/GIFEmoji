@@ -25,5 +25,20 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)selectLivePhotoAction:(UIButton *)sender {
+}
+
+- (IBAction)selectStaticPhotoAction:(UIButton *)sender {
+}
+
+- (IBAction)exportVideoAction:(UIButton *)sender {
+}
+
+- (IBAction)exportGIFAction:(UIButton *)sender {
+}
+
+- (IBAction)exportFrameAction:(UIButton *)sender {
+}
+
 
 @end

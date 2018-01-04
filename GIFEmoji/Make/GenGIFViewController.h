@@ -10,6 +10,17 @@
 
 @interface GenGIFViewController : UIViewController
 
+@property (nonatomic, weak) IBOutlet UIButton *selectLivePhotoBtn;
+@property (nonatomic, weak) IBOutlet UIButton *selectStaticPhotoBtn;
+
+
+@property (nonatomic, weak) IBOutlet UIImageView *imagePreview;
+
+
+@property (nonatomic, weak) IBOutlet UIButton *exportVideoBtn;
+@property (nonatomic, weak) IBOutlet UIButton *exportGIFBtn;
+@property (nonatomic, weak) IBOutlet UIButton *exportFrameBtn;
+
 
 @end
 

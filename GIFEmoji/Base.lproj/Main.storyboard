@@ -20,6 +20,8 @@
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="0.15726926920000001" green="0.52631461619999997" blue="0.17096316810000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" red="0.15726926920000001" green="0.52631461619999997" blue="0.17096316810000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="poH-0f-P7k" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
@@ -34,7 +36,7 @@
         <!--GenGIF Navigation-->
         <scene sceneID="qBj-Le-Ldg">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="poH-0f-P7k" userLabel="GenGIF Navigation" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="poH-0f-P7k" userLabel="GenGIF Navigation" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Create" image="first" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
@@ -57,11 +59,11 @@
             <objects>
                 <viewController storyboardIdentifier="GenGIFViewController" id="9pv-A4-QxB" userLabel="GenGIF" customClass="GenGIFViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="510"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PN0-Cr-lDL">
-                                <rect key="frame" x="0.0" y="52" width="375" height="406"/>
+                                <rect key="frame" x="0.0" y="52" width="375" height="450"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" distribution="equalSpacing" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="0L8-Pn-7Ad">
                                 <rect key="frame" x="45" y="6" width="286.5" height="40"/>
@@ -74,6 +76,9 @@
                                         <state key="normal" title="选择Live Photo">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="selectLivePhotoAction:" destination="9pv-A4-QxB" eventType="touchUpInside" id="SeR-P7-boC"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lnF-60-x3p">
                                         <rect key="frame" x="163.5" y="0.0" width="123" height="40"/>
@@ -86,6 +91,9 @@
                                         <state key="normal" title="选择多张照片">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="selectStaticPhotoAction:" destination="9pv-A4-QxB" eventType="touchUpInside" id="2X4-sQ-ig0"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -95,7 +103,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="wI9-pg-lx5">
-                                <rect key="frame" x="44.5" y="464" width="286" height="40"/>
+                                <rect key="frame" x="44.5" y="508" width="286" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yUk-PJ-Hip">
                                         <rect key="frame" x="0.0" y="0.0" width="94" height="40"/>
@@ -105,6 +113,9 @@
                                         <state key="normal" title="导出Video">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="exportVideoAction:" destination="9pv-A4-QxB" eventType="touchUpInside" id="c6F-Fn-bYk"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WpN-Eq-N8N">
                                         <rect key="frame" x="96" y="0.0" width="94" height="40"/>
@@ -117,6 +128,9 @@
                                         <state key="normal" title="导出GIF">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="exportGIFAction:" destination="9pv-A4-QxB" eventType="touchUpInside" id="PE6-Vd-Ggd"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LBe-9g-yXI">
                                         <rect key="frame" x="192" y="0.0" width="94" height="40"/>
@@ -126,6 +140,9 @@
                                         <state key="normal" title="导出Frame">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="exportFrameAction:" destination="9pv-A4-QxB" eventType="touchUpInside" id="XeE-sY-bms"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -150,9 +167,15 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                     </view>
-                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Create GIF" id="xfz-uK-xc6"/>
                     <connections>
+                        <outlet property="exportFrameBtn" destination="LBe-9g-yXI" id="RyN-4F-IM9"/>
+                        <outlet property="exportGIFBtn" destination="WpN-Eq-N8N" id="bQv-P8-7UA"/>
+                        <outlet property="exportVideoBtn" destination="yUk-PJ-Hip" id="KcB-Xm-lKd"/>
+                        <outlet property="imagePreview" destination="PN0-Cr-lDL" id="iwA-Ph-pAw"/>
+                        <outlet property="selectLivePhotoBtn" destination="5mq-eK-yuW" id="HMF-Np-Exh"/>
+                        <outlet property="selectStaticPhotoBtn" destination="lnF-60-x3p" id="FvO-BB-dXd"/>
                         <segue destination="bvE-fR-Jae" kind="show" id="f1Z-0i-6aQ"/>
                         <segue destination="U6E-3f-pcN" kind="show" id="wHM-ee-b9e"/>
                         <segue destination="YOf-Bq-uVf" kind="show" id="MDY-Wb-86x"/>
@@ -308,6 +331,11 @@
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Search GIF" id="0Dg-fp-vrb"/>
+                    <connections>
+                        <outlet property="collectionView" destination="Fq5-cH-hpa" id="z8v-7g-G8e"/>
+                        <outlet property="searchBtn" destination="XTd-Wm-WO5" id="pXz-7I-whM"/>
+                        <outlet property="searchTextField" destination="Fam-ii-zAh" id="d0X-J7-INi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>

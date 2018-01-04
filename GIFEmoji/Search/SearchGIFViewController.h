@@ -10,6 +10,10 @@
 
 @interface SearchGIFViewController : UIViewController
 
+@property (nonatomic, weak) IBOutlet UITextField *searchTextField;
+@property (nonatomic, weak) IBOutlet UIButton *searchBtn;
+
+@property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 
 @end
 
