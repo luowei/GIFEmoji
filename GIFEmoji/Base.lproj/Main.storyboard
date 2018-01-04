@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -66,39 +65,52 @@
                                 <rect key="frame" x="0.0" y="52" width="375" height="450"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" distribution="equalSpacing" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="0L8-Pn-7Ad">
-                                <rect key="frame" x="45" y="6" width="286.5" height="40"/>
+                                <rect key="frame" x="19" y="6" width="337" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5mq-eK-yuW">
-                                        <rect key="frame" x="0.0" y="0.0" width="123" height="40"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="111" height="40"/>
                                         <color key="backgroundColor" red="0.15726926920000001" green="0.52631461619999997" blue="0.17096316810000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="tintColor" red="0.1764705882352941" green="0.55781632965686279" blue="0.57621719260620918" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
-                                        <state key="normal" title="选择Live Photo">
+                                        <inset key="contentEdgeInsets" minX="6" minY="0.0" maxX="6" maxY="0.0"/>
+                                        <state key="normal" title="选择LivePhoto">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
                                             <action selector="selectLivePhotoAction:" destination="9pv-A4-QxB" eventType="touchUpInside" id="SeR-P7-boC"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tEg-XX-Igp">
+                                        <rect key="frame" x="113" y="0.0" width="111" height="40"/>
+                                        <color key="backgroundColor" red="0.15726926920000001" green="0.52631461619999997" blue="0.17096316810000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="tintColor" red="0.1764705882" green="0.55781632969999995" blue="0.57621719260000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <inset key="contentEdgeInsets" minX="6" minY="0.0" maxX="6" maxY="0.0"/>
+                                        <state key="normal" title="选择多张照片">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="selectStaticPhotoAction:" destination="9pv-A4-QxB" eventType="touchUpInside" id="rJo-kX-mCV"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lnF-60-x3p">
-                                        <rect key="frame" x="163.5" y="0.0" width="123" height="40"/>
+                                        <rect key="frame" x="226" y="0.0" width="111" height="40"/>
                                         <color key="backgroundColor" red="0.15726926922798157" green="0.52631461620330811" blue="0.17096316814422607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="L8I-Wo-zQO"/>
                                         </constraints>
                                         <color key="tintColor" red="0.1764705882" green="0.55781632969999995" blue="0.57621719260000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
-                                        <state key="normal" title="选择多张照片">
+                                        <inset key="contentEdgeInsets" minX="6" minY="0.0" maxX="6" maxY="0.0"/>
+                                        <state key="normal" title="选择视频">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="selectStaticPhotoAction:" destination="9pv-A4-QxB" eventType="touchUpInside" id="2X4-sQ-ig0"/>
+                                            <action selector="selectVideoAction:" destination="9pv-A4-QxB" eventType="touchUpInside" id="OEJ-E2-Law"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="lnF-60-x3p" firstAttribute="width" secondItem="0L8-Pn-7Ad" secondAttribute="width" multiplier="1:3" constant="27.5" id="LPu-NB-SP1"/>
+                                    <constraint firstItem="lnF-60-x3p" firstAttribute="width" secondItem="tEg-XX-Igp" secondAttribute="width" id="UCR-5c-Dt5"/>
                                     <constraint firstItem="5mq-eK-yuW" firstAttribute="height" secondItem="lnF-60-x3p" secondAttribute="height" id="VpA-PS-OBE"/>
+                                    <constraint firstItem="lnF-60-x3p" firstAttribute="height" secondItem="tEg-XX-Igp" secondAttribute="height" id="bYm-NN-diw"/>
                                     <constraint firstItem="5mq-eK-yuW" firstAttribute="width" secondItem="lnF-60-x3p" secondAttribute="width" id="cbq-Dz-ofZ"/>
                                 </constraints>
                             </stackView>
@@ -175,7 +187,8 @@
                         <outlet property="exportVideoBtn" destination="yUk-PJ-Hip" id="KcB-Xm-lKd"/>
                         <outlet property="imagePreview" destination="PN0-Cr-lDL" id="iwA-Ph-pAw"/>
                         <outlet property="selectLivePhotoBtn" destination="5mq-eK-yuW" id="HMF-Np-Exh"/>
-                        <outlet property="selectStaticPhotoBtn" destination="lnF-60-x3p" id="FvO-BB-dXd"/>
+                        <outlet property="selectStaticPhotoBtn" destination="tEg-XX-Igp" id="bWP-6V-Igl"/>
+                        <outlet property="selectVideoBtn" destination="lnF-60-x3p" id="Ube-Tf-M4T"/>
                         <segue destination="bvE-fR-Jae" kind="show" id="f1Z-0i-6aQ"/>
                         <segue destination="U6E-3f-pcN" kind="show" id="wHM-ee-b9e"/>
                         <segue destination="YOf-Bq-uVf" kind="show" id="MDY-Wb-86x"/>

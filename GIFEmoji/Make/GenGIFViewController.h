@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YMSPhotoPickerViewController.h"
 
-@interface GenGIFViewController : UIViewController
+@class PHLivePhotoView;
+
+@interface GenGIFViewController : UIViewController<UIImagePickerControllerDelegate,UINavigationControllerDelegate,YMSPhotoPickerViewControllerDelegate>
 
 @property (nonatomic, weak) IBOutlet UIButton *selectLivePhotoBtn;
 @property (nonatomic, weak) IBOutlet UIButton *selectStaticPhotoBtn;
+@property (nonatomic, weak) IBOutlet UIButton *selectVideoBtn;
 
 
 @property (nonatomic, weak) IBOutlet UIImageView *imagePreview;

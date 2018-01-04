@@ -314,33 +314,12 @@ CGImageRef ImageWithScale(CGImageRef imageRef, float scale) {
 
 
 @implementation LWGIFManager{
-    float floatGifTime;
 }
 
-
-//把一个images数组设置到ImageView
-- (void)setImages:(NSArray <UIImage *>*)gifImages toImageView:(UIImageView *)imageView{
-    UIImage *newImage1 = gifImages[0];
-
-    NSMutableArray *images = [[NSMutableArray alloc] init];
-
-    for (int i = 1; i <= [gifImages count]; i++) {
-        UIImage *image = gifImages[i - 1];
-        [images addObject:image];
-    }
-
-    imageView.image = nil;
-    imageView.animationImages = [NSArray arrayWithArray:images];
-    imageView.animationDuration = floatGifTime * [gifImages count];
-    imageView.animationRepeatCount = 0;
-    [imageView startAnimating];
-
-    //todo:隐藏弹窗
-}
 
 //把 Video 转换成 GIF
-- (void)convertVideoToImages:(NSURL *)videoFileURL
-                             completionBlock:(void(^)(NSArray <UIImage *>*images,float gifDelayTime))completionBlock{
++ (void)convertVideoToImages:(NSURL *)videoFileURL
+                             completionBlock:(void(^)(NSArray <UIImage *>*images,float gifDelayTime))completionBlock {
     [NSGIF optimalGIFfromVideoURL:videoFileURL loopCount:0 completion:^(NSURL *GifURL) {
 
         NSLog(@"Finished generating GIF: %@", GifURL);
@@ -365,7 +344,7 @@ CGImageRef ImageWithScale(CGImageRef imageRef, float scale) {
 
 
 //根据已有的 GIFFrames 导出GIF图片，返回GIF图片地址
-- (NSString *)exportAnimatedGifWithImages:(NSArray <UIImage *>*)imageList gifDelayTime:(float) gifDelayTime{
++ (NSString *)exportAnimatedGifWithImages:(NSArray <UIImage *>*)imageList gifDelayTime:(float) gifDelayTime {
     NSString *path = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"animated.gif"];
 
     CGImageDestinationRef destination = CGImageDestinationCreateWithURL((__bridge CFURLRef) [NSURL fileURLWithPath:path],

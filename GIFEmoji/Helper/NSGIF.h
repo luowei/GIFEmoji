@@ -55,5 +55,11 @@ static int delayCentisecondsForImageAtIndex(CGImageSourceRef const source, size_
 
 @interface LWGIFManager : NSObject
 
+//把 Video 转换成 GIF
++ (void)convertVideoToImages:(NSURL *)videoFileURL
+             completionBlock:(void(^)(NSArray <UIImage *>*images,float gifDelayTime))completionBlock;
+
+//根据已有的 GIFFrames 导出GIF图片，返回GIF图片地址
++ (NSString *)exportAnimatedGifWithImages:(NSArray <UIImage *>*)imageList gifDelayTime:(float) gifDelayTime;
 
 @end
