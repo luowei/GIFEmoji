@@ -6,6 +6,81 @@
 
 #import "NSGIF.h"
 
+
+#pragma mark - Extracting images from GIF
+
+static void createImagesAndDelays(CGImageSourceRef source, size_t count, CGImageRef imagesOut[count], int delayCentisecondsOut[count]) {
+    for (size_t i = 0; i < count; ++i) {
+        imagesOut[i] = CGImageSourceCreateImageAtIndex(source, i, NULL);
+        delayCentisecondsOut[i] = delayCentisecondsForImageAtIndex(source, i);
+    }
+}
+
+static int sum(size_t const count, int const *const values) {
+    int theSum = 0;
+    for (size_t i = 0; i < count; ++i) {
+        theSum += values[i];
+    }
+    return theSum;
+}
+
+static NSArray *frameArray(size_t const count, CGImageRef const images[count], int const delayCentiseconds[count], int const totalDurationCentiseconds) {
+    int const gcd = vectorGCD(count, delayCentiseconds);
+    size_t const frameCount = totalDurationCentiseconds / gcd;
+    UIImage *frames[frameCount];
+    for (size_t i = 0, f = 0; i < count; ++i) {
+        UIImage *const frame = [UIImage imageWithCGImage:images[i]];
+        for (size_t j = delayCentiseconds[i] / gcd; j > 0; --j) {
+            frames[f++] = frame;
+        }
+    }
+    return [NSArray arrayWithObjects:frames count:frameCount];
+}
+
+static int vectorGCD(size_t const count, int const *const values) {
+    int gcd = values[0];
+    for (size_t i = 1; i < count; ++i) {
+        // Note that after I process the first few elements of the vector, `gcd` will probably be smaller than any remaining element.  By passing the smaller value as the second argument to `pairGCD`, I avoid making it swap the arguments.
+        gcd = pairGCD(values[i], gcd);
+    }
+    return gcd;
+}
+
+static int pairGCD(int a, int b) {
+    if (a < b)
+        return pairGCD(b, a);
+    while (true) {
+        int const r = a % b;
+        if (r == 0)
+            return b;
+        a = b;
+        b = r;
+    }
+}
+
+static int delayCentisecondsForImageAtIndex(CGImageSourceRef const source, size_t const i) {
+    int delayCentiseconds = 1;
+    CFDictionaryRef const properties = CGImageSourceCopyPropertiesAtIndex(source, i, NULL);
+    if (properties) {
+        CFDictionaryRef const gifProperties = CFDictionaryGetValue(properties, kCGImagePropertyGIFDictionary);
+        if (gifProperties) {
+            NSNumber *number = fromCF CFDictionaryGetValue(gifProperties, kCGImagePropertyGIFUnclampedDelayTime);
+            if (number == NULL || [number doubleValue] == 0) {
+                number = fromCF CFDictionaryGetValue(gifProperties, kCGImagePropertyGIFDelayTime);
+            }
+            if ([number doubleValue] > 0) {
+                // Even though the GIF stores the delay as an integer number of centiseconds, ImageIO “helpfully” converts that to seconds for us.
+                delayCentiseconds = (int) lrint([number doubleValue] * 100);
+            }
+        }
+        CFRelease(properties);
+    }
+    return delayCentiseconds;
+}
+
+
+#pragma mark - NSGIF
+
 @implementation NSGIF
 
 // Declare constants
@@ -23,7 +98,7 @@ typedef NS_ENUM(NSInteger, GIFSize) {
 
 #pragma mark - Public methods
 
-+ (void)optimalGIFfromURL:(NSURL*)videoURL loopCount:(int)loopCount completion:(void(^)(NSURL *GifURL))completionBlock {
++ (void)optimalGIFfromVideoURL:(NSURL *)videoURL loopCount:(int)loopCount completion:(void(^)(NSURL *GifURL))completionBlock {
 
     int delayTime = 0.2;
     
@@ -33,8 +108,8 @@ typedef NS_ENUM(NSInteger, GIFSize) {
     
     AVURLAsset *asset = [AVURLAsset assetWithURL:videoURL];
     
-    float videoWidth = [[[asset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0] naturalSize].width;
-    float videoHeight = [[[asset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0] naturalSize].height;
+    float videoWidth = [[asset tracksWithMediaType:AVMediaTypeVideo][0] naturalSize].width;
+    float videoHeight = [[asset tracksWithMediaType:AVMediaTypeVideo][0] naturalSize].height;
     
     GIFSize optimalSize = GIFSizeMedium;
     if (videoWidth >= 1200 || videoHeight >= 1200)
@@ -49,7 +124,7 @@ typedef NS_ENUM(NSInteger, GIFSize) {
     // Get the length of the video in seconds
     float videoLength = (float)asset.duration.value/asset.duration.timescale;
     int framesPerSecond = 4;
-    int frameCount = videoLength*framesPerSecond;
+    int frameCount = (int) (videoLength*framesPerSecond);
     
     // How far along the video track we want to move, in seconds.
     float increment = (float)videoLength/frameCount;
@@ -133,7 +208,7 @@ typedef NS_ENUM(NSInteger, GIFSize) {
     
     NSString *temporaryFile = [NSTemporaryDirectory() stringByAppendingString:fileName];
     NSURL *fileURL = [NSURL fileURLWithPath:temporaryFile];
-    CGImageDestinationRef destination = CGImageDestinationCreateWithURL((__bridge CFURLRef)fileURL, kUTTypeGIF , frameCount, NULL);
+    CGImageDestinationRef destination = CGImageDestinationCreateWithURL((__bridge CFURLRef)fileURL, kUTTypeGIF , (size_t) frameCount, NULL);
     
     if (fileURL == nil)
         return nil;
@@ -169,12 +244,12 @@ typedef NS_ENUM(NSInteger, GIFSize) {
             NSLog(@"Error copying image and no previous frames to duplicate");
             return nil;
         }
-        CGImageDestinationAddImage(destination, imageRef, (CFDictionaryRef)frameProperties);
+        CGImageDestinationAddImage(destination, imageRef, (__bridge CFDictionaryRef)frameProperties);
         CGImageRelease(imageRef);
     }
     CGImageRelease(previousImageRefCopy);
     
-    CGImageDestinationSetProperties(destination, (CFDictionaryRef)fileProperties);
+    CGImageDestinationSetProperties(destination, (__bridge CFDictionaryRef)fileProperties);
     // Finalize the GIF
     if (!CGImageDestinationFinalize(destination)) {
         NSLog(@"Failed to finalize GIF destination: %@", error);
@@ -233,5 +308,99 @@ CGImageRef ImageWithScale(CGImageRef imageRef, float scale) {
                 (NSString *)kCGImagePropertyColorModel:(NSString *)kCGImagePropertyColorModelRGB
             };
 }
+
+
+@end
+
+
+@implementation LWGIFManager{
+    float floatGifTime;
+}
+
+
+//把一个images数组设置到ImageView
+- (void)setImages:(NSArray <UIImage *>*)gifImages toImageView:(UIImageView *)imageView{
+    UIImage *newImage1 = gifImages[0];
+
+    NSMutableArray *images = [[NSMutableArray alloc] init];
+
+    for (int i = 1; i <= [gifImages count]; i++) {
+        UIImage *image = gifImages[i - 1];
+        [images addObject:image];
+    }
+
+    imageView.image = nil;
+    imageView.animationImages = [NSArray arrayWithArray:images];
+    imageView.animationDuration = floatGifTime * [gifImages count];
+    imageView.animationRepeatCount = 0;
+    [imageView startAnimating];
+
+    //todo:隐藏弹窗
+}
+
+//把 Video 转换成 GIF
+- (void)convertVideoToImages:(NSURL *)videoFileURL
+                             completionBlock:(void(^)(NSArray <UIImage *>*images,float gifDelayTime))completionBlock{
+    [NSGIF optimalGIFfromVideoURL:videoFileURL loopCount:0 completion:^(NSURL *GifURL) {
+
+        NSLog(@"Finished generating GIF: %@", GifURL);
+        NSData *imageData = [NSData dataWithContentsOfURL:GifURL];
+
+        CGImageSourceRef source = CGImageSourceCreateWithData((__bridge CFDataRef) imageData, NULL);
+        size_t const count = CGImageSourceGetCount(source);
+        CGImageRef images[count];
+        int delayCentiseconds[count]; // in centiseconds
+
+        createImagesAndDelays(source, count, images, delayCentiseconds);
+        float const totalDurationCentiseconds = sum(count, delayCentiseconds);
+
+        float gifDelayTime = (float) (totalDurationCentiseconds / (count * 100));
+        NSArray <UIImage *> *imageFrames = frameArray(count, images, delayCentiseconds, (const int) totalDurationCentiseconds);
+        if (completionBlock) {
+            //todo:隐藏提示弹窗,把images设置到ImageView
+            completionBlock(imageFrames,gifDelayTime);
+        }
+    }];
+}
+
+
+//根据已有的 GIFFrames 导出GIF图片，返回GIF图片地址
+- (NSString *)exportAnimatedGifWithImages:(NSArray <UIImage *>*)imageList gifDelayTime:(float) gifDelayTime{
+    NSString *path = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"animated.gif"];
+
+    CGImageDestinationRef destination = CGImageDestinationCreateWithURL((__bridge CFURLRef) [NSURL fileURLWithPath:path],
+            kUTTypeGIF,
+            [imageList count],
+            NULL);
+
+    NSDictionary *frameProperties = @{
+            (NSString *) kCGImagePropertyGIFDictionary: @{(NSString *) kCGImagePropertyGIFDelayTime: @(gifDelayTime)}
+    };
+
+    NSDictionary *gifProperties = @{
+            (NSString *) kCGImagePropertyGIFDictionary: @{(NSString *) kCGImagePropertyGIFLoopCount: @0}
+    };
+
+    for (int i = 0; i < [imageList count]; i++) {
+        UIImage *bgImage = imageList[i];
+
+        UIGraphicsBeginImageContextWithOptions(bgImage.size, FALSE, 0.0);
+        [bgImage drawInRect:CGRectMake(0, 0, bgImage.size.width, bgImage.size.height)];
+        UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        CGImageDestinationAddImage(destination, newImage.CGImage, (__bridge CFDictionaryRef) frameProperties);
+
+    }
+
+    CGImageDestinationSetProperties(destination, (__bridge CFDictionaryRef) gifProperties);
+    CGImageDestinationFinalize(destination);
+    CFRelease(destination);
+
+
+    NSLog(@"animated GIF file created at %@", path);
+
+    return path;
+}
+
 
 @end
