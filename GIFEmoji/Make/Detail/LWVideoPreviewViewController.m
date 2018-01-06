@@ -39,6 +39,9 @@
 //右侧的按钮被点击
 - (void)rightBarItemAction:(UIBarButtonItem *)rightBarItemAction {
 
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[self.videoURL] applicationActivities:nil];
+    activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypePrint];
+    [self presentViewController:activityVC animated:TRUE completion:nil];
 }
 
 
