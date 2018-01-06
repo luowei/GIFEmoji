@@ -52,14 +52,14 @@ CGImageRef ImageWithScale(CGImageRef imageRef, float scale);
         exportedGIFURL:(NSURL *)exportedGIFURL
                 frameDelayTime:(float)frameDelayTime
                      loopCount:(int)loopCount
-                    completion:(void(^)(NSURL *GifURL))completionBlock;
+                    completion:(void(^)(NSURL *GifURL,NSData *gifData))completionBlock;
 
 + (void)createGIFfromURL:(NSURL*)videoURL
         exportedGIFURL:(NSURL *)exportedGIFURL
           withFrameCount:(int)frameCount
                delayTime:(int)delayTime
                loopCount:(int)loopCount
-              completion:(void(^)(NSURL *GifURL))completionBlock;
+              completion:(void(^)(NSURL *GifURL,NSData *gifData))completionBlock;
 
 @end
 

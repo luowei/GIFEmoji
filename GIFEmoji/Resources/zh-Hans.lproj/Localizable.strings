@@ -12,6 +12,8 @@
 "Not a Live Photo" = "选择的照片不是LivePhoto";
 "The Photo is GIF Image" = "选择是照片是GIF图片";
 
+"Export GIF Faild" = "导出GIF失败";
+
 "Cancel" = "取消";
 "Settings" = "设置";
 

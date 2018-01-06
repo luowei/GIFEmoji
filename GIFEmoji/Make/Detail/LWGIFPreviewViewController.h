@@ -5,6 +5,18 @@
 
 #import <UIKit/UIKit.h>
 
+@class FLAnimatedImageView;
+
 
 @interface LWGIFPreviewViewController : UIViewController
+
+@property (weak, nonatomic) IBOutlet UISlider *fpsSlider;
+@property (weak, nonatomic) IBOutlet UITextField *scaleTextField;
+
+@property (weak, nonatomic) IBOutlet FLAnimatedImageView *imageView;
+
++(instancetype)viewControllerWithGIFData:(NSData *)gifData;
+
+- (IBAction)fpsSliderAction:(UISlider *)sender forEvent:(UIEvent*)event;
+
 @end

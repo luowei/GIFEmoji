@@ -38,6 +38,12 @@
 
 @end
 
+@interface UIImage (Text)
+
++ (UIImage *)drawImage:(UIImage *)image voerlayText:(NSString *)text textColor:(UIColor *)textColor atPoint:(CGPoint)point;
+
+@end
+
 
 @interface UIImage (Cut)
 

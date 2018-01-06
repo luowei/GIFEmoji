@@ -9,7 +9,7 @@
 
 @implementation UIImage (Extension)
 
-+(UIImage *)imageNamed:(NSString *)imageName inBundleNamed:(NSString *)bundleName {
++ (UIImage *)imageNamed:(NSString *)imageName inBundleNamed:(NSString *)bundleName {
     NSBundle *bundle = [NSBundle bundleWithURL:[[NSBundle mainBundle] URLForResource:bundleName withExtension:@"bundle"]];
     UIImage *image = [UIImage imageNamed:imageName inBundle:bundle compatibleWithTraitCollection:nil];
     return image;
@@ -118,6 +118,38 @@
 
 @end
 
+@implementation UIImage (Text)
+
++ (UIImage *)drawImage:(UIImage *)image voerlayText:(NSString *)text textColor:(UIColor *)textColor atPoint:(CGPoint)point {
+    UIFont *font = [UIFont boldSystemFontOfSize:15];
+    UIGraphicsBeginImageContext(image.size);
+    [image drawInRect:CGRectMake(0, 0, image.size.width, image.size.height)];
+    //CGRect rect = CGRectMake(point.x-6, (point.y - 6), image.size.width, image.size.height);
+    [[UIColor whiteColor] set];
+
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:text];
+    NSRange range = NSMakeRange(0, [attString length]);
+
+    [attString addAttribute:NSFontAttributeName value:font range:range];
+    [attString addAttribute:NSForegroundColorAttributeName value:textColor range:range];
+
+    CGRect textRect = [attString boundingRectWithSize:image.size options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) context:nil];
+    textRect = CGRectMake((image.size.width-textRect.size.width)/2, (image.size.height-textRect.size.height)/2, textRect.size.width, textRect.size.height);
+
+//    NSShadow *shadow = [[NSShadow alloc] init];
+//    shadow.shadowColor = [UIColor darkGrayColor];
+//    shadow.shadowOffset = CGSizeMake(1.0f, 1.5f);
+//    [attString addAttribute:NSShadowAttributeName value:shadow range:range];
+
+    [attString drawInRect:CGRectIntegral(textRect)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+
+    return newImage;
+}
+
+@end
+
 
 @implementation UIImage (Cut)
 
@@ -139,7 +171,7 @@
     [bgImg drawAtPoint:bgImgOrigin];
     //[bgImg drawInRect:<#(CGRect)rect#>];
 
-    CGPoint imgOrigin = CGPointMake((size.width-imgSize.width)/2, (size.height-imgSize.height)/2);
+    CGPoint imgOrigin = CGPointMake((size.width - imgSize.width) / 2, (size.height - imgSize.height) / 2);
     [img drawAtPoint:imgOrigin];
 
     UIImage *result = UIGraphicsGetImageFromCurrentImageContext();
@@ -209,8 +241,8 @@
 }
 
 //把一张图片缩放到微信可接收的200x200的缩略图
--(UIImage *)scaleToWXThumbnailSizeKeepAspect:(CGSize)size {
-    if(self.size.width < size.width && self.size.height < size.height){
+- (UIImage *)scaleToWXThumbnailSizeKeepAspect:(CGSize)size {
+    if (self.size.width < size.width && self.size.height < size.height) {
         return self;
     }
     return [self scaleToSizeKeepAspect:size];
@@ -314,28 +346,27 @@
     CGColorSpaceRelease(colorSpace);
     CGContextRelease(context);
 
-    if(rgba[3] > 0) {
-        CGFloat alpha = ((CGFloat)rgba[3])/255.0;
-        CGFloat multiplier = alpha/255.0;
-        return [UIColor colorWithRed:((CGFloat)rgba[0])*multiplier
-                               green:((CGFloat)rgba[1])*multiplier
-                                blue:((CGFloat)rgba[2])*multiplier
+    if (rgba[3] > 0) {
+        CGFloat alpha = ((CGFloat) rgba[3]) / 255.0;
+        CGFloat multiplier = alpha / 255.0;
+        return [UIColor colorWithRed:((CGFloat) rgba[0]) * multiplier
+                               green:((CGFloat) rgba[1]) * multiplier
+                                blue:((CGFloat) rgba[2]) * multiplier
                                alpha:alpha];
-    }
-    else {
-        return [UIColor colorWithRed:((CGFloat)rgba[0])/255.0
-                               green:((CGFloat)rgba[1])/255.0
-                                blue:((CGFloat)rgba[2])/255.0
-                               alpha:((CGFloat)rgba[3])/255.0];
+    } else {
+        return [UIColor colorWithRed:((CGFloat) rgba[0]) / 255.0
+                               green:((CGFloat) rgba[1]) / 255.0
+                                blue:((CGFloat) rgba[2]) / 255.0
+                               alpha:((CGFloat) rgba[3]) / 255.0];
     }
 }
 
 @end
 
-@implementation UIImage(Alpha)
+@implementation UIImage (Alpha)
 
 //修改图片透明度
-- (UIImage *)imageByApplyingAlpha:(CGFloat) alpha {
+- (UIImage *)imageByApplyingAlpha:(CGFloat)alpha {
     UIGraphicsBeginImageContextWithOptions(self.size, NO, 0.0f);
 
     CGContextRef ctx = UIGraphicsGetCurrentContext();
@@ -360,15 +391,15 @@
 @end
 
 
-@implementation UIImage(Blur)
+@implementation UIImage (Blur)
 
 //模糊化
--(UIImage *)blurImageWithRadius:(CGFloat)radius{
+- (UIImage *)blurImageWithRadius:(CGFloat)radius {
     return [self blurWithRect:CGRectMake(0, 0, self.size.width, self.size.height) radius:radius];
 }
 
 //将一张图片模糊化
-- (UIImage *)blurWithRect:(CGRect)rect radius:(CGFloat)radius{
+- (UIImage *)blurWithRect:(CGRect)rect radius:(CGFloat)radius {
     CIImage *inputImage = [CIImage imageWithCGImage:self.CGImage];
 
     // Apply Affine-Clamp filter to stretch the image so that it does not
@@ -379,8 +410,8 @@
     [clampFilter setValue:[NSValue valueWithBytes:&transform objCType:@encode(CGAffineTransform)] forKey:@"inputTransform"];
 
     // Apply gaussian blur filter with radius of 30
-    CIFilter *gaussianBlurFilter = [CIFilter filterWithName: @"CIGaussianBlur"];
-    [gaussianBlurFilter setValue:clampFilter.outputImage forKey: @"inputImage"];
+    CIFilter *gaussianBlurFilter = [CIFilter filterWithName:@"CIGaussianBlur"];
+    [gaussianBlurFilter setValue:clampFilter.outputImage forKey:@"inputImage"];
     [gaussianBlurFilter setValue:@(radius) forKey:@"inputRadius"];
 
     CIContext *context = [CIContext contextWithOptions:nil];
@@ -413,15 +444,15 @@
 @end
 
 
-@implementation UIImage(ScaleSize)
+@implementation UIImage (ScaleSize)
 
 //image的Size的分辨率倍数
--(CGSize)scaleSize{
+- (CGSize)scaleSize {
     CGFloat scale = [UIScreen mainScreen].scale;
     return CGSizeMake(self.size.width * scale, self.size.height * scale);
 }
 
--(CGSize)scaleSize:(CGFloat)scale{
+- (CGSize)scaleSize:(CGFloat)scale {
     CGFloat scal = [UIScreen mainScreen].scale;
     return CGSizeMake(self.size.width * scal * scale, self.size.height * scal * scale);
 }
@@ -431,7 +462,7 @@
     CGFloat compression = 0.8f;
     CGFloat maxCompression = 0.1f;
     NSData *imageData = UIImageJPEGRepresentation(self, 1.0);
-    while ([imageData length] > maxFileSize && compression > maxCompression){
+    while ([imageData length] > maxFileSize && compression > maxCompression) {
         imageData = UIImageJPEGRepresentation(self, compression);
         compression *= 0.8;
     }
@@ -439,14 +470,14 @@
 }
 
 //压缩图片到小于指定大小，以Byte为单元
--(UIImage *)compressLessThan:(int)fileSize{
+- (UIImage *)compressLessThan:(int)fileSize {
     NSData *imageData = [self compressWithInMaxFileSize:fileSize];
-    UIImage *image=[UIImage imageWithData:imageData];
+    UIImage *image = [UIImage imageWithData:imageData];
     return image;
 }
 
 //包含bitmap 和 UIImage instance container 的大小
-- (size_t) memorySize{
+- (size_t)memorySize {
     CGImageRef image = self.CGImage;
     size_t instanceSize = class_getInstanceSize(self.class);
     size_t pixmapSize = CGImageGetHeight(image) * CGImageGetBytesPerRow(image);
@@ -455,7 +486,7 @@
 }
 
 //实际的bitmap大小，不包含UIImage instance container
-- (size_t) calculatedSize {
+- (size_t)calculatedSize {
     return CGImageGetHeight(self.CGImage) * CGImageGetBytesPerRow(self.CGImage);
 }
 
@@ -470,16 +501,15 @@
 + (float)sd_frameDurationAtIndex:(NSUInteger)index source:(CGImageSourceRef)source {
     float frameDuration = 0.1f;
     CFDictionaryRef cfFrameProperties = CGImageSourceCopyPropertiesAtIndex(source, index, nil);
-    NSDictionary *frameProperties = (__bridge NSDictionary *)cfFrameProperties;
-    NSDictionary *gifProperties = frameProperties[(NSString *)kCGImagePropertyGIFDictionary];
+    NSDictionary *frameProperties = (__bridge NSDictionary *) cfFrameProperties;
+    NSDictionary *gifProperties = frameProperties[(NSString *) kCGImagePropertyGIFDictionary];
 
-    NSNumber *delayTimeUnclampedProp = gifProperties[(NSString *)kCGImagePropertyGIFUnclampedDelayTime];
+    NSNumber *delayTimeUnclampedProp = gifProperties[(NSString *) kCGImagePropertyGIFUnclampedDelayTime];
     if (delayTimeUnclampedProp) {
         frameDuration = [delayTimeUnclampedProp floatValue];
-    }
-    else {
+    } else {
 
-        NSNumber *delayTimeProp = gifProperties[(NSString *)kCGImagePropertyGIFDelayTime];
+        NSNumber *delayTimeProp = gifProperties[(NSString *) kCGImagePropertyGIFDelayTime];
         if (delayTimeProp) {
             frameDuration = [delayTimeProp floatValue];
         }
@@ -519,8 +549,7 @@
         }
 
         return [UIImage imageNamed:name];
-    }
-    else {
+    } else {
         NSString *path = [[NSBundle mainBundle] pathForResource:name ofType:@"gif"];
 
         NSData *data = [NSData dataWithContentsOfFile:path];
@@ -549,8 +578,7 @@
 
     if (widthFactor > heightFactor) {
         thumbnailPoint.y = (CGFloat) ((size.height - scaledSize.height) * 0.5);
-    }
-    else if (widthFactor < heightFactor) {
+    } else if (widthFactor < heightFactor) {
         thumbnailPoint.x = (CGFloat) ((size.width - scaledSize.width) * 0.5);
     }
 
@@ -574,7 +602,7 @@
 - (UIImage *)scaleImageDataInMaxFileSize:(int)maxFileSize {
     CGFloat compression = 0.9f;
     UIImage *image = nil;
-    while ([self calculatedSize] > maxFileSize ){
+    while ([self calculatedSize] > maxFileSize) {
         image = [self sd_animatedImageByScalingAndCroppingToSize:CGSizeMake((CGFloat) (self.size.width * compression), (CGFloat) (self.size.height * compression))];
     }
     return image;
@@ -595,27 +623,27 @@
 
 @implementation UIImage (Bundle)
 
-+(UIImage*)imageNamed:(NSString*)name ofBundle:(NSString*)bundleName{
++ (UIImage *)imageNamed:(NSString *)name ofBundle:(NSString *)bundleName {
     UIImage *image = nil;
-    NSString *image_name = [NSString stringWithFormat:@"%@.png",name];
-    NSString *resourcePath = [[NSBundle mainBundle]resourcePath];
+    NSString *image_name = [NSString stringWithFormat:@"%@.png", name];
+    NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
     NSString *bundlePath = [resourcePath stringByAppendingPathComponent:bundleName];
     NSString *image_path = [bundlePath stringByAppendingPathComponent:image_name];
-    
+
     //NSString* path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:bundleName]stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",name]];
-    
+
     //image = [UIImage imageWithContentsOfFile:image_path];
-    image = [[UIImage alloc]initWithContentsOfFile:image_path];
-    
+    image = [[UIImage alloc] initWithContentsOfFile:image_path];
+
     return image;
 }
 
-+(NSString*)imageInbundlePath:(NSString*)name ofBundle:(NSString*)bundleName{
-    NSString *image_name = [NSString stringWithFormat:@"%@.png",name];
-    NSString *resourcePath = [[NSBundle mainBundle]resourcePath];
++ (NSString *)imageInbundlePath:(NSString *)name ofBundle:(NSString *)bundleName {
+    NSString *image_name = [NSString stringWithFormat:@"%@.png", name];
+    NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
     NSString *bundlePath = [resourcePath stringByAppendingPathComponent:bundleName];
     NSString *image_path = [bundlePath stringByAppendingPathComponent:image_name];
-    
+
     return image_path;
 }
 

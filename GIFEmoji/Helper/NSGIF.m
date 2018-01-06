@@ -5,6 +5,7 @@
 //
 
 #import "NSGIF.h"
+#import "UIImage+GIF.h"
 
 
 #pragma mark - Extracting images from GIF
@@ -116,7 +117,6 @@ CGImageRef ImageWithScale(CGImageRef imageRef, float scale) {
 @implementation NSGIF
 
 // Declare constants
-#define timeInterval @(600)
 #define tolerance    @(0.01)
 
 typedef NS_ENUM(NSInteger, GIFSize) {
@@ -133,14 +133,8 @@ typedef NS_ENUM(NSInteger, GIFSize) {
                 exportedGIFURL:(NSURL *)exportedGIFURL
                 frameDelayTime:(float)frameDelayTime
                      loopCount:(int)loopCount
-                    completion:(void (^)(NSURL *GifURL))completionBlock {
+                    completion:(void (^)(NSURL *GifURL,NSData *gifData))completionBlock {
 
-//    int delayTime = frameDelayTime;
-    
-    // Create properties dictionaries
-    NSDictionary *fileProperties = [self filePropertiesWithLoopCount:loopCount];
-    NSDictionary *frameProperties = [self framePropertiesWithDelayTime:frameDelayTime];
-    
     AVURLAsset *asset = [AVURLAsset assetWithURL:videoURL];
     
     float videoWidth = [[asset tracksWithMediaType:AVMediaTypeVideo][0] naturalSize].width;
@@ -168,7 +162,7 @@ typedef NS_ENUM(NSInteger, GIFSize) {
     NSMutableArray *timePoints = [NSMutableArray array];
     for (int currentFrame = 0; currentFrame<frameCount; ++currentFrame) {
         float seconds = (float)increment * currentFrame;
-        CMTime time = CMTimeMakeWithSeconds(seconds, [timeInterval intValue]);
+        CMTime time = CMTimeMakeWithSeconds(seconds, (int32_t) floorf(frameDelayTime * 60));
         [timePoints addObject:[NSValue valueWithCMTime:time]];
     }
     
@@ -176,23 +170,21 @@ typedef NS_ENUM(NSInteger, GIFSize) {
     dispatch_group_t gifQueue = dispatch_group_create();
     dispatch_group_enter(gifQueue);
     
-    __block NSURL *gifURL;
+    __block NSData *gifData = nil;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 
-        gifURL = [self createGIFforTimePoints:timePoints
-                                      fromURL:videoURL
-                               exportedGIFURL:exportedGIFURL
-                               fileProperties:fileProperties
-                              frameProperties:frameProperties
-                                   frameCount:frameCount
-                                      gifSize:optimalSize];
-        
+        NSArray <UIImage *>*images = [NSGIF exportImagesWithTimePoints:timePoints vedioURL:videoURL delayTime:frameDelayTime gifSize:optimalSize];
+        if(!images || images.count <= 0){
+            return;
+        }
+        gifData = [UIImage createGIFWithImages:images size:images.firstObject.size loopCount:0 delayTime:frameDelayTime gifCachePath:exportedGIFURL.path];
+
         dispatch_group_leave(gifQueue);
     });
     
     dispatch_group_notify(gifQueue, dispatch_get_main_queue(), ^{
         // Return GIF URL
-        completionBlock(gifURL);
+        completionBlock(exportedGIFURL,gifData);
     });
 
 }
@@ -202,17 +194,13 @@ typedef NS_ENUM(NSInteger, GIFSize) {
           withFrameCount:(int)frameCount
                delayTime:(int)delayTime
                loopCount:(int)loopCount
-              completion:(void(^)(NSURL *GifURL))completionBlock {
+              completion:(void(^)(NSURL *GifURL,NSData *gifData))completionBlock {
     
     // Convert the video at the given URL to a GIF, and return the GIF's URL if it was created.
     // The frames are spaced evenly over the video, and each has the same duration.
     // delayTime is the amount of time for each frame in the GIF.
     // loopCount is the number of times the GIF will repeat. Defaults to 0, which means repeat infinitely.
-    
-    // Create properties dictionaries
-    NSDictionary *fileProperties = [self filePropertiesWithLoopCount:loopCount];
-    NSDictionary *frameProperties = [self framePropertiesWithDelayTime:delayTime];
-    
+
     AVURLAsset *asset = [AVURLAsset assetWithURL:videoURL];
 
     // Get the length of the video in seconds
@@ -225,73 +213,67 @@ typedef NS_ENUM(NSInteger, GIFSize) {
     NSMutableArray *timePoints = [NSMutableArray array];
     for (int currentFrame = 0; currentFrame<frameCount; ++currentFrame) {
         float seconds = (float)increment * currentFrame;
-        CMTime time = CMTimeMakeWithSeconds(seconds, [timeInterval intValue]);
+        CMTime time = CMTimeMakeWithSeconds(seconds, (int32_t) floorf(delayTime * 60));
         [timePoints addObject:[NSValue valueWithCMTime:time]];
     }
 
     // Prepare group for firing completion block
     dispatch_group_t gifQueue = dispatch_group_create();
     dispatch_group_enter(gifQueue);
-    
+
     __block NSURL *gifURL;
+    __block NSData *gifData = nil;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 
-        gifURL = [self createGIFforTimePoints:timePoints
-                                      fromURL:videoURL
-                               exportedGIFURL:exportedGIFURL
-                               fileProperties:fileProperties
-                              frameProperties:frameProperties
-                                   frameCount:frameCount
-                                      gifSize:GIFSizeMedium];
-
+        NSArray <UIImage *>*images = [NSGIF exportImagesWithTimePoints:timePoints vedioURL:videoURL delayTime:delayTime gifSize:GIFSizeMedium];
+        if(!images || images.count <= 0){
+            return;
+        }
+        gifData = [UIImage createGIFWithImages:images size:images.firstObject.size loopCount:0 delayTime:delayTime gifCachePath:exportedGIFURL.path];
         dispatch_group_leave(gifQueue);
     });
-    
+
     dispatch_group_notify(gifQueue, dispatch_get_main_queue(), ^{
         // Return GIF URL
-        completionBlock(gifURL);
+        completionBlock(exportedGIFURL, gifData);
     });
     
 }
 
-#pragma mark - Base methods
 
-+ (NSURL *)createGIFforTimePoints:(NSArray *)timePoints
-                          fromURL:(NSURL *)vedioURL
-                   exportedGIFURL:(NSURL *)exportedGIFURL
-                   fileProperties:(NSDictionary *)fileProperties
-                  frameProperties:(NSDictionary *)frameProperties
-                       frameCount:(int)frameCount
-                          gifSize:(GIFSize)gifSize{
-    
-    CGImageDestinationRef destination = CGImageDestinationCreateWithURL((__bridge CFURLRef)exportedGIFURL, kUTTypeGIF , (size_t) frameCount, NULL);
-    
-    if (exportedGIFURL == nil)
+//根据videoURL获取视频中的图片帧集
++ (NSArray <UIImage *>*)exportImagesWithTimePoints:(NSArray *)timePoints vedioURL:(NSURL *)videoURL
+                                         delayTime:(float)delayTime gifSize:(GIFSize)gifSize {
+    NSMutableArray <UIImage *>*imageList = @[].mutableCopy;
+
+    AVURLAsset *asset = [AVURLAsset URLAssetWithURL:videoURL options:nil];
+    if ([[asset tracksWithMediaType:AVMediaTypeVideo] count] <= 0) {
+        NSLog(@"Error get Media Asset");
         return nil;
-
-    AVURLAsset *asset = [AVURLAsset URLAssetWithURL:vedioURL options:nil];
+    }
     AVAssetImageGenerator *generator = [AVAssetImageGenerator assetImageGeneratorWithAsset:asset];
     generator.appliesPreferredTrackTransform = YES;
-    
-    CMTime tol = CMTimeMakeWithSeconds([tolerance floatValue], [timeInterval intValue]);
+
+    CMTime tol = CMTimeMakeWithSeconds([tolerance floatValue], (int32_t) floorf(delayTime * 60));
     generator.requestedTimeToleranceBefore = tol;
     generator.requestedTimeToleranceAfter = tol;
-    
+
+
     NSError *error = nil;
-   CGImageRef previousImageRefCopy = nil;
+    CGImageRef previousImageRefCopy = nil;
     for (NSValue *time in timePoints) {
         CGImageRef imageRef;
-        
+
         #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
-            if((float)gifSize/10 != 1){ //对图片进行缩放
-                imageRef = ImageWithScale([generator copyCGImageAtTime:[time CMTimeValue] actualTime:nil error:&error], (float)gifSize/10);
+            if((float) gifSize /10 != 1){ //对图片进行缩放
+                imageRef = ImageWithScale([generator copyCGImageAtTime:[time CMTimeValue] actualTime:nil error:&error], (float) gifSize /10);
             } else{
                 imageRef = [generator copyCGImageAtTime:[time CMTimeValue] actualTime:nil error:&error];
             }
         #elif TARGET_OS_MAC
             imageRef = [generator copyCGImageAtTime:[time CMTimeValue] actualTime:nil error:&error];
         #endif
-        
+
         if (error) {
             NSLog(@"Error copying image: %@", error);
         }
@@ -304,20 +286,12 @@ typedef NS_ENUM(NSInteger, GIFSize) {
             NSLog(@"Error copying image and no previous frames to duplicate");
             return nil;
         }
-        CGImageDestinationAddImage(destination, imageRef, (__bridge CFDictionaryRef)frameProperties);
+        [imageList addObject:[UIImage imageWithCGImage:imageRef]];
         CGImageRelease(imageRef);
     }
     CGImageRelease(previousImageRefCopy);
-    
-    CGImageDestinationSetProperties(destination, (__bridge CFDictionaryRef)fileProperties);
-    // Finalize the GIF
-    if (!CGImageDestinationFinalize(destination)) {
-        NSLog(@"Failed to finalize GIF destination: %@", error);
-        return nil;
-    }
-    CFRelease(destination);
-    
-    return exportedGIFURL;
+
+    return imageList;
 }
 
 #pragma mark - Helpers
@@ -353,10 +327,10 @@ typedef NS_ENUM(NSInteger, GIFSize) {
                              completionBlock:(void(^)(NSArray <UIImage *>*images))completionBlock {
 
     [NSGIF optimalGIFfromVideoURL:videoFileURL
-            exportedGIFURL:exportedGIFURL
+                   exportedGIFURL:exportedGIFURL
                    frameDelayTime:frameDelayTime
                         loopCount:0
-                       completion:^(NSURL *GifURL) {
+                       completion:^(NSURL *GifURL, NSData *gifData) {
 
         NSLog(@"Finished generating GIF: %@", GifURL);
         NSData *imageData = [NSData dataWithContentsOfURL:GifURL];

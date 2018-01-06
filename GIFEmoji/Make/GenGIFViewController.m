@@ -31,9 +31,9 @@
 #import "Categories.h"
 #import "LWVideoPreviewViewController.h"
 #import "LWHelper.h"
+#import "LWGIFPreviewViewController.h"
 
 @interface GenGIFViewController () {
-    float _exportGIFDelayTime;
 }
 
 @property(nonatomic, strong) LWLivePhotoView *liveView;
@@ -42,7 +42,7 @@
 @property(nonatomic) SelectedMode selectedMode;
 
 @property(nonatomic, strong) NSURL *selectedVideoFileURL;
-@property(nonatomic, strong) NSData *selectedGIFImageData;
+@property(nonatomic, strong) NSData *currentGIFImageData;
 
 @property(nonatomic, strong) NSURL *exportedGIFURL;
 @property(nonatomic, strong) NSArray <UIImage *>*exportImageFrames;
@@ -61,9 +61,6 @@
     // Do any additional setup after loading the view, typically from a nib.
 
     [self updateUIAppearance];
-
-    _exportGIFDelayTime = 0.1;
-
 
     //LiveView视图
     self.liveView = [[LWLivePhotoView alloc] initWithFrame:CGRectZero];
@@ -111,7 +108,7 @@
 
         NSLog(@"Picked a movie at URL %@", info[UIImagePickerControllerMediaURL]);
         self.selectedVideoFileURL = info[UIImagePickerControllerMediaURL];
-        NSLog(@"> %@", [self.selectedVideoFileURL absoluteString]);
+        NSLog(@"> %@", [self.selectedVideoFileURL path]);
 
         self.videoPlayerView.hidden = NO;
         [self.videoPlayerView playVideoWithURL:self.selectedVideoFileURL];
@@ -159,7 +156,7 @@
             [SVProgressHUD showInfoWithStatus:NSLocalizedString(@"The Photo is GIF Image", nil)];
             [SVProgressHUD dismissWithDelay:0.5];
 
-            FLAnimatedImage *gifImage = [FLAnimatedImage animatedImageWithGIFData:self.selectedGIFImageData];
+            FLAnimatedImage *gifImage = [FLAnimatedImage animatedImageWithGIFData:self.currentGIFImageData];
             self.imagePreview.animatedImage = gifImage;
 
         } else {    //其他情况就让用户重新选择
@@ -242,7 +239,7 @@
                                          BOOL downloadFinined = (![info[PHImageCancelledKey] boolValue] && !info[PHImageErrorKey]);
                                          if (downloadFinined && imageData) {
                                              isGIF = YES;
-                                             self.selectedGIFImageData = imageData;
+                                             self.currentGIFImageData = imageData;
 
                                              //根据 PHAsset 设置GIFURL
                                              [self fillGIFURLWithAsset:phAsset];
@@ -274,7 +271,7 @@
                             uint8_t *buffer = malloc(size);
                             NSError *error;
                             NSUInteger bytes = [re getBytes:buffer fromOffset:0 length:size error:&error];
-                            self.selectedGIFImageData = [NSData dataWithBytes:buffer length:bytes];
+                            self.currentGIFImageData = [NSData dataWithBytes:buffer length:bytes];
                             free(buffer);
 
                             self.exportedGIFURL = re.url;
@@ -304,7 +301,7 @@
     }
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"yyyyMMddHHmmssSSS";
-    NSString *gifFileName = [dateFormatter stringFromDate:[NSDate new]];
+    NSString *gifFileName = [NSString stringWithFormat:@"%@.gif",[dateFormatter stringFromDate:[NSDate new]]];
     if (resource.originalFilename) {
         gifFileName = resource.originalFilename;
     }
@@ -324,28 +321,30 @@
 }
 
 //根据FileURL处理Video
-- (void)handleVideoWithFileURL:(NSURL *)videoFileURL {
+- (void)handleVideoWithFileURL:(NSURL *)videoFileURL completionBlock:(void (^)())completionBlock{
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeGradient];
     [SVProgressHUD showWithStatus:@"Loading..."];
 
-    NSString *gifFileName = [videoFileURL.absoluteString md5];
+    NSString *gifFileName = [NSString stringWithFormat:@"%@.gif",[self.livePhotoVideoURL.absoluteString md5]];
     NSString *temporaryFile = [NSTemporaryDirectory() stringByAppendingString:gifFileName];
     self.exportedGIFURL = [NSURL fileURLWithPath:temporaryFile];
 
-    _exportGIFDelayTime = 0.1;
     [LWGIFManager convertVideoToImages:videoFileURL
                         exportedGIFURL:self.exportedGIFURL
-                        frameDelayTime:_exportGIFDelayTime
+                        frameDelayTime:0.1
                        completionBlock:^(NSArray<UIImage *> *images) {
                            [SVProgressHUD dismiss];
                            self.exportImageFrames = images;
+                           if(completionBlock){
+                                completionBlock();
+                           }
                        }];
 
     [SVProgressHUD dismiss];
 }
 
 //处理LivePhoto
-- (void)handleLivePhoto:(PHLivePhoto *)livePhoto {
+- (void)handleLivePhoto:(PHLivePhoto *)livePhoto completionBlock:(void (^)())completionBlock{
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeGradient];
     [SVProgressHUD showWithStatus:@"Loading..."];
 
@@ -358,6 +357,7 @@
     PHAssetResource *livePhotoImageAsset = resourceArray[0];
     // Create path.
 
+//    NSString *cachesDirectory = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
     NSString *imageFileName = [NSString stringWithFormat:@"%@.jpg",[LWHelper getCurrentTimeStampText]];
     NSString *imageFilePath = [NSTemporaryDirectory() stringByAppendingString:imageFileName];
     self.livePhotoFirstImageURL = [NSURL fileURLWithPath:imageFilePath];
@@ -380,17 +380,19 @@
         NSLog(@"videoURL: %@", self.livePhotoVideoURL);
         NSLog(@"error: %@", error);
 
-        NSString *gifFileName = [self.livePhotoVideoURL.absoluteString md5];
-        NSString *temporaryFile = [NSTemporaryDirectory() stringByAppendingString:gifFileName];
-        self.exportedGIFURL = [NSURL fileURLWithPath:temporaryFile];
+        NSString *gifFileName = [NSString stringWithFormat:@"%@.gif",[self.livePhotoVideoURL.absoluteString md5]];
+        NSString *gifFilePath = [NSTemporaryDirectory() stringByAppendingString:gifFileName];
+        self.exportedGIFURL = [NSURL fileURLWithPath:gifFilePath];
 
-        _exportGIFDelayTime = 0.1;
         [LWGIFManager convertVideoToImages:self.livePhotoVideoURL
                             exportedGIFURL:self.exportedGIFURL
-                            frameDelayTime:_exportGIFDelayTime
+                            frameDelayTime:0.1
                            completionBlock:^(NSArray<UIImage *> *images) {
                                [SVProgressHUD dismiss];
                                self.exportImageFrames = images;
+                               if(completionBlock){
+                                   completionBlock();
+                               }
                            }];
     }];
 
@@ -512,7 +514,7 @@
     if (self.selectedMode == LivePhotoMode) {
         if(!self.livePhotoVideoURL){
             //处理LivePhoto
-            [self handleLivePhoto:self.liveView.livePhoto];
+            [self handleLivePhoto:self.liveView.livePhoto completionBlock:nil];
         }
         LWVideoPreviewViewController *vc = [LWVideoPreviewViewController viewControllerWithFileURL:self.livePhotoVideoURL];
         [self.navigationController pushViewController:vc animated:YES];
@@ -526,27 +528,66 @@
 
 - (IBAction)exportGIFAction:(UIButton *)sender {
 
-    if (self.selectedMode == LivePhotoMode) {
-        if(self.exportedGIFURL){
+    if(self.currentGIFImageData){
+        //合成图片帧集为GIF,并跳转到GIF预览页面
+        LWGIFPreviewViewController *vc = [LWGIFPreviewViewController viewControllerWithGIFData:self.currentGIFImageData];
+        [self.navigationController pushViewController:vc animated:YES];
+        return;
+    }
 
-        }else{
+    if (self.selectedMode == LivePhotoMode) {
+        if(!self.exportedGIFURL){
             //处理LivePhoto
-            [self handleLivePhoto:self.liveView.livePhoto];
+            weakify(self)
+            [self handleLivePhoto:self.liveView.livePhoto completionBlock:^{
+                strongify(self)
+                NSData *gifData = [NSData dataWithContentsOfFile:self.exportedGIFURL.path];
+                //合成图片帧集为GIF,并跳转到GIF预览页面
+                LWGIFPreviewViewController *vc = [LWGIFPreviewViewController viewControllerWithGIFData:gifData];
+                [self.navigationController pushViewController:vc animated:YES];
+            }];
+            return;
         }
 
-
     } else if (self.selectedMode == VideoMode) {
-        if(self.exportedGIFURL){
-
-        }else{
+        if(!self.exportedGIFURL){
             //处理视频
-            [self handleVideoWithFileURL:self.selectedVideoFileURL];
+            weakify(self)
+            [self handleVideoWithFileURL:self.selectedVideoFileURL completionBlock:^{
+                strongify(self)
+
+                if(!self.exportedGIFURL || ![[NSFileManager defaultManager] fileExistsAtPath:self.exportedGIFURL.path]){
+                    [SVProgressHUD showWithStatus:NSLocalizedString(@"Export GIF Faild", nil)];
+                    [SVProgressHUD dismissWithDelay:1.0];
+                    return;
+                }
+
+                NSData *gifData = [NSData dataWithContentsOfFile:self.exportedGIFURL.path];
+                //合成图片帧集为GIF,并跳转到GIF预览页面
+                LWGIFPreviewViewController *vc = [LWGIFPreviewViewController viewControllerWithGIFData:gifData];
+                [self.navigationController pushViewController:vc animated:YES];
+            }];
+            return;
         }
     }
 
-    //todo:合成图片帧集为GIF,并跳转到GIF预览页面
+    [self showGIFPreviewVCWithExportedGIFURL];
 
 
+}
+
+//跳转到GIFPreview
+- (void)showGIFPreviewVCWithExportedGIFURL {
+    if(!self.exportedGIFURL || ![[NSFileManager defaultManager] fileExistsAtPath:self.exportedGIFURL.path]){
+        [SVProgressHUD showWithStatus:NSLocalizedString(@"Export GIF Faild", nil)];
+        [SVProgressHUD dismissWithDelay:1.0];
+        return;
+    }
+
+    NSData *gifData = [NSData dataWithContentsOfFile:self.exportedGIFURL.path];
+    //合成图片帧集为GIF,并跳转到GIF预览页面
+    LWGIFPreviewViewController *vc = [LWGIFPreviewViewController viewControllerWithGIFData:gifData];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)exportFrameAction:(UIButton *)sender {
@@ -570,7 +611,7 @@
     imageView.animatedImage = nil;
     imageView.image = nil;
     imageView.animationImages = [NSArray arrayWithArray:images];
-    imageView.animationDuration = _exportGIFDelayTime * [imageList count];
+    imageView.animationDuration = 0.1 * [imageList count];
     imageView.animationRepeatCount = 0;
     [imageView startAnimating];
 
