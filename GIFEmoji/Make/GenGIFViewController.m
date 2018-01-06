@@ -30,10 +30,10 @@
 #import "FLAnimatedImage.h"
 
 @interface GenGIFViewController () {
-    NSArray *_aryGifframes;
-    float _floatGifTime;
-    NSURL *_videoURL;
-    NSURL *_photoURL;
+    NSArray *_exportImageFrames;
+    float _exportGIFDelayTime;
+    NSURL *_livePhotoVideoURL;
+    NSURL *_livePhotoFirstImageURL;
 }
 
 @property(nonatomic, strong) LWLivePhotoView *liveView;
@@ -54,7 +54,7 @@
 
     [self updateUIAppearance];
 
-    _floatGifTime = 0.1;
+    _exportGIFDelayTime = 0.1;
 
 
     //LiveView视图
@@ -266,11 +266,10 @@
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeGradient];
     [SVProgressHUD showWithStatus:@"Loading..."];
 
-    [LWGIFManager convertVideoToImages:videoFileURL completionBlock:^(NSArray<UIImage *> *images, float gifDelayTime) {
+    _exportGIFDelayTime = 0.1;
+    [LWGIFManager convertVideoToImages:videoFileURL frameDelayTime:_exportGIFDelayTime completionBlock:^(NSArray<UIImage *> *images) {
         [SVProgressHUD dismiss];
-        _aryGifframes = images;
-        _floatGifTime = gifDelayTime;
-        [self setImages:images toImageView:self.imagePreview];
+        _exportImageFrames = images;
     }];
 
     [SVProgressHUD dismiss];
@@ -291,10 +290,10 @@
     PHAssetResource *livePhotoImageAsset = resourceArray[0];
     // Create path.
     NSString *filePath = [documentPath stringByAppendingPathComponent:@"Image.jpg"];
-    _photoURL = [[NSURL alloc] initFileURLWithPath:filePath];
+    _livePhotoFirstImageURL = [[NSURL alloc] initFileURLWithPath:filePath];
     [[NSFileManager defaultManager] removeItemAtPath:filePath error:&error];
 
-    [assetResourceManager writeDataForAssetResource:livePhotoImageAsset toFile:_photoURL options:nil completionHandler:^(NSError *_Nullable error) {
+    [assetResourceManager writeDataForAssetResource:livePhotoImageAsset toFile:_livePhotoFirstImageURL options:nil completionHandler:^(NSError *_Nullable error) {
         NSLog(@"error: %@", error);
     }];
 
@@ -303,18 +302,17 @@
     PHAssetResource *livePhotoVideoAsset = resourceArray[1];
     // Create path.
     filePath = [documentPath stringByAppendingPathComponent:@"Image.mov"];
-    _videoURL = [[NSURL alloc] initFileURLWithPath:filePath];
+    _livePhotoVideoURL = [[NSURL alloc] initFileURLWithPath:filePath];
     [[NSFileManager defaultManager] removeItemAtPath:filePath error:&error];
 
-    [assetResourceManager writeDataForAssetResource:livePhotoVideoAsset toFile:_videoURL options:nil completionHandler:^(NSError *_Nullable error) {
-        NSLog(@"videoURL: %@", _videoURL);
+    [assetResourceManager writeDataForAssetResource:livePhotoVideoAsset toFile:_livePhotoVideoURL options:nil completionHandler:^(NSError *_Nullable error) {
+        NSLog(@"videoURL: %@", _livePhotoVideoURL);
         NSLog(@"error: %@", error);
 
-        [LWGIFManager convertVideoToImages:_videoURL completionBlock:^(NSArray<UIImage *> *images, float gifDelayTime) {
+        _exportGIFDelayTime = 0.1;
+        [LWGIFManager convertVideoToImages:_livePhotoVideoURL frameDelayTime:_exportGIFDelayTime completionBlock:^(NSArray<UIImage *> *images) {
             [SVProgressHUD dismiss];
-            _aryGifframes = images;
-            _floatGifTime = gifDelayTime;
-            [self setImages:images toImageView:self.imagePreview];
+            _exportImageFrames = images;
         }];
     }];
 
@@ -357,8 +355,8 @@
     self.selectedMode = StaticPhotosMode;
 
     [picker dismissViewControllerAnimated:YES completion:^() {
-        _aryGifframes = @[image];
-        [self setImages:_aryGifframes toImageView:self.imagePreview];
+        _exportImageFrames = @[image];
+        [self setImages:_exportImageFrames toImageView:self.imagePreview];
     }];
 }
 
@@ -387,8 +385,8 @@
                 [mutableImages addObject:image];
             }];
         }
-        _aryGifframes = [mutableImages copy];
-        [self setImages:_aryGifframes toImageView:self.imagePreview];
+        _exportImageFrames = [mutableImages copy];
+        [self setImages:_exportImageFrames toImageView:self.imagePreview];
     }];
 }
 
@@ -482,7 +480,7 @@
     imageView.animatedImage = nil;
     imageView.image = nil;
     imageView.animationImages = [NSArray arrayWithArray:images];
-    imageView.animationDuration = _floatGifTime * [imageList count];
+    imageView.animationDuration = _exportGIFDelayTime * [imageList count];
     imageView.animationRepeatCount = 0;
     [imageView startAnimating];
 

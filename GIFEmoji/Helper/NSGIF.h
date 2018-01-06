@@ -46,7 +46,7 @@ static int delayCentisecondsForImageAtIndex(CGImageSourceRef const source, size_
 
 @interface NSGIF : NSObject
 
-+ (void)optimalGIFfromVideoURL:(NSURL *)videoURL loopCount:(int)loopCount completion:(void(^)(NSURL *GifURL))completionBlock;
++ (void)optimalGIFfromVideoURL:(NSURL *)videoURL frameDelayTime:(float)frameDelayTime loopCount:(int)loopCount completion:(void(^)(NSURL *GifURL))completionBlock;
 
 + (void)createGIFfromURL:(NSURL*)videoURL withFrameCount:(int)frameCount delayTime:(int)delayTime loopCount:(int)loopCount completion:(void(^)(NSURL *GifURL))completionBlock;
 
@@ -56,8 +56,8 @@ static int delayCentisecondsForImageAtIndex(CGImageSourceRef const source, size_
 @interface LWGIFManager : NSObject
 
 //把 Video 转换成 GIF
-+ (void)convertVideoToImages:(NSURL *)videoFileURL
-             completionBlock:(void(^)(NSArray <UIImage *>*images,float gifDelayTime))completionBlock;
++ (void)convertVideoToImages:(NSURL *)videoFileURL frameDelayTime:(float)frameDelayTime
+             completionBlock:(void(^)(NSArray <UIImage *>*images))completionBlock;
 
 //根据已有的 GIFFrames 导出GIF图片，返回GIF图片地址
 + (NSString *)exportAnimatedGifWithImages:(NSArray <UIImage *>*)imageList gifDelayTime:(float) gifDelayTime;

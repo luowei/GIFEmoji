@@ -192,6 +192,7 @@
                         <segue destination="bvE-fR-Jae" kind="show" id="f1Z-0i-6aQ"/>
                         <segue destination="U6E-3f-pcN" kind="show" id="wHM-ee-b9e"/>
                         <segue destination="YOf-Bq-uVf" kind="show" id="MDY-Wb-86x"/>
+                        <segue destination="tIg-kC-o0S" kind="show" id="vQv-Vy-N5J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
@@ -248,6 +249,23 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S9q-Wg-VjS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3551" y="-321"/>
+        </scene>
+        <!--导出参数设置-->
+        <scene sceneID="BbB-xd-eHQ">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="tIg-kC-o0S" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="o2d-59-jHg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="tG4-4T-vNa"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <navigationItem key="navigationItem" title="导出参数设置" id="UpU-8S-1F5"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JJS-qX-eRt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4214" y="-323"/>
         </scene>
         <!--SearchGIF Navigation-->
         <scene sceneID="oFB-lJ-0fJ">

@@ -98,13 +98,13 @@ typedef NS_ENUM(NSInteger, GIFSize) {
 
 #pragma mark - Public methods
 
-+ (void)optimalGIFfromVideoURL:(NSURL *)videoURL loopCount:(int)loopCount completion:(void(^)(NSURL *GifURL))completionBlock {
++ (void)optimalGIFfromVideoURL:(NSURL *)videoURL frameDelayTime:(float)frameDelayTime loopCount:(int)loopCount completion:(void(^)(NSURL *GifURL))completionBlock {
 
-    int delayTime = 0.2;
+//    int delayTime = frameDelayTime;
     
     // Create properties dictionaries
     NSDictionary *fileProperties = [self filePropertiesWithLoopCount:loopCount];
-    NSDictionary *frameProperties = [self framePropertiesWithDelayTime:delayTime];
+    NSDictionary *frameProperties = [self framePropertiesWithDelayTime:frameDelayTime];
     
     AVURLAsset *asset = [AVURLAsset assetWithURL:videoURL];
     
@@ -301,7 +301,7 @@ CGImageRef ImageWithScale(CGImageRef imageRef, float scale) {
              };
 }
 
-+ (NSDictionary *)framePropertiesWithDelayTime:(int)delayTime {
++ (NSDictionary *)framePropertiesWithDelayTime:(float)delayTime {
 
     return @{(NSString *)kCGImagePropertyGIFDictionary:
                 @{(NSString *)kCGImagePropertyGIFDelayTime: @(delayTime)},
@@ -318,9 +318,10 @@ CGImageRef ImageWithScale(CGImageRef imageRef, float scale) {
 
 
 //把 Video 转换成 GIF
-+ (void)convertVideoToImages:(NSURL *)videoFileURL
-                             completionBlock:(void(^)(NSArray <UIImage *>*images,float gifDelayTime))completionBlock {
-    [NSGIF optimalGIFfromVideoURL:videoFileURL loopCount:0 completion:^(NSURL *GifURL) {
++ (void)convertVideoToImages:(NSURL *)videoFileURL frameDelayTime:(float)frameDelayTime
+                             completionBlock:(void(^)(NSArray <UIImage *>*images))completionBlock {
+
+    [NSGIF optimalGIFfromVideoURL:videoFileURL frameDelayTime:frameDelayTime loopCount:0 completion:^(NSURL *GifURL) {
 
         NSLog(@"Finished generating GIF: %@", GifURL);
         NSData *imageData = [NSData dataWithContentsOfURL:GifURL];
@@ -333,11 +334,11 @@ CGImageRef ImageWithScale(CGImageRef imageRef, float scale) {
         createImagesAndDelays(source, count, images, delayCentiseconds);
         float const totalDurationCentiseconds = sum(count, delayCentiseconds);
 
-        float gifDelayTime = (float) (totalDurationCentiseconds / (count * 100));
+        //float gifDelayTime = (float) (totalDurationCentiseconds / (count * 100));
         NSArray <UIImage *> *imageFrames = frameArray(count, images, delayCentiseconds, (const int) totalDurationCentiseconds);
         if (completionBlock) {
-            //todo:隐藏提示弹窗,把images设置到ImageView
-            completionBlock(imageFrames,gifDelayTime);
+            //隐藏提示弹窗,把images设置到ImageView
+            completionBlock(imageFrames);
         }
     }];
 }
