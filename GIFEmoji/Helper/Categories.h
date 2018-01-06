@@ -12,6 +12,13 @@
 @end
 
 
+@interface NSString (Encode)
+
+- (NSString *)md5;
+- (NSString*) mk_urlEncodedString;
+
+@end
+
 @interface NSString(Match)
 
 - (BOOL)isMatchString:(NSString *)pattern;

@@ -12,6 +12,6 @@
 @property(nonatomic, strong) AVPlayerViewController *playerViewController;
 
 -(void)playVideoWithURL:(NSURL *)videoFileURL;
-
+-(void)pauseVideo;
 
 @end

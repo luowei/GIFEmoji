@@ -145,6 +145,7 @@
 		BEF06E55CCE16FEA9EABDAFD /* FLEXImagePreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06B261E5662F3A5FCD0CF /* FLEXImagePreviewViewController.m */; };
 		BEF06E56B3B6CBF84F8D047C /* FLEXFileBrowserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06638F5E18D9C211D419A /* FLEXFileBrowserTableViewController.m */; };
 		BEF06EE43F233DA546E53D06 /* FLEXSQLiteDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06A8F9B5EB9B223AA6C83 /* FLEXSQLiteDatabaseManager.m */; };
+		BEF06F1F2663130C48E15185 /* LWHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06F6D460FC4C045AAE0CE /* LWHelper.m */; };
 		BEF06F31D31E1FACA028749B /* FLAnimatedImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF0652945E58A3C9059A1E7 /* FLAnimatedImageView+WebCache.m */; };
 		BEF06F421064EFAD28C27526 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF060B65F0DABA4383A6C7A /* UIImageView+WebCache.m */; };
 		BEF06F47A60B68AB887B375F /* FLEXNetworkRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF068BF4E2698330BD8D333 /* FLEXNetworkRecorder.m */; };
@@ -488,6 +489,8 @@
 		BEF06F0A7131A90BC1020BDF /* SDImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDImageCache.m; sourceTree = "<group>"; };
 		BEF06F220B39FD142D777A58 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		BEF06F564AA6ED07C72BFA3A /* FLEXGlobalsTableViewControllerEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXGlobalsTableViewControllerEntry.h; sourceTree = "<group>"; };
+		BEF06F6D460FC4C045AAE0CE /* LWHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWHelper.m; sourceTree = "<group>"; };
+		BEF06F71C04059E5DA1F8FE4 /* LWHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWHelper.h; sourceTree = "<group>"; };
 		BEF06F7D9697EB9238C8061C /* FLEXUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXUtility.h; sourceTree = "<group>"; };
 		BEF06F9C9EB3588D5B77A92A /* UIView+extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+extensions.h"; sourceTree = "<group>"; };
 		BEF06FA01800A423AC919624 /* NSArray+MASShorthandAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+MASShorthandAdditions.h"; sourceTree = "<group>"; };
@@ -1065,6 +1068,8 @@
 				BEF0628E0AB46E39CA447DA1 /* UIResponder+Extension.m */,
 				BEF0638181BA334F42BC0DE8 /* UIPrintPageRenderer+Extentsion.h */,
 				BEF063C594F59312CD30ECB6 /* UIPrintPageRenderer+Extentsion.m */,
+				BEF06F6D460FC4C045AAE0CE /* LWHelper.m */,
+				BEF06F71C04059E5DA1F8FE4 /* LWHelper.h */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1513,6 +1518,7 @@
 				BEF0691DB539EA27FB5106C7 /* UIImageView+HighlightedWebCache.m in Sources */,
 				BEF062FA466462C9FA55291E /* LWLivePhotoView.m in Sources */,
 				BEF06476BB20AC04BE032E6B /* LWAVPlayerView.m in Sources */,
+				BEF06F1F2663130C48E15185 /* LWHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

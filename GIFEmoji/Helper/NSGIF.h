@@ -32,6 +32,8 @@ static int pairGCD(int a, int b);
 
 static int delayCentisecondsForImageAtIndex(CGImageSourceRef const source, size_t const i);
 
+//对图片进行缩放
+CGImageRef ImageWithScale(CGImageRef imageRef, float scale);
 
 #if TARGET_OS_IPHONE
     #import <MobileCoreServices/MobileCoreServices.h>
@@ -46,9 +48,18 @@ static int delayCentisecondsForImageAtIndex(CGImageSourceRef const source, size_
 
 @interface NSGIF : NSObject
 
-+ (void)optimalGIFfromVideoURL:(NSURL *)videoURL frameDelayTime:(float)frameDelayTime loopCount:(int)loopCount completion:(void(^)(NSURL *GifURL))completionBlock;
++ (void)optimalGIFfromVideoURL:(NSURL *)videoURL
+        exportedGIFURL:(NSURL *)exportedGIFURL
+                frameDelayTime:(float)frameDelayTime
+                     loopCount:(int)loopCount
+                    completion:(void(^)(NSURL *GifURL))completionBlock;
 
-+ (void)createGIFfromURL:(NSURL*)videoURL withFrameCount:(int)frameCount delayTime:(int)delayTime loopCount:(int)loopCount completion:(void(^)(NSURL *GifURL))completionBlock;
++ (void)createGIFfromURL:(NSURL*)videoURL
+        exportedGIFURL:(NSURL *)exportedGIFURL
+          withFrameCount:(int)frameCount
+               delayTime:(int)delayTime
+               loopCount:(int)loopCount
+              completion:(void(^)(NSURL *GifURL))completionBlock;
 
 @end
 
@@ -56,7 +67,9 @@ static int delayCentisecondsForImageAtIndex(CGImageSourceRef const source, size_
 @interface LWGIFManager : NSObject
 
 //把 Video 转换成 GIF
-+ (void)convertVideoToImages:(NSURL *)videoFileURL frameDelayTime:(float)frameDelayTime
++ (void)convertVideoToImages:(NSURL *)videoFileURL
+              exportedGIFURL:(NSURL *)exportedGIFURL
+              frameDelayTime:(float)frameDelayTime
              completionBlock:(void(^)(NSArray <UIImage *>*images))completionBlock;
 
 //根据已有的 GIFFrames 导出GIF图片，返回GIF图片地址

@@ -5,6 +5,7 @@
 
 #import <AVFoundation/AVFoundation.h>
 #import "LWAVPlayerView.h"
+#import "View+MASAdditions.h"
 
 
 @interface LWAVPlayerView ()
@@ -21,17 +22,37 @@
         self.playerViewController = [AVPlayerViewController new];
         [self addSubview:self.playerViewController.view];
 
+        [self.playerViewController.view mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.top.bottom.equalTo(self);
+        }];
     }
 
     return self;
 }
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+
+    self.playerViewController = [AVPlayerViewController new];
+    [self addSubview:self.playerViewController.view];
+
+    [self.playerViewController.view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.bottom.equalTo(self);
+    }];
+}
+
 
 -(void)playVideoWithURL:(NSURL *)videoFileURL {
-    AVPlayer *player = [AVPlayer playerWithURL:videoFileURL];
-    self.playerViewController.player = player;
-    [player pause];
-    [player play];
+    if(videoFileURL){
+        AVPlayer *player = [AVPlayer playerWithURL:videoFileURL];
+        self.playerViewController.player = player;
+        [player pause];
+        [player play];
+    }
+}
+
+-(void)pauseVideo {
+    [self.playerViewController.player pause];
 }
 
 

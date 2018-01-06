@@ -5,6 +5,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class LWAVPlayerView;
+
 
 @interface LWVideoPreviewViewController : UIViewController
+
+@property (weak, nonatomic) IBOutlet LWAVPlayerView *videoPlayerView;
+
++(LWVideoPreviewViewController *)viewControllerWithFileURL:(NSURL *)videoURL;
+
 @end

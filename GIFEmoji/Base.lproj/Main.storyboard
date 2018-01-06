@@ -223,11 +223,26 @@
                     <view key="view" contentMode="scaleToFill" id="a4A-au-dzC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="17o-tv-3nU" customClass="LWAVPlayerView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="17o-tv-3nU" firstAttribute="leading" secondItem="4Wm-Gg-chV" secondAttribute="leading" id="7EC-ne-auW"/>
+                            <constraint firstItem="17o-tv-3nU" firstAttribute="top" secondItem="4Wm-Gg-chV" secondAttribute="top" id="FhO-VB-KhQ"/>
+                            <constraint firstItem="4Wm-Gg-chV" firstAttribute="trailing" secondItem="17o-tv-3nU" secondAttribute="trailing" id="evX-Zc-2wD"/>
+                            <constraint firstItem="4Wm-Gg-chV" firstAttribute="bottom" secondItem="17o-tv-3nU" secondAttribute="bottom" id="t4s-rR-8y3"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="4Wm-Gg-chV"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="预览Video" id="Iso-7z-RuF"/>
+                    <connections>
+                        <outlet property="videoPlayerView" destination="17o-tv-3nU" id="p0r-te-EyR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vs2-uU-fkT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
