@@ -22,10 +22,12 @@
 #import "YangMingShan.h"
 #import "YMSPhotoPickerViewController.h"
 #import "UIViewController+YMSPhotoHelper.h"
+#import "FLAnimatedImageView.h"
 #import "LWLivePhotoView.h"
 #import "LWAVPlayerView.h"
 #import "AppDefines.h"
 #import "UIImage+GIF.h"
+#import "FLAnimatedImage.h"
 
 @interface GenGIFViewController () {
     NSArray *_aryGifframes;
@@ -36,10 +38,12 @@
 
 @property(nonatomic, strong) LWLivePhotoView *liveView;
 @property(nonatomic, strong) LWAVPlayerView *videoPlayerView;
+
 @property(nonatomic, strong) NSURL *selectedVideoFileURL;
 
 @property(nonatomic) SelectedMode selectedMode;
 
+@property(nonatomic, strong) NSData *selectedGIFImageData;
 @end
 
 @implementation GenGIFViewController
@@ -105,10 +109,6 @@
         [self.videoPlayerView playVideoWithURL:self.selectedVideoFileURL];
 
         self.selectedMode = VideoMode;
-
-//        //处理Video
-//        [self handleVideoWithFileURL:videoFileURL];
-
         return;
     }
 
@@ -128,39 +128,25 @@
         return;
     } else {
         //处理其他照片
-
-//        //是否为GIF图片
-//        weakify(self)
-//        [self checkGIFWithPickerInfo:info resultBlock:^(BOOL isGIF) {
-//            strongify(self)
-//            Log(@"===========is GIF:%@", isGIF ? @"YES" : @"NO");
-//
-//            if (isGIF) {
-//                [SVProgressHUD showWithStatus:@"GIF....."];
-//                [SVProgressHUD dismissWithDelay:2.0];
-//            } else {
-//                [SVProgressHUD setBackgroundColor:[UIColor lightGrayColor]];
-//                [SVProgressHUD showInfoWithStatus:@"Not a Live Photo"];
-//                [SVProgressHUD dismissWithDelay:2.0];
-//
-//                [self selectLivePhotoAction:nil];   //选择LivePhoto
-//            }
-//        }];
-
         BOOL isGIF = [self isGIFWithPickerInfo:info];
-        if (isGIF) {
-            [SVProgressHUD showWithStatus:@"GIF....."];
+        if (isGIF) {    //是GIF图片
+            self.selectedMode = GIFMode;
+
+            [SVProgressHUD showWithStatus:NSLocalizedString(@"The Photo is GIF Image", nil)];
             [SVProgressHUD dismissWithDelay:2.0];
-        } else {
+
+            FLAnimatedImage *gifImage = [FLAnimatedImage animatedImageWithGIFData:self.selectedGIFImageData];
+            self.imagePreview.animatedImage = gifImage;
+
+        } else {    //其他情况就让用户重新选择
             [SVProgressHUD setBackgroundColor:[UIColor lightGrayColor]];
-            [SVProgressHUD showInfoWithStatus:@"Not a Live Photo"];
+            [SVProgressHUD showInfoWithStatus:NSLocalizedString(@"Not a Live Photo", nil)];
             [SVProgressHUD dismissWithDelay:2.0];
 
             [self selectLivePhotoAction:nil];   //选择LivePhoto
         }
 
     }
-
 
 }
 
@@ -169,13 +155,38 @@
     __block BOOL isGIF = NO;
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"11.0")) {
         PHAsset *phAsset = info[UIImagePickerControllerPHAsset];
-        NSArray *resourceList = [PHAssetResource assetResourcesForAsset:phAsset];
-        [resourceList enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
-            PHAssetResource *resource = obj;
-            if ([resource.uniformTypeIdentifier isEqualToString:@"com.compuserve.gif"]) {
-                isGIF = YES;
-            }
-        }];
+//        NSArray *resourceList = [PHAssetResource assetResourcesForAsset:phAsset];
+//        [resourceList enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
+//            PHAssetResource *resource = obj;
+//            if ([resource.uniformTypeIdentifier isEqualToString:@"com.compuserve.gif"]) {
+//                isGIF = YES;
+//            }
+//        }];
+
+
+        PHImageRequestOptions *options = [PHImageRequestOptions new];
+        options.resizeMode = PHImageRequestOptionsResizeModeFast;
+        options.synchronous = YES;
+
+        weakify(self)
+        PHCachingImageManager *imageManager = [[PHCachingImageManager alloc] init];
+        [imageManager requestImageDataForAsset:phAsset
+                                       options:options
+                                 resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
+                                     strongify(self)
+                                     Log(@"dataUTI:%@",dataUTI);
+
+                                     //gif 图片
+                                     if ([dataUTI isEqualToString:(__bridge NSString *)kUTTypeGIF]) {
+                                         //这里获取gif图片的NSData数据
+                                         BOOL downloadFinined = (![info[PHImageCancelledKey] boolValue] && !info[PHImageErrorKey]);
+                                         if (downloadFinined && imageData) {
+                                             isGIF = YES;
+                                             self.selectedGIFImageData = imageData;
+                                         }
+                                     }
+                                 }];
+
 
     } else {
         dispatch_semaphore_t sema = dispatch_semaphore_create(0);
@@ -183,10 +194,24 @@
         //使用信号量解决 assetForURL 同步问题
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             [library assetForURL:[info valueForKey:UIImagePickerControllerReferenceURL] resultBlock:^(ALAsset *asset) {
-                        ALAssetRepresentation *repr = [asset defaultRepresentation];
-                        if ([[repr UTI] isEqualToString:@"com.compuserve.gif"]) {
+//                        ALAssetRepresentation *repr = [asset defaultRepresentation];
+//                        if ([[repr UTI] isEqualToString:@"com.compuserve.gif"]) {
+//                            isGIF = YES;
+//                        }
+
+                ALAssetRepresentation *re = [asset representationForUTI:(__bridge NSString *)kUTTypeGIF];
+                        if(re){
                             isGIF = YES;
+
+                            //获取GIF数据
+                            size_t size = (size_t) re.size;
+                            uint8_t *buffer = malloc(size);
+                            NSError *error;
+                            NSUInteger bytes = [re getBytes:buffer fromOffset:0 length:size error:&error];
+                            self.selectedGIFImageData = [NSData dataWithBytes:buffer length:bytes];
+                            free(buffer);
                         }
+
                         dispatch_semaphore_signal(sema);
                     }
                     failureBlock:^(NSError *error) {
@@ -197,39 +222,6 @@
         dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
     }
     return isGIF;
-}
-
-
-//判断是否是GIF图片
-- (void)checkGIFWithPickerInfo:(NSDictionary *)info resultBlock:(void (^)(BOOL isGIF))resultBlock {
-    __block BOOL isGIF = NO;
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"11.0")) {
-        PHAsset *phAsset = info[UIImagePickerControllerPHAsset];
-        NSArray *resourceList = [PHAssetResource assetResourcesForAsset:phAsset];
-        [resourceList enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
-            PHAssetResource *resource = obj;
-            if ([resource.uniformTypeIdentifier isEqualToString:@"com.compuserve.gif"]) {
-                isGIF = YES;
-                if (resultBlock) {
-                    resultBlock(isGIF);
-                }
-            }
-        }];
-
-    } else {
-        ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-        [library assetForURL:[info valueForKey:UIImagePickerControllerReferenceURL] resultBlock:^(ALAsset *asset) {
-            ALAssetRepresentation *repr = [asset defaultRepresentation];
-            if ([[repr UTI] isEqualToString:@"com.compuserve.gif"]) {
-                isGIF = YES;
-                if (resultBlock) {
-                    resultBlock(isGIF);
-                }
-            }
-        }       failureBlock:^(NSError *error) {
-            NSLog(@"Error getting asset! %@", error);
-        }];
-    }
 }
 
 //根据FileURL处理Video

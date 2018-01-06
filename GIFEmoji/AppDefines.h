@@ -42,6 +42,7 @@ typedef NS_OPTIONS(NSUInteger, SelectedMode) {
     LivePhotoMode = 0,    //LivePhoto模式
     StaticPhotosMode = 1,   //StaticPhoto模式
     VideoMode = 2,      //Video模式
+    GIFMode = 3,        //GIF模式
 };
 
 

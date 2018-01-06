@@ -11,6 +11,7 @@
 
 @class PHLivePhotoView;
 @class LWAVPlayerView;
+@class FLAnimatedImageView;
 
 @interface GenGIFViewController : UIViewController<UIImagePickerControllerDelegate,UINavigationControllerDelegate,YMSPhotoPickerViewControllerDelegate>
 
@@ -19,7 +20,7 @@
 @property (nonatomic, weak) IBOutlet UIButton *selectVideoBtn;
 
 
-@property (nonatomic, weak) IBOutlet UIImageView *imagePreview;
+@property (nonatomic, weak) IBOutlet FLAnimatedImageView *imagePreview;
 
 
 @property (nonatomic, weak) IBOutlet UIButton *exportVideoBtn;
