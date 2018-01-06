@@ -125,6 +125,7 @@
         [self.liveView startPlaybackWithStyle:PHLivePhotoViewPlaybackStyleFull];
 
         self.selectedMode = LivePhotoMode;
+
         return;
     } else {
         //处理其他照片
@@ -132,22 +133,58 @@
         if (isGIF) {    //是GIF图片
             self.selectedMode = GIFMode;
 
-            [SVProgressHUD showWithStatus:NSLocalizedString(@"The Photo is GIF Image", nil)];
-            [SVProgressHUD dismissWithDelay:2.0];
+            [SVProgressHUD showInfoWithStatus:NSLocalizedString(@"The Photo is GIF Image", nil)];
+            [SVProgressHUD dismissWithDelay:0.5];
 
             FLAnimatedImage *gifImage = [FLAnimatedImage animatedImageWithGIFData:self.selectedGIFImageData];
             self.imagePreview.animatedImage = gifImage;
 
         } else {    //其他情况就让用户重新选择
-            [SVProgressHUD setBackgroundColor:[UIColor lightGrayColor]];
             [SVProgressHUD showInfoWithStatus:NSLocalizedString(@"Not a Live Photo", nil)];
-            [SVProgressHUD dismissWithDelay:2.0];
+            [SVProgressHUD dismissWithDelay:0.5];
 
             [self selectLivePhotoAction:nil];   //选择LivePhoto
         }
 
     }
 
+}
+
+-(void)setSelectedMode:(SelectedMode)selectedMode {
+    _selectedMode = selectedMode;
+    [self updateExportBtnWithSelectedMode:_selectedMode];
+}
+
+//更新导出按钮的样式及
+- (void)updateExportBtnWithSelectedMode:(SelectedMode)mode {
+    switch (mode){
+        case LivePhotoMode:{
+            self.exportFrameBtn.hidden = NO;
+            self.exportGIFBtn.hidden = NO;
+            self.exportVideoBtn.hidden = NO;
+            break;
+        }
+        case StaticPhotosMode:{
+            self.exportFrameBtn.hidden = NO;
+            self.exportGIFBtn.hidden = NO;
+            self.exportVideoBtn.hidden = YES;
+            break;
+        }
+        case VideoMode:{
+            self.exportFrameBtn.hidden = NO;
+            self.exportGIFBtn.hidden = NO;
+            self.exportVideoBtn.hidden = NO;
+            break;
+        }
+        case GIFMode:{
+            self.exportFrameBtn.hidden = NO;
+            self.exportGIFBtn.hidden = NO;
+            self.exportVideoBtn.hidden = YES;
+            break;
+        }
+        default:
+            break;
+    }
 }
 
 //判断是否是GIF图片
@@ -284,8 +321,6 @@
     [SVProgressHUD dismiss];
 }
 
-
-#pragma mark - YMSPhotoPickerViewControllerDelegate
 
 #pragma mark - YMSPhotoPickerViewControllerDelegate
 
@@ -433,19 +468,21 @@
 #pragma mark - Private Method
 
 //把一个images数组设置到ImageView
-- (void)setImages:(NSArray <UIImage *> *)gifImages toImageView:(UIImageView *)imageView {
-    UIImage *newImage1 = gifImages[0];
+- (void)setImages:(NSArray <UIImage *> *)imageList toImageView:(FLAnimatedImageView *)imageView {
 
     NSMutableArray *images = [[NSMutableArray alloc] init];
 
-    for (int i = 1; i <= [gifImages count]; i++) {
-        UIImage *image = gifImages[i - 1];
+    for (int i = 1; i <= [imageList count]; i++) {
+        UIImage *image = imageList[i - 1];
         [images addObject:image];
     }
 
+
+    [imageView stopAnimating];
+    imageView.animatedImage = nil;
     imageView.image = nil;
     imageView.animationImages = [NSArray arrayWithArray:images];
-    imageView.animationDuration = _floatGifTime * [gifImages count];
+    imageView.animationDuration = _floatGifTime * [imageList count];
     imageView.animationRepeatCount = 0;
     [imageView startAnimating];
 
