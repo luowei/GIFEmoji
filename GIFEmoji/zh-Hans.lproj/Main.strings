@@ -1,0 +1,51 @@
+
+/* Class = "UINavigationItem"; title = "Search GIF"; ObjectID = "0Dg-fp-vrb"; */
+"0Dg-fp-vrb.title" = "Search GIF";
+
+/* Class = "UINavigationItem"; title = "My GIF"; ObjectID = "21p-yh-ucO"; */
+"21p-yh-ucO.title" = "My GIF";
+
+/* Class = "UIButton"; normalTitle = "选择LivePhoto"; ObjectID = "5mq-eK-yuW"; */
+"5mq-eK-yuW.normalTitle" = "选择LivePhoto";
+
+/* Class = "UINavigationItem"; title = "预览Frame"; ObjectID = "B2j-1o-Jl1"; */
+"B2j-1o-Jl1.title" = "预览Frame";
+
+/* Class = "UINavigationItem"; title = "预览Video"; ObjectID = "Iso-7z-RuF"; */
+"Iso-7z-RuF.title" = "预览Video";
+
+/* Class = "UINavigationItem"; title = "预览GIF"; ObjectID = "K0w-Ik-yLW"; */
+"K0w-Ik-yLW.title" = "预览GIF";
+
+/* Class = "UIButton"; normalTitle = "导出Frame"; ObjectID = "LBe-9g-yXI"; */
+"LBe-9g-yXI.normalTitle" = "导出Frame";
+
+/* Class = "UIButton"; normalTitle = "导出GIF"; ObjectID = "WpN-Eq-N8N"; */
+"WpN-Eq-N8N.normalTitle" = "导出GIF";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "XTd-Wm-WO5"; */
+"XTd-Wm-WO5.normalTitle" = "Button";
+
+/* Class = "UINavigationItem"; title = "MyGIF"; ObjectID = "a9w-Lw-Tji"; */
+"a9w-Lw-Tji.title" = "MyGIF";
+
+/* Class = "UITabBarItem"; title = "Create"; ObjectID = "acW-dT-cKf"; */
+"acW-dT-cKf.title" = "Create";
+
+/* Class = "UITabBarItem"; title = "Search"; ObjectID = "cPa-gy-q4n"; */
+"cPa-gy-q4n.title" = "Search";
+
+/* Class = "UITabBarItem"; title = "My"; ObjectID = "lR9-0G-Kpi"; */
+"lR9-0G-Kpi.title" = "My";
+
+/* Class = "UIButton"; normalTitle = "选择视频"; ObjectID = "lnF-60-x3p"; */
+"lnF-60-x3p.normalTitle" = "选择视频";
+
+/* Class = "UIButton"; normalTitle = "选择多张照片"; ObjectID = "tEg-XX-Igp"; */
+"tEg-XX-Igp.normalTitle" = "选择多张照片";
+
+/* Class = "UINavigationItem"; title = "Create GIF"; ObjectID = "xfz-uK-xc6"; */
+"xfz-uK-xc6.title" = "Create GIF";
+
+/* Class = "UIButton"; normalTitle = "导出Video"; ObjectID = "yUk-PJ-Hip"; */
+"yUk-PJ-Hip.normalTitle" = "导出Video";

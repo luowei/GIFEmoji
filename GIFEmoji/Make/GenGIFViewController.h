@@ -10,6 +10,7 @@
 #import "YMSPhotoPickerViewController.h"
 
 @class PHLivePhotoView;
+@class LWAVPlayerView;
 
 @interface GenGIFViewController : UIViewController<UIImagePickerControllerDelegate,UINavigationControllerDelegate,YMSPhotoPickerViewControllerDelegate>
 

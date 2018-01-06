@@ -22,6 +22,10 @@
 #import "YangMingShan.h"
 #import "YMSPhotoPickerViewController.h"
 #import "UIViewController+YMSPhotoHelper.h"
+#import "LWLivePhotoView.h"
+#import "LWAVPlayerView.h"
+#import "AppDefines.h"
+#import "UIImage+GIF.h"
 
 @interface GenGIFViewController () {
     NSArray *_aryGifframes;
@@ -30,7 +34,12 @@
     NSURL *_photoURL;
 }
 
-@property(nonatomic, strong) PHLivePhotoView *liveView;
+@property(nonatomic, strong) LWLivePhotoView *liveView;
+@property(nonatomic, strong) LWAVPlayerView *videoPlayerView;
+@property(nonatomic, strong) NSURL *selectedVideoFileURL;
+
+@property(nonatomic) SelectedMode selectedMode;
+
 @end
 
 @implementation GenGIFViewController
@@ -39,15 +48,39 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 
+    [self updateUIAppearance];
+
     _floatGifTime = 0.1;
 
-    self.liveView = [[PHLivePhotoView alloc] initWithFrame:CGRectZero];
+
+    //LiveView视图
+    self.liveView = [[LWLivePhotoView alloc] initWithFrame:CGRectZero];
     [self.view addSubview:self.liveView];
 
     [self.liveView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.bottom.equalTo(self.imagePreview);
     }];
     self.liveView.hidden = YES;
+
+    //视频播放视图
+    self.videoPlayerView = [[LWAVPlayerView alloc] initWithFrame:CGRectZero];
+    [self.view addSubview:self.videoPlayerView];
+
+    [self.videoPlayerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.bottom.equalTo(self.imagePreview);
+    }];
+    self.videoPlayerView.hidden = YES;
+
+}
+
+//更新外观
+- (void)updateUIAppearance {
+    self.selectLivePhotoBtn.layer.cornerRadius = 6;
+    self.selectStaticPhotoBtn.layer.cornerRadius = 6;
+    self.selectVideoBtn.layer.cornerRadius = 6;
+    self.exportVideoBtn.layer.cornerRadius = 6;
+    self.exportGIFBtn.layer.cornerRadius = 6;
+    self.exportFrameBtn.layer.cornerRadius = 6;
 }
 
 
@@ -57,24 +90,24 @@
 
     [self dismissViewControllerAnimated:YES completion:nil];
     self.liveView.hidden = YES;
+    self.videoPlayerView.hidden = YES;
 
-//    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeGradient];
-    [SVProgressHUD showWithStatus:@"Loading..."];
 
     //处理视频
     NSString *mediaType = info[UIImagePickerControllerMediaType];
     if ([mediaType isEqualToString:@"public.movie"]) {
 
         NSLog(@"Picked a movie at URL %@", info[UIImagePickerControllerMediaURL]);
-        NSURL *fileURL = info[UIImagePickerControllerMediaURL];
-        NSLog(@"> %@", [fileURL absoluteString]);
+        self.selectedVideoFileURL = info[UIImagePickerControllerMediaURL];
+        NSLog(@"> %@", [self.selectedVideoFileURL absoluteString]);
 
-        [LWGIFManager convertVideoToImages:fileURL completionBlock:^(NSArray<UIImage *> *images, float gifDelayTime) {
-            [SVProgressHUD dismiss];
-            _aryGifframes = images;
-            _floatGifTime = gifDelayTime;
-            [self setImages:images toImageView:self.imagePreview];
-        }];
+        self.videoPlayerView.hidden = NO;
+        [self.videoPlayerView playVideoWithURL:self.selectedVideoFileURL];
+
+        self.selectedMode = VideoMode;
+
+//        //处理Video
+//        [self handleVideoWithFileURL:videoFileURL];
 
         return;
     }
@@ -82,27 +115,143 @@
 
     //处理LivePhoto
     PHLivePhoto *livePhoto = nil;
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_9_1
-    livePhoto = info[UIImagePickerControllerLivePhoto];
-#endif
+
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.1")) {
+        livePhoto = info[UIImagePickerControllerLivePhoto];
+    }
     if (livePhoto) {
         self.liveView.hidden = NO;
         self.liveView.livePhoto = livePhoto;
+        [self.liveView startPlaybackWithStyle:PHLivePhotoViewPlaybackStyleFull];
 
-        //处理LivePhoto
-        [self handleLivePhoto:livePhoto];
-
+        self.selectedMode = LivePhotoMode;
         return;
+    } else {
+        //处理其他照片
+
+//        //是否为GIF图片
+//        weakify(self)
+//        [self checkGIFWithPickerInfo:info resultBlock:^(BOOL isGIF) {
+//            strongify(self)
+//            Log(@"===========is GIF:%@", isGIF ? @"YES" : @"NO");
+//
+//            if (isGIF) {
+//                [SVProgressHUD showWithStatus:@"GIF....."];
+//                [SVProgressHUD dismissWithDelay:2.0];
+//            } else {
+//                [SVProgressHUD setBackgroundColor:[UIColor lightGrayColor]];
+//                [SVProgressHUD showInfoWithStatus:@"Not a Live Photo"];
+//                [SVProgressHUD dismissWithDelay:2.0];
+//
+//                [self selectLivePhotoAction:nil];   //选择LivePhoto
+//            }
+//        }];
+
+        BOOL isGIF = [self isGIFWithPickerInfo:info];
+        if (isGIF) {
+            [SVProgressHUD showWithStatus:@"GIF....."];
+            [SVProgressHUD dismissWithDelay:2.0];
+        } else {
+            [SVProgressHUD setBackgroundColor:[UIColor lightGrayColor]];
+            [SVProgressHUD showInfoWithStatus:@"Not a Live Photo"];
+            [SVProgressHUD dismissWithDelay:2.0];
+
+            [self selectLivePhotoAction:nil];   //选择LivePhoto
+        }
+
     }
 
-    //处理其他照片
-    UIImage *image = info[UIImagePickerControllerOriginalImage];
-
-    [SVProgressHUD dismiss];
 
 }
 
+//判断是否是GIF图片
+- (BOOL)isGIFWithPickerInfo:(NSDictionary *)info {
+    __block BOOL isGIF = NO;
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"11.0")) {
+        PHAsset *phAsset = info[UIImagePickerControllerPHAsset];
+        NSArray *resourceList = [PHAssetResource assetResourcesForAsset:phAsset];
+        [resourceList enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
+            PHAssetResource *resource = obj;
+            if ([resource.uniformTypeIdentifier isEqualToString:@"com.compuserve.gif"]) {
+                isGIF = YES;
+            }
+        }];
+
+    } else {
+        dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+        ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+        //使用信号量解决 assetForURL 同步问题
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [library assetForURL:[info valueForKey:UIImagePickerControllerReferenceURL] resultBlock:^(ALAsset *asset) {
+                        ALAssetRepresentation *repr = [asset defaultRepresentation];
+                        if ([[repr UTI] isEqualToString:@"com.compuserve.gif"]) {
+                            isGIF = YES;
+                        }
+                        dispatch_semaphore_signal(sema);
+                    }
+                    failureBlock:^(NSError *error) {
+                        NSLog(@"Error getting asset! %@", error);
+                        dispatch_semaphore_signal(sema);
+                    }];
+        });
+        dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+    }
+    return isGIF;
+}
+
+
+//判断是否是GIF图片
+- (void)checkGIFWithPickerInfo:(NSDictionary *)info resultBlock:(void (^)(BOOL isGIF))resultBlock {
+    __block BOOL isGIF = NO;
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"11.0")) {
+        PHAsset *phAsset = info[UIImagePickerControllerPHAsset];
+        NSArray *resourceList = [PHAssetResource assetResourcesForAsset:phAsset];
+        [resourceList enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
+            PHAssetResource *resource = obj;
+            if ([resource.uniformTypeIdentifier isEqualToString:@"com.compuserve.gif"]) {
+                isGIF = YES;
+                if (resultBlock) {
+                    resultBlock(isGIF);
+                }
+            }
+        }];
+
+    } else {
+        ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+        [library assetForURL:[info valueForKey:UIImagePickerControllerReferenceURL] resultBlock:^(ALAsset *asset) {
+            ALAssetRepresentation *repr = [asset defaultRepresentation];
+            if ([[repr UTI] isEqualToString:@"com.compuserve.gif"]) {
+                isGIF = YES;
+                if (resultBlock) {
+                    resultBlock(isGIF);
+                }
+            }
+        }       failureBlock:^(NSError *error) {
+            NSLog(@"Error getting asset! %@", error);
+        }];
+    }
+}
+
+//根据FileURL处理Video
+- (void)handleVideoWithFileURL:(NSURL *)videoFileURL {
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeGradient];
+    [SVProgressHUD showWithStatus:@"Loading..."];
+
+    [LWGIFManager convertVideoToImages:videoFileURL completionBlock:^(NSArray<UIImage *> *images, float gifDelayTime) {
+        [SVProgressHUD dismiss];
+        _aryGifframes = images;
+        _floatGifTime = gifDelayTime;
+        [self setImages:images toImageView:self.imagePreview];
+    }];
+
+    [SVProgressHUD dismiss];
+}
+
+//处理LivePhoto
 - (void)handleLivePhoto:(PHLivePhoto *)livePhoto {
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeGradient];
+    [SVProgressHUD showWithStatus:@"Loading..."];
+
     NSArray *resourceArray = [PHAssetResource assetResourcesForLivePhoto:livePhoto];
     PHAssetResourceManager *assetResourceManager = [PHAssetResourceManager defaultManager];
 
@@ -139,6 +288,8 @@
             [self setImages:images toImageView:self.imagePreview];
         }];
     }];
+
+    [SVProgressHUD dismiss];
 }
 
 
@@ -171,16 +322,26 @@
     [picker presentViewController:alertController animated:YES completion:nil];
 }
 
+//选择了单图片
 - (void)photoPickerViewController:(YMSPhotoPickerViewController *)picker didFinishPickingImage:(UIImage *)image {
     self.liveView.hidden = YES;
+    self.videoPlayerView.hidden = YES;
+
+    self.selectedMode = StaticPhotosMode;
+
     [picker dismissViewControllerAnimated:YES completion:^() {
         _aryGifframes = @[image];
         [self setImages:_aryGifframes toImageView:self.imagePreview];
     }];
 }
 
+//选择了多张图片
 - (void)photoPickerViewController:(YMSPhotoPickerViewController *)picker didFinishPickingImages:(NSArray *)photoAssets {
     self.liveView.hidden = YES;
+    self.videoPlayerView.hidden = YES;
+
+    self.selectedMode = StaticPhotosMode;
+
     [picker dismissViewControllerAnimated:YES completion:^() {
 
         PHImageManager *imageManager = [[PHImageManager alloc] init];
@@ -207,6 +368,8 @@
 
 #pragma mark - Action
 
+#pragma mark - 选择照片
+
 - (IBAction)selectLivePhotoAction:(UIButton *)sender {
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
     imagePicker.delegate = self;
@@ -224,7 +387,7 @@
 
 - (IBAction)selectStaticPhotoAction:(UIButton *)sender {
     YMSPhotoPickerViewController *pickerViewController = [[YMSPhotoPickerViewController alloc] init];
-    pickerViewController.numberOfPhotoToSelect = 10;
+    pickerViewController.numberOfPhotoToSelect = 0;
     [self yms_presentCustomAlbumPhotoView:pickerViewController delegate:self];
 }
 
@@ -236,17 +399,43 @@
 
     NSArray *mediaTypes = @[(NSString *) kUTTypeMovie];
     imagePicker.mediaTypes = mediaTypes;
-
     [self presentViewController:imagePicker animated:YES completion:nil];
 }
 
+
+#pragma mark - 导出图片
+
 - (IBAction)exportVideoAction:(UIButton *)sender {
+    if (self.selectedMode == LivePhotoMode) {
+        //处理LivePhoto
+        [self handleLivePhoto:self.liveView.livePhoto];
+
+    } else if (self.selectedMode == VideoMode) {
+        //处理视频
+        [self handleVideoWithFileURL:self.selectedVideoFileURL];
+    }
+
+    //todo:跳转到视频预览页面
 }
 
 - (IBAction)exportGIFAction:(UIButton *)sender {
+
+    if (self.selectedMode == LivePhotoMode) {
+        //处理LivePhoto
+        [self handleLivePhoto:self.liveView.livePhoto];
+
+    } else if (self.selectedMode == VideoMode) {
+        //处理视频
+        [self handleVideoWithFileURL:self.selectedVideoFileURL];
+    }
+
+    //todo:合成图片帧集为GIF,并跳转到GIF预览页面
+
+
 }
 
 - (IBAction)exportFrameAction:(UIButton *)sender {
+    //todo:跳转到图片集预览页面
 }
 
 #pragma mark - Private Method

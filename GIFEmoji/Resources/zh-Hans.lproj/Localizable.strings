@@ -1,0 +1,16 @@
+/* 
+  Localizable.strings
+  GIFEmoji
+
+  Created by Luo Wei on 2018/1/6.
+  Copyright © 2018年 Luo Wei. All rights reserved.
+*/
+
+"Allow camera access?" = "允许使用相机？";
+"Allow photo album access?" = "允许访问相册？";
+
+"Not a Live Photo" = "选择的照片不是LivePhoto";
+
+"Cancel" = "取消";
+"Settings" = "设置";
+

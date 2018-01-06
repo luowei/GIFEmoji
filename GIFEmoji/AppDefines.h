@@ -37,5 +37,13 @@ _Pragma("clang diagnostic pop")
 #define Screen_W ((CGFloat)([UIScreen mainScreen].bounds.size.width))
 #define Screen_H ((CGFloat)([UIScreen mainScreen].bounds.size.height))
 
+//数据源选择模式
+typedef NS_OPTIONS(NSUInteger, SelectedMode) {
+    LivePhotoMode = 0,    //LivePhoto模式
+    StaticPhotosMode = 1,   //StaticPhoto模式
+    VideoMode = 2,      //Video模式
+};
+
+
 
 #endif /* AppDefines_h */
