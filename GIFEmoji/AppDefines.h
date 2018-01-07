@@ -45,6 +45,8 @@ typedef NS_OPTIONS(NSUInteger, SelectedMode) {
     GIFMode = 3,        //GIF模式
 };
 
+#define DBFileName @"GIFEmojiData"  //sqlite db数据库文件名
+#define AnimojiDirectory @"animoji" //动画文件夹名
 
 
 #endif /* AppDefines_h */

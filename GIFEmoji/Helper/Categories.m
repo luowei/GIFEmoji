@@ -13,6 +13,38 @@
 @end
 
 
+@implementation NSString (Ext)
+
+- (CGFloat)widthWithFont:(UIFont *)font andAttributes:(NSDictionary *)attributes {
+    return [[[NSAttributedString alloc] initWithString:self attributes:attributes] size].width;
+}
+
+- (CGFloat)heigthWithWidth:(CGFloat)width andFont:(UIFont *)font andAttributes:(NSDictionary *)attributes {
+
+    NSAttributedString *attrStr = [[NSAttributedString alloc] initWithString:self attributes:attributes];
+    CGRect rect = [attrStr boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];
+    return rect.size.height;
+}
+
+- (void)enumerateCharactersUsingBlock:(void (^)(NSString *character, NSInteger idx, bool *stop))block {
+    bool _stop = NO;
+    for (NSInteger i = 0; i < [self length] && !_stop; i++) {
+        NSString *character = [self substringWithRange:NSMakeRange(i, 1)];
+        block(character, i, &_stop);
+    }
+}
+
+-(NSString *)URLDecode{
+    return [self stringByRemovingPercentEncoding];
+}
+
+-(NSString *)URLEncode{
+    return [self stringByAddingPercentEncodingWithAllowedCharacters:
+            [[NSCharacterSet characterSetWithCharactersInString:@"!*'\"();:@&=+$,/?%#[]% "] invertedSet] ];
+}
+
+@end
+
 @implementation NSString (Encode)
 
 //md5 32位 加密 （小写）

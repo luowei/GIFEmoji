@@ -3,10 +3,16 @@
 // Copyright (c) 2018 Luo Wei. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 
 @interface LWImageModel : NSObject
 
+@property (nonatomic, strong) NSString *thumbURL;
+@property (nonatomic, strong) NSString *middleURL;
+@property (nonatomic, strong) NSString *objURL;
+@property (nonatomic, strong) NSString *fromURL;
+@property (nonatomic, assign) CGFloat width;
+@property (nonatomic, assign) CGFloat height;
 
 @end
