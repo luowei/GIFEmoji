@@ -18,7 +18,7 @@
     
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor clearColor];
-        _pictureView = [[SRPictureView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        _pictureView = [[SRPictureView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
         [_pictureView.panGestureRecognizer addTarget:self action:@selector(scrollViewPanAction:)];
         [self.contentView addSubview:_pictureView];
     }
@@ -41,6 +41,15 @@
         return;
     }
     if (pan.state == UIGestureRecognizerStateEnded) {
+
+        [UIView animateWithDuration:0.5 animations:^{
+            _pictureView.contentInset = UIEdgeInsetsZero;
+            if ([self.delegate respondsToSelector:@selector(pictureCellDidPanToAlpha:)]) {
+                [self.delegate pictureCellDidPanToAlpha:1.0];
+            }
+        }];
+        return;
+/*
         if (ABS(_pictureView.contentOffset.y) < kPanToDimissOffsetY) {
             [UIView animateWithDuration:0.5 animations:^{
                 _pictureView.contentInset = UIEdgeInsetsZero;
@@ -62,12 +71,15 @@
                 [self.delegate pictureCellDidPanToDismiss];
             }
         }];
+*/
     } else {
         _pictureView.contentInset = UIEdgeInsetsMake(-_pictureView.contentOffset.y, 0, 0, 0);
+/*
         CGFloat alpha = 1 - ABS(_pictureView.contentOffset.y / (self.bounds.size.height));
         if ([self.delegate respondsToSelector:@selector(pictureCellDidPanToAlpha:)]) {
             [self.delegate pictureCellDidPanToAlpha:alpha];
         }
+*/
     }
 }
 

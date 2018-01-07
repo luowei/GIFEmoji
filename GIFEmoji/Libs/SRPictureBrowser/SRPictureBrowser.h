@@ -27,6 +27,9 @@
  @param currentIndex  The index of model which will show firstly.
  @param delegate      The receiver’s delegate object.
  */
-+ (void)sr_showPictureBrowserWithModels:(NSArray *)pictureModels currentIndex:(NSInteger)currentIndex delegate:(id<SRPictureBrowserDelegate>)delegate;
++ (void)sr_showPictureBrowserWithModels:(NSArray *)pictureModels
+                           currentIndex:(NSInteger)currentIndex
+                               delegate:(id<SRPictureBrowserDelegate>)delegate
+                                 inView:(UIView *)view;
 
 @end

@@ -12,6 +12,8 @@
 #import "SRPictureModel.h"
 #import "SRPictureManager.h"
 #import "SRPictureHUD.h"
+#import "View+MASAdditions.h"
+#import "UIColor+HexValue.h"
 
 @interface SRPictureBrowser () <UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate, UIActionSheetDelegate, SRPictureCellDelegate, SRPictureViewDelegate>
 
@@ -19,7 +21,7 @@
 
 @property (nonatomic, copy) NSArray *pictureModels;
 
-@property (nonatomic, strong) UIImageView *screenImageView;
+//@property (nonatomic, strong) UIImageView *screenImageView;
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) UIPageControl    *pageControl;
@@ -32,15 +34,25 @@
 
 @implementation SRPictureBrowser
 
-+ (void)sr_showPictureBrowserWithModels:(NSArray *)pictureModels currentIndex:(NSInteger)currentIndex delegate:(id<SRPictureBrowserDelegate>)delegate {
++ (void)sr_showPictureBrowserWithModels:(NSArray *)pictureModels
+                           currentIndex:(NSInteger)currentIndex
+                               delegate:(id<SRPictureBrowserDelegate>)delegate
+                                 inView:(UIView *)view {
     
-    SRPictureBrowser *pictureBrowser = [[self alloc] initWithModels:pictureModels currentIndex:currentIndex delegate:delegate];
-    [pictureBrowser show];
+    SRPictureBrowser *pictureBrowser = [[self alloc] initWithModels:pictureModels
+                                                       currentIndex:currentIndex
+                                                           delegate:delegate inView:view];
+    [pictureBrowser showInView:view];
+    [pictureBrowser mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.bottom.equalTo(view);
+    }];
 }
 
 #pragma mark - Initialize
 
-- (id)initWithModels:(NSArray *)pictureModels currentIndex:(NSInteger)currentIndex delegate:(id<SRPictureBrowserDelegate>)delegate {
+- (id)initWithModels:(NSArray *)pictureModels
+        currentIndex:(NSInteger)currentIndex
+            delegate:(id<SRPictureBrowserDelegate>)delegate inView:(UIView *)view{
     
     if (self = [super initWithFrame:[UIScreen mainScreen].bounds]) {
         _pictureModels = pictureModels;
@@ -52,36 +64,34 @@
                 break;
             }
         }
-        [self setup];
+        [self setupInView:view];
     }
     return self;
 }
 
-- (void)setup {
+- (void)setupInView:(UIView *)view {
     
-    self.backgroundColor = [UIColor blackColor];
+    self.backgroundColor = [UIColor whiteColor];
     
-    CGRect screenBounds = [UIScreen mainScreen].bounds;
-    
-    [self addSubview:({
-        UIGraphicsBeginImageContextWithOptions([UIScreen mainScreen].bounds.size, YES, [UIScreen mainScreen].scale);
-        [[UIApplication sharedApplication].keyWindow.layer renderInContext:UIGraphicsGetCurrentContext()];
-        UIImage *currentScreenImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        _screenImageView = [[UIImageView alloc] initWithFrame:screenBounds];
-        _screenImageView.image = currentScreenImage;
-        _screenImageView.hidden = YES;
-        _screenImageView;
-    })];
+//    [self addSubview:({
+//        UIGraphicsBeginImageContextWithOptions(view.bounds.size, YES, [UIScreen mainScreen].scale);
+//        [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+//        UIImage *currentScreenImage = UIGraphicsGetImageFromCurrentImageContext();
+//        UIGraphicsEndImageContext();
+//        _screenImageView = [[UIImageView alloc] initWithFrame:view.bounds];
+//        _screenImageView.image = currentScreenImage;
+//        _screenImageView.hidden = YES;
+//        _screenImageView;
+//    })];
     
     [self addSubview:({
-        CGFloat flowLayoutWidth = screenBounds.size.width + 10;
+        CGFloat flowLayoutWidth = view.bounds.size.width + 10;
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-        flowLayout.itemSize = CGSizeMake(flowLayoutWidth, screenBounds.size.height);
+        flowLayout.itemSize = CGSizeMake(flowLayoutWidth, view.bounds.size.height);
         flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         flowLayout.minimumLineSpacing = 0.0f;
         flowLayout.sectionInset = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f);
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, flowLayoutWidth, screenBounds.size.height) collectionViewLayout:flowLayout];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, flowLayoutWidth, view.bounds.size.height-64) collectionViewLayout:flowLayout];
         _collectionView.backgroundColor = [UIColor clearColor];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
@@ -92,9 +102,14 @@
         [_collectionView setContentOffset:CGPointMake(self.currentIndex * flowLayoutWidth, 0.0f) animated:NO];
         _collectionView;
     })];
+    [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.bottom.equalTo(self);
+    }];
     
     [self addSubview:({
-        _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, screenBounds.size.height - 40 - 10, screenBounds.size.width, 40)];
+        _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, view.bounds.size.height - 64 - 40 - 10, view.bounds.size.width, 40)];
+        _pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
+        _pageControl.currentPageIndicatorTintColor = [UIColor darkGrayColor];
         _pageControl.numberOfPages = self.pictureModels.count;
         _pageControl.currentPage = self.currentIndex;
         _pageControl.userInteractionEnabled = NO;
@@ -103,13 +118,19 @@
         }
         _pageControl;
     })];
+    [_pageControl mas_makeConstraints:^(MASConstraintMaker *make) {
+       make.left.equalTo(self).offset(10);
+       make.right.equalTo(self).offset(-10);
+       make.bottom.equalTo(self).offset(-10);
+        make.height.mas_equalTo(40);
+    }];
 }
 
 #pragma mark - Animation
 
-- (void)show {
+- (void)showInView:(UIView *)view {
     
-    [[UIApplication sharedApplication].keyWindow addSubview:self];
+    [view addSubview:self];
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     if ([self.delegate respondsToSelector:@selector(pictureBrowserDidShow:)]) {
         [self.delegate pictureBrowserDidShow:self];
@@ -119,7 +140,7 @@
 - (void)dismiss {
     
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
-    _screenImageView.hidden = NO;
+//    _screenImageView.hidden = NO;
     _pageControl.hidden = YES;
     
     if (self.currentPictureView.zoomScale != 1.0) {
@@ -132,7 +153,7 @@
         if ([self.delegate respondsToSelector:@selector(pictureBrowserDidDismiss)]) {
             [self.delegate pictureBrowserDidDismiss];
         }
-        [self removeFromSuperview];
+//        [self removeFromSuperview];
     }];
 }
 
@@ -195,8 +216,8 @@
 
 - (void)pictureCellDidPanToAlpha:(CGFloat)alpha {
     
-    self.backgroundColor = [UIColor colorWithWhite:0 alpha:alpha];
-    self.pageControl.alpha = alpha;
+//    self.backgroundColor = [UIColor colorWithWhite:0 alpha:alpha];
+//    self.pageControl.alpha = alpha;
 }
 
 - (void)pictureCellDidPanToDismiss {
@@ -205,7 +226,7 @@
     if ([self.delegate respondsToSelector:@selector(pictureBrowserDidDismiss)]) {
         [self.delegate pictureBrowserDidDismiss];
     }
-    [self removeFromSuperview];
+//    [self removeFromSuperview];
 }
 
 #pragma mark - SRPictureViewDelegate
