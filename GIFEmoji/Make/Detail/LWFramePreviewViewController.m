@@ -4,9 +4,40 @@
 //
 
 #import "LWFramePreviewViewController.h"
+#import "SRPictureBrowser.h"
+#import "SRPictureModel.h"
 
+
+@interface LWFramePreviewViewController ()
+
+@property(nonatomic, strong) NSArray<UIImage *> *images;
+
+@end
 
 @implementation LWFramePreviewViewController {
 
 }
+
++(instancetype)viewControllerWithImages:(NSArray <UIImage *>*)images {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    LWFramePreviewViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"LWFramePreviewViewController"];
+    vc.images = images;
+    return vc;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    NSMutableArray *imageBrowserModels = [[NSMutableArray alloc] init];
+    for (NSInteger i = 0; i < self.images.count; i ++) {
+        SRPictureModel *imageBrowserModel = [SRPictureModel sr_pictureModelWithPicTure:self.images[i]
+                                                                              containerView:self.view
+                                                                        positionInContainer:self.view.bounds
+                                                                                      index:i];
+        [imageBrowserModels addObject:imageBrowserModel];
+    }
+    [SRPictureBrowser sr_showPictureBrowserWithModels:imageBrowserModels currentIndex:0 delegate:self];
+}
+
+
 @end

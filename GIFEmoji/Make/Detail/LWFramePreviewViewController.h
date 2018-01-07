@@ -7,4 +7,7 @@
 
 
 @interface LWFramePreviewViewController : UIViewController
+
++(instancetype)viewControllerWithImages:(NSArray <UIImage *>*)images;
+
 @end

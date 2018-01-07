@@ -193,6 +193,13 @@
 		EA74386220008F5600AD0291 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EA74386420008F5600AD0291 /* Localizable.strings */; };
 		EA743869200093D800AD0291 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA743868200093D800AD0291 /* AVFoundation.framework */; };
 		EA74386B2000947000AD0291 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA74386A2000947000AD0291 /* AVKit.framework */; };
+		EA74387B2001F63A00AD0291 /* SRPictureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA74386D2001F63A00AD0291 /* SRPictureManager.m */; };
+		EA74387C2001F63A00AD0291 /* SRPictureModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA74386F2001F63A00AD0291 /* SRPictureModel.m */; };
+		EA74387D2001F63A00AD0291 /* SRPictureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7438702001F63A00AD0291 /* SRPictureCell.m */; };
+		EA74387E2001F63A00AD0291 /* SRPictureHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7438722001F63A00AD0291 /* SRPictureHUD.m */; };
+		EA74387F2001F63A00AD0291 /* SRPictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7438732001F63A00AD0291 /* SRPictureView.m */; };
+		EA7438802001F63A00AD0291 /* SRPictureIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7438752001F63A00AD0291 /* SRPictureIndicator.m */; };
+		EA7438812001F63A00AD0291 /* SRPictureBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7438772001F63A00AD0291 /* SRPictureBrowser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -562,6 +569,20 @@
 		EA74386720008F6700AD0291 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		EA743868200093D800AD0291 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		EA74386A2000947000AD0291 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
+		EA74386D2001F63A00AD0291 /* SRPictureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRPictureManager.m; sourceTree = "<group>"; };
+		EA74386E2001F63A00AD0291 /* SRPictureIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRPictureIndicator.h; sourceTree = "<group>"; };
+		EA74386F2001F63A00AD0291 /* SRPictureModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRPictureModel.m; sourceTree = "<group>"; };
+		EA7438702001F63A00AD0291 /* SRPictureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRPictureCell.m; sourceTree = "<group>"; };
+		EA7438712001F63A00AD0291 /* SRPictureBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRPictureBrowser.h; sourceTree = "<group>"; };
+		EA7438722001F63A00AD0291 /* SRPictureHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRPictureHUD.m; sourceTree = "<group>"; };
+		EA7438732001F63A00AD0291 /* SRPictureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRPictureView.m; sourceTree = "<group>"; };
+		EA7438742001F63A00AD0291 /* SRPictureModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRPictureModel.h; sourceTree = "<group>"; };
+		EA7438752001F63A00AD0291 /* SRPictureIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRPictureIndicator.m; sourceTree = "<group>"; };
+		EA7438762001F63A00AD0291 /* SRPictureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRPictureManager.h; sourceTree = "<group>"; };
+		EA7438772001F63A00AD0291 /* SRPictureBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRPictureBrowser.m; sourceTree = "<group>"; };
+		EA7438782001F63A00AD0291 /* SRPictureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRPictureCell.h; sourceTree = "<group>"; };
+		EA7438792001F63A00AD0291 /* SRPictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRPictureView.h; sourceTree = "<group>"; };
+		EA74387A2001F63A00AD0291 /* SRPictureHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRPictureHUD.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -800,6 +821,7 @@
 		BEF066DFAD17E36B3E3FDA63 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				EA74386C2001F63A00AD0291 /* SRPictureBrowser */,
 				EA74382D1FFE422500AD0291 /* YMSPhotoPicker */,
 				EA74381D1FFE1E6D00AD0291 /* SVProgressHUD */,
 				BEF06FAFD555CBEA8461B839 /* libXGPush */,
@@ -1276,6 +1298,27 @@
 			path = Private;
 			sourceTree = "<group>";
 		};
+		EA74386C2001F63A00AD0291 /* SRPictureBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				EA74386D2001F63A00AD0291 /* SRPictureManager.m */,
+				EA74386E2001F63A00AD0291 /* SRPictureIndicator.h */,
+				EA74386F2001F63A00AD0291 /* SRPictureModel.m */,
+				EA7438702001F63A00AD0291 /* SRPictureCell.m */,
+				EA7438712001F63A00AD0291 /* SRPictureBrowser.h */,
+				EA7438722001F63A00AD0291 /* SRPictureHUD.m */,
+				EA7438732001F63A00AD0291 /* SRPictureView.m */,
+				EA7438742001F63A00AD0291 /* SRPictureModel.h */,
+				EA7438752001F63A00AD0291 /* SRPictureIndicator.m */,
+				EA7438762001F63A00AD0291 /* SRPictureManager.h */,
+				EA7438772001F63A00AD0291 /* SRPictureBrowser.m */,
+				EA7438782001F63A00AD0291 /* SRPictureCell.h */,
+				EA7438792001F63A00AD0291 /* SRPictureView.h */,
+				EA74387A2001F63A00AD0291 /* SRPictureHUD.h */,
+			);
+			path = SRPictureBrowser;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1393,6 +1436,7 @@
 				BEF06CB8AB87275625C3AB8F /* FLEXNetworkSettingsTableViewController.m in Sources */,
 				BEF0695992AB88F0E9984CD8 /* FLEXNetworkTransactionDetailTableViewController.m in Sources */,
 				BEF06012635574B049DAF125 /* FLEXToolbarItem.m in Sources */,
+				EA74387D2001F63A00AD0291 /* SRPictureCell.m in Sources */,
 				EA7438521FFE422500AD0291 /* YMSPhotoPickerViewController.m in Sources */,
 				BEF0620FD6BF5527068175E1 /* FLEXExplorerToolbar.m in Sources */,
 				BEF066B54A8658F683BD440A /* FLEXUtility.m in Sources */,
@@ -1417,6 +1461,7 @@
 				BEF06B59D212246FB0913CFE /* FLEXObjectExplorerViewController.m in Sources */,
 				BEF060ADAB83D570D92BEFC8 /* FLEXDefaultsExplorerViewController.m in Sources */,
 				EA7438581FFE422500AD0291 /* YMSPhotoCell.m in Sources */,
+				EA74387B2001F63A00AD0291 /* SRPictureManager.m in Sources */,
 				BEF065F2743B016B3616AB6A /* FLEXGlobalsTableViewControllerEntry.m in Sources */,
 				BEF06E47F5D1C6A0987D2ABE /* FLEXDictionaryExplorerViewController.m in Sources */,
 				BEF0625AE7BE78C691DB019C /* FLEXViewControllerExplorerViewController.m in Sources */,
@@ -1432,6 +1477,7 @@
 				EA74385B1FFE422500AD0291 /* YMSAlbumCell.m in Sources */,
 				BEF066DA93A66A5D3AF6E350 /* FLEXRealmDatabaseManager.m in Sources */,
 				EA74382B1FFE1E6D00AD0291 /* SVIndefiniteAnimatedView.m in Sources */,
+				EA7438802001F63A00AD0291 /* SRPictureIndicator.m in Sources */,
 				BEF06EE43F233DA546E53D06 /* FLEXSQLiteDatabaseManager.m in Sources */,
 				EA74385F1FFE422500AD0291 /* UIScrollView+YMSAdditions.m in Sources */,
 				BEF06F47C32EDF66259AE651 /* FLEXTableListViewController.m in Sources */,
@@ -1445,6 +1491,7 @@
 				BEF067C648F59A31B72D374B /* FLEXInstancesTableViewController.m in Sources */,
 				BEF06AD1F2ED6617499DD004 /* FLEXLibrariesTableViewController.m in Sources */,
 				BEF06E56B3B6CBF84F8D047C /* FLEXFileBrowserTableViewController.m in Sources */,
+				EA7438812001F63A00AD0291 /* SRPictureBrowser.m in Sources */,
 				BEF06B55ADBBA4CD1E93536E /* FLEXLiveObjectsTableViewController.m in Sources */,
 				BEF0680194195732D3E6528A /* FLEXFileBrowserFileOperationController.m in Sources */,
 				BEF06C651215E0B4F0776873 /* Reachability.m in Sources */,
@@ -1464,6 +1511,7 @@
 				EA74380E1FFDD21500AD0291 /* NSGIF.m in Sources */,
 				BEF06B3719196BCAF42917B6 /* RSOpacitySlider.m in Sources */,
 				BEF064A6F176C984064F618E /* RSColorFunctions.m in Sources */,
+				EA74387F2001F63A00AD0291 /* SRPictureView.m in Sources */,
 				BEF06226321CBC4754C47F5E /* RSSelectionLayer.m in Sources */,
 				BEF06E10F9D16EA77D015926 /* RSColorPickerView.m in Sources */,
 				BEF06250BFC689628D4EFE52 /* RSBrightnessSlider.m in Sources */,
@@ -1489,6 +1537,7 @@
 				BEF0691FDE2DF5F74F9D2795 /* UIResponder+Extension.m in Sources */,
 				BEF060110B96DE805E6D3AEC /* UIPrintPageRenderer+Extentsion.m in Sources */,
 				BEF06077AAC70C82A66072D8 /* LWGIFPreviewViewController.m in Sources */,
+				EA74387E2001F63A00AD0291 /* SRPictureHUD.m in Sources */,
 				BEF064F325E7112346CCE08D /* LWVideoPreviewViewController.m in Sources */,
 				EA7438291FFE1E6D00AD0291 /* SVProgressAnimatedView.m in Sources */,
 				BEF06BBB2778B5CA92F27863 /* LWFramePreviewViewController.m in Sources */,
@@ -1505,6 +1554,7 @@
 				BEF06A952E4D070B9B0959C8 /* SDWebImageCompat.m in Sources */,
 				BEF0678C824294E587BDAF63 /* SDWebImageDecoder.m in Sources */,
 				BEF06ADF2EFAC34112AF3E71 /* SDWebImageManager.m in Sources */,
+				EA74387C2001F63A00AD0291 /* SRPictureModel.m in Sources */,
 				BEF06B59EBBC2F91940969B1 /* UIButton+WebCache.m in Sources */,
 				BEF0675F69D0E4726DEFD14D /* SDImageCacheConfig.m in Sources */,
 				BEF065EF497CF429C458236A /* UIImage+MultiFormat.m in Sources */,
