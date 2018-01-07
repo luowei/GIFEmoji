@@ -116,8 +116,9 @@
     NSString *gifFileName = [NSString stringWithFormat:@"%@.gif",[dateFormatter stringFromDate:[NSDate new]]];
     NSString *gifFilePath = [NSTemporaryDirectory() stringByAppendingString:gifFileName];
 
+    CGFloat screenScale = [UIScreen mainScreen].scale;
     float scaleSize = (float) ([self.scaleTextField.text floatValue] ?: 1.0);
-    imageSize = CGSizeMake(imageSize.width * scaleSize, imageSize.height * scaleSize);
+    imageSize = CGSizeMake(imageSize.width * scaleSize * screenScale, imageSize.height * scaleSize * screenScale);
     self.gifData = [UIImage createGIFWithImages:images size:imageSize loopCount:0 delayTime:delayTime gifCachePath:gifFilePath];
 }
 

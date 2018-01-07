@@ -148,12 +148,14 @@
         //处理其他照片
         BOOL isGIF = [self isGIFWithPickerInfo:info];
         if (isGIF) {    //是GIF图片
+            NSData *gifData = self.exportGIFImageData;
             [self updateSelectedMode:GIFMode];
-
+            
             [SVProgressHUD showInfoWithStatus:NSLocalizedString(@"The Photo is GIF Image", nil)];
             [SVProgressHUD dismissWithDelay:0.5];
 
-            FLAnimatedImage *gifImage = [FLAnimatedImage animatedImageWithGIFData:self.exportGIFImageData];
+            FLAnimatedImage *gifImage = [FLAnimatedImage animatedImageWithGIFData:gifData];
+            self.exportGIFImageData = gifData;
             self.imagePreview.animatedImage = gifImage;
 
         } else {    //其他情况就让用户重新选择
