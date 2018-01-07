@@ -66,6 +66,7 @@
 		BEF065B79A963D824D5D7AF7 /* FLEXSystemLogMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF0623333BB45C69B6AFDB3 /* FLEXSystemLogMessage.m */; };
 		BEF065D0C01242797D5E1684 /* FLEXArgumentInputColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06C3E7F7D1BC080191CDC /* FLEXArgumentInputColorView.m */; };
 		BEF065DE9F553684A9E2519F /* FLAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF067DCE9AB9AD7D1DFB41D /* FLAnimatedImage.m */; };
+		BEF065E4A9C41659195A17DB /* LWImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06CA0BCFCB82E17282530 /* LWImageModel.m */; };
 		BEF065EF497CF429C458236A /* UIImage+MultiFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06527BCB5FFD5B8D6EB54 /* UIImage+MultiFormat.m */; };
 		BEF065F2743B016B3616AB6A /* FLEXGlobalsTableViewControllerEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF069B264C838F54340DDB0 /* FLEXGlobalsTableViewControllerEntry.m */; };
 		BEF065FEA65E86463CFE7415 /* FLEXNetworkTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06F02B848D8FB54B61B7C /* FLEXNetworkTransaction.m */; };
@@ -337,6 +338,7 @@
 		BEF06679C8F61F6CD21E8D5D /* FLEXInstancesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXInstancesTableViewController.h; sourceTree = "<group>"; };
 		BEF0667E9F52CD2C25429A24 /* FLEXHierarchyTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXHierarchyTableViewController.m; sourceTree = "<group>"; };
 		BEF06688C15DDDE5E4F126FA /* FLEXRuntimeUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXRuntimeUtility.h; sourceTree = "<group>"; };
+		BEF0669CFC44446B5BAD7002 /* LWImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWImageModel.h; sourceTree = "<group>"; };
 		BEF066B85FC8E42CBCA51259 /* RSSelectionLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSelectionLayer.m; sourceTree = "<group>"; };
 		BEF066C6ECE0506A16F5C195 /* FLEXArgumentInputStringView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXArgumentInputStringView.h; sourceTree = "<group>"; };
 		BEF066DABDA722C5C0BA94CA /* RSOpacitySlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSOpacitySlider.h; sourceTree = "<group>"; };
@@ -449,6 +451,7 @@
 		BEF06C7536CABBB0BC887323 /* FLEXArgumentInputViewFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXArgumentInputViewFactory.m; sourceTree = "<group>"; };
 		BEF06C77DCF7A548002F1323 /* BitmapDrawManipulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BitmapDrawManipulator.m; sourceTree = "<group>"; };
 		BEF06C8910A8FAA8B4805EFC /* FLEXTableContentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXTableContentCell.h; sourceTree = "<group>"; };
+		BEF06CA0BCFCB82E17282530 /* LWImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWImageModel.m; sourceTree = "<group>"; };
 		BEF06CC2E78B5C30B7D7186B /* RSBrightnessSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSBrightnessSlider.h; sourceTree = "<group>"; };
 		BEF06CC76C1B8DB87D00CA49 /* BitmapContextManipulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BitmapContextManipulator.h; sourceTree = "<group>"; };
 		BEF06CD6B6D3C101FB26ADE3 /* GenGIFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenGIFViewController.h; sourceTree = "<group>"; };
@@ -653,6 +656,8 @@
 			children = (
 				BEF0666F40FC7849D51E40E9 /* SearchGIFViewController.h */,
 				BEF06DA9D7E1FBEC7A1ABB26 /* SearchGIFViewController.m */,
+				BEF06CA0BCFCB82E17282530 /* LWImageModel.m */,
+				BEF0669CFC44446B5BAD7002 /* LWImageModel.h */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -1569,6 +1574,7 @@
 				BEF062FA466462C9FA55291E /* LWLivePhotoView.m in Sources */,
 				BEF06476BB20AC04BE032E6B /* LWAVPlayerView.m in Sources */,
 				BEF06F1F2663130C48E15185 /* LWHelper.m in Sources */,
+				BEF065E4A9C41659195A17DB /* LWImageModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
