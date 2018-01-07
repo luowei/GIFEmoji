@@ -333,6 +333,7 @@
     [[NSFileManager defaultManager] removeItemAtPath:imageFilePath error:&error];
 
     [assetResourceManager writeDataForAssetResource:livePhotoImageAsset toFile:self.livePhotoFirstImageURL options:nil completionHandler:^(NSError *_Nullable error) {
+        [SVProgressHUD dismiss];
         NSLog(@"error: %@", error);
     }];
 
@@ -362,8 +363,6 @@
                                }
                            }];
     }];
-
-    [SVProgressHUD dismiss];
 }
 
 
@@ -515,6 +514,7 @@
             return;
         }
         case VideoMode: {
+            [self.videoPlayerView pauseVideo];  //暂停播放
             //处理视频
             weakify(self)
             [self handleVideoWithFileURL:self.selectedVideoFileURL completionBlock:^(NSArray<UIImage *> *images, NSData *gifData) {
@@ -566,6 +566,7 @@
             return;
         }
         case VideoMode: {
+            [self.videoPlayerView pauseVideo];  //暂停播放
             //处理视频
             weakify(self)
             [self handleVideoWithFileURL:self.selectedVideoFileURL completionBlock:^(NSArray<UIImage *> *images, NSData *gifData) {

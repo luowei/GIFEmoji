@@ -12,6 +12,7 @@
 
 @property(nonatomic, strong) NSArray<UIImage *> *images;
 
+@property(nonatomic, strong) SRPictureBrowser *pictureBrowser;
 @end
 
 @implementation LWFramePreviewViewController {
@@ -28,6 +29,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"share"] style:UIBarButtonItemStylePlain target:self action:@selector(rightBarItemAction:)];
+
     NSMutableArray *imageBrowserModels = [[NSMutableArray alloc] init];
     for (NSInteger i = 0; i < self.images.count; i++) {
         SRPictureModel *imageBrowserModel = [SRPictureModel
@@ -37,7 +40,7 @@
                                      index:i];
         [imageBrowserModels addObject:imageBrowserModel];
     }
-    [SRPictureBrowser sr_showPictureBrowserWithModels:imageBrowserModels currentIndex:0 delegate:self inView:self.view];
+    self.pictureBrowser = [SRPictureBrowser sr_showPictureBrowserWithModels:imageBrowserModels currentIndex:0 delegate:self inView:self.view];
 
 }
 
@@ -58,6 +61,13 @@
     NSLog(@"%s", __func__);
 }
 
+//右侧的按钮被点击
+- (void)rightBarItemAction:(UIBarButtonItem *)rightBarItemAction {
+
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:self.images applicationActivities:nil];
+    activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypePrint];
+    [self presentViewController:activityVC animated:TRUE completion:nil];
+}
 
 
 @end

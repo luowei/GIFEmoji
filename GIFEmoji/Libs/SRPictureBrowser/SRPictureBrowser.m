@@ -28,13 +28,11 @@
 
 @property (nonatomic, strong) SRPictureView *currentPictureView;
 
-@property (nonatomic, assign) NSInteger currentIndex;
-
 @end
 
 @implementation SRPictureBrowser
 
-+ (void)sr_showPictureBrowserWithModels:(NSArray *)pictureModels
++ (SRPictureBrowser *)sr_showPictureBrowserWithModels:(NSArray *)pictureModels
                            currentIndex:(NSInteger)currentIndex
                                delegate:(id<SRPictureBrowserDelegate>)delegate
                                  inView:(UIView *)view {
@@ -46,6 +44,7 @@
     [pictureBrowser mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.bottom.equalTo(view);
     }];
+    return pictureBrowser;
 }
 
 #pragma mark - Initialize
@@ -85,7 +84,7 @@
 //    })];
     
     [self addSubview:({
-        CGFloat flowLayoutWidth = view.bounds.size.width + 10;
+        CGFloat flowLayoutWidth = view.bounds.size.width;// + 10;
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         flowLayout.itemSize = CGSizeMake(flowLayoutWidth, view.bounds.size.height);
         flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;

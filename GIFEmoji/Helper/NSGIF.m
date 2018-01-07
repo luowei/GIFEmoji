@@ -175,6 +175,10 @@ typedef NS_ENUM(NSInteger, GIFSize) {
 
         NSArray <UIImage *>*images = [NSGIF exportImagesWithTimePoints:timePoints vedioURL:videoURL delayTime:frameDelayTime gifSize:optimalSize];
         if(!images || images.count <= 0){
+            dispatch_group_notify(gifQueue, dispatch_get_main_queue(), ^{
+                // Return GIF URL
+                completionBlock(nil);
+            });
             return;
         }
         gifData = [UIImage createGIFWithImages:images size:images.firstObject.size loopCount:0 delayTime:frameDelayTime gifCachePath:exportedGIFPath];

@@ -5,6 +5,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class SRPictureBrowser;
+
 
 @interface LWFramePreviewViewController : UIViewController
 

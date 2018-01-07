@@ -70,13 +70,13 @@
     if (self.pictureModel.picture) {
         self.imageView.image = self.pictureModel.picture;
         if (self.pictureModel.isFirstShow) {
-            self.imageView.frame = self.pictureModel.originPosition;
+            self.imageView.frame = UIEdgeInsetsInsetRect(self.pictureModel.originPosition, UIEdgeInsetsMake(0, 5, 0, 5));
             self.contentSize = pictureModel.destinationPosition.size;
             [UIView animateWithDuration:0.3 delay:0.0 usingSpringWithDamping:0.7 initialSpringVelocity:0.0 options:0 animations:^{
-                self.imageView.frame = self.pictureModel.destinationPosition;
+                self.imageView.frame = UIEdgeInsetsInsetRect(self.pictureModel.destinationPosition, UIEdgeInsetsMake(0, 5, 0, 5));
             } completion:nil];
         } else {
-            self.imageView.frame = self.pictureModel.destinationPosition;
+            self.imageView.frame = UIEdgeInsetsInsetRect(self.pictureModel.destinationPosition, UIEdgeInsetsMake(0, 5, 0, 5));
         }
 
     } else {
@@ -86,7 +86,7 @@
             _pictureIndicator = [_pictureIndicator hide];
             _pictureIndicator = nil;
             self.imageView.image = pictureModel.picture;
-            self.imageView.frame = self.pictureModel.destinationPosition;
+            self.imageView.frame = UIEdgeInsetsInsetRect(self.pictureModel.destinationPosition, UIEdgeInsetsMake(0, 5, 0, 5));
             self.contentSize = pictureModel.destinationPosition.size;
 
         }else{
@@ -95,7 +95,7 @@
                 _pictureIndicator = nil;
                 self.pictureModel.picture = picture;
                 self.imageView.image = picture;
-                self.imageView.frame = self.pictureModel.destinationPosition;
+                self.imageView.frame = UIEdgeInsetsInsetRect(self.pictureModel.destinationPosition, UIEdgeInsetsMake(0, 5, 0, 5));
                 self.contentSize = pictureModel.destinationPosition.size;
             } failure:^(NSError *error) {
                 NSLog(@"downloadPicture error: %@", error);

@@ -20,6 +20,8 @@
 
 @interface SRPictureBrowser : UIView
 
+@property (nonatomic, assign) NSInteger currentIndex;
+
 /**
  Displays a picture browser with pictureModels, currentIndex and delegate.
 
@@ -27,7 +29,7 @@
  @param currentIndex  The index of model which will show firstly.
  @param delegate      The receiver’s delegate object.
  */
-+ (void)sr_showPictureBrowserWithModels:(NSArray *)pictureModels
++ (SRPictureBrowser *)sr_showPictureBrowserWithModels:(NSArray *)pictureModels
                            currentIndex:(NSInteger)currentIndex
                                delegate:(id<SRPictureBrowserDelegate>)delegate
                                  inView:(UIView *)view;
