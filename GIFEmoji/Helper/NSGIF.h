@@ -49,17 +49,17 @@ CGImageRef ImageWithScale(CGImageRef imageRef, float scale);
 @interface NSGIF : NSObject
 
 + (void)optimalGIFfromVideoURL:(NSURL *)videoURL
-        exportedGIFURL:(NSURL *)exportedGIFURL
+        exportedGIFPath:(NSString *)exportedGIFPath
                 frameDelayTime:(float)frameDelayTime
                      loopCount:(int)loopCount
-                    completion:(void(^)(NSURL *GifURL,NSData *gifData))completionBlock;
+                    completion:(void(^)(NSData *gifData))completionBlock;
 
 + (void)createGIFfromURL:(NSURL*)videoURL
-        exportedGIFURL:(NSURL *)exportedGIFURL
+        exportedGIFPath:(NSString *)exportedGIFPath
           withFrameCount:(int)frameCount
                delayTime:(int)delayTime
                loopCount:(int)loopCount
-              completion:(void(^)(NSURL *GifURL,NSData *gifData))completionBlock;
+              completion:(void(^)(NSData *gifData))completionBlock;
 
 @end
 
@@ -68,9 +68,9 @@ CGImageRef ImageWithScale(CGImageRef imageRef, float scale);
 
 //把 Video 转换成 GIF
 + (void)convertVideoToImages:(NSURL *)videoFileURL
-              exportedGIFURL:(NSURL *)exportedGIFURL
+        exportedGIFPath:(NSString *)exportedGIFPath
               frameDelayTime:(float)frameDelayTime
-             completionBlock:(void(^)(NSArray <UIImage *>*images))completionBlock;
+             completionBlock:(void(^)(NSArray <UIImage *>*images,NSData *gifData))completionBlock;
 
 //根据已有的 GIFFrames 导出GIF图片，返回GIF图片地址
 + (NSString *)exportAnimatedGifWithImages:(NSArray <UIImage *>*)imageList gifDelayTime:(float) gifDelayTime;

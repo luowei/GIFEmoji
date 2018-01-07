@@ -130,10 +130,10 @@ typedef NS_ENUM(NSInteger, GIFSize) {
 #pragma mark - Public methods
 
 + (void)optimalGIFfromVideoURL:(NSURL *)videoURL
-                exportedGIFURL:(NSURL *)exportedGIFURL
+        exportedGIFPath:(NSString *)exportedGIFPath
                 frameDelayTime:(float)frameDelayTime
                      loopCount:(int)loopCount
-                    completion:(void (^)(NSURL *GifURL,NSData *gifData))completionBlock {
+                    completion:(void (^)(NSData *gifData))completionBlock {
 
     AVURLAsset *asset = [AVURLAsset assetWithURL:videoURL];
     
@@ -177,24 +177,24 @@ typedef NS_ENUM(NSInteger, GIFSize) {
         if(!images || images.count <= 0){
             return;
         }
-        gifData = [UIImage createGIFWithImages:images size:images.firstObject.size loopCount:0 delayTime:frameDelayTime gifCachePath:exportedGIFURL.path];
+        gifData = [UIImage createGIFWithImages:images size:images.firstObject.size loopCount:0 delayTime:frameDelayTime gifCachePath:exportedGIFPath];
 
         dispatch_group_leave(gifQueue);
     });
     
     dispatch_group_notify(gifQueue, dispatch_get_main_queue(), ^{
         // Return GIF URL
-        completionBlock(exportedGIFURL,gifData);
+        completionBlock(gifData);
     });
 
 }
 
 + (void)createGIFfromURL:(NSURL*)videoURL
-        exportedGIFURL:(NSURL *)exportedGIFURL
+        exportedGIFPath:(NSString *)exportedGIFPath
           withFrameCount:(int)frameCount
                delayTime:(int)delayTime
                loopCount:(int)loopCount
-              completion:(void(^)(NSURL *GifURL,NSData *gifData))completionBlock {
+              completion:(void(^)(NSData *gifData))completionBlock {
     
     // Convert the video at the given URL to a GIF, and return the GIF's URL if it was created.
     // The frames are spaced evenly over the video, and each has the same duration.
@@ -229,13 +229,13 @@ typedef NS_ENUM(NSInteger, GIFSize) {
         if(!images || images.count <= 0){
             return;
         }
-        gifData = [UIImage createGIFWithImages:images size:images.firstObject.size loopCount:0 delayTime:delayTime gifCachePath:exportedGIFURL.path];
+        gifData = [UIImage createGIFWithImages:images size:images.firstObject.size loopCount:0 delayTime:delayTime gifCachePath:exportedGIFPath];
         dispatch_group_leave(gifQueue);
     });
 
     dispatch_group_notify(gifQueue, dispatch_get_main_queue(), ^{
         // Return GIF URL
-        completionBlock(exportedGIFURL, gifData);
+        completionBlock( gifData);
     });
     
 }
@@ -322,18 +322,18 @@ typedef NS_ENUM(NSInteger, GIFSize) {
 
 //把 Video 转换成 GIF
 + (void)convertVideoToImages:(NSURL *)videoFileURL
-        exportedGIFURL:(NSURL *)exportedGIFURL
+        exportedGIFPath:(NSString *)exportedGIFPath
               frameDelayTime:(float)frameDelayTime
-                             completionBlock:(void(^)(NSArray <UIImage *>*images))completionBlock {
+                             completionBlock:(void(^)(NSArray <UIImage *>*images,NSData *gifData))completionBlock {
 
     [NSGIF optimalGIFfromVideoURL:videoFileURL
-                   exportedGIFURL:exportedGIFURL
+                   exportedGIFPath:exportedGIFPath
                    frameDelayTime:frameDelayTime
                         loopCount:0
-                       completion:^(NSURL *GifURL, NSData *gifData) {
+                       completion:^(NSData *gifData) {
 
-        NSLog(@"Finished generating GIF: %@", GifURL);
-        NSData *imageData = [NSData dataWithContentsOfURL:GifURL];
+        NSLog(@"Finished generating GIF: %@", exportedGIFPath);
+        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:exportedGIFPath]];
 
         CGImageSourceRef source = CGImageSourceCreateWithData((__bridge CFDataRef) imageData, NULL);
         size_t const count = CGImageSourceGetCount(source);
@@ -347,7 +347,7 @@ typedef NS_ENUM(NSInteger, GIFSize) {
         NSArray <UIImage *> *imageFrames = frameArray(count, images, delayCentiseconds, (const int) totalDurationCentiseconds);
         if (completionBlock) {
             //隐藏提示弹窗,把images设置到ImageView
-            completionBlock(imageFrames);
+            completionBlock(imageFrames,gifData);
         }
     }];
 }

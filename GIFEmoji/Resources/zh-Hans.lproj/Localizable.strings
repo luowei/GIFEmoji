@@ -14,6 +14,8 @@
 
 "Export GIF Faild" = "导出GIF失败";
 "Export Frames Faild" = "导出动画帧失败";
+"Need your permission to take a photo" = "请允许拍照";
+"Need your permission to access photo albumbs" = "请允许访问相册";
 
 "Cancel" = "取消";
 "Settings" = "设置";
