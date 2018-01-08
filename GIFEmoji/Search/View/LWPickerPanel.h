@@ -6,6 +6,11 @@
 #import <UIKit/UIKit.h>
 
 
+@interface LWBackMaskView : UIView
+
+@end
+
+
 @interface LWPickerPanel : UIView <UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UIPickerView *pickerView;

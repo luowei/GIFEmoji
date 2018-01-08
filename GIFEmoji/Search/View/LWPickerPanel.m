@@ -9,6 +9,22 @@
 #import "LWSymbolService.h"
 #import "View+MASAdditions.h"
 
+@interface LWBackMaskView ()
+@property(nonatomic, strong) LWPickerPanel *pickerPanel;
+@end
+
+@implementation LWBackMaskView
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event {
+    [super touchesBegan:touches withEvent:event];
+    CGPoint point = [touches.anyObject locationInView:self];
+    if(!CGRectContainsPoint(self.pickerPanel.frame, point)){
+        [self removeFromSuperview];
+    }
+}
+
+
+@end
 
 @implementation LWPickerPanel {
     NSMutableArray <LWCategory *>*_graphicCategroyArr;
@@ -17,17 +33,24 @@
 }
 
 +(instancetype)showPickerPanelInView:(UIView *)view{
+    LWBackMaskView *maskView = [[LWBackMaskView alloc] initWithFrame:CGRectZero];
+    maskView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.3];
+    [view addSubview:maskView];
+    [maskView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
+    }];
+
     LWPickerPanel *pickerPanel = [[NSBundle mainBundle] loadNibNamed:@"LWPickerPanel" owner:self options:nil][0];
-    [view addSubview:pickerPanel];
+    [maskView addSubview:pickerPanel];
     [pickerPanel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(view);
-        make.bottom.equalTo(view);
+        make.left.right.equalTo(maskView);
+        make.bottom.equalTo(maskView);
         make.height.mas_equalTo(200);
     }];
+    maskView.pickerPanel = pickerPanel;
 
     return pickerPanel;
 }
-
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -49,14 +72,12 @@
     self.pickerView.dataSource = self;
     self.pickerView.delegate = self;
 
+//    [self.backMaskView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)] ];
+
     //更新子视图
     UIFont *font = [UIFont systemFontOfSize:16];
     self.okBtn.titleLabel.font = font;
     self.cancelBtn.titleLabel.font = font;
-}
-
-- (void)layoutSubviews {
-    [super layoutSubviews];
 }
 
 
@@ -107,12 +128,13 @@
     if(self.faveritaBlock){
         self.faveritaBlock(_selectCategoryId,_selectCategoryName);
     }
-    [self removeFromSuperview];
+    [self.superview removeFromSuperview];
 }
 
 -(IBAction)cancelAction{
-    [self removeFromSuperview];
+    [self.superview removeFromSuperview];
 }
 
 
 @end
+
