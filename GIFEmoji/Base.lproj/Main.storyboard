@@ -512,9 +512,68 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gFS-tH-POH" userLabel="PlaceHolderView" customClass="LWPlacehoderView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gFS-tH-POH" userLabel="PlaceHolderView" customClass="LWPlacehoderView">
                                 <rect key="frame" x="0.0" y="56" width="375" height="498"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pageNotFund" translatesAutoresizingMaskIntoConstraints="NO" id="xSx-NE-muL">
+                                        <rect key="frame" x="67" y="129" width="240" height="240"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="240" id="9Dq-A9-1XI"/>
+                                            <constraint firstAttribute="width" constant="240" id="kx7-fJ-Pjk"/>
+                                        </constraints>
+                                    </imageView>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="ax2-rw-bp6">
+                                        <rect key="frame" x="169" y="231" width="37" height="37"/>
+                                        <color key="backgroundColor" white="0.37" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" red="0.15686274510000001" green="0.52549019610000003" blue="0.17254901959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="color" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </activityIndicatorView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eXb-ME-ulm">
+                                        <rect key="frame" x="77.5" y="391" width="60" height="36"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="36" id="gTK-Re-0B0"/>
+                                            <constraint firstAttribute="width" constant="60" id="wh3-YT-UKs"/>
+                                        </constraints>
+                                        <state key="normal" title="设置">
+                                            <color key="titleColor" red="0.15686274510000001" green="0.52549019610000003" blue="0.17254901959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="settingsBtnTouchUpInside:" destination="gFS-tH-POH" eventType="touchUpInside" id="Z4u-Ac-7r1"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Abv-Zq-wTX">
+                                        <rect key="frame" x="237.5" y="391" width="60" height="36"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="36" id="Yd4-B8-VmD"/>
+                                            <constraint firstAttribute="width" constant="60" id="jYl-5e-ZXV"/>
+                                        </constraints>
+                                        <state key="normal" title="刷新">
+                                            <color key="titleColor" red="0.15686274510000001" green="0.52549019610000003" blue="0.17254901959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="refreshBtnTouchUpInside:" destination="gFS-tH-POH" eventType="touchUpInside" id="tIA-Jn-Ift"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="Abv-Zq-wTX" firstAttribute="centerX" secondItem="gFS-tH-POH" secondAttribute="centerX" constant="80" id="35W-6v-nyx"/>
+                                    <constraint firstItem="xSx-NE-muL" firstAttribute="centerY" secondItem="gFS-tH-POH" secondAttribute="centerY" id="Xbh-Ar-cZ7"/>
+                                    <constraint firstItem="eXb-ME-ulm" firstAttribute="centerY" secondItem="gFS-tH-POH" secondAttribute="centerY" constant="160" id="cPS-V6-7ur"/>
+                                    <constraint firstItem="xSx-NE-muL" firstAttribute="centerX" secondItem="gFS-tH-POH" secondAttribute="centerX" id="ghl-Kf-gPR"/>
+                                    <constraint firstItem="Abv-Zq-wTX" firstAttribute="centerY" secondItem="gFS-tH-POH" secondAttribute="centerY" constant="160" id="gzj-5d-2Ni"/>
+                                    <constraint firstItem="ax2-rw-bp6" firstAttribute="centerX" secondItem="gFS-tH-POH" secondAttribute="centerX" id="htm-3f-emN"/>
+                                    <constraint firstItem="eXb-ME-ulm" firstAttribute="centerX" secondItem="gFS-tH-POH" secondAttribute="centerX" constant="-80" id="kvf-LA-L8Y"/>
+                                    <constraint firstItem="ax2-rw-bp6" firstAttribute="centerY" secondItem="gFS-tH-POH" secondAttribute="centerY" id="u8V-YI-R5H"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="activityIndicatorView" destination="ax2-rw-bp6" id="eiL-hk-kry"/>
+                                    <outlet property="imageView" destination="xSx-NE-muL" id="57Q-Qo-bhf"/>
+                                    <outlet property="refreshBtn" destination="Abv-Zq-wTX" id="na4-vw-7gh"/>
+                                    <outlet property="settingsBtn" destination="eXb-ME-ulm" id="R2i-fD-Dh7"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -600,6 +659,7 @@
         <image name="favorite_selected" width="30" height="30"/>
         <image name="first" width="30" height="30"/>
         <image name="imagehold" width="120" height="120"/>
+        <image name="pageNotFund" width="209" height="139"/>
         <image name="search_link" width="30" height="30"/>
         <image name="search_share" width="30" height="30"/>
         <image name="second" width="30" height="30"/>

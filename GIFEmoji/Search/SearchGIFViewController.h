@@ -15,6 +15,12 @@
 
 @interface LWPlacehoderView : UIView
 
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
+@property (weak, nonatomic) IBOutlet UIButton *settingsBtn;
+@property (weak, nonatomic) IBOutlet UIButton *refreshBtn;
+
+
 //显示加载失败视图
 - (void)showFailureView;
 
@@ -47,6 +53,7 @@
 
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet LWPlacehoderView *placehoderView;
+
 
 - (IBAction)searchBtnAction:(UIButton *)sender;
 

@@ -423,8 +423,9 @@
     }
     SDWebImageDownloader *manager = [SDWebImageDownloader sharedDownloader];
     [manager setValue:[LWHelper getiOSUserAgent] forHTTPHeaderField:@"User-Agent"];
-    SDWebImageDownloadToken *downloadToken = [manager downloadImageWithURL:imageURL options:SDWebImageDownloaderHighPriority | SDWebImageDownloaderUseNSURLCache
-                                                                  progress:nil completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
+    SDWebImageDownloadToken *downloadToken = [manager
+            downloadImageWithURL:imageURL options:SDWebImageDownloaderHighPriority | SDWebImageDownloaderUseNSURLCache
+                        progress:nil completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
                 dispatch_main_async_safe(^{
                     if (error) {
                         Log(@"=====error:%@ \n %@", error.localizedFailureReason, error.localizedDescription);
@@ -451,19 +452,44 @@
 
 @implementation LWPlacehoderView
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    self.activityIndicatorView.layer.cornerRadius = 4;
+
+    self.imageView.hidden = YES;
+    self.settingsBtn.hidden = YES;
+    self.refreshBtn.hidden = YES;
+}
+
+
+-(IBAction)settingsBtnTouchUpInside:(UIButton *)btn {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+}
+
+-(IBAction)refreshBtnTouchUpInside:(UIButton *)btn {
+    SearchGIFViewController *vc = [self superViewWithClass:[SearchGIFViewController class]];
+    [vc reloadSearchResult];
+}
+
+- (void)setHidden:(BOOL)hidden {
+    [super setHidden:hidden];
+
+    self.activityIndicatorView.hidden = hidden;
+}
+
 
 //显示加载失败视图
 - (void)showFailureView {
-//    self.loadingView.hidden = YES;
-//    self.settingBtn.hidden = NO;
-//    self.reloadBtn.hidden = NO;
-//    self.msgTip.hidden = NO;
+    self.activityIndicatorView.hidden = YES;
+    self.settingsBtn.hidden = NO;
+    self.refreshBtn.hidden = NO;
+    self.imageView.hidden = NO;
 }
 
 - (void)reShowLoading {
-//    self.msgTip.hidden = YES;
-//    self.settingBtn.hidden = YES;
-//    self.reloadBtn.hidden = YES;
+    self.imageView.hidden = YES;
+    self.settingsBtn.hidden = YES;
+    self.refreshBtn.hidden = YES;
 }
 
 
