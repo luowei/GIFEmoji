@@ -517,6 +517,9 @@
 }
 
 
+- (NSMutableArray<LWCategory *> *)categoriesList {
+    return nil;
+}
 
 @end
 

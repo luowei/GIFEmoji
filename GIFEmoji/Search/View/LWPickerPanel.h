@@ -10,6 +10,7 @@
 
 @property (nonatomic, weak) IBOutlet UIPickerView *pickerView;
 @property (nonatomic, weak) IBOutlet UIView *toolBar;
+@property (nonatomic, weak) IBOutlet UIView *topLine;
 @property (nonatomic, weak) IBOutlet UIView *bottomLine;
 @property (nonatomic, weak) IBOutlet UIButton *okBtn;
 @property (nonatomic, weak) IBOutlet UIButton *cancelBtn;

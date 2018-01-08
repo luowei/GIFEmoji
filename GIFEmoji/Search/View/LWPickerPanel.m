@@ -7,6 +7,7 @@
 #import "AppDefines.h"
 #import "UIView+extensions.h"
 #import "LWSymbolService.h"
+#import "View+MASAdditions.h"
 
 
 @implementation LWPickerPanel {
@@ -18,6 +19,12 @@
 +(instancetype)showPickerPanelInView:(UIView *)view{
     LWPickerPanel *pickerPanel = [[NSBundle mainBundle] loadNibNamed:@"LWPickerPanel" owner:self options:nil][0];
     [view addSubview:pickerPanel];
+    [pickerPanel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(view);
+        make.bottom.equalTo(view);
+        make.height.mas_equalTo(240);
+    }];
+
     return pickerPanel;
 }
 
@@ -25,12 +32,13 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
 
-    [self.okBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self.cancelBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    self.bottomLine.backgroundColor = [UIColor whiteColor];
+    self.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.layer.shadowOffset = CGSizeMake(0, -2);
+    self.layer.shadowOpacity = 0.8;
+    self.layer.shadowRadius = 4;
 
     //初始化数据源
-   _graphicCategroyArr = [[LWSymbolService symbolService] categoriesWithType:@"graphics"];
+   _graphicCategroyArr = [[LWSymbolService symbolService] categoriesList];
     if(_graphicCategroyArr.count > 0){
         _selectCategoryId = _graphicCategroyArr.count - 1;
         LWCategory *category = _graphicCategroyArr[(NSUInteger) _selectCategoryId];
@@ -49,7 +57,6 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    self.frame = self.superview.bounds;
 }
 
 

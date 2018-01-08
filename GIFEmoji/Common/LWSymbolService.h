@@ -72,6 +72,7 @@
 //根据id设置url
 - (BOOL)updateSymbolWithId:(NSUInteger)_id file_url:(NSString *)file_url http_url:(NSString *)http_url;
 
+- (NSMutableArray<LWCategory *> *)categoriesList;
 @end
 
 
