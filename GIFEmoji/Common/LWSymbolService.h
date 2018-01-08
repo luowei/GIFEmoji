@@ -18,6 +18,9 @@
 
 + (LWSymbolService *)symbolService;
 
+//获取分类列表
+- (NSMutableArray<LWCategory *> *)categoriesList;
+
 //查询categories
 -(NSMutableArray <LWCategory *>*)categoriesWithType:(NSString *)type;
 
@@ -45,8 +48,6 @@
 //根据id删除类型
 -(BOOL)deleteCategoryWithId:(NSUInteger)_id;
 
-//根据id交换两条Symbol记录的排序
-- (BOOL)exchangeSymbolOrderWithSourceId:(NSUInteger)sourceId destinationId:(NSUInteger)destinationId isAsc:(BOOL)isAsc;
 
 
 #pragma mark - Symbol
@@ -72,7 +73,6 @@
 //根据id设置url
 - (BOOL)updateSymbolWithId:(NSUInteger)_id file_url:(NSString *)file_url http_url:(NSString *)http_url;
 
-- (NSMutableArray<LWCategory *> *)categoriesList;
 @end
 
 

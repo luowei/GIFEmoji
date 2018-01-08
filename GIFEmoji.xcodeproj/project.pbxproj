@@ -212,6 +212,7 @@
 		EA8A14EC20034F02004C3DFD /* LWWKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8A14EB20034F02004C3DFD /* LWWKWebViewController.m */; };
 		EA8A14F220034F16004C3DFD /* failedPage.htm in Resources */ = {isa = PBXBuildFile; fileRef = EA8A14EF20034F16004C3DFD /* failedPage.htm */; };
 		EA8A14F320034F16004C3DFD /* MyWKWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8A14F020034F16004C3DFD /* MyWKWebView.m */; };
+		EA8A14F52003DE87004C3DFD /* GIFEmojiData in Resources */ = {isa = PBXBuildFile; fileRef = EA8A14F42003DE87004C3DFD /* GIFEmojiData */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -618,6 +619,7 @@
 		EA8A14EF20034F16004C3DFD /* failedPage.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = failedPage.htm; sourceTree = "<group>"; };
 		EA8A14F020034F16004C3DFD /* MyWKWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWKWebView.m; sourceTree = "<group>"; };
 		EA8A14F120034F16004C3DFD /* MyWKWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWKWebView.h; sourceTree = "<group>"; };
+		EA8A14F42003DE87004C3DFD /* GIFEmojiData */ = {isa = PBXFileReference; lastKnownFileType = file; path = GIFEmojiData; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -785,6 +787,7 @@
 		BEF063E385CE627492221FCB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				BEF06DF7A1D522A127A4F384 /* data */,
 				EA74386420008F5600AD0291 /* Localizable.strings */,
 			);
 			path = Resources;
@@ -1173,6 +1176,14 @@
 			path = ViewHierarchy;
 			sourceTree = "<group>";
 		};
+		BEF06DF7A1D522A127A4F384 /* data */ = {
+			isa = PBXGroup;
+			children = (
+				EA8A14F42003DE87004C3DFD /* GIFEmojiData */,
+			);
+			path = data;
+			sourceTree = "<group>";
+		};
 		BEF06E6311C0850E08D932DD /* Masonry */ = {
 			isa = PBXGroup;
 			children = (
@@ -1510,6 +1521,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA8A14F52003DE87004C3DFD /* GIFEmojiData in Resources */,
 				EA8A14F220034F16004C3DFD /* failedPage.htm in Resources */,
 				EA7437F71FFCA2E600AD0291 /* LaunchScreen.storyboard in Resources */,
 				EA7438551FFE422500AD0291 /* YMSAlbumPickerViewController.xib in Resources */,

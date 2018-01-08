@@ -5,6 +5,7 @@
 
 #import "LWSymbolService.h"
 #import "AppDefines.h"
+#import "LWHelper.h"
 
 
 @implementation LWSymbolService {
@@ -12,8 +13,8 @@
 }
 
 + (LWSymbolService *)symbolService {
-    NSString *filePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:DBFileName];
-    LWSymbolService *service = [[LWSymbolService alloc] initWithDBPath:filePath];
+    NSString *dbPath = [LWHelper copy2DocumentsWithFileName:DBFileName];
+    LWSymbolService *service = [[LWSymbolService alloc] initWithDBPath:dbPath];
     return service;
 }
 
@@ -60,16 +61,15 @@
 
 #pragma mark - Category
 
-//查询categories
-- (NSMutableArray <LWCategory *> *)categoriesWithType:(NSString *)type {
+//获取分类列表
+- (NSMutableArray<LWCategory *> *)categoriesList {
     if (!_db) {
         [self openDatabase];
     }
 
-    NSMutableArray *list = @[].mutableCopy;
+    NSMutableArray <LWCategory *>*list = @[].mutableCopy;
 
-    type = [self handleWhereParame:type];
-    NSString *sqlQuery = [NSString stringWithFormat:@"select `id`,`type`,`name`,`en_name`,`file_url`,`http_url`,`selected`,`order` from categories where `type` %@ order by `order`;", type];
+    NSString *sqlQuery = [NSString stringWithFormat:@"select `id`,`type`,`name`,`en_name`,`file_url`,`http_url`,`selected` from categories order by `id`;"];
     //NSString *sqlQuery = [NSString stringWithFormat:@"SELECT * FROM words_wubi_combined WHERE code LIKE '%@%' ORDER BY count ASC LIMIT 20", param];
     sqlite3_stmt *statement;
 
@@ -82,8 +82,38 @@
             NSString *file_url = [self stringWith:statement index:4];;
             NSString *http_url = [self stringWith:statement index:5];;
             BOOL selectStatus = sqlite3_column_int(statement, 6) != 0;
-            NSUInteger order = (NSUInteger) sqlite3_column_int(statement, 7);
-            LWCategory *categroy = [[LWCategory alloc] initWithId:_id type:typeText name:name en_name:en_name file_url:file_url http_url:http_url select:selectStatus order:order];
+            LWCategory *categroy = [[LWCategory alloc] initWithId:_id type:typeText name:name en_name:en_name file_url:file_url http_url:http_url select:selectStatus order:0];
+            [list addObject:categroy];
+        }
+        sqlite3_finalize(statement);
+    }
+    return list;
+}
+
+
+//查询categories
+- (NSMutableArray <LWCategory *> *)categoriesWithType:(NSString *)type {
+    if (!_db) {
+        [self openDatabase];
+    }
+
+    NSMutableArray *list = @[].mutableCopy;
+
+    type = [self handleWhereParame:type];
+    NSString *sqlQuery = [NSString stringWithFormat:@"select `id`,`type`,`name`,`en_name`,`file_url`,`http_url`,`selected` from categories where `type` %@ order by `id`;", type];
+    //NSString *sqlQuery = [NSString stringWithFormat:@"SELECT * FROM words_wubi_combined WHERE code LIKE '%@%' ORDER BY count ASC LIMIT 20", param];
+    sqlite3_stmt *statement;
+
+    if (sqlite3_prepare_v2(_db, [sqlQuery UTF8String], -1, &statement, nil) == SQLITE_OK) {
+        while (sqlite3_step(statement) == SQLITE_ROW) {
+            NSUInteger _id = (NSUInteger) sqlite3_column_int(statement, 0);
+            NSString *typeText = [self stringWith:statement index:1];;
+            NSString *name = [self stringWith:statement index:2];;
+            NSString *en_name = [self stringWith:statement index:3];;
+            NSString *file_url = [self stringWith:statement index:4];;
+            NSString *http_url = [self stringWith:statement index:5];;
+            BOOL selectStatus = sqlite3_column_int(statement, 6) != 0;
+            LWCategory *categroy = [[LWCategory alloc] initWithId:_id type:typeText name:name en_name:en_name file_url:file_url http_url:http_url select:selectStatus order:0];
             [list addObject:categroy];
         }
         sqlite3_finalize(statement);
@@ -123,7 +153,7 @@
 
     type = [self handleWhereParame:type];
 
-    NSString *sqlQuery = [NSString stringWithFormat:@"select `id`,`type`,`name`,`en_name`,`file_url`,`http_url`,`selected`,`order` from categories where `selected` <> 0 and `type` %@ order by `order`;", type];
+    NSString *sqlQuery = [NSString stringWithFormat:@"select `id`,`type`,`name`,`en_name`,`file_url`,`http_url`,`selected` from categories where `selected` <> 0 and `type` %@ order by `id`;", type];
     sqlite3_stmt *statement;
 
     LWCategory *categroy = nil;
@@ -136,8 +166,7 @@
             NSString *file_url = [self stringWith:statement index:4];;
             NSString *http_url = [self stringWith:statement index:5];;
             BOOL selectStatus = sqlite3_column_int(statement, 6) != 0;
-            NSUInteger order = (NSUInteger) sqlite3_column_int(statement, 7);
-            categroy = [[LWCategory alloc] initWithId:_id type:typeText name:name en_name:en_name file_url:file_url http_url:http_url select:selectStatus order:order];
+            categroy = [[LWCategory alloc] initWithId:_id type:typeText name:name en_name:en_name file_url:file_url http_url:http_url select:selectStatus order:0];
             break;
         }
         sqlite3_finalize(statement);
@@ -176,7 +205,7 @@
     type = [self handleWhereParame:type];
 
     //查询
-    NSString *selectSQL = [NSString stringWithFormat:@"select `id`,`type`,`name`,`en_name`,`file_url`,`http_url`,`selected`,`order` from categories where type %@ order by `order` limit 1;",type];
+    NSString *selectSQL = [NSString stringWithFormat:@"select `id`,`type`,`name`,`en_name`,`file_url`,`http_url`,`selected` from categories where type %@ order by `id` limit 1;",type];
     sqlite3_stmt *statement;
 
     LWCategory *categroy = nil;
@@ -189,8 +218,7 @@
             NSString *file_url = [self stringWith:statement index:4];;
             NSString *http_url = [self stringWith:statement index:5];;
             BOOL selectStatus = sqlite3_column_int(statement, 6) != 0;
-            NSUInteger order = (NSUInteger) sqlite3_column_int(statement, 7);
-            categroy = [[LWCategory alloc] initWithId:_id type:typeText name:name en_name:en_name file_url:file_url http_url:http_url select:selectStatus order:order];
+            categroy = [[LWCategory alloc] initWithId:_id type:typeText name:name en_name:en_name file_url:file_url http_url:http_url select:selectStatus order:0];
             break;
         }
         sqlite3_finalize(statement);
@@ -231,9 +259,6 @@
     NSString *insertSql = [NSString stringWithFormat:@"insert into categories(`type`,`name`,`en_name`,`file_url`,`http_url`,`selected`) values(%@,%@,%@,%@,%@,0);", update_type, update_name, update_en_name, update_file_url, update_http_url];
     isSuccess = [self updateSql:insertSql];
 
-    NSString *updateOrderSql = [NSString stringWithFormat:@"update categories set `order` = `id` where type %@ and name %@ and en_name %@ and file_url %@ and http_url %@;",where_type,where_name,where_en_name,where_file_url,where_http_url];
-    [self updateSql:updateOrderSql];
-
     return isSuccess;
 }
 
@@ -248,38 +273,6 @@
     return isSuccess;
 }
 
-//根据id交换两条Category记录的排序
-- (BOOL)exchangeCategoryOrderWithSourceId:(NSUInteger)sourceId destinationId:(NSUInteger)destinationId {
-
-    NSString *sourceOrderSql = [NSString stringWithFormat:@"select order from categories where id = %i",sourceId];
-
-    //查询
-    NSUInteger order = 0;
-    sqlite3_stmt *statement;
-    if (sqlite3_prepare_v2(_db, [sourceOrderSql UTF8String], -1, &statement, nil) == SQLITE_OK) {
-        while (sqlite3_step(statement) == SQLITE_ROW) {
-            order = (NSUInteger) sqlite3_column_int(statement, 0);
-            break;
-        }
-        sqlite3_finalize(statement);
-    }
-
-    //更新order
-    if(order==0){
-        return NO;
-    }
-    //修改source row 的 order
-    NSString *updateSourceSql = [NSString stringWithFormat:@"update categories set `order` = (select `order` from categories where `id` = %i ) where `id` = %i ;",destinationId,sourceId];
-    //修改destination row 的 order
-    NSString *updateDestinationSql = [NSString stringWithFormat:@"update categories set `order` = %i where `id` = %i ;",order,destinationId];
-
-    BOOL isSuccess = [self execSql:updateSourceSql];
-    isSuccess = [self execSql:updateDestinationSql];
-
-    return isSuccess;
-}
-
-
 
 #pragma mark - Symbol
 
@@ -289,7 +282,7 @@
         [self openDatabase];
     }
     NSMutableArray *list = @[].mutableCopy;
-    NSString *sqlQuery = [NSString stringWithFormat:@"select `id`,`category_id`,`title`,`text`,`file_url`,`http_url`,`frequency`,`order` from symbols where category_id = %i order by `order` asc,`frequency` desc,`modify_date` desc;", categoryId];
+    NSString *sqlQuery = [NSString stringWithFormat:@"select `id`,`category_id`,`title`,`text`,`file_url`,`http_url`,`frequency` from symbols where category_id = %i order by `id` asc,`frequency` desc,`modify_date` desc;", categoryId];
     //NSString *sqlQuery = [NSString stringWithFormat:@"SELECT * FROM words_wubi_combined WHERE code LIKE '%@%' ORDER BY count ASC LIMIT 20", param];
     sqlite3_stmt *statement;
 
@@ -302,8 +295,7 @@
             NSString *file_url = [self stringWith:statement index:4];;
             NSString *http_url = [self stringWith:statement index:5];;
             NSUInteger frequency = (NSUInteger) sqlite3_column_int(statement, 6);
-            NSUInteger order = (NSUInteger) sqlite3_column_int(statement, 7);
-            LWSymbol *symbol = [[LWSymbol alloc] initWithId:_id categoryId:categyId title:title text:text file_url:file_url http_url:http_url frequency:frequency order:order];
+            LWSymbol *symbol = [[LWSymbol alloc] initWithId:_id categoryId:categyId title:title text:text file_url:file_url http_url:http_url frequency:frequency order:0];
             [list addObject:symbol];
         }
         sqlite3_finalize(statement);
@@ -335,10 +327,6 @@
 
     NSString *insertSql = [NSString stringWithFormat:@"insert into symbols(`category_id`,`title`,`text`,`file_url`,`http_url`) values(%i,%@,%@,%@,%@)", categoryId, update_title, update_text, update_file_url, update_http_url];
     isSuccess = [self updateSql:insertSql];
-
-    NSString *updateorderSql = [NSString stringWithFormat:@"update symbols set `order` = `id` where `category_id` = %i and `title` %@ and `text` %@ and `file_url` %@ and `http_url` %@;",categoryId, where_title, where_text, where_file_url, where_http_url];
-    BOOL isUpdateSuccess = [self updateSql:updateorderSql];
-    Log(@"======update order %@",isUpdateSuccess ? @"success" : @"faild");
 
     return isSuccess;
 }
@@ -417,39 +405,6 @@
     return isSuccess;
 }
 
-//根据id交换两条Symbol记录的排序
-- (BOOL)exchangeSymbolOrderWithSourceId:(NSUInteger)sourceId destinationId:(NSUInteger)destinationId isAsc:(BOOL)isAsc {
-
-    NSString *sourceOrderSql = [NSString stringWithFormat:@"select `order` from symbols where `id` = %i",destinationId];
-
-    //查询
-    NSUInteger destinationOrder = 0;
-    sqlite3_stmt *statement;
-    if (sqlite3_prepare_v2(_db, [sourceOrderSql UTF8String], -1, &statement, nil) == SQLITE_OK) {
-        while (sqlite3_step(statement) == SQLITE_ROW) {
-            destinationOrder = (NSUInteger) sqlite3_column_int(statement, 0);
-            break;
-        }
-        sqlite3_finalize(statement);
-    }
-
-    //更新order
-    if(destinationOrder==0){
-        return NO;
-    }
-    //修改source row 的 order
-    NSString *updateSourceSql = [NSString stringWithFormat:@"update symbols set `order` = `order` -1  where `id` > %i and `id` <= %i;",sourceId,destinationId];
-    if(!isAsc){
-        updateSourceSql = [NSString stringWithFormat:@"update symbols set `order` = `order` +1  where `id` > %i and `id` <= %i;",sourceId,destinationId];
-    }
-    //修改destination row 的 order
-    NSString *updateDestinationSql = [NSString stringWithFormat:@"update symbols set `order` = %i where `id` = %i ;",destinationOrder,sourceId];
-
-    BOOL isSuccess = [self execSql:updateSourceSql];
-    isSuccess = [self execSql:updateDestinationSql];
-
-    return isSuccess;
-}
 
 //更新记录
 - (BOOL)updateSql:(NSString *)query {
@@ -516,10 +471,6 @@
     return param;
 }
 
-
-- (NSMutableArray<LWCategory *> *)categoriesList {
-    return nil;
-}
 
 @end
 

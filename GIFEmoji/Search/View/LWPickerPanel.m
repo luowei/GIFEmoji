@@ -22,7 +22,7 @@
     [pickerPanel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(view);
         make.bottom.equalTo(view);
-        make.height.mas_equalTo(240);
+        make.height.mas_equalTo(200);
     }];
 
     return pickerPanel;
@@ -87,7 +87,6 @@
 
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.pickerView.bounds.size.width, self.pickerView.bounds.size.height)];
     titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.textColor = [UIColor whiteColor];
     titleLabel.font = [UIFont systemFontOfSize:16];
     titleLabel.text = NSLocalizedString(text, nil);
     [titleLabel sizeToFit];
@@ -95,6 +94,9 @@
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    if(!_graphicCategroyArr || _graphicCategroyArr.count <= 0){
+        return;
+    }
     LWCategory *category = _graphicCategroyArr[(NSUInteger) row];
     _selectCategoryId = category._id;
     _selectCategoryName = category.name;
