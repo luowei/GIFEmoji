@@ -33,6 +33,8 @@
 #import "LWHelper.h"
 #import "LWGIFPreviewViewController.h"
 #import "LWFramePreviewViewController.h"
+#import "LWWKWebViewController.h"
+#import "AppDelegate.h"
 
 @interface GenGIFViewController () {
 }
@@ -52,6 +54,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showDetailVC:) name:NotificationShowFrom_LWHomeViewController object:nil];
 
     [self updateUIAppearance];
 
@@ -84,6 +88,42 @@
     if(self.selectedMode == StaticPhotosMode && self.exportImageFrames){
         [self setImages:self.exportImageFrames toImageView:self.imagePreview];
     }
+}
+
+
+- (void)showDetailVC:(NSNotification *)notification {
+    NSDictionary *dict = notification.userInfo;
+    NSURL *url = dict[@"URL"];
+
+    NSString *scheme = [[url scheme] lowercaseString];
+    NSString *host = [url host];
+    NSString *hostSufix = [host subStringWithRegex:@".*\\.([\\w_-]*)$" matchIndex:1];
+    NSDictionary *queryDict = [url queryDictionary];
+
+    UIViewController *controller = nil;
+    if ([scheme isEqualToString:@"gifemoji"]) {
+        NSString *urlString = [queryDict[@"url"] stringByRemovingPercentEncoding];
+        urlString = (NSString *) CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (__bridge CFStringRef) urlString, (CFStringRef) @"!NULL,'()*+,-./:;=?@_~%#[]", NULL, kCFStringEncodingUTF8));
+        NSURL *detailURL = [NSURL URLWithString:urlString];
+
+        if (([hostSufix isEqualToString:@"http"] || [hostSufix isEqualToString:@"https"]) && detailURL) {
+            controller = [LWWKWebViewController wkWebViewControllerWithURL:detailURL];
+        }
+
+    }else if (([hostSufix isEqualToString:@"http"] || [hostSufix isEqualToString:@"https"])) {
+        controller = [LWWKWebViewController wkWebViewControllerWithURL:url];
+    }
+
+    if (controller) {
+        NSString *title = [queryDict[@"title"] stringByRemovingPercentEncoding];
+        controller.navigationItem.title = title ?: @"";
+        [controller setHidesBottomBarWhenPushed:YES];
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 

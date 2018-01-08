@@ -24,6 +24,7 @@
 #import "LWSymbolService.h"
 #import "AppDelegate.h"
 #import "GenGIFViewController.h"
+#import "LWWKWebViewController.h"
 
 
 #define Item_Spacing 6
@@ -108,13 +109,16 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
-    LWImageModel *item = self.imageList[(NSUInteger) indexPath.item];
+    //LWImageModel *item = self.imageList[(NSUInteger) indexPath.item];
 
     LWCollectionViewCell *cell = (LWCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
     [[UIPasteboard generalPasteboard] setString:cell.objURL];
 
-    //todo:用webView打开相应的网址
-
+    //用webView打开相应的网址
+    NSURL *url = [NSURL URLWithString:cell.objURL];
+    LWWKWebViewController *controller = [LWWKWebViewController wkWebViewControllerWithURL:url];
+    [controller setHidesBottomBarWhenPushed:YES];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 #pragma mark - UICollectionViewDelegateFlowLayout
