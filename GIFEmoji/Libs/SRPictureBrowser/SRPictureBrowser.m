@@ -14,6 +14,8 @@
 #import "SRPictureHUD.h"
 #import "View+MASAdditions.h"
 #import "UIColor+HexValue.h"
+#import "LWFramePreviewViewController.h"
+#import "UIView+extensions.h"
 
 @interface SRPictureBrowser () <UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate, UIActionSheetDelegate, SRPictureCellDelegate, SRPictureViewDelegate>
 
@@ -236,11 +238,17 @@
 }
 
 - (void)pictureViewDidLongPress {
-    
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self
-                                                    cancelButtonTitle:@"Cancel"
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"Save", nil];
+
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle: nil
+                                                             delegate: self
+                                                    cancelButtonTitle: nil
+                                               destructiveButtonTitle: nil
+                                                    otherButtonTitles: nil];
+    [actionSheet addButtonWithTitle:NSLocalizedString(@"Save", nil)];
+    [actionSheet addButtonWithTitle:NSLocalizedString(@"Share", nil)];
+    [actionSheet addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+    [actionSheet setCancelButtonIndex: 2];
+
     [actionSheet showInView:self];
 }
 
@@ -248,6 +256,11 @@
     
     if (buttonIndex == 0) {
         UIImageWriteToSavedPhotosAlbum(self.currentPictureView.imageView.image, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
+    }else if(buttonIndex == 1){
+        LWFramePreviewViewController *vc = [self superViewWithClass:[LWFramePreviewViewController class]];
+        UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[self.currentPictureView.imageView.image] applicationActivities:nil];
+        activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypePrint];
+        [vc presentViewController:activityVC animated:TRUE completion:nil];
     }
 }
 

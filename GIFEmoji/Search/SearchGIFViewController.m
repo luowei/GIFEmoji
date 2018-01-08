@@ -22,6 +22,8 @@
 #import "FCFileManager.h"
 #import "UIView+extensions.h"
 #import "LWSymbolService.h"
+#import "AppDelegate.h"
+#import "GenGIFViewController.h"
 
 
 #define Item_Spacing 6
@@ -59,11 +61,13 @@
 
     //构建分派源
     _source = dispatch_source_create(DISPATCH_SOURCE_TYPE_DATA_ADD, 0, 0, dispatch_get_main_queue());
-    __weak typeof(self) weakSelf = self;
+//    __weak typeof(self) weakSelf = self;
     dispatch_source_set_event_handler(_source, ^{
-        [weakSelf reloadImageSearch];
+        [self reloadImageSearch];
     });
     dispatch_resume(_source);
+
+    [self reloadSearchResult];  //发送发派源Merge信息，调用网络请求
 }
 
 #pragma mark - Action
@@ -294,11 +298,42 @@
     };
 }
 
-- (IBAction)shareAction:(UIButton *)sender {
+- (IBAction)shareBtnTouchUpInside:(UIButton *)sender {
+    NSData *data = self.imageView.animatedImage.data;
+    if (!data) {
+        data = UIImagePNGRepresentation(self.imageView.image);
+    }
 
-
+    SearchGIFViewController *controller = [self superViewWithClass:[SearchGIFViewController class]];
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[data] applicationActivities:nil];
+    activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypePrint];
+    [controller presentViewController:activityVC animated:TRUE completion:nil];
 }
 
+- (IBAction)linkBtnTouchUpInside:(UIButton *)sender {
+    [App_Delegate setTabBarSelectedIndex:0];
+    [self performSelector:@selector(linkGenGIFVC) withObject:nil afterDelay:0.3];
+}
+
+- (void)linkGenGIFVC {
+    NSData *gifData = self.imageView.animatedImage.data;
+    UIImage *image = self.imageView.image;
+    UINavigationController *navVC = (UINavigationController *) App_Delegate.tabBarController.viewControllers.firstObject;
+    GenGIFViewController *vc = navVC.viewControllers.firstObject;
+    if(!vc){
+        return;
+    }
+    if(gifData){
+        [vc updateSelectedMode:GIFMode];
+        vc.exportGIFImageData = gifData;
+        vc.imagePreview.animatedImage = [FLAnimatedImage animatedImageWithGIFData:gifData];
+
+    }else if(image){
+        [vc updateSelectedMode:StaticPhotosMode];
+        vc.exportImageFrames = @[image];
+        [vc setImages:vc.exportImageFrames toImageView:vc.imagePreview];
+    }
+}
 
 - (void)fillWithImageModel:(LWImageModel *)model searchText:(NSString *)text {
     self.thumbnailURL = model.thumbURL;

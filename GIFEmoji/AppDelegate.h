@@ -8,10 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+
+#define NotificationShowFrom_LWHomeViewController @"NotificationShowFrom_LWHomeViewController"
+
+#define App_Delegate ((AppDelegate *)[UIApplication sharedApplication].delegate)
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
+@property(nonatomic, strong) UITabBarController *tabBarController;
+
+- (void)setTabBarSelectedIndex:(NSUInteger)index;
 
 @end
 

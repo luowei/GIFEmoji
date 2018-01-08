@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "YMSPhotoPickerViewController.h"
+#import "AppDefines.h"
 
 @class PHLivePhotoView;
 @class LWAVPlayerView;
@@ -27,6 +28,16 @@
 @property (nonatomic, weak) IBOutlet UIButton *exportGIFBtn;
 @property (nonatomic, weak) IBOutlet UIButton *exportFrameBtn;
 
+
+@property(nonatomic, readonly) SelectedMode selectedMode;
+
+@property(nonatomic, strong) NSData *exportGIFImageData;
+@property(nonatomic, strong) NSArray <UIImage *> *exportImageFrames;
+
+- (void)updateSelectedMode:(SelectedMode)selectedMode;
+
+//把一个images数组设置到ImageView
+- (void)setImages:(NSArray <UIImage *> *)imageList toImageView:(FLAnimatedImageView *)imageView;
 
 @end
 

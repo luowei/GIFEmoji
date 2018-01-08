@@ -40,16 +40,10 @@
 @property(nonatomic, strong) LWLivePhotoView *liveView;
 @property(nonatomic, strong) LWAVPlayerView *videoPlayerView;
 
-@property(nonatomic, readonly) SelectedMode selectedMode;
-
 @property(nonatomic, strong) NSURL *selectedVideoFileURL;
 
 @property(nonatomic, strong) NSURL *livePhotoVideoURL;
 @property(nonatomic, strong) NSURL *livePhotoFirstImageURL;
-
-@property(nonatomic, strong) NSData *exportGIFImageData;
-@property(nonatomic, strong) NSArray <UIImage *> *exportImageFrames;
-
 
 @end
 

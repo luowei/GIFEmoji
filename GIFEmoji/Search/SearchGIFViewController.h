@@ -26,6 +26,7 @@
 @property (nonatomic, weak) IBOutlet FLAnimatedImageView *imageView;
 @property (nonatomic, weak) IBOutlet UIButton *faveritaBtn;
 @property (weak, nonatomic) IBOutlet UIButton *shareBtn;
+@property (weak, nonatomic) IBOutlet UIButton *linkBtn;
 
 @property(nonatomic, copy) NSString *thumbnailURL;
 @property(nonatomic, copy) NSString *middleURL;
