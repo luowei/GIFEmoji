@@ -4,9 +4,20 @@
 //
 
 #import "LWMyGIFViewController.h"
+#import "LWTopScrollView.h"
+#import "LWSymbolService.h"
 
 
 @implementation LWMyGIFViewController {
 
 }
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    NSArray <LWCategory *>*categoryList = [[LWSymbolService symbolService] categoriesList];
+    [self.topScrollView setupSubviewWithCategoryList:categoryList];
+}
+
+
 @end

@@ -533,7 +533,7 @@
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="gTK-Re-0B0"/>
-                                            <constraint firstAttribute="width" constant="60" id="wh3-YT-UKs"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="wh3-YT-UKs"/>
                                         </constraints>
                                         <state key="normal" title="设置">
                                             <color key="titleColor" red="0.15686274510000001" green="0.52549019610000003" blue="0.17254901959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -547,7 +547,7 @@
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="Yd4-B8-VmD"/>
-                                            <constraint firstAttribute="width" constant="60" id="jYl-5e-ZXV"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="jYl-5e-ZXV"/>
                                         </constraints>
                                         <state key="normal" title="刷新">
                                             <color key="titleColor" red="0.15686274510000001" green="0.52549019610000003" blue="0.17254901959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -619,39 +619,52 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="6nR-xz-bjf" kind="relationship" relationship="rootViewController" id="Rlt-mA-Mr2"/>
+                        <segue destination="Zyw-HI-621" kind="relationship" relationship="rootViewController" id="Peu-Ys-HiY"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jsQ-Ja-ekq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="748" y="1051"/>
         </scene>
-        <!--MyGIF Page-->
-        <scene sceneID="kUu-KE-Cxs">
-            <objects>
-                <pageViewController storyboardIdentifier="LWMyGIFPageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="6nR-xz-bjf" userLabel="MyGIF Page" customClass="LWMyGIFPageViewController" sceneMemberID="viewController">
-                    <extendedEdge key="edgesForExtendedLayout"/>
-                    <navigationItem key="navigationItem" title="MyGIF" id="a9w-Lw-Tji"/>
-                </pageViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hcH-wc-gDh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1502" y="1050"/>
-        </scene>
         <!--MyGIF-->
         <scene sceneID="bd3-Ni-c1c">
             <objects>
                 <viewController storyboardIdentifier="LWMyGIFViewController" id="Zyw-HI-621" userLabel="MyGIF" customClass="LWMyGIFViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Y9M-cn-AwU">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iR7-jo-Idn" userLabel="TopScrollView" customClass="LWTopScrollView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="AgD-6J-ZyH"/>
+                                </constraints>
+                            </scrollView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="167-IX-bOI" userLabel="ContainerScrollView" customClass="LWContainerScrollView">
+                                <rect key="frame" x="0.0" y="40" width="375" height="514"/>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="167-IX-bOI" firstAttribute="top" secondItem="iR7-jo-Idn" secondAttribute="bottom" id="21C-v4-QlN"/>
+                            <constraint firstItem="iR7-jo-Idn" firstAttribute="top" secondItem="NsA-yw-gn7" secondAttribute="top" id="4Sb-w3-f5x"/>
+                            <constraint firstItem="NsA-yw-gn7" firstAttribute="trailing" secondItem="167-IX-bOI" secondAttribute="trailing" id="IW2-4h-0Ms"/>
+                            <constraint firstItem="167-IX-bOI" firstAttribute="leading" secondItem="NsA-yw-gn7" secondAttribute="leading" id="KXS-VC-X25"/>
+                            <constraint firstItem="NsA-yw-gn7" firstAttribute="bottom" secondItem="167-IX-bOI" secondAttribute="bottom" id="bW3-Ui-Xog"/>
+                            <constraint firstItem="NsA-yw-gn7" firstAttribute="trailing" secondItem="iR7-jo-Idn" secondAttribute="trailing" id="kMr-HL-ytc"/>
+                            <constraint firstItem="iR7-jo-Idn" firstAttribute="leading" secondItem="NsA-yw-gn7" secondAttribute="leading" id="qzH-n0-v1X"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="NsA-yw-gn7"/>
                     </view>
                     <navigationItem key="navigationItem" title="My GIF" id="21p-yh-ucO"/>
+                    <connections>
+                        <outlet property="containerScrollView" destination="167-IX-bOI" id="Ds6-hr-Yyu"/>
+                        <outlet property="topScrollView" destination="iR7-jo-Idn" id="KOz-Ip-pM4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GUk-NZ-HOt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2209" y="1050"/>
+            <point key="canvasLocation" x="1502" y="1050"/>
         </scene>
     </scenes>
     <resources>

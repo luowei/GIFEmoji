@@ -296,7 +296,7 @@
 
 
         //保存图片表情到相应的分类中
-        [[LWSymbolService symbolService] insertSymbolWithCategoryId:(NSUInteger) categoryId title:nil text:imgName file_url:file_url http_url:nil];
+        [[LWSymbolService symbolService] insertSymbolWithCategoryId:(NSUInteger) categoryId title:nil text:imgName file_url:file_url http_url:weakSelf.objURL];
 
         weakSelf.faveritaBtn.selected = YES;
     };
@@ -349,7 +349,7 @@
 //    NSURL *url = [NSURL fileURLWithPath:urlStr];
 //    Log(@"===gifURL:%@",imageURL.absoluteString);
 
-    //此处要优化gif文件大小
+    //
     NSString *key = [[SDWebImageManager sharedManager] cacheKeyForURL:imageURL];
     NSData *iData = [[SDImageCache sharedImageCache] diskImageDataBySearchingAllPathsForKey:key];
 

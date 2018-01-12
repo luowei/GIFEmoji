@@ -5,6 +5,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class LWTopScrollView;
+@class LWContainerScrollView;
+
 
 @interface LWMyGIFViewController : UIViewController
+
+@property (nonatomic, weak) IBOutlet LWTopScrollView *topScrollView;
+@property (nonatomic, weak) IBOutlet LWContainerScrollView *containerScrollView;
+
 @end
