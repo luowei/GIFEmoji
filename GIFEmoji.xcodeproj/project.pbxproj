@@ -19,6 +19,7 @@
 		BEF060ADAB83D570D92BEFC8 /* FLEXDefaultsExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF0607D09AA3077AF309E9C /* FLEXDefaultsExplorerViewController.m */; };
 		BEF060D0BD4F9B886BF40F47 /* MASViewConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF061E9ED53135114BF5E41 /* MASViewConstraint.m */; };
 		BEF060F674411FB3F75B58CC /* FLEXObjectExplorerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF061B4514F7A9EEAB75183 /* FLEXObjectExplorerFactory.m */; };
+		BEF060FCC60AA4301377D2F6 /* LWTextInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF0615780AA1DED96CEB914 /* LWTextInputView.m */; };
 		BEF06144E00EC408AA294DE0 /* FLEXLayerExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF0695CFA8ED2CDD4F3CCD0 /* FLEXLayerExplorerViewController.m */; };
 		BEF06146DF3641283C949C59 /* CGImageContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF060C8CC22209E96EE8565 /* CGImageContainer.m */; };
 		BEF061577C7C959ADF816DFB /* FLEXFieldEditorView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06448FA0A543B911EB27E /* FLEXFieldEditorView.m */; };
@@ -252,10 +253,12 @@
 		BEF061248346940FE30E0103 /* FLEXExplorerToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXExplorerToolbar.m; sourceTree = "<group>"; };
 		BEF061369A6AEA6055C0B512 /* UIImageView+HighlightedWebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+HighlightedWebCache.m"; sourceTree = "<group>"; };
 		BEF0613B02CE1FACCF2B8EBF /* FLEXPropertyEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXPropertyEditorViewController.h; sourceTree = "<group>"; };
+		BEF0615780AA1DED96CEB914 /* LWTextInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWTextInputView.m; sourceTree = "<group>"; };
 		BEF0616585EDDE442D16076C /* FLEXDictionaryExplorerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXDictionaryExplorerViewController.h; sourceTree = "<group>"; };
 		BEF0618221A7B99CF5ED687C /* UIButton+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+WebCache.h"; sourceTree = "<group>"; };
 		BEF06193F2E4B71A6C1230F0 /* FLEXCookiesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXCookiesTableViewController.m; sourceTree = "<group>"; };
 		BEF061A894184B114A5487E0 /* FLEXNetworkRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXNetworkRecorder.h; sourceTree = "<group>"; };
+		BEF061A8E026D1B814831869 /* LWTextInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWTextInputView.h; sourceTree = "<group>"; };
 		BEF061B4514F7A9EEAB75183 /* FLEXObjectExplorerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXObjectExplorerFactory.m; sourceTree = "<group>"; };
 		BEF061D7272F35DA6D289951 /* NSImage+ANImageBitmapRep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+ANImageBitmapRep.m"; sourceTree = "<group>"; };
 		BEF061DCC66352C7D82A1FB8 /* FLEXArgumentInputSwitchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXArgumentInputSwitchView.m; sourceTree = "<group>"; };
@@ -860,6 +863,8 @@
 				BEF060FADD12B24FFB3E5BA7 /* LWContainerScrollView.h */,
 				BEF062A63DA3C89D670EEEC6 /* LWMyGIFCollectionView.m */,
 				BEF06B821D9CD43807A18F52 /* LWMyGIFCollectionView.h */,
+				BEF0615780AA1DED96CEB914 /* LWTextInputView.m */,
+				BEF061A8E026D1B814831869 /* LWTextInputView.h */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1761,6 +1766,7 @@
 				BEF06F0616BD80BD1F86703D /* LWTopScrollView.m in Sources */,
 				BEF06913870E3CC7FA2C1D05 /* LWContainerScrollView.m in Sources */,
 				BEF069F7042702CD1DD21154 /* LWMyGIFCollectionView.m in Sources */,
+				BEF060FCC60AA4301377D2F6 /* LWTextInputView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

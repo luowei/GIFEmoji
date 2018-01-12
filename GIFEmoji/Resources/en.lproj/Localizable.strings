@@ -20,5 +20,12 @@
 
 "Save" = "Save";
 "Share" = "Share";
+"Ok" = "Ok";
 "Cancel" = "Cancel";
 "Settings" = "Settings";
+
+"Add Favorite Category" = "Add Favorite Category";
+"Input Category Name" = "Input Category Name";
+
+"Add Success" = "Add Success";
+"Add Faild" = "Add Faild";

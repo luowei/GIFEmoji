@@ -29,12 +29,41 @@
     self.scrollsToTop = NO;
     self.contentSize = CGSizeMake(Screen_W * self.categoryList.count, TopScrollView_H);
 
-
 }
 
 //设置顶行分类滚动条的按钮
 -(void)setupSubviewWithCategoryList:(NSArray <LWCategory *>*)categoryList {
     self.categoryList = categoryList;
+
+    [self updateButtonItems];   //更新ScrollView底的子Button项
+
+    //标签阴影下划线
+    if (!self.shadowImageView) {
+        self.shadowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ShadowImage_W, ShadowImage_H)];
+        [self.shadowImageView setImage:[UIImage imageWithColor:[UIColor blackColor] size:self.shadowImageView.frame.size]];
+        [self addSubview:self.shadowImageView];
+    }
+    self.shadowImageView.center = CGPointMake(TopBtn_W / 2, self.frame.size.height - 5);
+
+}
+
+//更新数据列表
+- (void)updateCategoryList {
+    self.categoryList = [[LWSymbolService symbolService] categoriesList];
+
+    [self updateButtonItems];   //更新ScrollView底的子Button项
+}
+
+
+//更新ScrollView底的子Button项
+- (void)updateButtonItems {
+
+    for(UIView *view in self.subviews){
+        if([view isKindOfClass:[UIButton class]]){
+            [view removeFromSuperview];
+        }
+    }
+
     //设置标签
     for (int i = 0; i < [self.categoryList count]; i++) {
 
@@ -57,17 +86,7 @@
         button.titleLabel.font = [UIFont systemFontOfSize:15.0];
         [button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
         [button setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
-
     }
-
-    //标签阴影下划线
-    if (!self.shadowImageView) {
-        self.shadowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ShadowImage_W, ShadowImage_H)];
-        [self.shadowImageView setImage:[UIImage imageWithColor:[UIColor blackColor] size:self.shadowImageView.frame.size]];
-        [self addSubview:self.shadowImageView];
-    }
-    self.shadowImageView.center = CGPointMake(TopBtn_W / 2, self.frame.size.height - 5);
-
 }
 
 

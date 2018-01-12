@@ -7,6 +7,7 @@
 
 @class LWTopScrollView;
 @class LWContainerScrollView;
+@class LWInputMaskView;
 
 
 @interface LWMyGIFViewController : UIViewController
@@ -14,4 +15,9 @@
 @property (nonatomic, weak) IBOutlet LWTopScrollView *topScrollView;
 @property (nonatomic, weak) IBOutlet LWContainerScrollView *containerScrollView;
 
+//更新顶部导航条
+- (void)updateTopScrollView;
+
 @end
+
+

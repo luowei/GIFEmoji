@@ -54,6 +54,9 @@
 //设置顶行分类滚动条的按钮
 -(void)setupSubviewWithCategoryList:(NSArray <LWCategory *>*)nameArray;
 
+//更新数据列表
+- (void)updateCategoryList;
+
 //滑动撤销选中按钮
 - (void)setButtonUnSelect;
 
@@ -62,7 +65,5 @@
 
 //设置下划线的centerX
 -(void)setShadowImageCenterX:(CGFloat)x;
-
-
 
 @end

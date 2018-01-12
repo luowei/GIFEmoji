@@ -673,7 +673,7 @@
         <image name="first" width="30" height="30"/>
         <image name="imagehold" width="120" height="120"/>
         <image name="pageNotFund" width="209" height="139"/>
-        <image name="search_link" width="30" height="30"/>
+        <image name="search_link" width="40" height="40"/>
         <image name="search_share" width="30" height="30"/>
         <image name="second" width="30" height="30"/>
     </resources>
