@@ -50,4 +50,6 @@ typedef NS_OPTIONS(NSUInteger, SelectedMode) {
 
 #define ButtonTextColor @"28862C"   //GreenColor
 
+#define App_URLString @"http://app.wodedata.com/myapp/gifemoji.html"
+
 #endif /* AppDefines_h */

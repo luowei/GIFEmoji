@@ -263,6 +263,11 @@
 }
 
 - (IBAction)favoriteBtnTouchUpInside:(UIButton *)btn {
+    if(btn.selected){
+        [SVProgressHUD showInfoWithStatus:NSLocalizedString(@"Been Favorited", nil)];
+        [SVProgressHUD dismissWithDelay:0.5];
+        return;
+    }
     NSData *data = self.imageView.animatedImage.data;
     if (!data) {
         data = UIImagePNGRepresentation(self.imageView.image);
@@ -276,7 +281,7 @@
 
         NSString *imgName = [weakSelf.objURL md5];
 
-        BOOL isContains = [weakSelf checkFavoritesContainsURLString:imgName];
+        BOOL isContains = [weakSelf checkFavoritesContainsURLString:weakSelf.objURL];
         if (isContains) {
             [SVProgressHUD showInfoWithStatus:NSLocalizedString(@"Exist The Image", nil)];
             [SVProgressHUD dismissWithDelay:1.5];

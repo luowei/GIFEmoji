@@ -34,6 +34,7 @@
 "Input Category Name" = "Input Category Name";
 "Exist The Category" = "Exist The Category";
 "Category List" = "Category List";
+"Been Favorited" = "Been Favorited";
 
 "Operate Success" = "Operate Success";
 "Operate Faild" = "Operate Faild";
@@ -41,3 +42,5 @@
 
 "No Data" = "No Data";
 "Exist The Image" = "Exist The Image";
+
+"Export PDF" = "Export PDF";

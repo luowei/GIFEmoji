@@ -88,3 +88,10 @@
 -(CGSize)size;
 -(CGPoint)origin;
 @end
+
+
+@interface UIButton (Extension)
+
+@property(nonatomic, assign) UIEdgeInsets hitTestEdgeInsets;
+
+@end

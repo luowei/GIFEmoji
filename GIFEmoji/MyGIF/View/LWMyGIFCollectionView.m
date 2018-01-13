@@ -1,4 +1,5 @@
 //
+//
 // Created by Luo Wei on 2018/1/11.
 // Copyright (c) 2018 Luo Wei. All rights reserved.
 //
@@ -16,11 +17,16 @@
 #import "AppDefines.h"
 #import "GenGIFViewController.h"
 #import "UIColor+HexValue.h"
+#import "FCFileManager.h"
 
 #define GIFItem_Spacing 6
 
-@implementation LWMyGIFCollectionView {
+//小x按钮的宽度与高度
+#define Cell_DeleteBtn_W 30.0
+#define Cell_DeleteBtn_H 30.0
 
+@implementation LWMyGIFCollectionView {
+    UILongPressGestureRecognizer *_longPressGestureRecognizer;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame category:(LWCategory *)category {
@@ -41,6 +47,9 @@
         self.placeHoldView = [[LWCollectionPlaceHoldView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
         [self addSubview:self.placeHoldView];
         self.placeHoldView.hidden = YES;
+
+        //给CollectionView添加长按手势
+        [self addLongPressGestureRecognizers];
     }
 
     return self;
@@ -51,6 +60,90 @@
     self.placeHoldView.frame = self.bounds;
 }
 
+- (void)dealloc {
+    [self removeLongPressGestureRecognizers];
+}
+
+#pragma mark - 长按手势处理
+
+//添加longPress手势
+- (void)addLongPressGestureRecognizers {
+    self.userInteractionEnabled = YES;
+
+    _longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressGestureRecognizerTriggerd:)];
+    _longPressGestureRecognizer.cancelsTouchesInView = NO;
+    _longPressGestureRecognizer.minimumPressDuration = 0.8;
+    //_longPressGestureRecognizer.delegate = self;
+
+    for (UIGestureRecognizer *gestureRecognizer in self.gestureRecognizers) {
+        if ([gestureRecognizer isKindOfClass:[UILongPressGestureRecognizer class]]) {
+            [gestureRecognizer requireGestureRecognizerToFail:_longPressGestureRecognizer];
+        }
+    }
+
+    [self addGestureRecognizer:_longPressGestureRecognizer];
+}
+
+//移除longPress手势
+- (void)removeLongPressGestureRecognizers {
+    if (_longPressGestureRecognizer) {
+        if (_longPressGestureRecognizer.view) {
+            [_longPressGestureRecognizer.view removeGestureRecognizer:_longPressGestureRecognizer];
+        }
+        _longPressGestureRecognizer = nil;
+    }
+}
+
+//长按手势响应处理
+- (void)longPressGestureRecognizerTriggerd:(UILongPressGestureRecognizer *)longPress {
+
+    //LWSkinGridView *gridView = (LWSkinGridView *) longPress.view;
+    switch (longPress.state) {
+        case UIGestureRecognizerStateBegan: {
+            //如果不是处于编辑状态，设置成编辑状态
+            if (!self.editing) {
+                self.editing = YES;
+            }
+            //[self.collectionViewLayout invalidateLayout];
+            [self reloadData];
+        }
+            break;
+        default:
+            break;
+    }
+}
+
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+    LWMyGIFCollectionCell *cell = (LWMyGIFCollectionCell *)[self cellForItemAtIndexPath:[self indexPathForItemAtPoint:point]];
+
+    if (self.editing) {
+        if(!cell){
+            self.editing = NO;
+            [self reloadData];
+            return [super hitTest:point withEvent:event];
+        }
+
+        CGPoint tPoint = [self convertPoint:point toView:cell];
+        CGRect cancelFrame = UIEdgeInsetsInsetRect(cell.bounds, UIEdgeInsetsMake(30, 30, 30, 30));
+//        Log(@"=====tPoint:(%f,%f) , cancelFrame:(%f,%f,%f,%f)",tPoint.x,tPoint.y,
+//                cancelFrame.origin.x,cancelFrame.origin.y,cancelFrame.size.width,cancelFrame.size.height);
+        if(CGRectContainsPoint(cancelFrame, tPoint)){
+            self.editing = NO;
+            [self reloadData];
+        }
+    }
+    return [super hitTest:point withEvent:event];
+}
+
+//设置编辑状态
+- (void)setEditing:(BOOL)editing {
+    _editing = editing;
+    for (UICollectionViewCell *cel in self.visibleCells) {
+        LWMyGIFCollectionCell *cell = (LWMyGIFCollectionCell *) cel;
+        cell.editing = editing;
+    }
+}
+
 
 #pragma mark - UICollectionViewDataSource
 
@@ -59,14 +152,12 @@
     if(category){
         self.category = category;
     }
-
-    NSArray <LWSymbol *>*list = [[LWSymbolService symbolService] symbolsWithCategoryId:self.category._id];
-    self.dataList = list;
-
     [self reloadData];
 }
 
 - (void)reloadData {
+    self.dataList = [[LWSymbolService symbolService] symbolsWithCategoryId:self.category._id];
+
     if(!self.dataList || self.dataList.count < 1){
         self.placeHoldView.hidden = NO;
     }else{
@@ -90,6 +181,10 @@
 
 
 #pragma mark - UICollectionViewDelegate
+
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    return !self.editing;
+}
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     LWSymbol *item = self.dataList[(NSUInteger) indexPath.row];
@@ -117,7 +212,8 @@
 @end
 
 
-@implementation LWMyGIFCollectionCell
+@implementation LWMyGIFCollectionCell{
+}
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -154,9 +250,32 @@
             make.left.bottom.equalTo(self);
             make.width.height.mas_equalTo(30);
         }];
+
+        //删除小叉叉
+        self.deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [self.deleteButton setImage:[UIImage imageNamed:@"deleteIcon"] forState:UIControlStateNormal];
+        [self addSubview:self.deleteButton];
+        self.deleteButton.hidden = YES;
+        self.deleteButton.frame = CGRectMake(-Cell_DeleteBtn_W / 2, -Cell_DeleteBtn_H / 2, Cell_DeleteBtn_W, Cell_DeleteBtn_H);
+        [self.deleteButton setHitTestEdgeInsets:UIEdgeInsetsMake(-4, -20, -20, -4)];
+        [self bringSubviewToFront:self.deleteButton];
+        [self.deleteButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self);
+            make.right.equalTo(self);
+            make.width.mas_equalTo(Cell_DeleteBtn_W);
+            make.height.mas_equalTo(Cell_DeleteBtn_H);
+        }];
+        //给删除按钮添加响应事件
+        [self.deleteButton addTarget:self action:@selector(deleteButtonClicked:) forControlEvents:UIControlEventTouchDown];
+
     }
 
     return self;
+}
+
+- (void)setEditing:(BOOL)editing {
+    _deleteButton.hidden = !editing;
+    _editing = editing;
 }
 
 //- (void)shareAction:(UIButton *)shareBtn {
@@ -170,6 +289,20 @@
 //    activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypePrint];
 //    [controller presentViewController:activityVC animated:TRUE completion:nil];
 //}
+
+//执行删除Cell的操作
+- (void)deleteButtonClicked:(UIButton *)btn {
+    BOOL isSuccess = [[LWSymbolService symbolService] deleteSymbolWithId:self.symbol._id];
+    if(isSuccess){
+        //删除文件
+        NSString *documentsDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+        NSString *filePath = [documentsDirectory stringByAppendingPathComponent:self.symbol.file_url];
+        [FCFileManager removeItemAtPath:filePath];
+
+        LWMyGIFCollectionView *collectionView = [self superViewWithClass:[LWMyGIFCollectionView class]];
+        [collectionView reloadData];
+    }
+}
 
 - (void)linkAction:(UIButton *)linkBtn {
     [App_Delegate setTabBarSelectedIndex:0];
@@ -195,6 +328,7 @@
     }else{
         [self.imageView setImage:[UIImage imageWithData:imageData]];
     }
+    [self bringSubviewToFront:self.deleteButton];
 }
 
 - (void)linkGenGIFVC {

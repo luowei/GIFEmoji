@@ -9,6 +9,8 @@
 #import "LWHelper.h"
 #import "UIImage+Extension.h"
 #import "LWCategoriesAlertView.h"
+#import "LWWKWebViewController.h"
+#import "AppDefines.h"
 
 
 @interface LWSavePopoverViewController () /*<UIViewControllerTransitioningDelegate>*/
@@ -98,6 +100,9 @@
             break;
         }
         case 1:{ //关于
+            LWWKWebViewController *webVC = [LWWKWebViewController wkWebViewControllerWithURL:[NSURL URLWithString:App_URLString]];
+            UIViewController *vc = (UIViewController *)self.popoverPresentationController.delegate;
+            [vc.navigationController pushViewController:webVC animated:YES];
             [self dismissViewControllerAnimated:YES completion:nil];
             break;
         }

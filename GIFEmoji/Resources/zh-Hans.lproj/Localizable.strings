@@ -32,6 +32,7 @@
 "Input Category Name" = "输入分类名称";
 "Exist The Category" = "已存在这个分类";
 "Category List" = "分类列表";
+"Been Favorited" = "已经收藏";
 
 "Operate Success" = "操作成功";
 "Operate Faild" = "操作失败";
@@ -39,3 +40,5 @@
 
 "No Data" = "暂无数据";
 "Exist The Image" = "已收藏了这个图片";
+
+"Export PDF" = "导出PDF";
