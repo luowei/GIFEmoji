@@ -22,9 +22,15 @@
 "Ok" = "确定";
 "Cancel" = "取消";
 "Settings" = "设置";
+"About" = "关于";
+"Categories" = "管理分类";
 
-"Add Favorite Category" = "添加收藏分类";
+"Add Category" = "添加分类";
+"Rename Category" = "重命名分类";
 "Input Category Name" = "输入分类名称";
+"Exist The Category" = "已存在这个分类";
+"Category List" = "分类列表";
 
 "Add Success" = "添加成功";
 "Add Faild" = "添加失败";
+"Text Empty" = "输入内容为空";

@@ -48,5 +48,6 @@ typedef NS_OPTIONS(NSUInteger, SelectedMode) {
 #define DBFileName @"GIFEmojiData"  //sqlite db数据库文件名
 #define AnimojiDirectory @"animoji" //动画文件夹名
 
+#define ButtonTextColor @"28862C"   //GreenColor
 
 #endif /* AppDefines_h */

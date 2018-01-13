@@ -24,8 +24,15 @@
 "Cancel" = "Cancel";
 "Settings" = "Settings";
 
-"Add Favorite Category" = "Add Favorite Category";
+"About" = "About";
+"Categories" = "Categories";
+
+"Add Category" = "Add Category";
+"Rename Category" = "Rename Category";
 "Input Category Name" = "Input Category Name";
+"Exist The Category" = "Exist The Category";
+"Category List" = "Category List";
 
 "Add Success" = "Add Success";
 "Add Faild" = "Add Faild";
+"Text Empty" = "Text Empty";
