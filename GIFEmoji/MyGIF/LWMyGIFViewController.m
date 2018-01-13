@@ -8,6 +8,8 @@
 #import "LWSymbolService.h"
 #import "LWSavePopoverViewController.h"
 #import "UIColor+HexValue.h"
+#import "UIImage+Extension.h"
+#import "LWContainerScrollView.h"
 
 @interface LWMyGIFViewController() <UIPopoverPresentationControllerDelegate>
 
@@ -23,15 +25,16 @@
 
     NSArray <LWCategory *>*categoryList = [[LWSymbolService symbolService] categoriesList];
     [self.topScrollView setupSubviewWithCategoryList:categoryList];
+    [self.containerScrollView setupSubviewWithCategoryList:categoryList];
 
 //    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"add"] style:UIBarButtonItemStylePlain target:self action:@selector(rightBarItemAction)];
     
     self.addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.addBtn.frame = CGRectMake(0, 0, 40, 40);
-    [self.addBtn setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
+    UIImage *addImg = [[UIImage imageNamed:@"add"] imageWithOverlayColor:[UIColor colorWithHexString:ButtonTextColor]];
+    [self.addBtn setImage:addImg forState:UIControlStateNormal];
     [self.addBtn addTarget:self action:@selector(rightBarItemAction) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *barItem = [[UIBarButtonItem alloc] initWithCustomView:self.addBtn];
-    [barItem setTintColor:[UIColor colorWithHexString:ButtonTextColor]];
     self.navigationItem.rightBarButtonItem = barItem;
 }
 

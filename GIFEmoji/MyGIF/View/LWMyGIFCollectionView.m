@@ -30,15 +30,25 @@
     
     self = [super initWithFrame:frame collectionViewLayout:layout];
     if (self) {
+        self.backgroundColor = [UIColor whiteColor];
         [self registerClass:[LWMyGIFCollectionCell class] forCellWithReuseIdentifier:@"Cell"];
         self.dataSource = self;
         self.delegate = self;
         self.category = category;
+        
+        self.placeHoldView = [[LWCollectionPlaceHoldView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
+        [self addSubview:self.placeHoldView];
+        self.placeHoldView.hidden = YES;
     }
-
 
     return self;
 }
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    self.placeHoldView.frame = self.bounds;
+}
+
 
 #pragma mark - UICollectionViewDataSource
 
@@ -53,6 +63,16 @@
 
     [self reloadData];
 }
+
+- (void)reloadData {
+    if(!self.dataList || self.dataList.count < 1){
+        self.placeHoldView.hidden = NO;
+    }else{
+        self.placeHoldView.hidden = YES;
+    }
+    [super reloadData];
+}
+
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.dataList.count;
@@ -193,3 +213,26 @@
 
 
 @end
+
+
+@implementation LWCollectionPlaceHoldView
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        [self addSubview:self.titleLabel];
+        self.titleLabel.font = [UIFont boldSystemFontOfSize:30];
+        self.titleLabel.text = NSLocalizedString(@"No Data", nil);
+        [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.center.equalTo(self);
+        }];
+    }
+
+    return self;
+}
+
+
+@end
+
+

@@ -27,7 +27,7 @@
     self.showsHorizontalScrollIndicator = NO;
     self.showsVerticalScrollIndicator = NO;
     self.scrollsToTop = NO;
-    self.contentSize = CGSizeMake(Screen_W * self.categoryList.count, TopScrollView_H);
+    self.contentSize = CGSizeMake(Screen_W, TopScrollView_H);
 
 }
 
@@ -57,6 +57,7 @@
 
 //更新ScrollView底的子Button项
 - (void)updateButtonItems {
+    self.contentSize = CGSizeMake(TopBtn_W * self.categoryList.count, TopScrollView_H);
 
     for(UIView *view in self.subviews){
         if([view isKindOfClass:[UIButton class]]){
@@ -70,17 +71,17 @@
         UIButton *button = (UIButton *) [self viewWithTag:i + Tag_First_Channel];
         if (!button) {
             button = [UIButton buttonWithType:UIButtonTypeCustom];
+            [button addTarget:self action:@selector(channelBtnTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+            [self addSubview:button];
+            [button setTag:i + Tag_First_Channel];
         }
         [button setFrame:CGRectMake(TopBtn_W * i, 0, TopBtn_W, self.frame.size.height)];
-        [button setTag:i + Tag_First_Channel];
-        if (i == 0) {
-            button.selected = YES;
-
-        }
         NSString *title = self.categoryList[i].name;
         [button setTitle:[NSString stringWithFormat:@"%@", title] forState:UIControlStateNormal];
-        [button addTarget:self action:@selector(channelBtnTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:button];
+        if (i == 0) {
+            button.selected = YES;
+        }
+
 
         //设置标签外观
         button.titleLabel.font = [UIFont systemFontOfSize:15.0];

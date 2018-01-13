@@ -8,6 +8,7 @@
 @class FLAnimatedImageView;
 @class LWSymbol;
 @class LWCategory;
+@class LWCollectionPlaceHoldView;
 
 
 @interface LWMyGIFCollectionView : UICollectionView<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
@@ -15,6 +16,8 @@
 
 @property(nonatomic, strong) NSArray <LWSymbol *>*dataList;
 @property(nonatomic, strong) LWCategory *category;
+
+@property(nonatomic, strong) LWCollectionPlaceHoldView *placeHoldView;
 
 - (instancetype)initWithFrame:(CGRect)frame category:(LWCategory *)category;
 
@@ -35,4 +38,10 @@
 
 - (void)fillWithData:(LWSymbol *)symbol;
 
+@end
+
+
+@interface LWCollectionPlaceHoldView : UIView
+
+@property(nonatomic, strong) UILabel *titleLabel;
 @end

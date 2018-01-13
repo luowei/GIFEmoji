@@ -640,18 +640,29 @@
                                     <constraint firstAttribute="height" constant="40" id="AgD-6J-ZyH"/>
                                 </constraints>
                             </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SvP-kR-bmO" userLabel="SeparateLine">
+                                <rect key="frame" x="0.0" y="40" width="375" height="0.5"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="0.5" id="1Y6-PU-CBA"/>
+                                </constraints>
+                            </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="167-IX-bOI" userLabel="ContainerScrollView" customClass="LWContainerScrollView">
-                                <rect key="frame" x="0.0" y="40" width="375" height="514"/>
+                                <rect key="frame" x="0.0" y="41" width="375" height="513"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="167-IX-bOI" firstAttribute="top" secondItem="iR7-jo-Idn" secondAttribute="bottom" id="21C-v4-QlN"/>
+                            <constraint firstItem="167-IX-bOI" firstAttribute="top" secondItem="SvP-kR-bmO" secondAttribute="bottom" id="0oF-sk-sYj"/>
+                            <constraint firstItem="SvP-kR-bmO" firstAttribute="leading" secondItem="NsA-yw-gn7" secondAttribute="leading" id="2RY-M2-xA0"/>
                             <constraint firstItem="iR7-jo-Idn" firstAttribute="top" secondItem="NsA-yw-gn7" secondAttribute="top" id="4Sb-w3-f5x"/>
                             <constraint firstItem="NsA-yw-gn7" firstAttribute="trailing" secondItem="167-IX-bOI" secondAttribute="trailing" id="IW2-4h-0Ms"/>
                             <constraint firstItem="167-IX-bOI" firstAttribute="leading" secondItem="NsA-yw-gn7" secondAttribute="leading" id="KXS-VC-X25"/>
+                            <constraint firstItem="NsA-yw-gn7" firstAttribute="trailing" secondItem="SvP-kR-bmO" secondAttribute="trailing" id="Vgc-qs-c2L"/>
                             <constraint firstItem="NsA-yw-gn7" firstAttribute="bottom" secondItem="167-IX-bOI" secondAttribute="bottom" id="bW3-Ui-Xog"/>
                             <constraint firstItem="NsA-yw-gn7" firstAttribute="trailing" secondItem="iR7-jo-Idn" secondAttribute="trailing" id="kMr-HL-ytc"/>
+                            <constraint firstItem="SvP-kR-bmO" firstAttribute="top" secondItem="iR7-jo-Idn" secondAttribute="bottom" id="oxR-gU-RL5"/>
                             <constraint firstItem="iR7-jo-Idn" firstAttribute="leading" secondItem="NsA-yw-gn7" secondAttribute="leading" id="qzH-n0-v1X"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="NsA-yw-gn7"/>

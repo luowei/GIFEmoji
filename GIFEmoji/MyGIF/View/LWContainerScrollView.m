@@ -24,7 +24,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.backgroundColor = [UIColor yellowColor];
+    self.backgroundColor = [UIColor whiteColor];
     self.contentMode = UIViewContentModeTopRight;
     self.clipsToBounds = NO;
     self.delegate = self;
@@ -39,9 +39,6 @@
     self.scrollsToTop = NO;
 
     _userContentOffsetX = 0;
-
-    //设置contenSize
-    self.contentSize = CGSizeMake(Screen_W * self.categoryList.count, self.frame.size.height);
 
 }
 
@@ -61,6 +58,9 @@
 //设置内容子视图
 -(void)setupSubviewWithCategoryList:(NSArray <LWCategory *>*)categoryList{
     self.categoryList = categoryList;
+    //设置contenSize
+    self.contentSize = CGSizeMake(Screen_W * self.categoryList.count, self.frame.size.height);
+
     for (int i = 0; i < [self.categoryList count]; i++) {
         CGRect contentFrame = CGRectMake(0 + Screen_W * i, 0, Screen_W, self.frame.size.height);
 
@@ -68,11 +68,27 @@
         LWMyGIFCollectionView *collectionView = [[LWMyGIFCollectionView alloc] initWithFrame:contentFrame category:category];
         collectionView.tag = Tag_First_Channel + i;
         [self addSubview:collectionView];
-
-        //注:这里要调set方法
-        [self setCurrentChannel:i];
     }
 
+    //这里要调set方法
+    //如果设置的Channel与当前显示的不同，显示设置的
+    if (_currentChannel != 0) {
+
+        LWMyGIFViewController *vc = [self superViewWithClass:[LWMyGIFViewController class]];
+
+        //做选中一个标签的操作
+        vc.topScrollView.scrollViewSelectedChannelID = (NSInteger) (0 + Tag_First_Channel);
+        UIButton *button = (UIButton *) [vc.topScrollView viewWithTag:(NSInteger) (0 + Tag_First_Channel)];
+        if(!button){
+            return;
+        }
+        [vc.topScrollView channelBtnTouchUpInside:button];
+
+        //适配TopScrollView的位置
+        [self adjustTopScrollView:self];
+    }
+
+    [self updateCurrentChannel:0];
 }
 
 //滑动内容顶部滑动标签跟随滑动
@@ -189,31 +205,6 @@
     [userDefaults setInteger:channelId forKey:Key_CurrentChannel];
     [userDefaults synchronize];
 }
-
-//对.语法的读写方法重载，设置当前频道
-- (void)setCurrentChannel:(NSInteger)currentChannel {
-
-    //如果设置的Channel与当前显示的不同，显示设置的
-    if (_currentChannel != currentChannel) {
-
-        LWMyGIFViewController *vc = [self superViewWithClass:[LWMyGIFViewController class]];
-
-        //做选中一个标签的操作
-        vc.topScrollView.scrollViewSelectedChannelID = (NSInteger) (currentChannel + Tag_First_Channel);
-        UIButton *button = (UIButton *) [vc.topScrollView viewWithTag:(NSInteger) (currentChannel + Tag_First_Channel)];
-        if(!button){
-            return;
-        }
-        [vc.topScrollView channelBtnTouchUpInside:button];
-
-        //适配TopScrollView的位置
-        [self adjustTopScrollView:self];
-    }
-
-    [self updateCurrentChannel:currentChannel];
-
-}
-
 
 //更新subview的scrollsToTop
 - (void)updateScrollsToTopWithChannelId:(NSInteger) channelId {
