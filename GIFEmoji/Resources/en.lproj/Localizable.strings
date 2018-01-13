@@ -23,6 +23,7 @@
 "Ok" = "Ok";
 "Cancel" = "Cancel";
 "Settings" = "Settings";
+"Delete" = "Delete";
 
 "About" = "About";
 "Categories" = "Categories";
@@ -33,6 +34,6 @@
 "Exist The Category" = "Exist The Category";
 "Category List" = "Category List";
 
-"Add Success" = "Add Success";
-"Add Faild" = "Add Faild";
+"Operate Success" = "Operate Success";
+"Operate Faild" = "Operate Faild";
 "Text Empty" = "Text Empty";

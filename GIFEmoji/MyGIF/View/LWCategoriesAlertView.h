@@ -31,8 +31,11 @@
 @property (nonatomic, strong) UIButton *cancelBtn;
 @property (nonatomic, strong) UIButton *okBtn;
 
-+(instancetype)showTextInputViewInView:(UIView *)view category:(LWCategory *)category;
+@property(nonatomic, strong) LWCategory *category;
 
+@property(nonatomic, copy) void (^updateBlock)();
+
++ (instancetype)showTextInputViewInView:(UIView *)view category:(LWCategory *)category updateBlock:(void (^)())updateBlock;
 @end
 
 

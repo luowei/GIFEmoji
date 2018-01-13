@@ -175,17 +175,42 @@
 
     //弹出重名命弹窗
     LWMyGIFViewController *vc = [self superViewWithClass:[LWMyGIFViewController class]];
-    [LWAddCategoryAlertView showTextInputViewInView:vc.view category:category];
-
-    //[self removeFromSuperview];
+    [LWAddCategoryAlertView showTextInputViewInView:vc.view category:category updateBlock:^{
+        self.dataList = [[LWSymbolService symbolService] categoriesList];
+        [self.containerView reloadData];
+    }];
 }
+
+// Edit Cell
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    return indexPath.row < self.dataList.count - 1;
+}
+
+- (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewRowAction *deleteAction = [UITableViewRowAction
+            rowActionWithStyle:UITableViewRowActionStyleDefault
+                         title:NSLocalizedString(@"Delete", nil)
+                       handler:^(UITableViewRowAction *action, NSIndexPath *idxPath) {
+                           //删除一个Cell
+                           LWCategory *item = self.dataList[(NSUInteger) indexPath.row];
+                           [[LWSymbolService symbolService] deleteCategoryWithId:item._id];
+                           self.dataList = [[LWSymbolService symbolService] categoriesList];
+                           [self.containerView reloadData];
+                       }];
+    deleteAction.backgroundColor = [UIColor colorWithHexString:@"#FC3C30"];
+
+    return @[deleteAction];
+}
+
 
 
 - (void)addBtnTouchUpInside:(UIButton *)btn {
     LWMyGIFViewController *vc = [self superViewWithClass:[LWMyGIFViewController class]];
-    [LWAddCategoryAlertView showTextInputViewInView:vc.view category:nil];
-
-    [self removeFromSuperview];
+    [LWAddCategoryAlertView showTextInputViewInView:vc.view category:nil updateBlock:^{
+        self.dataList = [[LWSymbolService symbolService] categoriesList];
+        [self.containerView reloadData];
+    }];
 }
 
 
@@ -197,8 +222,9 @@
 
 @implementation LWAddCategoryAlertView
 
-+(instancetype)showTextInputViewInView:(UIView *)view category:(LWCategory *)category {
 
++ (instancetype)showTextInputViewInView:(UIView *)view category:(LWCategory *)category 
+                            updateBlock:(void (^)())updateBlock {
     LWAddCategoryAlertView *textInputView = nil;
     for(UIView *v in view.subviews){
         if([v isKindOfClass:[LWAddCategoryAlertView class]]){
@@ -213,6 +239,7 @@
             make.edges.equalTo(view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
         }];
     }
+    textInputView.updateBlock = updateBlock;
 
     return textInputView;
 }
@@ -220,6 +247,8 @@
 - (instancetype)initWithFrame:(CGRect)frame category:(LWCategory *)category {
     self = [super initWithFrame:frame];
     if (self) {
+        self.category = category;
+        
         self.backgroundColor = [UIColor clearColor];
         self.inputMaskView = [[LWInputMaskView alloc] initWithFrame:frame];
         [self addSubview:self.inputMaskView];
@@ -352,17 +381,27 @@
         }
     }
 
-    BOOL isSuccess = [[LWSymbolService symbolService] insertCategoryWithType:@"My" name:name en_name:nil file_url:nil http_url:nil];
+    BOOL isSuccess = NO;
+    if(self.category){
+        isSuccess = [[LWSymbolService symbolService] updateCategoryName:name byId:self.category._id];
+    }else{
+        isSuccess = [[LWSymbolService symbolService] insertCategoryWithType:@"My" name:name en_name:nil file_url:nil http_url:nil];
+    }
+
     if(isSuccess){
-        [SVProgressHUD showInfoWithStatus:NSLocalizedString(@"Add Success", nil)];
+        [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Operate Success", nil)];
         [SVProgressHUD dismissWithDelay:1.5];
     }else{
-        [SVProgressHUD showInfoWithStatus:NSLocalizedString(@"Add Faild", nil)];
+        [SVProgressHUD showInfoWithStatus:NSLocalizedString(@"Operate Faild", nil)];
         [SVProgressHUD dismissWithDelay:1.5];
     }
 
     LWMyGIFViewController *vc = [self superViewWithClass:[LWMyGIFViewController class]];
     [vc updateTopScrollView];   //更新顶部导航条
+
+    if(self.updateBlock){
+        self.updateBlock();
+    }
 
     [self removeFromSuperview];
 }

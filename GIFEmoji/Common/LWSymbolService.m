@@ -175,6 +175,26 @@
     return categroy;
 }
 
+//更新Category Name
+- (BOOL)updateCategoryName:(NSString *)name byId:(NSUInteger)id {
+    if (!_db) {
+        [self openDatabase];
+    }
+
+    BOOL isSuccess = NO;
+    //NSString *numCode = [self convert2NumCode:code];
+    if (!name || [name length] <= 0) {
+        return isSuccess;
+    }
+
+    name = [self handleUpdateParame:name];
+    NSString *unselectSql = [NSString stringWithFormat:@"update categories set `name` = %@ where `id` = %d;", name,id];
+    isSuccess = [self updateSql:unselectSql];
+
+    return isSuccess;
+}
+
+
 //更新select字段
 - (BOOL)updateSelectedWithCategoryId:(NSUInteger)categoryId type:(NSString *)type {
     if (!_db) {

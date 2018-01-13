@@ -185,7 +185,7 @@
             NSData *gifData = self.exportGIFImageData;
             [self updateSelectedMode:GIFMode];
             
-            [SVProgressHUD showInfoWithStatus:NSLocalizedString(@"The Photo is GIF Image", nil)];
+            [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"The Photo is GIF Image", nil)];
             [SVProgressHUD dismissWithDelay:0.5];
 
             FLAnimatedImage *gifImage = [FLAnimatedImage animatedImageWithGIFData:gifData];

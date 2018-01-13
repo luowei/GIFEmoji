@@ -30,6 +30,9 @@
 //根据type找出当前选中的Category
 -(LWCategory *)selectedCategoryWithType:(NSString *)type;
 
+//更新Category Name
+- (BOOL)updateCategoryName:(NSString *)name byId:(NSUInteger)id;
+
 //更新select字段
 - (BOOL)updateSelectedWithCategoryId:(NSUInteger)categoryId type:(NSString *)type;
 
