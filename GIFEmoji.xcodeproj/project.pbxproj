@@ -156,6 +156,7 @@
 		BEF06F98E9FDDABE0AE7ECB1 /* FLEXTableContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF0608FDDBF7659A0722027 /* FLEXTableContentViewController.m */; };
 		BEF06FD2E4A385FCCB0E8C56 /* FLEXTableContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF065016D000BFB9FB91411 /* FLEXTableContentCell.m */; };
 		BEF06FD6127E19BA6732205F /* UIColor+HexValue.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF060744E9805090E504349 /* UIColor+HexValue.m */; };
+		EA1BEB69200AB22800CF2BB4 /* LWSnapshotMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1BEB68200AB22700CF2BB4 /* LWSnapshotMaskView.m */; };
 		EA7437E91FFCA2E600AD0291 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7437E81FFCA2E600AD0291 /* AppDelegate.m */; };
 		EA7437F21FFCA2E600AD0291 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA7437F01FFCA2E600AD0291 /* Main.storyboard */; };
 		EA7437F41FFCA2E600AD0291 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA7437F31FFCA2E600AD0291 /* Assets.xcassets */; };
@@ -529,6 +530,8 @@
 		BEF06FBE21768F59043E29B7 /* RSColorPickerState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSColorPickerState.m; sourceTree = "<group>"; };
 		BEF06FC2083DC79904E6D06B /* FLEXNetworkHistoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXNetworkHistoryTableViewController.m; sourceTree = "<group>"; };
 		BEF06FDD9D631EBF3840B5B6 /* NSLayoutConstraint+MASDebugAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+MASDebugAdditions.h"; sourceTree = "<group>"; };
+		EA1BEB67200AB22700CF2BB4 /* LWSnapshotMaskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWSnapshotMaskView.h; sourceTree = "<group>"; };
+		EA1BEB68200AB22700CF2BB4 /* LWSnapshotMaskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWSnapshotMaskView.m; sourceTree = "<group>"; };
 		EA7437E41FFCA2E600AD0291 /* GIFEmoji.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GIFEmoji.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA7437E71FFCA2E600AD0291 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EA7437E81FFCA2E600AD0291 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -1095,6 +1098,8 @@
 			isa = PBXGroup;
 			children = (
 				EA8A14E920034F02004C3DFD /* WebView */,
+				EA1BEB67200AB22700CF2BB4 /* LWSnapshotMaskView.h */,
+				EA1BEB68200AB22700CF2BB4 /* LWSnapshotMaskView.m */,
 				EA8A14DA2002AB4E004C3DFD /* LWSymbolService.h */,
 				EA8A14DB2002AB4E004C3DFD /* LWSymbolService.m */,
 			);
@@ -1727,6 +1732,7 @@
 				BEF0676D153CB38F33F2810E /* ViewController+MASAdditions.m in Sources */,
 				BEF06162BD12CA94ACD9AA45 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				BEF06D635F25D07AB248D25E /* Categories.m in Sources */,
+				EA1BEB69200AB22800CF2BB4 /* LWSnapshotMaskView.m in Sources */,
 				BEF063AFA618D679CFB1D2AD /* LWPushManager.m in Sources */,
 				BEF06FD6127E19BA6732205F /* UIColor+HexValue.m in Sources */,
 				BEF06DD62B213BC1F40D0AAE /* UIImage+Extension.m in Sources */,

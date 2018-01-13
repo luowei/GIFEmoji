@@ -11,6 +11,7 @@
 #import "UIColor+HexValue.h"
 #import "AppDefines.h"
 #import "SVProgressHUD.h"
+#import "LWSnapshotMaskView.h"
 
 
 @interface LWGIFPreviewViewController ()<UITextFieldDelegate>
@@ -50,10 +51,39 @@
     [self.scaleTextField addTarget:self action:@selector(textFieldEditingDidBegin:) forControlEvents:UIControlEventEditingDidBegin];
     [self.scaleTextField addTarget:self action:@selector(textFieldEditingChanged:) forControlEvents:UIControlEventEditingChanged];
 
+    //手势截图
+    UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] init];
+    longPressGesture.numberOfTouchesRequired = 2;
+    [longPressGesture addTarget:self action:@selector(longPressGestureAction:)];
+    [self.imageView addGestureRecognizer:longPressGesture];
+    self.imageView.userInteractionEnabled = YES;
+
     [self updateSliderThumbImageWithText:@"10"]; //更新sliderThumbImage
 
     [self updateGIFImageView];  //更新GIFImageView
 }
+
+//手势截图分享
+- (void)longPressGestureAction:(UILongPressGestureRecognizer *)gesture {
+    Log(@"--------: 识别到手势截图");
+
+    if(gesture.state == UIGestureRecognizerStateBegan ){
+        CGSize imageSize = self.imageView.intrinsicContentSize;
+        CGSize viewSize = self.imageView.frame.size;
+
+//        CGSize scaleSize = CGSizeMake(viewSize.width, viewSize.height *imageSize.height / imageSize.width);
+//        if(imageSize.width/imageSize.height < viewSize.width/viewSize.height){
+//            scaleSize = CGSizeMake(viewSize.width * imageSize.width / imageSize.height, viewSize.height);
+//        }
+
+        LWSnapshotMaskView *snapshotMaskView = [LWSnapshotMaskView showSnapshotMaskInView:self.imageView];
+//        snapshotMaskView.snapshotFrame = CGRectMake((viewSize.width-scaleSize.width)/2.0, (viewSize.height-scaleSize.height)/2.0, scaleSize.width, scaleSize.height);
+        snapshotMaskView.snapshotFrame = CGRectMake((self.view.frame.size.width-200)/2, (self.view.frame.size.height-200)/2, 200, 200);
+
+    }
+
+}
+
 
 
 - (void)updateGIFImageView {
