@@ -340,11 +340,6 @@
     NSString *update_file_url = [self handleUpdateParame:file_url];
     NSString *update_http_url = [self handleUpdateParame:http_url];
 
-    NSString *where_title = [self handleWhereParame:title];
-    NSString *where_text = [self handleWhereParame:text];
-    NSString *where_file_url = [self handleWhereParame:file_url];
-    NSString *where_http_url = [self handleWhereParame:http_url];
-
     NSString *insertSql = [NSString stringWithFormat:@"insert into symbols(`category_id`,`title`,`text`,`file_url`,`http_url`) values(%i,%@,%@,%@,%@)", categoryId, update_title, update_text, update_file_url, update_http_url];
     isSuccess = [self updateSql:insertSql];
 
@@ -396,12 +391,35 @@
 
     if (sqlite3_prepare_v2(_db, [exsitSql UTF8String], -1, &statement, nil) == SQLITE_OK) {
         while (sqlite3_step(statement) == SQLITE_ROW) {
-            isExsit = YES;
+            NSUInteger count = (NSUInteger) sqlite3_column_int(statement, 0);
+            if(count > 0){
+                isExsit = YES;
+            }
         }
         sqlite3_finalize(statement);
     }
     return isExsit;
 }
+
+- (BOOL)exsitSymbolWithHttpURL:(NSString *)urlstring {
+    BOOL isExsit = NO;
+
+    urlstring = [self handleWhereParame:urlstring];
+    NSString *exsitSql = [NSString stringWithFormat:@"select count(*) from symbols where http_url %@",urlstring];
+    sqlite3_stmt *statement;
+
+    if (sqlite3_prepare_v2(_db, [exsitSql UTF8String], -1, &statement, nil) == SQLITE_OK) {
+        while (sqlite3_step(statement) == SQLITE_ROW) {
+            NSUInteger count = (NSUInteger) sqlite3_column_int(statement, 0);
+            if(count > 0){
+                isExsit = YES;
+            }
+        }
+        sqlite3_finalize(statement);
+    }
+    return isExsit;
+}
+
 
 //根据categoryId删除的符号
 - (BOOL)deleteSymbolWithCategoryId:(NSUInteger)categroyId {
@@ -490,7 +508,6 @@
     param = param ? [NSString stringWithFormat:@"'%@'", param] : @"null";
     return param;
 }
-
 
 @end
 

@@ -66,6 +66,7 @@
                          http_url:(NSString *)http_url;
 
 - (BOOL)exsitSymbolWithText:(NSString *)text;
+- (BOOL)exsitSymbolWithHttpURL:(NSString *)urlstring;
 
 //根据categoryId删除的符号
 -(BOOL)deleteSymbolWithCategoryId:(NSUInteger)categroyId;

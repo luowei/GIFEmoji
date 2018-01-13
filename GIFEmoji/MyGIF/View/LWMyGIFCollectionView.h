@@ -44,4 +44,6 @@
 @interface LWCollectionPlaceHoldView : UIView
 
 @property(nonatomic, strong) UILabel *titleLabel;
+@property(nonatomic, strong) UIButton *refreshBtn;
+
 @end

@@ -27,13 +27,11 @@
 //顶部标签按钮宽度
 #define TopBtn_W (Screen_W / Num_Btns_InAHomeWidth)
 
-//顶部标签阴影图片宽度
-#define ShadowImage_W 38.0
 //顶部标签阴影图片高度
-#define ShadowImage_H 3.0
+#define ShadowImage_H 30
 
-#define NormalColor [UIColor grayColor]
-#define SelectedColor [UIColor blackColor]
+#define NormalColor [UIColor colorWithHexString:ButtonTextColor]
+#define SelectedColor [UIColor whiteColor]
 
 
 @interface LWTopScrollView : UIScrollView
@@ -58,10 +56,10 @@
 - (void)updateCategoryList;
 
 //滑动撤销选中按钮
-- (void)setButtonUnSelect;
+- (void)updateButtonUnSelect;
 
 //滑动选中按钮
-- (void)setButtonSelect;
+- (void)updateButtonSelect;
 
 //设置下划线的centerX
 -(void)setShadowImageCenterX:(CGFloat)x;

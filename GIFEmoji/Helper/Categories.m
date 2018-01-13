@@ -15,7 +15,8 @@
 
 @implementation NSString (Ext)
 
-- (CGFloat)widthWithFont:(UIFont *)font andAttributes:(NSDictionary *)attributes {
+- (CGFloat)widthWithFont:(UIFont *)font {
+    NSDictionary *attributes = @{NSFontAttributeName : font};
     return [[[NSAttributedString alloc] initWithString:self attributes:attributes] size].width;
 }
 

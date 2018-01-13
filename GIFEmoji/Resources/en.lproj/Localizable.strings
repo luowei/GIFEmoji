@@ -24,6 +24,7 @@
 "Cancel" = "Cancel";
 "Settings" = "Settings";
 "Delete" = "Delete";
+"Refresh" = "Refresh";
 
 "About" = "About";
 "Categories" = "Categories";
@@ -39,3 +40,4 @@
 "Text Empty" = "Text Empty";
 
 "No Data" = "No Data";
+"Exist The Image" = "Exist The Image";

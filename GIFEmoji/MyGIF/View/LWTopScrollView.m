@@ -11,6 +11,8 @@
 #import "UIView+extensions.h"
 #import "UIColor+CrossFade.h"
 #import "LWSymbolService.h"
+#import "UIColor+HexValue.h"
+#import "Categories.h"
 
 
 @implementation LWTopScrollView {
@@ -37,14 +39,29 @@
 
     [self updateButtonItems];   //更新ScrollView底的子Button项
 
+    CGFloat shadowImageWidth = [self getShadowWidthWithIdx:0];
     //标签阴影下划线
     if (!self.shadowImageView) {
-        self.shadowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ShadowImage_W, ShadowImage_H)];
-        [self.shadowImageView setImage:[UIImage imageWithColor:[UIColor blackColor] size:self.shadowImageView.frame.size]];
+        self.shadowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, (self.frame.size.height - ShadowImage_H)/2, shadowImageWidth, ShadowImage_H)];
+        self.shadowImageView.layer.cornerRadius = ShadowImage_H/2;
+        self.shadowImageView.clipsToBounds = YES;
+        [self.shadowImageView setImage:[UIImage imageWithColor:[UIColor colorWithHexString:ButtonTextColor] size:self.shadowImageView.frame.size]];
         [self addSubview:self.shadowImageView];
     }
-    self.shadowImageView.center = CGPointMake(TopBtn_W / 2, self.frame.size.height - 5);
+    self.shadowImageView.center = CGPointMake(TopBtn_W / 2, self.frame.size.height/2);
+    self.shadowImageView.bounds = CGRectMake(0, 0, shadowImageWidth, ShadowImage_H);
+    [self sendSubviewToBack:self.shadowImageView];
+}
 
+//根据index获取相应的宽度
+- (CGFloat)getShadowWidthWithIdx:(NSInteger)index {
+    if(self.categoryList && self.categoryList.count > index){
+        LWCategory *category = self.categoryList[index];
+        CGFloat width = [category.name widthWithFont:[UIFont systemFontOfSize:17.0]] + 10;
+        return width;
+    }else{
+        return 40;
+    }
 }
 
 //更新数据列表
@@ -85,8 +102,8 @@
 
         //设置标签外观
         button.titleLabel.font = [UIFont systemFontOfSize:15.0];
-        [button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+        [button setTitleColor:NormalColor forState:UIControlStateNormal];
+        [button setTitleColor:SelectedColor forState:UIControlStateSelected];
     }
 }
 
@@ -125,8 +142,10 @@
 
         //设置内容页出现
         [vc.containerScrollView showChannelWithChannelId:_scrollViewSelectedChannelID-Tag_First_Channel];
-//        [containerScrollView setContentOffset:CGPointMake(ButtonId * MainHomeView_W, 0) animated:YES];
+        //[vc.containerScrollView setContentOffset:CGPointMake(ButtonId * Screen_W, 0) animated:YES];
     }
+
+    [self updateButtonSelect];
 }
 
 //滑动标签以适应选择项,让选择项完全显示出来
@@ -143,19 +162,21 @@
 
 
 //滑动撤销选中按钮
-- (void)setButtonUnSelect {
+- (void)updateButtonUnSelect {
     UIButton *lastButton = (UIButton *) [self viewWithTag:_scrollViewSelectedChannelID];
     lastButton.selected = NO;
 }
 
 //滑动选中按钮
-- (void)setButtonSelect {
+- (void)updateButtonSelect {
     UIButton *button = (UIButton *) [self viewWithTag:_scrollViewSelectedChannelID];
     button.selected = YES;
     _userSelectedChannelID = button.tag;
+    CGFloat shadowImageWidth = [self getShadowWidthWithIdx:_userSelectedChannelID - Tag_First_Channel];
 
     [UIView animateWithDuration:0.25 animations:^{
-        self.shadowImageView.center = CGPointMake(button.frame.origin.x + TopBtn_W / 2, self.frame.size.height - 2.5);
+        self.shadowImageView.center = CGPointMake(button.frame.origin.x + TopBtn_W / 2, self.frame.size.height/2);
+        self.shadowImageView.bounds = CGRectMake(0, 0, shadowImageWidth, ShadowImage_H);
     }];
 
 }
@@ -163,7 +184,7 @@
 //设置下划线的centerX
 - (void)setShadowImageCenterX:(CGFloat)x {
     [UIView animateWithDuration:0.1 animations:^{
-        self.shadowImageView.center = CGPointMake(x, self.frame.size.height - 2.5);
+        self.shadowImageView.center = CGPointMake(x, self.frame.size.height/2);
     } completion:^(BOOL finished) {
         if(finished){
             CGFloat shadowCenterX = self.shadowImageView.center.x;

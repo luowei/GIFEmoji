@@ -28,6 +28,8 @@
 
 @implementation LWPickerPanel {
     NSMutableArray <LWCategory *>*_graphicCategroyArr;
+
+    BOOL _didSelectRow;
     NSInteger _selectCategoryId;
     NSString *_selectCategoryName;
 }
@@ -115,6 +117,7 @@
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    _didSelectRow = YES;
     if(!_graphicCategroyArr || _graphicCategroyArr.count <= 0){
         return;
     }
@@ -125,6 +128,11 @@
 
 
 -(IBAction)okAction{
+    if(!_didSelectRow){
+        LWCategory *category = _graphicCategroyArr.firstObject;
+        _selectCategoryId = category._id;
+        _selectCategoryName = category.name;
+    }
     if(self.faveritaBlock){
         self.faveritaBlock(_selectCategoryId,_selectCategoryName);
     }

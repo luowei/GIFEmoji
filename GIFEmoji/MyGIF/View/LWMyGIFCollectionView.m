@@ -15,6 +15,7 @@
 #import "AppDelegate.h"
 #import "AppDefines.h"
 #import "GenGIFViewController.h"
+#import "UIColor+HexValue.h"
 
 #define GIFItem_Spacing 6
 
@@ -26,11 +27,12 @@
     UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
     layout.minimumLineSpacing = GIFItem_Spacing;
     layout.minimumInteritemSpacing = GIFItem_Spacing;
-    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
     
     self = [super initWithFrame:frame collectionViewLayout:layout];
     if (self) {
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = [UIColor colorWithHexString:@"#F6F6F6"];
+        self.contentInset = UIEdgeInsetsMake(GIFItem_Spacing, GIFItem_Spacing, GIFItem_Spacing, GIFItem_Spacing);
         [self registerClass:[LWMyGIFCollectionCell class] forCellWithReuseIdentifier:@"Cell"];
         self.dataSource = self;
         self.delegate = self;
@@ -120,12 +122,16 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.layer.cornerRadius = 2;
+        self.layer.cornerRadius = 4;
         self.layer.borderWidth = 0.5;
         self.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        self.layer.shadowRadius = 2;
+        self.layer.shadowOffset = CGSizeMake(1, 1);
+        self.layer.shadowOpacity = 0.25;
 
         self.imageView = [[FLAnimatedImageView alloc] initWithFrame:frame];
         [self addSubview:self.imageView];
+        self.imageView.contentMode = UIViewContentModeScaleAspectFit;
 
         [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
@@ -153,17 +159,17 @@
     return self;
 }
 
-- (void)shareAction:(UIButton *)shareBtn {
-    NSData *data = self.imageView.animatedImage.data;
-    if (!data) {
-        data = UIImagePNGRepresentation(self.imageView.image);
-    }
-
-    LWMyGIFViewController *controller = [self superViewWithClass:[LWMyGIFViewController class]];
-    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[data] applicationActivities:nil];
-    activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypePrint];
-    [controller presentViewController:activityVC animated:TRUE completion:nil];
-}
+//- (void)shareAction:(UIButton *)shareBtn {
+//    NSData *data = self.imageView.animatedImage.data;
+//    if (!data) {
+//        data = UIImagePNGRepresentation(self.imageView.image);
+//    }
+//
+//    LWMyGIFViewController *controller = [self superViewWithClass:[LWMyGIFViewController class]];
+//    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[data] applicationActivities:nil];
+//    activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypePrint];
+//    [controller presentViewController:activityVC animated:TRUE completion:nil];
+//}
 
 - (void)linkAction:(UIButton *)linkBtn {
     [App_Delegate setTabBarSelectedIndex:0];
@@ -227,9 +233,30 @@
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.equalTo(self);
         }];
+
+        self.refreshBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [self addSubview:self.refreshBtn];
+        [self.refreshBtn setTitle:NSLocalizedString(@"Refresh", nil) forState:UIControlStateNormal];
+        [self.refreshBtn setTitleColor:[UIColor colorWithHexString:ButtonTextColor] forState:UIControlStateNormal];
+        [self.refreshBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+        [self.refreshBtn addTarget:self action:@selector(refreshAction) forControlEvents:UIControlEventTouchUpInside];
+        self.refreshBtn.layer.borderWidth = 0.5;
+        self.refreshBtn.layer.borderColor = [UIColor colorWithHexString:ButtonTextColor].CGColor;
+        self.refreshBtn.layer.cornerRadius = 4;
+        [self.refreshBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(self.titleLabel);
+            make.top.equalTo(self.titleLabel.mas_bottom).offset(20);
+            make.width.mas_greaterThanOrEqualTo(60);
+            make.height.mas_equalTo(36);
+        }];
     }
 
     return self;
+}
+
+- (void)refreshAction {
+    LWMyGIFCollectionView *collectionView = [self superViewWithClass:[LWMyGIFCollectionView class]];
+    [collectionView reloadData];
 }
 
 

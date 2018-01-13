@@ -25,6 +25,8 @@
 #import "AppDelegate.h"
 #import "GenGIFViewController.h"
 #import "LWWKWebViewController.h"
+#import "SVProgressHUD.h"
+#import "UIColor+HexValue.h"
 
 
 #define Item_Spacing 6
@@ -49,6 +51,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.searchBtn.layer.cornerRadius = 5;
+    self.collectionView.backgroundColor = [UIColor colorWithHexString:@"#F6F6F6"];
 
     // Do any additional setup after loading the view, typically from a nib.
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"Cell"];
@@ -249,11 +252,14 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.backgroundColor = [UIColor whiteColor];
 
-    self.imageView.layer.borderWidth = 1;
-    self.imageView.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    self.imageView.layer.cornerRadius = 2;
-
+    self.layer.cornerRadius = 4;
+    self.layer.borderWidth = 0.5;
+    self.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.layer.shadowRadius = 1;
+    self.layer.shadowOffset = CGSizeMake(1, 1);
+    self.layer.shadowOpacity = 0.25;
 }
 
 - (IBAction)favoriteBtnTouchUpInside:(UIButton *)btn {
@@ -270,10 +276,14 @@
 
         NSString *imgName = [weakSelf.objURL md5];
 
-        BOOL isContains = [weakSelf checkGriphicContainsImgName:imgName];
+        BOOL isContains = [weakSelf checkFavoritesContainsURLString:imgName];
         if (isContains) {
+            [SVProgressHUD showInfoWithStatus:NSLocalizedString(@"Exist The Image", nil)];
+            [SVProgressHUD dismissWithDelay:1.5];
             return;
         }
+
+        [SVProgressHUD showWithStatus:@"Loading..."];
 
         //保存data到文件中
         NSString *docPath = [NSString stringWithFormat:@"%@/%@", AnimojiDirectory, categoryName];
@@ -290,13 +300,21 @@
             [data writeToFile:filePath options:NSDataWritingWithoutOverwriting error:&error];
             if (error) {
                 Log(@"====writeToFile:%@ , %@", filePath, error.localizedFailureReason);
+                [SVProgressHUD showErrorWithStatus:@"Save Image File Faild"];
+                [SVProgressHUD dismissWithDelay:1.5];
                 return;
             }
         }
 
-
         //保存图片表情到相应的分类中
-        [[LWSymbolService symbolService] insertSymbolWithCategoryId:(NSUInteger) categoryId title:nil text:imgName file_url:file_url http_url:weakSelf.objURL];
+        BOOL isSuccess = [[LWSymbolService symbolService] insertSymbolWithCategoryId:(NSUInteger) categoryId title:nil text:imgName file_url:file_url http_url:weakSelf.objURL];
+        if(isSuccess){
+            [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Operate Success", nil)];
+            [SVProgressHUD dismissWithDelay:1.5];
+        }else{
+            [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Operate Faild", nil)];
+            [SVProgressHUD dismissWithDelay:1.5];
+        }
 
         weakSelf.faveritaBtn.selected = YES;
     };
@@ -404,16 +422,14 @@
     //[self.imageView sd_setImageWithURL:imageURL placeholderImage:_defaultImage];
 
     //判断_graphicDictArr 中是否存在 imgName
-    NSString *imgName = [self.objURL md5];
-    BOOL isContains = [self checkGriphicContainsImgName:imgName];
+    BOOL isContains = [self checkFavoritesContainsURLString:self.objURL];
     self.faveritaBtn.selected = isContains;
 }
 
 //检查数据中是否包含 imgName
-- (BOOL)checkGriphicContainsImgName:(NSString *)imgName {
-//    BOOL exsit = [LWDataConfig  exsitGraphicWithImgName:imgName];
-//    return exsit;
-    return NO;
+- (BOOL)checkFavoritesContainsURLString:(NSString *)urlstring {
+    BOOL isExsit = [[LWSymbolService symbolService] exsitSymbolWithHttpURL:urlstring];
+    return isExsit;
 }
 
 //SDWebImage库下载图片

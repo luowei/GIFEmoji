@@ -25,6 +25,7 @@
 "About" = "关于";
 "Categories" = "管理分类";
 "Delete" = "删除";
+"Refresh" = "刷新";
 
 "Add Category" = "添加分类";
 "Rename Category" = "重命名分类";
@@ -37,3 +38,4 @@
 "Text Empty" = "输入内容为空";
 
 "No Data" = "暂无数据";
+"Exist The Image" = "已收藏了这个图片";

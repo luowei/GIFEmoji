@@ -65,10 +65,9 @@
         [self.containerView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
 
         [self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.inputMaskView).offset(20);
-            make.right.equalTo(self.inputMaskView).offset(-20);
             make.centerX.equalTo(self.inputMaskView);
             make.centerY.equalTo(self.inputMaskView);
+            make.width.mas_equalTo(240);
             make.height.mas_equalTo(Screen_H / 2);
         }];
 
@@ -184,7 +183,7 @@
 // Edit Cell
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
-    return indexPath.row < self.dataList.count - 1;
+    return indexPath.row < self.dataList.count;
 }
 
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {

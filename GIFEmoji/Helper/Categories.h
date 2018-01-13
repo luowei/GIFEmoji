@@ -13,7 +13,7 @@
 
 @interface NSString (Ext)
 
-- (CGFloat)widthWithFont:(UIFont *)font andAttributes:(NSDictionary *)attributes;
+- (CGFloat)widthWithFont:(UIFont *)font;
 
 - (CGFloat)heigthWithWidth:(CGFloat)width andFont:(UIFont *)font andAttributes:(NSDictionary *)attributes;
 

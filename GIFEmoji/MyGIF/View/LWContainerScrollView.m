@@ -96,9 +96,9 @@
     LWMyGIFViewController *vc = [self superViewWithClass:[LWMyGIFViewController class]];
 
     NSInteger positionId = (NSInteger) (scrollView.contentOffset.x/Screen_W);
-    [vc.topScrollView setButtonUnSelect];
+    [vc.topScrollView updateButtonUnSelect];
     vc.topScrollView.scrollViewSelectedChannelID = (NSInteger) (positionId + Tag_First_Channel);;
-    [vc.topScrollView setButtonSelect];
+    [vc.topScrollView updateButtonSelect];
 }
 
 
