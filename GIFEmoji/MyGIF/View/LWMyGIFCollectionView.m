@@ -18,6 +18,8 @@
 #import "GenGIFViewController.h"
 #import "UIColor+HexValue.h"
 #import "FCFileManager.h"
+#import "LWLivePhotoView.h"
+#import "LWAVPlayerView.h"
 
 #define GIFItem_Spacing 6
 
@@ -339,7 +341,12 @@
     if(!vc){
         return;
     }
+
+    vc.liveView.hidden = YES;
+    vc.videoPlayerView.hidden = YES;
+
     if(gifData){
+
         [vc updateSelectedMode:GIFMode];
         vc.exportGIFImageData = gifData;
         vc.imagePreview.animatedImage = [FLAnimatedImage animatedImageWithGIFData:gifData];

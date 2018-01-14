@@ -39,9 +39,6 @@
 @interface GenGIFViewController () {
 }
 
-@property(nonatomic, strong) LWLivePhotoView *liveView;
-@property(nonatomic, strong) LWAVPlayerView *videoPlayerView;
-
 @property(nonatomic, strong) NSURL *selectedVideoFileURL;
 
 @property(nonatomic, strong) NSURL *livePhotoVideoURL;
@@ -219,6 +216,10 @@
 - (void)updateExportBtnWithSelectedMode:(SelectedMode)mode {
     switch (mode) {
         case LivePhotoMode: {
+            [self.imagePreview stopAnimating];
+            self.imagePreview.animatedImage = nil;
+            self.imagePreview.image = nil;
+
             self.exportFrameBtn.hidden = NO;
             self.exportGIFBtn.hidden = NO;
             self.exportVideoBtn.hidden = NO;
@@ -231,12 +232,20 @@
             break;
         }
         case VideoMode: {
+            [self.imagePreview stopAnimating];
+            self.imagePreview.animatedImage = nil;
+            self.imagePreview.image = nil;
+
             self.exportFrameBtn.hidden = NO;
             self.exportGIFBtn.hidden = NO;
             self.exportVideoBtn.hidden = NO;
             break;
         }
         case GIFMode: {
+            [self.imagePreview stopAnimating];
+            self.imagePreview.animatedImage = nil;
+            self.imagePreview.image = nil;
+
             self.exportFrameBtn.hidden = NO;
             self.exportGIFBtn.hidden = NO;
             self.exportVideoBtn.hidden = YES;
