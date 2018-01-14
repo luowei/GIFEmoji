@@ -11,6 +11,7 @@
 
 "Not a Live Photo" = "选择的照片不是LivePhoto";
 "The Photo is GIF Image" = "选择是照片是GIF图片";
+"Only One Frame" = "只有一帧不能导出GIF";
 
 "Export GIF Faild" = "导出GIF失败";
 "Export Frames Faild" = "导出动画帧失败";

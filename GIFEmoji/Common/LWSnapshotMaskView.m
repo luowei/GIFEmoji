@@ -254,10 +254,11 @@
         }
     }
 
-    CGFloat minX = CGRectGetMinX(self.snapshotFrame) > 5 ? CGRectGetMinX(self.snapshotFrame) : 0;
-    CGFloat minY = CGRectGetMinY(self.snapshotFrame) > 5 ? CGRectGetMinY(self.snapshotFrame) : 0;
-    CGFloat maxX = CGRectGetMaxX(self.snapshotFrame) < self.bounds.size.width - 5 ? CGRectGetMaxX(self.snapshotFrame) : self.bounds.size.width;
-    CGFloat maxY = CGRectGetMaxY(self.snapshotFrame) < self.bounds.size.height - 5 ? CGRectGetMaxY(self.snapshotFrame) : self.bounds.size.height;
+    //吸附距离为2
+    CGFloat minX = CGRectGetMinX(self.snapshotFrame) > 2 ? CGRectGetMinX(self.snapshotFrame) : 0;
+    CGFloat minY = CGRectGetMinY(self.snapshotFrame) > 2 ? CGRectGetMinY(self.snapshotFrame) : 0;
+    CGFloat maxX = CGRectGetMaxX(self.snapshotFrame) < self.bounds.size.width - 2 ? CGRectGetMaxX(self.snapshotFrame) : self.bounds.size.width;
+    CGFloat maxY = CGRectGetMaxY(self.snapshotFrame) < self.bounds.size.height - 2 ? CGRectGetMaxY(self.snapshotFrame) : self.bounds.size.height;
     self.snapshotFrame = CGRectMake(minX, minY, maxX - minX, maxY - minY);
 }
 

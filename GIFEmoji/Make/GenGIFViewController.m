@@ -530,9 +530,10 @@
 - (IBAction)exportGIFAction:(UIButton *)sender {
 
     if (self.exportGIFImageData) {
-        //合成图片帧集为GIF,并跳转到GIF预览页面
-        LWGIFPreviewViewController *vc = [LWGIFPreviewViewController viewControllerWithGIFData:self.exportGIFImageData];
-        [self.navigationController pushViewController:vc animated:YES];
+        [self showGIFPreviewVCWithGIFData:self.exportGIFImageData];
+//        //合成图片帧集为GIF,并跳转到GIF预览页面
+//        LWGIFPreviewViewController *vc = [LWGIFPreviewViewController viewControllerWithGIFData:self.exportGIFImageData];
+//        [self.navigationController pushViewController:vc animated:YES];
         return;
     }
 
@@ -633,12 +634,19 @@
 
 - (void)showGIFPreviewVCWithGIFData:(NSData *)gifData {
     self.exportGIFImageData = gifData;
+
+    if([LWGIFManager frameCountWithGIFData:self.exportGIFImageData] <= 1){
+        [SVProgressHUD showInfoWithStatus:NSLocalizedString(@"Only One Frame", nil)];
+        [SVProgressHUD dismissWithDelay:1.0];
+        return;
+    }
+
     if (self.exportGIFImageData) {
         LWGIFPreviewViewController *vc = [LWGIFPreviewViewController viewControllerWithGIFData:self.exportGIFImageData];
         [self.navigationController pushViewController:vc animated:YES];
 
     } else {
-        [SVProgressHUD showWithStatus:NSLocalizedString(@"Export GIF Faild", nil)];
+        [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Export GIF Faild", nil)];
         [SVProgressHUD dismissWithDelay:1.0];
     }
 }

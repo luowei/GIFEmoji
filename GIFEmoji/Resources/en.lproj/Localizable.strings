@@ -12,6 +12,7 @@
 
 "Not a Live Photo" = "Not a Live Photo";
 "The Photo is GIF Image" = "The Photo is GIF Image";
+"Only One Frame" = "Only One Frame In GIF Data";
 
 "Export GIF Faild" = "Export GIF Faild";
 "Export Frames Faild" = "Export Frames Faild";

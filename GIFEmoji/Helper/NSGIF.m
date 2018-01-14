@@ -395,5 +395,43 @@ typedef NS_ENUM(NSInteger, GIFSize) {
     return path;
 }
 
+//获取GIF的帧数
++(NSUInteger)frameCountWithGIFData:(NSData *)imageData {
+    CGImageSourceRef source = CGImageSourceCreateWithData((__bridge CFDataRef) imageData, NULL);
+    size_t const count = CGImageSourceGetCount(source);
+    return count;
+}
+
+//获取GIF第index帧的时间间隔
++ (float)frameDurationAtIndex:(NSUInteger)index gifData:(NSData *)imageData {
+    float frameDuration = 0.1f;
+    CGImageSourceRef source = CGImageSourceCreateWithData((__bridge CFDataRef) imageData, NULL);
+    CFDictionaryRef cfFrameProperties = CGImageSourceCopyPropertiesAtIndex(source, index, nil);
+    NSDictionary *frameProperties = (__bridge NSDictionary *) cfFrameProperties;
+    NSDictionary *gifProperties = frameProperties[(NSString *) kCGImagePropertyGIFDictionary];
+
+    NSNumber *delayTimeUnclampedProp = gifProperties[(NSString *) kCGImagePropertyGIFUnclampedDelayTime];
+    if (delayTimeUnclampedProp) {
+        frameDuration = [delayTimeUnclampedProp floatValue];
+    } else {
+
+        NSNumber *delayTimeProp = gifProperties[(NSString *) kCGImagePropertyGIFDelayTime];
+        if (delayTimeProp) {
+            frameDuration = [delayTimeProp floatValue];
+        }
+    }
+
+    // Many annoying ads specify a 0 duration to make an image flash as quickly as possible.
+    // We follow Firefox's behavior and use a duration of 100 ms for any frames that specify
+    // a duration of <= 10 ms. See <rdar://problem/7689300> and <http://webkit.org/b/36082>
+    // for more information.
+
+    frameDuration = frameDuration < 0.011f ? 0.100f : frameDuration;
+
+    if(cfFrameProperties){
+        CFRelease(cfFrameProperties);
+    }
+    return frameDuration;
+}
 
 @end

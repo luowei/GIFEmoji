@@ -12,9 +12,10 @@
 #import "AppDefines.h"
 #import "SVProgressHUD.h"
 #import "LWSnapshotMaskView.h"
+#import "NSGIF.h"
 
 
-@interface LWGIFPreviewViewController ()<UITextFieldDelegate>
+@interface LWGIFPreviewViewController ()<UITextFieldDelegate,UIGestureRecognizerDelegate>
 
 @property(nonatomic, copy) NSString *originGIFFilePath;
 @end
@@ -56,10 +57,31 @@
     [self.imageView addGestureRecognizer:longPressGesture];
     self.imageView.userInteractionEnabled = YES;
 
-    [self updateSliderThumbImageWithText:@"10"]; //更新sliderThumbImage
+    float frameDuration = [LWGIFManager frameDurationAtIndex:1 gifData:self.gifData];
+    frameDuration = (float) (frameDuration < 0.011 ? 0.1 : frameDuration);
+    CGFloat fps = (CGFloat) (1.0 / frameDuration);
+    [self.fpsSlider setValue:fps animated:YES];
+    NSString *fpsText = [NSString stringWithFormat:@"%d", (int) round(fps)];
+    [self updateSliderThumbImageWithText:fpsText]; //更新sliderThumbImage
 
     [self updateGIFImageView];  //更新GIFImageView
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+    self.navigationController.interactivePopGestureRecognizer.delegate = self;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.delegate = nil;
+    }
+}
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+    return gestureRecognizer != self.navigationController.interactivePopGestureRecognizer;
+    // add whatever logic you would otherwise have
+}
+
 
 //手势截图分享
 - (void)longPressGestureAction:(UILongPressGestureRecognizer *)gesture {

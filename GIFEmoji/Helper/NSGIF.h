@@ -75,4 +75,10 @@ CGImageRef ImageWithScale(CGImageRef imageRef, float scale);
 //根据已有的 GIFFrames 导出GIF图片，返回GIF图片地址
 + (NSString *)exportAnimatedGifWithImages:(NSArray <UIImage *>*)imageList gifDelayTime:(float) gifDelayTime;
 
+//获取GIF的帧数
++(NSUInteger)frameCountWithGIFData:(NSData *)imageData;
+
+//获取GIF第index帧的时间间隔
++ (float)frameDurationAtIndex:(NSUInteger)index gifData:(NSData *)imageData;
+
 @end
