@@ -8,6 +8,10 @@
 #import "UIColor+HexValue.h"
 #import "UIView+extensions.h"
 #import "LWGIFPreviewViewController.h"
+#import "FLAnimatedImageView.h"
+#import "FLAnimatedImage.h"
+#import "UIImage+GIF.h"
+#import "UIImage+Extension.h"
 
 #define Edge_Padding 20
 #define Default_HalfLen 80
@@ -361,8 +365,42 @@
     LWGIFPreviewViewController *vc = [self superViewWithClass:[LWGIFPreviewViewController class]];
 
     NSLog(@"======分享图片======");
-    UIImage *image = [self.superview snapshotImageInRect:self.snapshotFrame];
-    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[image] applicationActivities:nil];
+    //UIImage *image = [self.superview snapshotImageInRect:self.snapshotFrame];
+
+    NSData *cutGIFData = vc.gifData;
+
+    CGSize imageSize = vc.imageView.intrinsicContentSize;
+    CGFloat wScale = imageSize.width / self.bounds.size.width;
+    CGFloat hScale = imageSize.height / self.bounds.size.height;
+
+    if(fabs(wScale-1.0) > 0.01 || fabs(hScale-1.0) > 0.01){
+
+        CGRect cutRect = CGRectMake(self.snapshotFrame.origin.x * wScale, self.snapshotFrame.origin.y * hScale,
+                self.snapshotFrame.size.width * wScale, self.snapshotFrame.size.height * hScale);
+        CGSize cutSize = CGSizeMake(self.snapshotFrame.size.width * wScale, self.snapshotFrame.size.height * hScale);
+
+        NSMutableArray <UIImage *>* imageList = @[].mutableCopy;
+        NSArray <UIImage *>*images = [UIImage imagesFromGIFData:vc.gifData];
+
+        for(UIImage *image in images){
+            UIImage *img = [image cutImageWithRect:cutRect];
+            [imageList addObject:img];
+        }
+
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.dateFormat = @"yyyyMMddHHmmssSSS";
+        NSString *gifFileName = [NSString stringWithFormat:@"%@.gif",[dateFormatter stringFromDate:[NSDate new]]];
+        NSString *gifFilePath = [NSTemporaryDirectory() stringByAppendingString:gifFileName];
+
+        CGFloat screenScale = [UIScreen mainScreen].scale;
+        imageSize = CGSizeMake(cutSize.width * screenScale, cutSize.height * screenScale);
+        float delayTime = (float) (1.0/(float)vc.fpsSlider.value);
+
+        cutGIFData = [UIImage createGIFWithImages:imageList size:imageSize loopCount:0 delayTime:delayTime gifCachePath:gifFilePath];
+    }
+
+
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[cutGIFData] applicationActivities:nil];
     //显示弹出层
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         UIPopoverController *popoverController = [[UIPopoverController alloc] initWithContentViewController:activityVC];

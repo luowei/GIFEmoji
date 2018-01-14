@@ -16,8 +16,6 @@
 
 @interface LWGIFPreviewViewController ()<UITextFieldDelegate>
 
-@property(nonatomic, strong) NSData *gifData;
-
 @property(nonatomic, copy) NSString *originGIFFilePath;
 @end
 

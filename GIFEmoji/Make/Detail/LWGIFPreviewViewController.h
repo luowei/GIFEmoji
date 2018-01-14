@@ -15,6 +15,8 @@
 
 @property (weak, nonatomic) IBOutlet FLAnimatedImageView *imageView;
 
+@property(nonatomic, strong) NSData *gifData;
+
 +(instancetype)viewControllerWithGIFData:(NSData *)gifData;
 
 //获取UIImageView中自适应的Image Frame
