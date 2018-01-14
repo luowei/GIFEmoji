@@ -68,22 +68,25 @@
     Log(@"--------: 识别到手势截图");
 
     if(gesture.state == UIGestureRecognizerStateBegan ){
-        CGSize imageSize = self.imageView.intrinsicContentSize;
-        CGSize viewSize = self.imageView.frame.size;
-
-//        CGSize scaleSize = CGSizeMake(viewSize.width, viewSize.height *imageSize.height / imageSize.width);
-//        if(imageSize.width/imageSize.height < viewSize.width/viewSize.height){
-//            scaleSize = CGSizeMake(viewSize.width * imageSize.width / imageSize.height, viewSize.height);
-//        }
-
-        LWSnapshotMaskView *snapshotMaskView = [LWSnapshotMaskView showSnapshotMaskInView:self.imageView];
-//        snapshotMaskView.snapshotFrame = CGRectMake((viewSize.width-scaleSize.width)/2.0, (viewSize.height-scaleSize.height)/2.0, scaleSize.width, scaleSize.height);
-        snapshotMaskView.snapshotFrame = CGRectMake((self.view.frame.size.width-200)/2, (self.view.frame.size.height-200)/2, 200, 200);
-
+        CGRect scaleFrame = [self imageFitFrameInView:self.imageView];
+        LWSnapshotMaskView *snapshotMaskView = [LWSnapshotMaskView showSnapshotMaskInView:self.imageView frame:scaleFrame];
+        snapshotMaskView.snapshotFrame = CGRectMake(0, 0, scaleFrame.size.width, scaleFrame.size.height);
     }
 
 }
 
+//获取UIImageView中自适应的Image Frame
+- (CGRect)imageFitFrameInView:(UIImageView *)imageView {
+    CGSize imageSize = imageView.intrinsicContentSize;
+    CGSize viewSize = imageView.frame.size;
+
+    CGSize scaleSize = CGSizeMake(viewSize.width, viewSize.width *imageSize.height / imageSize.width);
+    if(imageSize.width/imageSize.height < viewSize.width/viewSize.height){
+            scaleSize = CGSizeMake(viewSize.height * imageSize.width / imageSize.height, viewSize.height);
+        }
+    CGRect scaleFrame = CGRectMake((viewSize.width-scaleSize.width)/2.0, (viewSize.height-scaleSize.height)/2.0, scaleSize.width, scaleSize.height);
+    return scaleFrame;
+}
 
 
 - (void)updateGIFImageView {

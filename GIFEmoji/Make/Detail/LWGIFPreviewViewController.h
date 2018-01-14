@@ -17,6 +17,9 @@
 
 +(instancetype)viewControllerWithGIFData:(NSData *)gifData;
 
+//获取UIImageView中自适应的Image Frame
+- (CGRect)imageFitFrameInView:(UIImageView *)imageView;
+
 - (IBAction)fpsSliderAction:(UISlider *)sender forEvent:(UIEvent*)event;
 
 @end

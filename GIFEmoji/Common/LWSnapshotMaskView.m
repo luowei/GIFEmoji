@@ -20,7 +20,7 @@
     BOOL _btnisHiden;
 }
 
-+(LWSnapshotMaskView *)showSnapshotMaskInView:(UIView *)view{
++(LWSnapshotMaskView *)showSnapshotMaskInView:(UIView *)view frame:(CGRect)frame{
     LWSnapshotMaskView *snapshutMask = nil;
     for(UIView *v in view.subviews){
         if([v isKindOfClass:[LWSnapshotMaskView class]]){
@@ -30,7 +30,7 @@
         }
     }
     if(!snapshutMask){
-        snapshutMask = [[LWSnapshotMaskView alloc] initWithFrame:view.bounds];
+        snapshutMask = [[LWSnapshotMaskView alloc] initWithFrame:frame];
         [view addSubview:snapshutMask];
         [view bringSubviewToFront:snapshutMask];
     }
@@ -118,7 +118,8 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    self.frame = self.superview.bounds;
+    LWGIFPreviewViewController *vc = [self superViewWithClass:[LWGIFPreviewViewController class]];
+    self.frame = [vc imageFitFrameInView:vc.imageView];
 }
 
 - (void)rotationToInterfaceOrientation:(UIInterfaceOrientation)orientation {

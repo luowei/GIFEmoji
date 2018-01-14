@@ -40,7 +40,7 @@ typedef NS_ENUM(NSInteger, PointLocation) {
 
 @property(nonatomic, copy) void (^closeBlock)();
 
-+(LWSnapshotMaskView *)showSnapshotMaskInView:(UIView *)view;
++(LWSnapshotMaskView *)showSnapshotMaskInView:(UIView *)view frame:(CGRect)frame;
 +(void)hideSnapshotMaskInView:(UIView *)view;
 
 
