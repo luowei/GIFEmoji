@@ -13,6 +13,10 @@
 #import "SVProgressHUD.h"
 #import "LWSnapshotMaskView.h"
 #import "NSGIF.h"
+#import "LWSymbolService.h"
+#import "FCFileManager.h"
+#import "LWHelper.h"
+#import "LWPickerPanel.h"
 
 
 @interface LWGIFPreviewViewController ()<UITextFieldDelegate,UIGestureRecognizerDelegate>
@@ -148,6 +152,61 @@
 
 }
 
+//收藏
+-(IBAction)favoriteBtnTouchUpInside:(UIButton *)btn {
+    if(btn.selected){
+        [SVProgressHUD showInfoWithStatus:NSLocalizedString(@"Been Favorited", nil)];
+        [SVProgressHUD dismissWithDelay:0.5];
+        return;
+    }
+    NSData *data = self.imageView.animatedImage.data;
+    if (!data) {
+        data = UIImagePNGRepresentation(self.imageView.image);
+    }
+
+    LWPickerPanel *pickerPanel = [LWPickerPanel showPickerPanelInView:self.view];
+
+    pickerPanel.faveritaBlock = ^(NSInteger categoryId, NSString *categoryName) {
+
+        NSString *imgName = [NSString stringWithFormat:@"%@.gif",[LWHelper getCurrentTimeStampText]];
+
+        [SVProgressHUD showWithStatus:@"Loading..."];
+
+        //保存data到文件中
+        NSString *docPath = [NSString stringWithFormat:@"%@/%@", AnimojiDirectory, categoryName];
+        NSString *file_url = [docPath stringByAppendingPathComponent:imgName];
+
+        //如果不存在文件夹，则创建文件夹
+        NSString *imgDirectoryPath = [LWHelper createIfNotExistsDirectory:docPath];
+        NSString *filePath = [imgDirectoryPath stringByAppendingPathComponent:imgName];
+        Log(@"============filePath:%@", filePath);
+
+        //保存到文件
+        if (![FCFileManager existsItemAtPath:filePath]) {
+            NSError *error;
+            [data writeToFile:filePath options:NSDataWritingWithoutOverwriting error:&error];
+            if (error) {
+                Log(@"====writeToFile:%@ , %@", filePath, error.localizedFailureReason);
+                [SVProgressHUD showErrorWithStatus:@"Save Image File Faild"];
+                [SVProgressHUD dismissWithDelay:1.5];
+                return;
+            }
+        }
+
+        //保存图片表情到相应的分类中
+        BOOL isSuccess = [[LWSymbolService symbolService] insertSymbolWithCategoryId:(NSUInteger) categoryId title:nil text:imgName file_url:file_url http_url:nil];
+        if(isSuccess){
+            [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Operate Success", nil)];
+            [SVProgressHUD dismissWithDelay:1.5];
+        }else{
+            [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Operate Faild", nil)];
+            [SVProgressHUD dismissWithDelay:1.5];
+        }
+
+        btn.selected = YES;
+    };
+}
+
 - (void)updateGIFDataWithFPSValue:(float)fpsValue {
     float delayTime = (float) (1/fpsValue);
     CGSize imageSize = self.imageView.animatedImage.size;
@@ -164,9 +223,7 @@
         imageSize = images.firstObject.size;
     }
 
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"yyyyMMddHHmmssSSS";
-    NSString *gifFileName = [NSString stringWithFormat:@"%@.gif",[dateFormatter stringFromDate:[NSDate new]]];
+    NSString *gifFileName = [NSString stringWithFormat:@"%@.gif",[LWHelper getCurrentTimeStampText]];
     NSString *gifFilePath = [NSTemporaryDirectory() stringByAppendingString:gifFileName];
 
     CGFloat screenScale = [UIScreen mainScreen].scale;

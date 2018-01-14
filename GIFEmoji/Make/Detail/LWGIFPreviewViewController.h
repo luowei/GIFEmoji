@@ -12,6 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UISlider *fpsSlider;
 @property (weak, nonatomic) IBOutlet UITextField *scaleTextField;
+@property (weak, nonatomic) IBOutlet UIButton *favoriteBtn;
 
 @property (weak, nonatomic) IBOutlet FLAnimatedImageView *imageView;
 
@@ -23,5 +24,7 @@
 - (CGRect)imageFitFrameInView:(UIImageView *)imageView;
 
 - (IBAction)fpsSliderAction:(UISlider *)sender forEvent:(UIEvent*)event;
+
+-(IBAction)favoriteBtnTouchUpInside:(UIButton *)btn;
 
 @end
