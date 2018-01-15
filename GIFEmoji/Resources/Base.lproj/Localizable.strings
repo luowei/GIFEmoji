@@ -1,0 +1,48 @@
+/* 
+  Localizable.strings
+  GIFEmoji
+
+  Created by Luo Wei on 2018/1/6.
+  Copyright © 2018年 Luo Wei. All rights reserved.
+*/
+
+
+"Allow camera access?" = "Allow camera access?";
+"Allow photo album access?" = "Allow photo album access?";
+
+"Not a Live Photo" = "Not a Live Photo";
+"The Photo is GIF Image" = "The Photo is GIF Image";
+"Only One Frame" = "Only One Frame In GIF Data";
+
+"Export GIF Faild" = "Export GIF Faild";
+"Export Frames Faild" = "Export Frames Faild";
+"Need your permission to take a photo" = "Need your permission to take a photo";
+"Need your permission to access photo albumbs" = "Need your permission to access photo albumbs";
+
+"Save" = "Save";
+"Share" = "Share";
+"Ok" = "Ok";
+"Cancel" = "Cancel";
+"Settings" = "Settings";
+"Delete" = "Delete";
+"Refresh" = "Refresh";
+"FullScreen" = "FullImage";
+
+"About" = "About";
+"Categories" = "Categories";
+
+"Add Category" = "Add Category";
+"Rename Category" = "Rename Category";
+"Input Category Name" = "Input Category Name";
+"Exist The Category" = "Exist The Category";
+"Category List" = "Category List";
+"Been Favorited" = "Been Favorited";
+
+"Operate Success" = "Operate Success";
+"Operate Faild" = "Operate Faild";
+"Text Empty" = "Text Empty";
+
+"No Data" = "No Data";
+"Exist The Image" = "Exist The Image";
+
+"Export PDF" = "Export PDF";
