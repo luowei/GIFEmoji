@@ -74,7 +74,9 @@
 
 //更新ScrollView底的子Button项
 - (void)updateButtonItems {
+    NSInteger currentChannel = [[NSUserDefaults standardUserDefaults] integerForKey:@"Key_CurrentChannel"];
     self.contentSize = CGSizeMake(TopBtn_W * self.categoryList.count, TopScrollView_H);
+    self.scrollViewSelectedChannelID = (NSInteger) (currentChannel + Tag_First_Channel);
 
     for(UIView *view in self.subviews){
         if([view isKindOfClass:[UIButton class]]){
@@ -95,15 +97,16 @@
         [button setFrame:CGRectMake(TopBtn_W * i, 0, TopBtn_W, self.frame.size.height)];
         NSString *title = self.categoryList[i].name;
         [button setTitle:[NSString stringWithFormat:@"%@", title] forState:UIControlStateNormal];
-        if (i == 0) {
+        if (i == _scrollViewSelectedChannelID - Tag_First_Channel) {
             button.selected = YES;
         }
-
 
         //设置标签外观
         button.titleLabel.font = [UIFont systemFontOfSize:15.0];
         [button setTitleColor:NormalColor forState:UIControlStateNormal];
         [button setTitleColor:SelectedColor forState:UIControlStateSelected];
+
+        [self updateButtonSelect];
     }
 }
 

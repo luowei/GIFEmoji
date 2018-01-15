@@ -27,6 +27,8 @@
 #import "LWWKWebViewController.h"
 #import "SVProgressHUD.h"
 #import "UIColor+HexValue.h"
+#import "LWAVPlayerView.h"
+#import "LWLivePhotoView.h"
 
 
 #define Item_Spacing 6
@@ -365,6 +367,10 @@
     if(!vc){
         return;
     }
+
+    vc.liveView.hidden = YES;
+    vc.videoPlayerView.hidden = YES;
+
     if(gifData){
         [vc updateSelectedMode:GIFMode];
         vc.exportGIFImageData = gifData;
