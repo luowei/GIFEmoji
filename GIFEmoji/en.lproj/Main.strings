@@ -1,21 +1,21 @@
 
 /* Class = "UINavigationItem"; title = "搜索"; ObjectID = "0Dg-fp-vrb"; */
-"0Dg-fp-vrb.title" = "搜索";
+"0Dg-fp-vrb.title" = "Search";
 
 /* Class = "UINavigationItem"; title = "我的"; ObjectID = "21p-yh-ucO"; */
-"21p-yh-ucO.title" = "我的";
+"21p-yh-ucO.title" = "Mine";
 
 /* Class = "UILabel"; text = "倍"; ObjectID = "3e3-qm-MZr"; */
-"3e3-qm-MZr.text" = "倍";
+"3e3-qm-MZr.text" = "Times";
 
 /* Class = "UIButton"; normalTitle = "选择LivePhoto"; ObjectID = "5mq-eK-yuW"; */
-"5mq-eK-yuW.normalTitle" = "选择LivePhoto";
+"5mq-eK-yuW.normalTitle" = "Pick LivePhoto";
 
 /* Class = "UIButton"; normalTitle = "刷新"; ObjectID = "Abv-Zq-wTX"; */
-"Abv-Zq-wTX.normalTitle" = "刷新";
+"Abv-Zq-wTX.normalTitle" = "Refresh";
 
 /* Class = "UINavigationItem"; title = "预览Frame"; ObjectID = "B2j-1o-Jl1"; */
-"B2j-1o-Jl1.title" = "预览Frame";
+"B2j-1o-Jl1.title" = "Preview Frames";
 
 /* Class = "UITextField"; text = "1.0"; ObjectID = "CQe-Gu-AcV"; */
 "CQe-Gu-AcV.text" = "1.0";
@@ -24,46 +24,46 @@
 "Fam-ii-zAh.text" = "GIF ";
 
 /* Class = "UINavigationItem"; title = "预览Video"; ObjectID = "Iso-7z-RuF"; */
-"Iso-7z-RuF.title" = "预览Video";
+"Iso-7z-RuF.title" = "Preview Video";
 
 /* Class = "UINavigationItem"; title = "预览GIF"; ObjectID = "K0w-Ik-yLW"; */
-"K0w-Ik-yLW.title" = "预览GIF";
+"K0w-Ik-yLW.title" = "Preview GIF";
 
 /* Class = "UIButton"; normalTitle = "导出Frame"; ObjectID = "LBe-9g-yXI"; */
-"LBe-9g-yXI.normalTitle" = "导出Frame";
+"LBe-9g-yXI.normalTitle" = "Frames";
 
 /* Class = "UILabel"; text = "帧/秒:"; ObjectID = "UYJ-ek-8N8"; */
-"UYJ-ek-8N8.text" = "帧/秒:";
+"UYJ-ek-8N8.text" = "fre/sec:";
 
 /* Class = "UIButton"; normalTitle = "导出GIF"; ObjectID = "WpN-Eq-N8N"; */
-"WpN-Eq-N8N.normalTitle" = "导出GIF";
+"WpN-Eq-N8N.normalTitle" = "Export GIF";
 
 /* Class = "UIButton"; highlightedTitle = "搜索"; ObjectID = "XTd-Wm-WO5"; */
-"XTd-Wm-WO5.highlightedTitle" = "搜索";
+"XTd-Wm-WO5.highlightedTitle" = "Search";
 
 /* Class = "UIButton"; normalTitle = "搜索"; ObjectID = "XTd-Wm-WO5"; */
-"XTd-Wm-WO5.normalTitle" = "搜索";
+"XTd-Wm-WO5.normalTitle" = "Search";
 
 /* Class = "UIButton"; selectedTitle = "搜索"; ObjectID = "XTd-Wm-WO5"; */
-"XTd-Wm-WO5.selectedTitle" = "搜索";
+"XTd-Wm-WO5.selectedTitle" = "Search";
 
 /* Class = "UITabBarItem"; title = "Create"; ObjectID = "acW-dT-cKf"; */
-"acW-dT-cKf.title" = "Create";
+"acW-dT-cKf.title" = "GIFMaster";
 
 /* Class = "UITabBarItem"; title = "Search"; ObjectID = "cPa-gy-q4n"; */
 "cPa-gy-q4n.title" = "Search";
 
 /* Class = "UIButton"; normalTitle = "设置"; ObjectID = "eXb-ME-ulm"; */
-"eXb-ME-ulm.normalTitle" = "设置";
+"eXb-ME-ulm.normalTitle" = "Setting";
 
 /* Class = "UILabel"; text = "缩放:"; ObjectID = "fIE-jj-vsN"; */
-"fIE-jj-vsN.text" = "缩放:";
+"fIE-jj-vsN.text" = "Scale:";
 
 /* Class = "UITabBarItem"; title = "My"; ObjectID = "lR9-0G-Kpi"; */
 "lR9-0G-Kpi.title" = "My";
 
 /* Class = "UIButton"; normalTitle = "选择视频"; ObjectID = "lnF-60-x3p"; */
-"lnF-60-x3p.normalTitle" = "选择视频";
+"lnF-60-x3p.normalTitle" = "Pick Video";
 
 /* Class = "UILabel"; text = "0"; ObjectID = "pM2-98-9jC"; */
 "pM2-98-9jC.text" = "0";
@@ -72,10 +72,10 @@
 "scg-my-Twd.text" = "60";
 
 /* Class = "UIButton"; normalTitle = "选择多张照片"; ObjectID = "tEg-XX-Igp"; */
-"tEg-XX-Igp.normalTitle" = "选择多张照片";
+"tEg-XX-Igp.normalTitle" = "Pick Images";
 
 /* Class = "UINavigationItem"; title = "斗图王"; ObjectID = "xfz-uK-xc6"; */
-"xfz-uK-xc6.title" = "斗图王";
+"xfz-uK-xc6.title" = "GIFMaster";
 
 /* Class = "UIButton"; normalTitle = "导出Video"; ObjectID = "yUk-PJ-Hip"; */
-"yUk-PJ-Hip.normalTitle" = "导出Video";
+"yUk-PJ-Hip.normalTitle" = "Export Video";

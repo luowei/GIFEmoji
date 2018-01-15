@@ -532,6 +532,10 @@
 		BEF06FDD9D631EBF3840B5B6 /* NSLayoutConstraint+MASDebugAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+MASDebugAdditions.h"; sourceTree = "<group>"; };
 		EA1BEB67200AB22700CF2BB4 /* LWSnapshotMaskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWSnapshotMaskView.h; sourceTree = "<group>"; };
 		EA1BEB68200AB22700CF2BB4 /* LWSnapshotMaskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWSnapshotMaskView.m; sourceTree = "<group>"; };
+		EA1BEB6B200C842400CF2BB4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		EA1BEB6D200C842900CF2BB4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		EA1BEB6F200C843800CF2BB4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		EA1BEB71200C843A00CF2BB4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		EA7437E41FFCA2E600AD0291 /* GIFEmoji.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GIFEmoji.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA7437E71FFCA2E600AD0291 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EA7437E81FFCA2E600AD0291 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -592,8 +596,6 @@
 		EA74384C1FFE422500AD0291 /* UIScrollView+YMSAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+YMSAdditions.m"; sourceTree = "<group>"; };
 		EA74384D1FFE422500AD0291 /* YangMingShan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YangMingShan.h; sourceTree = "<group>"; };
 		EA74386320008F5600AD0291 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		EA74386520008F6700AD0291 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
-		EA74386620008F6700AD0291 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		EA74386720008F6700AD0291 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		EA743868200093D800AD0291 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		EA74386A2000947000AD0291 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
@@ -1789,7 +1791,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				EA7437F11FFCA2E600AD0291 /* Base */,
-				EA74386520008F6700AD0291 /* zh-Hans */,
+				EA1BEB6B200C842400CF2BB4 /* en */,
+				EA1BEB6D200C842900CF2BB4 /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1798,7 +1801,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				EA7437F61FFCA2E600AD0291 /* Base */,
-				EA74386620008F6700AD0291 /* zh-Hans */,
+				EA1BEB6F200C843800CF2BB4 /* en */,
+				EA1BEB71200C843A00CF2BB4 /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
