@@ -74,11 +74,30 @@
     }];
     self.videoPlayerView.hidden = YES;
 
+    [self setupDefaultImage];
 }
+
+//设置默认的图片
+- (void)setupDefaultImage {
+    self.liveView.hidden = YES;
+    self.videoPlayerView.hidden = YES;
+
+    NSString *defaultGIFPath = [[NSBundle mainBundle] pathForResource:@"default" ofType:@"gif"];
+    NSData *gifData = [NSData dataWithContentsOfFile:defaultGIFPath];
+    self.exportGIFImageData = gifData;
+    [self updateSelectedMode:GIFMode];
+
+    FLAnimatedImage *gifImage = [FLAnimatedImage animatedImageWithGIFData:gifData];
+    self.exportGIFImageData = gifData;
+    self.imagePreview.animatedImage = gifImage;
+
+}
+
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 }
+
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];

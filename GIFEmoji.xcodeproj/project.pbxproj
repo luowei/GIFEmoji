@@ -159,6 +159,7 @@
 		EA1BEB69200AB22800CF2BB4 /* LWSnapshotMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1BEB68200AB22700CF2BB4 /* LWSnapshotMaskView.m */; };
 		EA1BEB73200C891F00CF2BB4 /* LWPickerPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1BEB75200C891F00CF2BB4 /* LWPickerPanel.xib */; };
 		EA1BEB7C200C8A2400CF2BB4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EA1BEB7E200C8A2400CF2BB4 /* InfoPlist.strings */; };
+		EA1BEB87200CAE7100CF2BB4 /* default.gif in Resources */ = {isa = PBXBuildFile; fileRef = EA1BEB86200CAE7100CF2BB4 /* default.gif */; };
 		EA7437E91FFCA2E600AD0291 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7437E81FFCA2E600AD0291 /* AppDelegate.m */; };
 		EA7437F21FFCA2E600AD0291 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA7437F01FFCA2E600AD0291 /* Main.storyboard */; };
 		EA7437F41FFCA2E600AD0291 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA7437F31FFCA2E600AD0291 /* Assets.xcassets */; };
@@ -543,6 +544,7 @@
 		EA1BEB79200C892500CF2BB4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LWPickerPanel.strings"; sourceTree = "<group>"; };
 		EA1BEB7D200C8A2400CF2BB4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		EA1BEB7F200C8A2600CF2BB4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		EA1BEB86200CAE7100CF2BB4 /* default.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = default.gif; sourceTree = "<group>"; };
 		EA7437E41FFCA2E600AD0291 /* GIFEmoji.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GIFEmoji.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA7437E71FFCA2E600AD0291 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EA7437E81FFCA2E600AD0291 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -1235,6 +1237,7 @@
 		BEF06DF7A1D522A127A4F384 /* data */ = {
 			isa = PBXGroup;
 			children = (
+				EA1BEB86200CAE7100CF2BB4 /* default.gif */,
 				EA8A14F42003DE87004C3DFD /* GIFEmojiData */,
 			);
 			path = data;
@@ -1592,6 +1595,7 @@
 				EA7437F41FFCA2E600AD0291 /* Assets.xcassets in Resources */,
 				EA74386220008F5600AD0291 /* Localizable.strings in Resources */,
 				EA7437F21FFCA2E600AD0291 /* Main.storyboard in Resources */,
+				EA1BEB87200CAE7100CF2BB4 /* default.gif in Resources */,
 				BEF062DDCDC117BAB6E5C713 /* LICENSE in Resources */,
 				BEF06C69D6DD23DCB6FA737F /* LICENSE in Resources */,
 				EA1BEB73200C891F00CF2BB4 /* LWPickerPanel.xib in Resources */,
