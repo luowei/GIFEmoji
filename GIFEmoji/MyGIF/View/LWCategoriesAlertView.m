@@ -195,6 +195,7 @@
                            //删除一个Cell
                            LWCategory *item = self.dataList[(NSUInteger) indexPath.row];
                            [[LWSymbolService symbolService] deleteCategoryWithId:item._id];
+                           [[LWSymbolService symbolService] deleteSymbolWithCategoryId:item._id];
                            [[NSNotificationCenter defaultCenter] postNotificationName:Notification_CategoryChanged object:nil];
                            self.dataList = [[LWSymbolService symbolService] categoriesList];
                            [self.containerView reloadData];
