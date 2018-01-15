@@ -10,6 +10,7 @@
 #import "UIColor+HexValue.h"
 #import "UIImage+Extension.h"
 #import "LWContainerScrollView.h"
+#import "UIView+Frame.h"
 
 @interface LWMyGIFViewController() <UIPopoverPresentationControllerDelegate>
 
@@ -38,6 +39,13 @@
     self.navigationItem.rightBarButtonItem = barItem;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self updateTopScrollView];
+    [self updateContainerScrollView];
+}
+
+
 //右侧的按钮被点击
 - (void)rightBarItemAction {
     LWSavePopoverViewController *saveVC = [LWSavePopoverViewController popoverViewControllerWithDelegate:self size:CGSizeMake(150, 100) sourceView:self.addBtn];
@@ -53,6 +61,11 @@
 //更新顶部导航条
 - (void)updateTopScrollView {
     [self.topScrollView updateCategoryList];
+}
+
+//更新Container数据
+-(void)updateContainerScrollView {
+    [self.containerScrollView showChannelWithChannelId:self.containerScrollView.currentChannel];
 }
 
 @end

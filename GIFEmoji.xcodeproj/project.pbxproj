@@ -158,6 +158,7 @@
 		BEF06FD6127E19BA6732205F /* UIColor+HexValue.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF060744E9805090E504349 /* UIColor+HexValue.m */; };
 		EA1BEB69200AB22800CF2BB4 /* LWSnapshotMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1BEB68200AB22700CF2BB4 /* LWSnapshotMaskView.m */; };
 		EA1BEB73200C891F00CF2BB4 /* LWPickerPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1BEB75200C891F00CF2BB4 /* LWPickerPanel.xib */; };
+		EA1BEB7C200C8A2400CF2BB4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EA1BEB7E200C8A2400CF2BB4 /* InfoPlist.strings */; };
 		EA7437E91FFCA2E600AD0291 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7437E81FFCA2E600AD0291 /* AppDelegate.m */; };
 		EA7437F21FFCA2E600AD0291 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA7437F01FFCA2E600AD0291 /* Main.storyboard */; };
 		EA7437F41FFCA2E600AD0291 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA7437F31FFCA2E600AD0291 /* Assets.xcassets */; };
@@ -540,6 +541,8 @@
 		EA1BEB74200C891F00CF2BB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LWPickerPanel.xib; sourceTree = "<group>"; };
 		EA1BEB77200C892300CF2BB4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LWPickerPanel.strings; sourceTree = "<group>"; };
 		EA1BEB79200C892500CF2BB4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LWPickerPanel.strings"; sourceTree = "<group>"; };
+		EA1BEB7D200C8A2400CF2BB4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		EA1BEB7F200C8A2600CF2BB4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		EA7437E41FFCA2E600AD0291 /* GIFEmoji.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GIFEmoji.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA7437E71FFCA2E600AD0291 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EA7437E81FFCA2E600AD0291 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -1325,6 +1328,7 @@
 				EA7437F31FFCA2E600AD0291 /* Assets.xcassets */,
 				EA7437F51FFCA2E600AD0291 /* LaunchScreen.storyboard */,
 				EA7437F81FFCA2E600AD0291 /* Info.plist */,
+				EA1BEB7E200C8A2400CF2BB4 /* InfoPlist.strings */,
 				EA7437F91FFCA2E600AD0291 /* main.m */,
 				EA7438001FFCBA0300AD0291 /* AppDefines.h */,
 			);
@@ -1579,6 +1583,7 @@
 				EA7437F71FFCA2E600AD0291 /* LaunchScreen.storyboard in Resources */,
 				EA7438551FFE422500AD0291 /* YMSAlbumPickerViewController.xib in Resources */,
 				EA7438591FFE422500AD0291 /* YMSCameraCell.xib in Resources */,
+				EA1BEB7C200C8A2400CF2BB4 /* InfoPlist.strings in Resources */,
 				EA74385D1FFE422500AD0291 /* YMSAlbumCell.xib in Resources */,
 				EA74385C1FFE422500AD0291 /* YMSPhotoCell.xib in Resources */,
 				EA7438501FFE422500AD0291 /* YMSPhotoPickerViewController.xib in Resources */,
@@ -1798,6 +1803,15 @@
 				EA1BEB79200C892500CF2BB4 /* zh-Hans */,
 			);
 			name = LWPickerPanel.xib;
+			sourceTree = "<group>";
+		};
+		EA1BEB7E200C8A2400CF2BB4 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EA1BEB7D200C8A2400CF2BB4 /* en */,
+				EA1BEB7F200C8A2600CF2BB4 /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		EA7437F01FFCA2E600AD0291 /* Main.storyboard */ = {

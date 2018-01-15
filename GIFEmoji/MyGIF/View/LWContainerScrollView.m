@@ -18,6 +18,7 @@
 
 
 @implementation LWContainerScrollView {
+    NSInteger _currentChannel;
     CGFloat _userContentOffsetX;
     BOOL _isLeftScroll;
 }
@@ -70,25 +71,21 @@
         [self addSubview:collectionView];
     }
 
-    //这里要调set方法
-    //如果设置的Channel与当前显示的不同，显示设置的
-    if (_currentChannel != 0) {
+    //更新TopScrollView
+    LWMyGIFViewController *vc = [self superViewWithClass:[LWMyGIFViewController class]];
 
-        LWMyGIFViewController *vc = [self superViewWithClass:[LWMyGIFViewController class]];
-
-        //做选中一个标签的操作
-        vc.topScrollView.scrollViewSelectedChannelID = (NSInteger) (0 + Tag_First_Channel);
-        UIButton *button = (UIButton *) [vc.topScrollView viewWithTag:(NSInteger) (0 + Tag_First_Channel)];
-        if(!button){
-            return;
-        }
-        [vc.topScrollView channelBtnTouchUpInside:button];
-
-        //适配TopScrollView的位置
-        [self adjustTopScrollView:self];
+    //做选中一个标签的操作
+    vc.topScrollView.scrollViewSelectedChannelID = (NSInteger) (self.currentChannel + Tag_First_Channel);
+    UIButton *button = (UIButton *) [vc.topScrollView viewWithTag:(NSInteger) (self.currentChannel + Tag_First_Channel)];
+    if(!button){
+        return;
     }
+    [vc.topScrollView channelBtnTouchUpInside:button];
 
-    [self updateCurrentChannel:0];
+    //适配TopScrollView的位置
+    [self adjustTopScrollView:self];
+
+    [self updateCurrentChannel:self.currentChannel];
 }
 
 //滑动内容顶部滑动标签跟随滑动
@@ -178,10 +175,10 @@
     [self setContentOffset:CGPointMake(channelId * Screen_W,0) animated:NO];
 }
 
-//设置当前选中栏目
+//更新设置当前选中栏目
 - (void)updateCurrentChannel:(NSInteger)channelId {
     //设置_currentChannel
-    _currentChannel = channelId < 0 ? 0 : channelId;
+    self.currentChannel = channelId < 0 ? 0 : channelId;
 
     //滑动时创建内容详情页面
     CGRect contentFrame = CGRectMake(0 + Screen_W * channelId, 0, Screen_W, self.frame.size.height);
@@ -217,5 +214,18 @@
 
 }
 
+-(void)setCurrentChannel:(NSInteger)currentChannel {
+    if(currentChannel != 0){
+        [[NSUserDefaults standardUserDefaults] setInteger:currentChannel forKey:@"Key_CurrentChannel"];
+    }
+    _currentChannel = currentChannel;
+}
+
+-(NSInteger)currentChannel{
+    if(_currentChannel == 0){
+        _currentChannel = [[NSUserDefaults standardUserDefaults] integerForKey:@"Key_CurrentChannel"];
+    }
+    return _currentChannel;
+}
 
 @end

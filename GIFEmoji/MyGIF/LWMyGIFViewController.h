@@ -18,6 +18,9 @@
 //更新顶部导航条
 - (void)updateTopScrollView;
 
+//更新Container数据
+-(void)updateContainerScrollView;
+
 @end
 
 

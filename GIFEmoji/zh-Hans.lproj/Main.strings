@@ -48,10 +48,10 @@
 "XTd-Wm-WO5.selectedTitle" = "搜索";
 
 /* Class = "UITabBarItem"; title = "Create"; ObjectID = "acW-dT-cKf"; */
-"acW-dT-cKf.title" = "Create";
+"acW-dT-cKf.title" = "制作";
 
 /* Class = "UITabBarItem"; title = "Search"; ObjectID = "cPa-gy-q4n"; */
-"cPa-gy-q4n.title" = "Search";
+"cPa-gy-q4n.title" = "搜索";
 
 /* Class = "UIButton"; normalTitle = "设置"; ObjectID = "eXb-ME-ulm"; */
 "eXb-ME-ulm.normalTitle" = "设置";
@@ -60,7 +60,7 @@
 "fIE-jj-vsN.text" = "缩放:";
 
 /* Class = "UITabBarItem"; title = "My"; ObjectID = "lR9-0G-Kpi"; */
-"lR9-0G-Kpi.title" = "My";
+"lR9-0G-Kpi.title" = "我的";
 
 /* Class = "UIButton"; normalTitle = "选择视频"; ObjectID = "lnF-60-x3p"; */
 "lnF-60-x3p.normalTitle" = "选择视频";
