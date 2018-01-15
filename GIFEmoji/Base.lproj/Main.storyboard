@@ -36,7 +36,7 @@
         <scene sceneID="qBj-Le-Ldg">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="poH-0f-P7k" userLabel="GenGIF Navigation" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Create" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Create" image="gif_maker" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="VPb-sX-wRj">
@@ -180,7 +180,7 @@
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <navigationItem key="navigationItem" title="Create GIF" id="xfz-uK-xc6"/>
+                    <navigationItem key="navigationItem" title="斗图王" id="xfz-uK-xc6"/>
                     <connections>
                         <outlet property="exportFrameBtn" destination="LBe-9g-yXI" id="RyN-4F-IM9"/>
                         <outlet property="exportGIFBtn" destination="WpN-Eq-N8N" id="bQv-P8-7UA"/>
@@ -390,7 +390,7 @@
         <scene sceneID="oFB-lJ-0fJ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Aog-Xq-Nil" userLabel="SearchGIF Navigation" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Search" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Search" image="gif_search" id="cPa-gy-q4n"/>
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="nnq-9E-hNX">
@@ -418,11 +418,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AVE-0o-1OM" userLabel="Search View">
                                 <rect key="frame" x="6" y="6" width="363" height="50"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="GIF " borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fam-ii-zAh">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="GIF " borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fam-ii-zAh">
                                         <rect key="frame" x="0.0" y="2" width="289" height="46"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="8rJ-Kc-sve" id="CV7-0K-A9i"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XTd-Wm-WO5">
                                         <rect key="frame" x="291" y="2" width="72" height="46"/>
@@ -451,7 +454,7 @@
                                     <constraint firstItem="Fam-ii-zAh" firstAttribute="top" secondItem="AVE-0o-1OM" secondAttribute="top" constant="2" id="r0x-9z-4vd"/>
                                 </constraints>
                             </view>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Fq5-cH-hpa">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Fq5-cH-hpa">
                                 <rect key="frame" x="0.0" y="58" width="375" height="494"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="6" minimumInteritemSpacing="6" id="bxs-T9-FiB">
@@ -612,7 +615,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Search GIF" id="0Dg-fp-vrb"/>
+                    <navigationItem key="navigationItem" title="搜索" id="0Dg-fp-vrb"/>
                     <connections>
                         <outlet property="collectionView" destination="Fq5-cH-hpa" id="z8v-7g-G8e"/>
                         <outlet property="placehoderView" destination="gFS-tH-POH" id="b3k-Zw-rFV"/>
@@ -628,7 +631,7 @@
         <scene sceneID="azl-Jw-xqq">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fRG-ie-hoF" userLabel="MyGIF Navigation" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="My" image="first" id="lR9-0G-Kpi"/>
+                    <tabBarItem key="tabBarItem" title="My" image="gif_my" id="lR9-0G-Kpi"/>
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="lee-Gj-yXn">
@@ -686,7 +689,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="NsA-yw-gn7"/>
                     </view>
-                    <navigationItem key="navigationItem" title="My GIF" id="21p-yh-ucO"/>
+                    <navigationItem key="navigationItem" title="我的" id="21p-yh-ucO"/>
                     <connections>
                         <outlet property="containerScrollView" destination="167-IX-bOI" id="Ds6-hr-Yyu"/>
                         <outlet property="topScrollView" destination="iR7-jo-Idn" id="KOz-Ip-pM4"/>
@@ -700,11 +703,12 @@
     <resources>
         <image name="favorite_normal" width="30" height="30"/>
         <image name="favorite_selected" width="30" height="30"/>
-        <image name="first" width="30" height="30"/>
+        <image name="gif_maker" width="30" height="30"/>
+        <image name="gif_my" width="30" height="30"/>
+        <image name="gif_search" width="30" height="30"/>
         <image name="imagehold" width="120" height="120"/>
         <image name="pageNotFund" width="209" height="139"/>
         <image name="search_link" width="40" height="40"/>
         <image name="search_share" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
     </resources>
 </document>

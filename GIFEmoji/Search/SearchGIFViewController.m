@@ -35,7 +35,7 @@
 #define URLString_POST_Image @"http://image.baidu.com/search/avatarjson?tn=resultjsonavatarnew&ie=utf-8&z=%@&ic=0&s=0&face=0&st=-1&lm=-1&word=%@&pn=%@&rn=%@"
 
 
-@interface SearchGIFViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+@interface SearchGIFViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,UITextFieldDelegate>
 
 @property(nonatomic, strong) NSMutableArray <LWImageModel *> *imageList;
 @property(nonatomic, assign) NSUInteger startNum;
@@ -50,6 +50,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.searchTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.searchBtn.layer.cornerRadius = 5;
     self.collectionView.backgroundColor = [UIColor colorWithHexString:@"#F6F6F6"];
 
@@ -74,9 +75,16 @@
     [self reloadSearchResult];  //发送发派源Merge信息，调用网络请求
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self reloadSearchResult];
+}
+
+
 #pragma mark - Action
 
 - (IBAction)searchBtnAction:(UIButton *)sender {
+    [self.searchTextField resignFirstResponder];
     [self reloadImageSearch];
 }
 
@@ -130,6 +138,13 @@
     return CGSizeMake((Screen_W - Item_Spacing * 4) / 3, (Screen_W - Item_Spacing * 4) / 3);
 }
 
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    [self reloadImageSearch];
+    return NO;
+}
 
 - (NSString *)searchText {
     NSString *text = self.searchTextField.text;
