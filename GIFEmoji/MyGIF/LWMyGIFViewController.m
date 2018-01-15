@@ -6,7 +6,7 @@
 #import "LWMyGIFViewController.h"
 #import "LWTopScrollView.h"
 #import "LWSymbolService.h"
-#import "LWSavePopoverViewController.h"
+#import "LWCategoriesPopoverViewController.h"
 #import "UIColor+HexValue.h"
 #import "UIImage+Extension.h"
 #import "LWContainerScrollView.h"
@@ -37,6 +37,21 @@
     [self.addBtn addTarget:self action:@selector(rightBarItemAction) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *barItem = [[UIBarButtonItem alloc] initWithCustomView:self.addBtn];
     self.navigationItem.rightBarButtonItem = barItem;
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(categoryChangedNotifyAction) name:Notification_CategoryChanged object:nil];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+
+- (void)categoryChangedNotifyAction {
+    NSArray <LWCategory *>*categoryList = [[LWSymbolService symbolService] categoriesList];
+    [self.topScrollView setupSubviewWithCategoryList:categoryList];
+    [self.containerScrollView setupSubviewWithCategoryList:categoryList];
+//    [self updateTopScrollView];
+//    [self updateContainerScrollView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -48,7 +63,7 @@
 
 //右侧的按钮被点击
 - (void)rightBarItemAction {
-    LWSavePopoverViewController *saveVC = [LWSavePopoverViewController popoverViewControllerWithDelegate:self size:CGSizeMake(150, 100) sourceView:self.addBtn];
+    LWCategoriesPopoverViewController *saveVC = [LWCategoriesPopoverViewController popoverViewControllerWithDelegate:self size:CGSizeMake(150, 100) sourceView:self.addBtn];
     [self presentViewController:saveVC animated: YES completion: nil];
 }
 
@@ -56,6 +71,8 @@
 -(UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller{
     return UIModalPresentationNone;//不适配(不区分ipad或iPhone)
 }
+
+
 
 
 //更新顶部导航条

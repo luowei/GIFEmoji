@@ -3,7 +3,7 @@
 // Copyright (c) 2017 wodedata. All rights reserved.
 //
 
-#import "LWSavePopoverViewController.h"
+#import "LWCategoriesPopoverViewController.h"
 #import "View+MASAdditions.h"
 #import "SDWebImageManager.h"
 #import "LWHelper.h"
@@ -13,19 +13,19 @@
 #import "AppDefines.h"
 
 
-@interface LWSavePopoverViewController () /*<UIViewControllerTransitioningDelegate>*/
+@interface LWCategoriesPopoverViewController () /*<UIViewControllerTransitioningDelegate>*/
 
 @property(nonatomic, strong) SDWebImageDownloadToken *imageDownloadToken;
 
 @end
 
-@implementation LWSavePopoverViewController {
+@implementation LWCategoriesPopoverViewController {
 
 }
 
-+(LWSavePopoverViewController *)popoverViewControllerWithDelegate:(id<UIPopoverPresentationControllerDelegate>)delegate
++(LWCategoriesPopoverViewController *)popoverViewControllerWithDelegate:(id<UIPopoverPresentationControllerDelegate>)delegate
                                                              size:(CGSize)size sourceView:(UIView *)sourceView {
-    LWSavePopoverViewController *saveVC = [LWSavePopoverViewController new];
+    LWCategoriesPopoverViewController *saveVC = [LWCategoriesPopoverViewController new];
     saveVC.modalPresentationStyle = UIModalPresentationPopover; //弹出的样式为popover
     saveVC.preferredContentSize = size; //弹出控制器的尺寸
 

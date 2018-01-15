@@ -52,4 +52,6 @@ typedef NS_OPTIONS(NSUInteger, SelectedMode) {
 
 #define App_URLString @"http://app.wodedata.com/myapp/gifemoji.html"
 
+#define Notification_CategoryChanged @"Notification_CategoryChanged"
+
 #endif /* AppDefines_h */

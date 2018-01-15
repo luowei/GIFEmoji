@@ -177,6 +177,7 @@
     [LWAddCategoryAlertView showTextInputViewInView:vc.view category:category updateBlock:^{
         self.dataList = [[LWSymbolService symbolService] categoriesList];
         [self.containerView reloadData];
+        [[NSNotificationCenter defaultCenter] postNotificationName:Notification_CategoryChanged object:nil];
     }];
 }
 
@@ -194,6 +195,7 @@
                            //删除一个Cell
                            LWCategory *item = self.dataList[(NSUInteger) indexPath.row];
                            [[LWSymbolService symbolService] deleteCategoryWithId:item._id];
+                           [[NSNotificationCenter defaultCenter] postNotificationName:Notification_CategoryChanged object:nil];
                            self.dataList = [[LWSymbolService symbolService] categoriesList];
                            [self.containerView reloadData];
                        }];
@@ -209,6 +211,7 @@
     [LWAddCategoryAlertView showTextInputViewInView:vc.view category:nil updateBlock:^{
         self.dataList = [[LWSymbolService symbolService] categoriesList];
         [self.containerView reloadData];
+        [[NSNotificationCenter defaultCenter] postNotificationName:Notification_CategoryChanged object:nil];
     }];
 }
 

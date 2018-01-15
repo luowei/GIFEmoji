@@ -128,6 +128,7 @@
     [self adjustScrollViewContentX:sender];
 
     //如果更换按钮
+    _userSelectedChannelID = _userSelectedChannelID < Tag_First_Channel ? Tag_First_Channel : _userSelectedChannelID;
     if (sender.tag != _userSelectedChannelID) {
         //取之前的按钮
         UIButton *lastButton = (UIButton *) [self viewWithTag:_userSelectedChannelID];

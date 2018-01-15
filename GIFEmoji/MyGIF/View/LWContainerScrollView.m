@@ -62,6 +62,12 @@
     //设置contenSize
     self.contentSize = CGSizeMake(Screen_W * self.categoryList.count, self.frame.size.height);
 
+    for(UIView *view in self.subviews){
+        if([view isKindOfClass:[LWMyGIFCollectionView class]]){
+            [view removeFromSuperview];
+        }
+    }
+
     for (int i = 0; i < [self.categoryList count]; i++) {
         CGRect contentFrame = CGRectMake(0 + Screen_W * i, 0, Screen_W, self.frame.size.height);
 
@@ -77,7 +83,7 @@
     //做选中一个标签的操作
     vc.topScrollView.scrollViewSelectedChannelID = (NSInteger) (self.currentChannel + Tag_First_Channel);
     UIButton *button = (UIButton *) [vc.topScrollView viewWithTag:(NSInteger) (self.currentChannel + Tag_First_Channel)];
-    if(!button){
+    if(!button || [(UIView *)button isKindOfClass:[UIButton class]]){
         return;
     }
     [vc.topScrollView channelBtnTouchUpInside:button];
@@ -224,6 +230,10 @@
 -(NSInteger)currentChannel{
     if(_currentChannel == 0){
         _currentChannel = [[NSUserDefaults standardUserDefaults] integerForKey:@"Key_CurrentChannel"];
+    }
+    if(_currentChannel >= self.categoryList.count){
+        _currentChannel = 0;
+        [[NSUserDefaults standardUserDefaults] setInteger:_currentChannel forKey:@"Key_CurrentChannel"];
     }
     return _currentChannel;
 }

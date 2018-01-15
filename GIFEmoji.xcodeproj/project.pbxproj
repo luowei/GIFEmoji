@@ -222,7 +222,7 @@
 		EA8A14FC20074C0A004C3DFD /* UIColor+CrossFade.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8A14F820074C09004C3DFD /* UIColor+CrossFade.m */; };
 		EA8A14FD20074C0A004C3DFD /* UIImage+RCColor.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8A14F920074C09004C3DFD /* UIImage+RCColor.m */; };
 		EA8A14FE20074C0A004C3DFD /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8A14FB20074C0A004C3DFD /* UIView+Frame.m */; };
-		EA8A15012009C1EF004C3DFD /* LWSavePopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8A14FF2009C1EE004C3DFD /* LWSavePopoverViewController.m */; };
+		EA8A15012009C1EF004C3DFD /* LWCategoriesPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8A14FF2009C1EE004C3DFD /* LWCategoriesPopoverViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -652,8 +652,8 @@
 		EA8A14F920074C09004C3DFD /* UIImage+RCColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RCColor.m"; sourceTree = "<group>"; };
 		EA8A14FA20074C09004C3DFD /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
 		EA8A14FB20074C0A004C3DFD /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
-		EA8A14FF2009C1EE004C3DFD /* LWSavePopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWSavePopoverViewController.m; sourceTree = "<group>"; };
-		EA8A15002009C1EE004C3DFD /* LWSavePopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWSavePopoverViewController.h; sourceTree = "<group>"; };
+		EA8A14FF2009C1EE004C3DFD /* LWCategoriesPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWCategoriesPopoverViewController.m; sourceTree = "<group>"; };
+		EA8A15002009C1EE004C3DFD /* LWCategoriesPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWCategoriesPopoverViewController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1095,8 +1095,8 @@
 		BEF069CE65373B5045E87DF5 /* MyGIF */ = {
 			isa = PBXGroup;
 			children = (
-				EA8A15002009C1EE004C3DFD /* LWSavePopoverViewController.h */,
-				EA8A14FF2009C1EE004C3DFD /* LWSavePopoverViewController.m */,
+				EA8A15002009C1EE004C3DFD /* LWCategoriesPopoverViewController.h */,
+				EA8A14FF2009C1EE004C3DFD /* LWCategoriesPopoverViewController.m */,
 				BEF06BAA8CCC34B887E2FEBE /* LWMyGIFViewController.m */,
 				BEF06EA7A2635884B5C4758C /* LWMyGIFViewController.h */,
 				BEF064985D6A76524EDEB0AB /* View */,
@@ -1776,7 +1776,7 @@
 				BEF06B59EBBC2F91940969B1 /* UIButton+WebCache.m in Sources */,
 				BEF0675F69D0E4726DEFD14D /* SDImageCacheConfig.m in Sources */,
 				BEF065EF497CF429C458236A /* UIImage+MultiFormat.m in Sources */,
-				EA8A15012009C1EF004C3DFD /* LWSavePopoverViewController.m in Sources */,
+				EA8A15012009C1EF004C3DFD /* LWCategoriesPopoverViewController.m in Sources */,
 				BEF0675D5F1D12FAB530B800 /* SDWebImageDownloader.m in Sources */,
 				BEF0660707584A51721D50E5 /* SDWebImagePrefetcher.m in Sources */,
 				EA7438561FFE422500AD0291 /* UITableViewCell+YMSConfig.m in Sources */,
