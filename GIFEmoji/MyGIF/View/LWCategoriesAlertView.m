@@ -389,7 +389,7 @@
 
     if(isSuccess){
         [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Operate Success", nil)];
-        [SVProgressHUD dismissWithDelay:1.5];
+        [SVProgressHUD dismissWithDelay:0.5];
     }else{
         [SVProgressHUD showInfoWithStatus:NSLocalizedString(@"Operate Faild", nil)];
         [SVProgressHUD dismissWithDelay:1.5];

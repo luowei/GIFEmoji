@@ -197,7 +197,7 @@
         BOOL isSuccess = [[LWSymbolService symbolService] insertSymbolWithCategoryId:(NSUInteger) categoryId title:nil text:imgName file_url:file_url http_url:nil];
         if(isSuccess){
             [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Operate Success", nil)];
-            [SVProgressHUD dismissWithDelay:1.5];
+            [SVProgressHUD dismissWithDelay:0.5];
         }else{
             [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Operate Faild", nil)];
             [SVProgressHUD dismissWithDelay:1.5];
