@@ -23,6 +23,7 @@
 #import "OpenShare.h"
 #import "UIImage+Extension.h"
 #import "OpenShareHeader.h"
+#import "LWUIActivity.h"
 
 #define GIFItem_Spacing 6
 
@@ -39,7 +40,7 @@
     layout.minimumLineSpacing = GIFItem_Spacing;
     layout.minimumInteritemSpacing = GIFItem_Spacing;
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    
+
     self = [super initWithFrame:frame collectionViewLayout:layout];
     if (self) {
         self.backgroundColor = [UIColor colorWithHexString:@"#F6F6F6"];
@@ -48,7 +49,7 @@
         self.dataSource = self;
         self.delegate = self;
         self.category = category;
-        
+
         self.placeHoldView = [[LWCollectionPlaceHoldView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
         [self addSubview:self.placeHoldView];
         self.placeHoldView.hidden = YES;
@@ -120,10 +121,10 @@
 }
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
-    LWMyGIFCollectionCell *cell = (LWMyGIFCollectionCell *)[self cellForItemAtIndexPath:[self indexPathForItemAtPoint:point]];
+    LWMyGIFCollectionCell *cell = (LWMyGIFCollectionCell *) [self cellForItemAtIndexPath:[self indexPathForItemAtPoint:point]];
 
     if (self.editing) {
-        if(!cell){
+        if (!cell) {
             self.editing = NO;
             [self reloadData];
             return [super hitTest:point withEvent:event];
@@ -133,7 +134,7 @@
         CGRect cancelFrame = UIEdgeInsetsInsetRect(cell.bounds, UIEdgeInsetsMake(30, 30, 30, 30));
 //        Log(@"=====tPoint:(%f,%f) , cancelFrame:(%f,%f,%f,%f)",tPoint.x,tPoint.y,
 //                cancelFrame.origin.x,cancelFrame.origin.y,cancelFrame.size.width,cancelFrame.size.height);
-        if(CGRectContainsPoint(cancelFrame, tPoint)){
+        if (CGRectContainsPoint(cancelFrame, tPoint)) {
             self.editing = NO;
             [self reloadData];
         }
@@ -154,8 +155,8 @@
 #pragma mark - UICollectionViewDataSource
 
 //刷新数据
--(void)reloadWithCategory:(LWCategory *)category {
-    if(category){
+- (void)reloadWithCategory:(LWCategory *)category {
+    if (category) {
         self.category = category;
     }
     [self reloadData];
@@ -164,9 +165,9 @@
 - (void)reloadData {
     self.dataList = [[LWSymbolService symbolService] symbolsWithCategoryId:self.category._id];
 
-    if(!self.dataList || self.dataList.count < 1){
+    if (!self.dataList || self.dataList.count < 1) {
         self.placeHoldView.hidden = NO;
-    }else{
+    } else {
         self.placeHoldView.hidden = YES;
     }
     [super reloadData];
@@ -185,7 +186,6 @@
 }
 
 
-
 #pragma mark - UICollectionViewDelegate
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -193,6 +193,9 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    LWMyGIFViewController *controller = [self superViewWithClass:[LWMyGIFViewController class]];
+    LWMyGIFCollectionCell *cell = (LWMyGIFCollectionCell *) [collectionView cellForItemAtIndexPath:indexPath];
+
     LWSymbol *item = self.dataList[(NSUInteger) indexPath.row];
 
     NSString *documentsDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
@@ -205,8 +208,17 @@
         imageData = [NSData dataWithContentsOfFile:filePath];
     }
 
-    LWMyGIFViewController *controller = [self superViewWithClass:[LWMyGIFViewController class]];
-    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[imageData] applicationActivities:nil];
+    OSMessage *msg = [self getShareMessageWithCell:cell];
+
+    LWWechatActivity *wechatActivity = [[LWWechatActivity alloc] initWithiphoneImage:[UIImage imageNamed:@"Wechat50"] ipadImage:[UIImage imageNamed:@"Wechat53"]];
+    wechatActivity.msg = msg;
+    wechatActivity.fromView = controller.view;
+
+    LWQQActivity *qqActivity = [[LWQQActivity alloc] initWithiphoneImage:[UIImage imageNamed:@"QQ50"] ipadImage:[UIImage imageNamed:@"QQ53"]];
+    qqActivity.msg = msg;
+    qqActivity.fromView = controller.view;
+
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[imageData] applicationActivities:@[wechatActivity, qqActivity]];
     activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypePrint];
     [controller presentViewController:activityVC animated:TRUE completion:nil];
 }
@@ -215,10 +227,44 @@
     return CGSizeMake((Screen_W - GIFItem_Spacing * 4) / 3, (Screen_W - GIFItem_Spacing * 4) / 3);
 }
 
+- (OSMessage *)getShareMessageWithCell:(LWMyGIFCollectionCell *)cell {
+    //构建消息
+    OSMessage *msg = [[OSMessage alloc] init];
+    msg.title = NSLocalizedString(@"Share Image", nil);
+    msg.desc = NSLocalizedString(@"Share Image", nil);
+
+    UIImage *thumbnailImg = [cell.imageView.image scaleToWXThumbnailSizeKeepAspect:CGSizeMake(200, 200)];
+    NSData *data = cell.imageView.animatedImage.data;
+    if (data) {
+        SDImageFormat imageFormat = [NSData sd_imageFormatForImageData:data];
+        if (imageFormat == SDImageFormatGIF) {
+            msg.messageType = Msg_ImageGif;
+            thumbnailImg = cell.imageView.animatedImage.posterImage;
+            NSData *thumbnailData = [thumbnailImg compressWithInMaxFileSize:32 * 1024];
+            msg.thumbnail = thumbnailData;
+        } else {
+            msg.messageType = Msg_Image;
+
+            NSData *thumbnailData = [thumbnailImg compressWithInMaxFileSize:32 * 1024];
+            msg.thumbnail = thumbnailData;
+        }
+
+    } else {
+        msg.messageType = Msg_Image;
+        NSData *thumbnailData = [thumbnailImg compressWithInMaxFileSize:32 * 1024];
+        msg.thumbnail = thumbnailData;
+        data = UIImagePNGRepresentation(cell.imageView.image);
+    }
+    msg.image = data;
+    msg.file = data;
+    return msg;
+}
+
+
 @end
 
 
-@implementation LWMyGIFCollectionCell{
+@implementation LWMyGIFCollectionCell {
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -238,7 +284,7 @@
         [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
         }];
-        
+
 //        self.shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
 //        [self.shareBtn setImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
 //        [self.shareBtn addTarget:self action:@selector(shareAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -247,7 +293,7 @@
 //            make.right.bottom.equalTo(self);
 //            make.width.height.mas_equalTo(30);
 //        }];
-        
+
         self.linkBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [self.linkBtn setImage:[UIImage imageNamed:@"search_link"] forState:UIControlStateNormal];
         [self.linkBtn addTarget:self action:@selector(linkAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -309,7 +355,7 @@
 //执行删除Cell的操作
 - (void)deleteButtonClicked:(UIButton *)btn {
     BOOL isSuccess = [[LWSymbolService symbolService] deleteSymbolWithId:self.symbol._id];
-    if(isSuccess){
+    if (isSuccess) {
         //删除文件
         NSString *documentsDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
         NSString *filePath = [documentsDirectory stringByAppendingPathComponent:self.symbol.file_url];
@@ -357,9 +403,9 @@
     msg.file = data;
 
     LWMyGIFViewController *controller = [self superViewWithClass:[LWMyGIFViewController class]];
-    [OpenShare shareToWeixinSession:msg fromView:controller.view Success:^(OSMessage *message){
+    [OpenShare shareToWeixinSession:msg fromView:controller.view Success:^(OSMessage *message) {
         Log(@"分享到微信成功");
-    } Fail:^(OSMessage *message,NSError *error){
+    }                          Fail:^(OSMessage *message, NSError *error) {
         Log(@"分享到微信失败");
     }];
 }
@@ -378,9 +424,9 @@
     }
 
     SDImageFormat imageFormat = [NSData sd_imageFormatForImageData:imageData];
-    if(imageFormat == SDImageFormatGIF){
+    if (imageFormat == SDImageFormatGIF) {
         [self.imageView setAnimatedImage:[FLAnimatedImage animatedImageWithGIFData:imageData]];
-    }else{
+    } else {
         [self.imageView setImage:[UIImage imageWithData:imageData]];
     }
     [self bringSubviewToFront:self.deleteButton];
@@ -391,20 +437,20 @@
     UIImage *image = self.imageView.image;
     UINavigationController *navVC = (UINavigationController *) App_Delegate.tabBarController.viewControllers.firstObject;
     GenGIFViewController *vc = navVC.viewControllers.firstObject;
-    if(!vc){
+    if (!vc) {
         return;
     }
 
     vc.liveView.hidden = YES;
     vc.videoPlayerView.hidden = YES;
 
-    if(gifData){
+    if (gifData) {
 
         [vc updateSelectedMode:GIFMode];
         vc.exportGIFImageData = gifData;
         vc.imagePreview.animatedImage = [FLAnimatedImage animatedImageWithGIFData:gifData];
 
-    }else if(image){
+    } else if (image) {
         [vc updateSelectedMode:StaticPhotosMode];
         vc.exportImageFrames = @[image];
         [vc setImages:vc.exportImageFrames toImageView:vc.imagePreview];

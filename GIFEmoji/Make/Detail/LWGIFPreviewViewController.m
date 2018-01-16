@@ -20,6 +20,7 @@
 #import "OpenShare.h"
 #import "NSData+ImageContentType.h"
 #import "OpenShareHeader.h"
+#import "LWUIActivity.h"
 
 
 @interface LWGIFPreviewViewController ()<UITextFieldDelegate,UIGestureRecognizerDelegate>
@@ -211,7 +212,16 @@
 }
 
 -(IBAction)wechatBtnTouchUpInside:(UIButton *)btn {
+    OSMessage *msg = [self getShareMessage];
 
+    [OpenShare shareToWeixinSession:msg fromView:self.view Success:^(OSMessage *message){
+        Log(@"分享到微信成功");
+    } Fail:^(OSMessage *message,NSError *error){
+        Log(@"分享到微信失败");
+    }];
+}
+
+- (OSMessage *)getShareMessage {
     //构建消息
     OSMessage *msg = [[OSMessage alloc] init];
     msg.title = NSLocalizedString(@"Share Image", nil);
@@ -241,12 +251,7 @@
     }
     msg.image = data;
     msg.file = data;
-
-    [OpenShare shareToWeixinSession:msg fromView:self.view Success:^(OSMessage *message){
-        Log(@"分享到微信成功");
-    } Fail:^(OSMessage *message,NSError *error){
-        Log(@"分享到微信失败");
-    }];
+    return msg;
 }
 
 - (void)updateGIFDataWithFPSValue:(float)fpsValue {
@@ -303,7 +308,17 @@
 //右侧的按钮被点击
 - (void)rightBarItemAction:(UIBarButtonItem *)rightBarItemAction {
 
-    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[self.gifData] applicationActivities:nil];
+    OSMessage *msg = [self getShareMessage];
+
+    LWWechatActivity *wechatActivity = [[LWWechatActivity alloc] initWithiphoneImage:[UIImage imageNamed:@"Wechat50"] ipadImage:[UIImage imageNamed:@"Wechat53"]];
+    wechatActivity.msg = msg;
+    wechatActivity.fromView = self.view;
+
+    LWQQActivity *qqActivity = [[LWQQActivity alloc] initWithiphoneImage:[UIImage imageNamed:@"QQ50"] ipadImage:[UIImage imageNamed:@"QQ53"]];
+    qqActivity.msg = msg;
+    qqActivity.fromView = self.view;
+
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[self.gifData] applicationActivities:@[wechatActivity,qqActivity]];
     activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypePrint];
     [self presentViewController:activityVC animated:TRUE completion:nil];
 }

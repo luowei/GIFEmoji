@@ -16,6 +16,10 @@
 #import "UIColor+HexValue.h"
 #import "LWFramePreviewViewController.h"
 #import "UIView+extensions.h"
+#import "OpenShare.h"
+#import "NSData+ImageContentType.h"
+#import "UIImage+Extension.h"
+#import "LWUIActivity.h"
 
 @interface SRPictureBrowser () <UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate, UIActionSheetDelegate, SRPictureCellDelegate, SRPictureViewDelegate>
 
@@ -258,7 +262,18 @@
         UIImageWriteToSavedPhotosAlbum(self.currentPictureView.imageView.image, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
     }else if(buttonIndex == 1){
         LWFramePreviewViewController *vc = [self superViewWithClass:[LWFramePreviewViewController class]];
-        UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[self.currentPictureView.imageView.image] applicationActivities:nil];
+
+        OSMessage *msg = [self getShareMessage];
+
+        LWWechatActivity *wechatActivity = [[LWWechatActivity alloc] initWithiphoneImage:[UIImage imageNamed:@"Wechat50"] ipadImage:[UIImage imageNamed:@"Wechat53"]];
+        wechatActivity.msg = msg;
+        wechatActivity.fromView = vc.view;
+
+        LWQQActivity *qqActivity = [[LWQQActivity alloc] initWithiphoneImage:[UIImage imageNamed:@"QQ50"] ipadImage:[UIImage imageNamed:@"QQ53"]];
+        qqActivity.msg = msg;
+        qqActivity.fromView = vc.view;
+
+        UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[msg] applicationActivities:@[wechatActivity,qqActivity]];
         activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypePrint];
         [vc presentViewController:activityVC animated:TRUE completion:nil];
     }
@@ -272,5 +287,27 @@
         [SRPictureHUD showHUDInView:self withMessage:@"Save Picture Success!"];
     }
 }
+
+- (OSMessage *)getShareMessage {
+    //构建消息
+    OSMessage *msg = [[OSMessage alloc] init];
+    msg.title = NSLocalizedString(@"Share Image", nil);
+    msg.desc = NSLocalizedString(@"Share Image", nil);
+
+    UIImage *image = self.currentPictureView.imageView.image;
+
+    msg.messageType = Msg_Image;
+
+    UIImage *thumbnailImg = [image scaleToWXThumbnailSizeKeepAspect:CGSizeMake(200, 200)];
+    NSData *thumbnailData = [thumbnailImg compressWithInMaxFileSize:32 * 1024];
+    msg.thumbnail = thumbnailData;
+
+    NSData *data = UIImagePNGRepresentation(image);
+
+    msg.image = data;
+    msg.file = data;
+    return msg;
+}
+
 
 @end

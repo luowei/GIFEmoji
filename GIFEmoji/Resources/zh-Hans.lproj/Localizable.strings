@@ -32,6 +32,9 @@
 "Share Friends" = "分享好友";
 "Share Image" = "分享图片";
 
+"Share Wechat" = "分享到微信";
+"Share QQ" = "分享到QQ";
+
 "Add Category" = "添加分类";
 "Rename Category" = "重命名分类";
 "Input Category Name" = "输入分类名称";

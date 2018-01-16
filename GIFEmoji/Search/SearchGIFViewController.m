@@ -32,6 +32,7 @@
 #import "OpenShare.h"
 #import "UIImage+Extension.h"
 #import "OpenShareHeader.h"
+#import "LWUIActivity.h"
 
 
 #define Item_Spacing 6
@@ -355,23 +356,29 @@
 }
 
 - (IBAction)shareBtnTouchUpInside:(UIButton *)sender {
+    SearchGIFViewController *controller = [self superViewWithClass:[SearchGIFViewController class]];
+
     NSData *data = self.imageView.animatedImage.data;
     if (!data) {
         data = UIImagePNGRepresentation(self.imageView.image);
     }
 
-    SearchGIFViewController *controller = [self superViewWithClass:[SearchGIFViewController class]];
-    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[data] applicationActivities:nil];
+    OSMessage *msg = [self getShareMessage];
+
+    LWWechatActivity *wechatActivity = [[LWWechatActivity alloc] initWithiphoneImage:[UIImage imageNamed:@"Wechat50"] ipadImage:[UIImage imageNamed:@"Wechat53"]];
+    wechatActivity.msg = msg;
+    wechatActivity.fromView = controller.view;
+
+    LWQQActivity *qqActivity = [[LWQQActivity alloc] initWithiphoneImage:[UIImage imageNamed:@"QQ50"] ipadImage:[UIImage imageNamed:@"QQ53"]];
+    qqActivity.msg = msg;
+    qqActivity.fromView = controller.view;
+
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[data] applicationActivities:@[wechatActivity,qqActivity]];
     activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypePrint];
     [controller presentViewController:activityVC animated:TRUE completion:nil];
 }
 
-- (IBAction)linkBtnTouchUpInside:(UIButton *)sender {
-    [App_Delegate setTabBarSelectedIndex:0];
-    [self performSelector:@selector(linkGenGIFVC) withObject:nil afterDelay:0.3];
-}
-
--(IBAction)wechatBtnTouchUpInside:(UIButton *)sender {
+- (OSMessage *)getShareMessage {
     //构建消息
     OSMessage *msg = [[OSMessage alloc] init];
     msg.title = NSLocalizedString(@"Share Image", nil);
@@ -401,6 +408,17 @@
     }
     msg.image = data;
     msg.file = data;
+    return msg;
+}
+
+
+- (IBAction)linkBtnTouchUpInside:(UIButton *)sender {
+    [App_Delegate setTabBarSelectedIndex:0];
+    [self performSelector:@selector(linkGenGIFVC) withObject:nil afterDelay:0.3];
+}
+
+-(IBAction)wechatBtnTouchUpInside:(UIButton *)sender {
+    OSMessage *msg = [self getShareMessage];    //获取分享的消息数据
 
     SearchGIFViewController *controller = [self superViewWithClass:[SearchGIFViewController class]];
     [OpenShare shareToWeixinSession:msg fromView:controller.view Success:^(OSMessage *message){

@@ -12,6 +12,7 @@
 		BEF06012635574B049DAF125 /* FLEXToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF0681828A847DC64653168 /* FLEXToolbarItem.m */; };
 		BEF06044E219940DF8D68707 /* BitmapContextManipulator.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF065C192C395F6AD2ACD6B /* BitmapContextManipulator.m */; };
 		BEF060479B91EB0272357837 /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF068AB559AFBDACEA784A9 /* MASConstraint.m */; };
+		BEF0606395260B5F47253BB8 /* LWUIActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF0636371362E16641ED19F /* LWUIActivity.m */; };
 		BEF06065876D3CABE898BFB9 /* SearchGIFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06DA9D7E1FBEC7A1ABB26 /* SearchGIFViewController.m */; };
 		BEF0606C2CAD25321257C1F9 /* FLEXHeapEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06A155300C39D7650E8AB /* FLEXHeapEnumerator.m */; };
 		BEF06077AAC70C82A66072D8 /* LWGIFPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF067FEF3D1AAA391410AA3 /* LWGIFPreviewViewController.m */; };
@@ -295,6 +296,7 @@
 		BEF06325BF47037271F2C7C3 /* FLEXSystemLogTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXSystemLogTableViewCell.m; sourceTree = "<group>"; };
 		BEF06344BB0434EEE4D08D2C /* UIResponder+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIResponder+Extension.h"; sourceTree = "<group>"; };
 		BEF0635DB1460450781F1CCB /* FLEXRealmDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXRealmDefines.h; sourceTree = "<group>"; };
+		BEF0636371362E16641ED19F /* LWUIActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWUIActivity.m; sourceTree = "<group>"; };
 		BEF06364EA4722C5C1C6ED0D /* FLEXSystemLogTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXSystemLogTableViewCell.h; sourceTree = "<group>"; };
 		BEF0636DA6223C1F56540BF2 /* MASUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASUtilities.h; sourceTree = "<group>"; };
 		BEF06379EC3DA6ED2A75EDC8 /* LWTopScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWTopScrollView.m; sourceTree = "<group>"; };
@@ -400,6 +402,7 @@
 		BEF0688AB6C0453DA55961F6 /* NSArray+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+MASAdditions.m"; sourceTree = "<group>"; };
 		BEF0688D7F292380011413A9 /* FLEXLibrariesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXLibrariesTableViewController.h; sourceTree = "<group>"; };
 		BEF0688F219F0508E6420A5D /* FLEXLibrariesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXLibrariesTableViewController.m; sourceTree = "<group>"; };
+		BEF068934148273BBCF62D6E /* LWUIActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWUIActivity.h; sourceTree = "<group>"; };
 		BEF068A5D103539B7D931217 /* FLEXHierarchyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXHierarchyTableViewCell.h; sourceTree = "<group>"; };
 		BEF068AB559AFBDACEA784A9 /* MASConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASConstraint.m; sourceTree = "<group>"; };
 		BEF068BF4E2698330BD8D333 /* FLEXNetworkRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXNetworkRecorder.m; sourceTree = "<group>"; };
@@ -1228,6 +1231,8 @@
 				BEF063C594F59312CD30ECB6 /* UIPrintPageRenderer+Extentsion.m */,
 				BEF06F6D460FC4C045AAE0CE /* LWHelper.m */,
 				BEF06F71C04059E5DA1F8FE4 /* LWHelper.h */,
+				BEF0636371362E16641ED19F /* LWUIActivity.m */,
+				BEF068934148273BBCF62D6E /* LWUIActivity.h */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1821,6 +1826,7 @@
 				BEF06913870E3CC7FA2C1D05 /* LWContainerScrollView.m in Sources */,
 				BEF069F7042702CD1DD21154 /* LWMyGIFCollectionView.m in Sources */,
 				BEF0693049E1BC332C10A10F /* LWCategoriesAlertView.m in Sources */,
+				BEF0606395260B5F47253BB8 /* LWUIActivity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
