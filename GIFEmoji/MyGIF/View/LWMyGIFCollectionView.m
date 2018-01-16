@@ -62,6 +62,7 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
+    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, self.superview.frame.size.height);
     self.placeHoldView.frame = self.bounds;
 }
 
@@ -430,6 +431,7 @@
         self.refreshBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [self addSubview:self.refreshBtn];
         [self.refreshBtn setTitle:NSLocalizedString(@"Refresh", nil) forState:UIControlStateNormal];
+        [self.refreshBtn setContentEdgeInsets:UIEdgeInsetsMake(6, 10, 6, 10)];
         [self.refreshBtn setTitleColor:[UIColor colorWithHexString:ButtonTextColor] forState:UIControlStateNormal];
         [self.refreshBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
         [self.refreshBtn addTarget:self action:@selector(refreshAction) forControlEvents:UIControlEventTouchUpInside];

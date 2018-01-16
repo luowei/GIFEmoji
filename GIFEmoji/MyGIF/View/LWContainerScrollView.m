@@ -218,6 +218,7 @@
     LWMyGIFCollectionView *collectionView = [self viewWithTag:Tag_First_Channel + channelId];
     collectionView.scrollsToTop = YES;
 
+    [collectionView layoutSubviews];
 }
 
 -(void)setCurrentChannel:(NSInteger)currentChannel {
