@@ -273,7 +273,7 @@
         qqActivity.msg = msg;
         qqActivity.fromView = vc.view;
 
-        UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[msg] applicationActivities:@[wechatActivity,qqActivity]];
+        UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[self.currentPictureView.imageView.image] applicationActivities:@[wechatActivity,qqActivity]];
         activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypePrint];
         [vc presentViewController:activityVC animated:TRUE completion:nil];
     }
