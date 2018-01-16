@@ -564,6 +564,7 @@
 
 //显示加载失败视图
 - (void)showFailureView {
+    [self.activityIndicatorView stopAnimating];
     self.activityIndicatorView.hidden = YES;
     self.settingsBtn.hidden = NO;
     self.refreshBtn.hidden = NO;
@@ -574,6 +575,7 @@
     self.imageView.hidden = YES;
     self.settingsBtn.hidden = YES;
     self.refreshBtn.hidden = YES;
+    [self.activityIndicatorView startAnimating];
 }
 
 
