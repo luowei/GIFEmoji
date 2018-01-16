@@ -105,10 +105,10 @@
 
 //程序启动时处理推送
 - (void)handPushInApplicationDidFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [XGPush startApp:2200274416 appKey:@"I359FSLZN46E"];
+    [XGPush startApp:2200275459 appKey:@"IU6Z6U1N38JU"];
 
     [XGPush isPushOn:^(BOOL isPushOn) {
-        NSLog(@"[QRCodeRobot] Push Is %@", isPushOn ? @"ON" : @"OFF");
+        NSLog(@"[GIFEmoji] Push Is %@", isPushOn ? @"ON" : @"OFF");
     }];
     [self openRemotPush];
 
@@ -130,13 +130,13 @@
 //打开推送，注册远程推送
 - (void)openRemotPush {
     [XGPush isPushOn:^(BOOL isPushOn) {
-        NSLog(@"[QRCodeRobot] Push Is %@", isPushOn ? @"ON" : @"OFF");
+        NSLog(@"[GIFEmoji] Push Is %@", isPushOn ? @"ON" : @"OFF");
     }];
     [self registerAPNS];
 
 }
 
-//关闭推送，注销信鸽绑定设备,
+//关闭推送，注销信鸽绑定设备
 - (void)closeRemotePush {
 //    if(![XGPush isUnRegisterStatus]){
 //    }
