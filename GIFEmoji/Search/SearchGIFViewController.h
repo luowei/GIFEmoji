@@ -55,6 +55,8 @@
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet LWPlacehoderView *placehoderView;
 
+@property (strong, nonatomic) NSMutableDictionary <NSString*,NSNumber*>* favoritedDcitionary;;
+
 
 - (IBAction)searchBtnAction:(UIButton *)sender;
 

@@ -58,6 +58,7 @@
     self.searchTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.searchBtn.layer.cornerRadius = 5;
     self.collectionView.backgroundColor = [UIColor colorWithHexString:@"#F6F6F6"];
+    self.favoritedDcitionary = @{}.mutableCopy;
 
     // Do any additional setup after loading the view, typically from a nib.
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"Cell"];
@@ -298,10 +299,17 @@
 
     __weak typeof(self) weakSelf = self;
     pickerPanel.faveritaBlock = ^(NSInteger categoryId, NSString *categoryName) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
 
         NSString *imgName = [weakSelf.objURL md5];
 
-        BOOL isContains = [weakSelf checkFavoritesContainsURLString:weakSelf.objURL];
+        NSNumber *value = controller.favoritedDcitionary[self.objURL];
+        BOOL isContains = [value boolValue];
+        if(value == nil){
+            isContains = [strongSelf checkFavoritesContainsURLString:strongSelf.objURL];
+            controller.favoritedDcitionary[self.objURL] = @(isContains);
+        }
+
         if (isContains) {
             [SVProgressHUD showInfoWithStatus:NSLocalizedString(@"Exist The Image", nil)];
             [SVProgressHUD dismissWithDelay:1.5];
@@ -342,6 +350,7 @@
         }
 
         weakSelf.faveritaBtn.selected = YES;
+        controller.favoritedDcitionary[self.objURL] = @(YES);
     };
 }
 
@@ -489,12 +498,18 @@
     }
     //[self.imageView sd_setImageWithURL:imageURL placeholderImage:_defaultImage];
 
-    //判断_graphicDictArr 中是否存在 imgName
-    BOOL isContains = [self checkFavoritesContainsURLString:self.objURL];
+    //判断是否已添加收藏
+    SearchGIFViewController *vc = [self superViewWithClass:[SearchGIFViewController class]];
+    NSNumber *value = vc.favoritedDcitionary[self.objURL];
+    BOOL isContains = [value boolValue];
+    if (value == nil) {
+        isContains = [self checkFavoritesContainsURLString:self.objURL];    //如果数据库中存在
+        vc.favoritedDcitionary[self.objURL] = @(isContains);
+    }
     self.faveritaBtn.selected = isContains;
 }
 
-//检查数据中是否包含 imgName
+//检查数据库中是否包含 imgName
 - (BOOL)checkFavoritesContainsURLString:(NSString *)urlstring {
     BOOL isExsit = [[LWSymbolService symbolService] exsitSymbolWithHttpURL:urlstring];
     return isExsit;
