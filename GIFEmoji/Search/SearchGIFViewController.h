@@ -33,6 +33,7 @@
 @property (nonatomic, weak) IBOutlet UIButton *faveritaBtn;
 @property (weak, nonatomic) IBOutlet UIButton *shareBtn;
 @property (weak, nonatomic) IBOutlet UIButton *linkBtn;
+@property (weak, nonatomic) IBOutlet UIButton *wechatBtn;
 
 @property(nonatomic, copy) NSString *thumbnailURL;
 @property(nonatomic, copy) NSString *middleURL;

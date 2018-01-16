@@ -25,6 +25,40 @@
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
 			<string>com.wodedata.GIFEmoji</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>GIFEmoji</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>weixin</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>wxe9ee15bc76746188</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>tencent</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>tencent1106605943</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>QQ</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>QQ41f57777</string>
+			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>

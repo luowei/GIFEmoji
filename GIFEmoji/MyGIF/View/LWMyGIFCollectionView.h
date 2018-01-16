@@ -35,6 +35,7 @@
 @property(nonatomic, strong) FLAnimatedImageView *imageView;
 @property(nonatomic, strong) UIButton *shareBtn;
 @property(nonatomic, strong) UIButton *linkBtn;
+@property(nonatomic, strong) UIButton *wechatBtn;
 @property(nonatomic, strong) UIButton *deleteButton;
 
 @property(nonatomic, assign) BOOL editing;

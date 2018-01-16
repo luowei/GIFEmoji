@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UISlider *fpsSlider;
 @property (weak, nonatomic) IBOutlet UITextField *scaleTextField;
 @property (weak, nonatomic) IBOutlet UIButton *favoriteBtn;
+@property (weak, nonatomic) IBOutlet UIButton *wechatBtn;
 
 @property (weak, nonatomic) IBOutlet FLAnimatedImageView *imageView;
 
@@ -26,5 +27,6 @@
 - (IBAction)fpsSliderAction:(UISlider *)sender forEvent:(UIEvent*)event;
 
 -(IBAction)favoriteBtnTouchUpInside:(UIButton *)btn;
+-(IBAction)wechatBtnTouchUpInside:(UIButton *)btn;
 
 @end

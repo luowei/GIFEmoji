@@ -160,6 +160,9 @@
 		EA1BEB73200C891F00CF2BB4 /* LWPickerPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1BEB75200C891F00CF2BB4 /* LWPickerPanel.xib */; };
 		EA1BEB7C200C8A2400CF2BB4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EA1BEB7E200C8A2400CF2BB4 /* InfoPlist.strings */; };
 		EA1BEB87200CAE7100CF2BB4 /* default.gif in Resources */ = {isa = PBXBuildFile; fileRef = EA1BEB86200CAE7100CF2BB4 /* default.gif */; };
+		EA1BEB90200D1DB500CF2BB4 /* OpenShare.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1BEB89200D1DB400CF2BB4 /* OpenShare.m */; };
+		EA1BEB91200D1DB500CF2BB4 /* OpenShare+QQ.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1BEB8A200D1DB400CF2BB4 /* OpenShare+QQ.m */; };
+		EA1BEB92200D1DB500CF2BB4 /* OpenShare+Weixin.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1BEB8B200D1DB400CF2BB4 /* OpenShare+Weixin.m */; };
 		EA7437E91FFCA2E600AD0291 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7437E81FFCA2E600AD0291 /* AppDelegate.m */; };
 		EA7437F21FFCA2E600AD0291 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA7437F01FFCA2E600AD0291 /* Main.storyboard */; };
 		EA7437F41FFCA2E600AD0291 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA7437F31FFCA2E600AD0291 /* Assets.xcassets */; };
@@ -545,6 +548,13 @@
 		EA1BEB7D200C8A2400CF2BB4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		EA1BEB7F200C8A2600CF2BB4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		EA1BEB86200CAE7100CF2BB4 /* default.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = default.gif; sourceTree = "<group>"; };
+		EA1BEB89200D1DB400CF2BB4 /* OpenShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenShare.m; sourceTree = "<group>"; };
+		EA1BEB8A200D1DB400CF2BB4 /* OpenShare+QQ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OpenShare+QQ.m"; sourceTree = "<group>"; };
+		EA1BEB8B200D1DB400CF2BB4 /* OpenShare+Weixin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OpenShare+Weixin.m"; sourceTree = "<group>"; };
+		EA1BEB8C200D1DB400CF2BB4 /* OpenShareHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenShareHeader.h; sourceTree = "<group>"; };
+		EA1BEB8D200D1DB400CF2BB4 /* OpenShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenShare.h; sourceTree = "<group>"; };
+		EA1BEB8E200D1DB400CF2BB4 /* OpenShare+QQ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OpenShare+QQ.h"; sourceTree = "<group>"; };
+		EA1BEB8F200D1DB400CF2BB4 /* OpenShare+Weixin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OpenShare+Weixin.h"; sourceTree = "<group>"; };
 		EA7437E41FFCA2E600AD0291 /* GIFEmoji.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GIFEmoji.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA7437E71FFCA2E600AD0291 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EA7437E81FFCA2E600AD0291 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -923,6 +933,7 @@
 		BEF066DFAD17E36B3E3FDA63 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				EA1BEB88200D1DB400CF2BB4 /* OpenShare */,
 				EA8A14ED20034F16004C3DFD /* MyWKWebview */,
 				EA8A14E22002B37C004C3DFD /* libXGPush */,
 				EA8A14DC2002AC38004C3DFD /* sqlcipher */,
@@ -1297,6 +1308,20 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		EA1BEB88200D1DB400CF2BB4 /* OpenShare */ = {
+			isa = PBXGroup;
+			children = (
+				EA1BEB89200D1DB400CF2BB4 /* OpenShare.m */,
+				EA1BEB8A200D1DB400CF2BB4 /* OpenShare+QQ.m */,
+				EA1BEB8B200D1DB400CF2BB4 /* OpenShare+Weixin.m */,
+				EA1BEB8C200D1DB400CF2BB4 /* OpenShareHeader.h */,
+				EA1BEB8D200D1DB400CF2BB4 /* OpenShare.h */,
+				EA1BEB8E200D1DB400CF2BB4 /* OpenShare+QQ.h */,
+				EA1BEB8F200D1DB400CF2BB4 /* OpenShare+Weixin.h */,
+			);
+			path = OpenShare;
+			sourceTree = "<group>";
+		};
 		EA7437DB1FFCA2E600AD0291 = {
 			isa = PBXGroup;
 			children = (
@@ -1654,6 +1679,7 @@
 				BEF068803A65660358BCF7DC /* FLEXMultilineTableViewCell.m in Sources */,
 				BEF06859A8BE8E07199E95C0 /* FLEXKeyboardShortcutManager.m in Sources */,
 				EA7438531FFE422500AD0291 /* YMSAlbumPickerViewController.m in Sources */,
+				EA1BEB91200D1DB500CF2BB4 /* OpenShare+QQ.m in Sources */,
 				BEF067FD10207B8AC39E8B1F /* FLEXKeyboardHelpViewController.m in Sources */,
 				BEF0644C4425A5D3DD795EA6 /* FLEXHierarchyTableViewCell.m in Sources */,
 				BEF06E55CCE16FEA9EABDAFD /* FLEXImagePreviewViewController.m in Sources */,
@@ -1670,6 +1696,7 @@
 				BEF06144E00EC408AA294DE0 /* FLEXLayerExplorerViewController.m in Sources */,
 				BEF06B59D212246FB0913CFE /* FLEXObjectExplorerViewController.m in Sources */,
 				BEF060ADAB83D570D92BEFC8 /* FLEXDefaultsExplorerViewController.m in Sources */,
+				EA1BEB92200D1DB500CF2BB4 /* OpenShare+Weixin.m in Sources */,
 				EA7438581FFE422500AD0291 /* YMSPhotoCell.m in Sources */,
 				EA74387B2001F63A00AD0291 /* SRPictureManager.m in Sources */,
 				BEF065F2743B016B3616AB6A /* FLEXGlobalsTableViewControllerEntry.m in Sources */,
@@ -1687,6 +1714,7 @@
 				BEF06435DDB5CFE904D14D16 /* FLEXMultiColumnTableView.m in Sources */,
 				EA74385B1FFE422500AD0291 /* YMSAlbumCell.m in Sources */,
 				BEF066DA93A66A5D3AF6E350 /* FLEXRealmDatabaseManager.m in Sources */,
+				EA1BEB90200D1DB500CF2BB4 /* OpenShare.m in Sources */,
 				EA74382B1FFE1E6D00AD0291 /* SVIndefiniteAnimatedView.m in Sources */,
 				EA7438802001F63A00AD0291 /* SRPictureIndicator.m in Sources */,
 				BEF06EE43F233DA546E53D06 /* FLEXSQLiteDatabaseManager.m in Sources */,

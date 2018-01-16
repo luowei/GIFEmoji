@@ -14,6 +14,9 @@
 #import "SearchGIFViewController.h"
 #import "LWMyGIFViewController.h"
 #import "Categories.h"
+#import "OpenShare.h"
+#import "OpenShare+QQ.h"
+#import "OpenShareHeader.h"
 
 @interface AppDelegate () <UITabBarControllerDelegate>
 
@@ -30,6 +33,10 @@
 
     //程序启动时处理推送
     [[LWPushManager shareManager] handPushInApplicationDidFinishLaunchingWithOptions:launchOptions];
+
+    //注册appId,qq和wechat
+    [OpenShare connectQQWithAppId:@"1106605943"];
+    [OpenShare connectWeixinWithAppId:@"wxf13095264b6e5c3c"];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.tabBarController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateInitialViewController];

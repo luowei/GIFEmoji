@@ -29,6 +29,9 @@
 #import "UIColor+HexValue.h"
 #import "LWAVPlayerView.h"
 #import "LWLivePhotoView.h"
+#import "OpenShare.h"
+#import "UIImage+Extension.h"
+#import "OpenShareHeader.h"
 
 
 #define Item_Spacing 6
@@ -357,6 +360,45 @@
 - (IBAction)linkBtnTouchUpInside:(UIButton *)sender {
     [App_Delegate setTabBarSelectedIndex:0];
     [self performSelector:@selector(linkGenGIFVC) withObject:nil afterDelay:0.3];
+}
+
+-(IBAction)wechatBtnTouchUpInside:(UIButton *)sender {
+    //构建消息
+    OSMessage *msg = [[OSMessage alloc] init];
+    msg.title = NSLocalizedString(@"Share Image", nil);
+    msg.desc = NSLocalizedString(@"Share Image", nil);
+
+    UIImage *thumbnailImg = [self.imageView.image scaleToWXThumbnailSizeKeepAspect:CGSizeMake(200, 200)];
+    NSData *data = self.imageView.animatedImage.data;
+    if (data) {
+        SDImageFormat imageFormat = [NSData sd_imageFormatForImageData:data];
+        if (imageFormat == SDImageFormatGIF) {
+            msg.messageType = Msg_ImageGif;
+            thumbnailImg = self.imageView.animatedImage.posterImage;
+            NSData *thumbnailData = [thumbnailImg compressWithInMaxFileSize:32 * 1024];
+            msg.thumbnail = thumbnailData;
+        } else {
+            msg.messageType = Msg_Image;
+
+            NSData *thumbnailData = [thumbnailImg compressWithInMaxFileSize:32 * 1024];
+            msg.thumbnail = thumbnailData;
+        }
+
+    } else {
+        msg.messageType = Msg_Image;
+        NSData *thumbnailData = [thumbnailImg compressWithInMaxFileSize:32 * 1024];
+        msg.thumbnail = thumbnailData;
+        data = UIImagePNGRepresentation(self.imageView.image);
+    }
+    msg.image = data;
+    msg.file = data;
+
+    SearchGIFViewController *controller = [self superViewWithClass:[SearchGIFViewController class]];
+    [OpenShare shareToWeixinSession:msg fromView:controller.view Success:^(OSMessage *message){
+        Log(@"分享到微信成功");
+    } Fail:^(OSMessage *message,NSError *error){
+        Log(@"分享到微信失败");
+    }];
 }
 
 - (void)linkGenGIFVC {
