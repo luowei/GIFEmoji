@@ -24,6 +24,7 @@
 #import "UIImage+Extension.h"
 #import "OpenShareHeader.h"
 #import "LWUIActivity.h"
+#import "SVProgressHUD.h"
 
 #define GIFItem_Spacing 6
 
@@ -206,6 +207,12 @@
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if ([fileManager fileExistsAtPath:filePath]) {
         imageData = [NSData dataWithContentsOfFile:filePath];
+    }
+
+    if(!imageData){
+        [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Data Empty", nil)];
+        [SVProgressHUD dismissWithDelay:0.5];
+        return;
     }
 
     OSMessage *msg = [self getShareMessageWithCell:cell];
@@ -421,6 +428,10 @@
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if ([fileManager fileExistsAtPath:filePath]) {
         imageData = [NSData dataWithContentsOfFile:filePath];
+    }
+
+    if(!imageData){
+        return;
     }
 
     SDImageFormat imageFormat = [NSData sd_imageFormatForImageData:imageData];

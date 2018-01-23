@@ -886,14 +886,14 @@
 		BEF064985D6A76524EDEB0AB /* View */ = {
 			isa = PBXGroup;
 			children = (
-				BEF06379EC3DA6ED2A75EDC8 /* LWTopScrollView.m */,
 				BEF0658021FC82FB16CF8566 /* LWTopScrollView.h */,
-				BEF06A3728BE237A6CF07A58 /* LWContainerScrollView.m */,
+				BEF06379EC3DA6ED2A75EDC8 /* LWTopScrollView.m */,
 				BEF060FADD12B24FFB3E5BA7 /* LWContainerScrollView.h */,
-				BEF062A63DA3C89D670EEEC6 /* LWMyGIFCollectionView.m */,
+				BEF06A3728BE237A6CF07A58 /* LWContainerScrollView.m */,
 				BEF06B821D9CD43807A18F52 /* LWMyGIFCollectionView.h */,
-				BEF0668622FD7F5E61F8B245 /* LWCategoriesAlertView.m */,
+				BEF062A63DA3C89D670EEEC6 /* LWMyGIFCollectionView.m */,
 				BEF0651A4F560669A2D6C73C /* LWCategoriesAlertView.h */,
+				BEF0668622FD7F5E61F8B245 /* LWCategoriesAlertView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1111,8 +1111,8 @@
 			children = (
 				EA8A15002009C1EE004C3DFD /* LWCategoriesPopoverViewController.h */,
 				EA8A14FF2009C1EE004C3DFD /* LWCategoriesPopoverViewController.m */,
-				BEF06BAA8CCC34B887E2FEBE /* LWMyGIFViewController.m */,
 				BEF06EA7A2635884B5C4758C /* LWMyGIFViewController.h */,
+				BEF06BAA8CCC34B887E2FEBE /* LWMyGIFViewController.m */,
 				BEF064985D6A76524EDEB0AB /* View */,
 			);
 			path = MyGIF;
