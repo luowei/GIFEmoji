@@ -177,7 +177,7 @@ static WKProcessPool *_pool;
 
     NSURL *url = navigationAction.request.URL;
     NSString *urlString = (url) ? url.absoluteString : @"";
-    if([urlString containsString:@"id990121194"]){
+    if([urlString containsString:@"id990121194"] && ![urlString hasPrefix:@"itms"]){
         decisionHandler(WKNavigationActionPolicyAllow);
         return;
     }
