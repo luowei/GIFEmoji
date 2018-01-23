@@ -63,7 +63,7 @@
 
 //右侧的按钮被点击
 - (void)rightBarItemAction {
-    LWCategoriesPopoverViewController *saveVC = [LWCategoriesPopoverViewController popoverViewControllerWithDelegate:self size:CGSizeMake(150, 100) sourceView:self.addBtn];
+    LWCategoriesPopoverViewController *saveVC = [LWCategoriesPopoverViewController popoverViewControllerWithDelegate:self size:CGSizeMake(150, 145) sourceView:self.addBtn];
     [self presentViewController:saveVC animated: YES completion: nil];
 }
 

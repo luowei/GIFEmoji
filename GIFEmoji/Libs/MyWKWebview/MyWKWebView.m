@@ -177,6 +177,11 @@ static WKProcessPool *_pool;
 
     NSURL *url = navigationAction.request.URL;
     NSString *urlString = (url) ? url.absoluteString : @"";
+    if([urlString containsString:@"id990121194"]){
+        decisionHandler(WKNavigationActionPolicyAllow);
+        return;
+    }
+
     // iTunes: App Store link跳转不了问题
     NSRegularExpression *rx = [[NSRegularExpression alloc] initWithPattern:@"\\/\\/itunes\\.apple\\.com\\/" options:NSRegularExpressionCaseInsensitive error:nil];
     BOOL isMatch = [rx numberOfMatchesInString:urlString options:0 range:NSMakeRange(0, urlString.length)] > 0 ;

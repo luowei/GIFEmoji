@@ -51,6 +51,7 @@ typedef NS_OPTIONS(NSUInteger, SelectedMode) {
 #define ButtonTextColor @"28862C"   //GreenColor
 
 #define App_URLString @"http://app.wodedata.com/myapp/gifemoji.html"
+#define Developer_URLString  @"https://itunes.apple.com/cn/developer/wei-luo/id990121194?mt=8"
 
 #define Notification_CategoryChanged @"Notification_CategoryChanged"
 

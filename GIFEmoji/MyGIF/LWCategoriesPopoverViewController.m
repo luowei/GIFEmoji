@@ -73,7 +73,7 @@
 #pragma mark - UITableViewDatasource
 
 -(NSArray *)dataList{
-    return @[NSLocalizedString(@"Categories", nil), NSLocalizedString(@"About", nil)];
+    return @[NSLocalizedString(@"Categories", nil), NSLocalizedString(@"Developer App", nil), NSLocalizedString(@"About", nil)];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -99,7 +99,14 @@
             [self dismissViewControllerAnimated:YES completion:nil];
             break;
         }
-        case 1:{ //关于
+        case 1:{    //开发者App页面
+            LWWKWebViewController *webVC = [LWWKWebViewController wkWebViewControllerWithURL:[NSURL URLWithString:Developer_URLString]];
+            UIViewController *vc = (UIViewController *)self.popoverPresentationController.delegate;
+            [vc.navigationController pushViewController:webVC animated:YES];
+            [self dismissViewControllerAnimated:YES completion:nil];
+            break;
+        }
+        case 2:{ //关于
             LWWKWebViewController *webVC = [LWWKWebViewController wkWebViewControllerWithURL:[NSURL URLWithString:App_URLString]];
             UIViewController *vc = (UIViewController *)self.popoverPresentationController.delegate;
             [vc.navigationController pushViewController:webVC animated:YES];
