@@ -102,10 +102,10 @@
         }
         case 1:{    //开发者App页面
             NSURL *url = [NSURL URLWithString:Developer_URLString];
-            [[UIApplication sharedApplication] openURLWithUrl:url];
-//            LWWKWebViewController *webVC = [LWWKWebViewController wkWebViewControllerWithURL:url];
-//            UIViewController *vc = (UIViewController *)self.popoverPresentationController.delegate;
-//            [vc.navigationController pushViewController:webVC animated:YES];
+//            [[UIApplication sharedApplication] openURLWithUrl:url];
+            LWWKWebViewController *webVC = [LWWKWebViewController wkWebViewControllerWithURL:url];
+            UIViewController *vc = (UIViewController *)self.popoverPresentationController.delegate;
+            [vc.navigationController pushViewController:webVC animated:YES];
             [self dismissViewControllerAnimated:YES completion:nil];
             break;
         }
