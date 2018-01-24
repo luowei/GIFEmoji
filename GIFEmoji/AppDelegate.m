@@ -36,7 +36,7 @@
 
     //注册appId,qq和wechat
     [OpenShare connectQQWithAppId:@"1106605943"];
-    [OpenShare connectWeixinWithAppId:@"wxf13095264b6e5c3c"];
+    [OpenShare connectWeixinWithAppId:@"wxb4b64828a439e04b"];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.tabBarController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateInitialViewController];
