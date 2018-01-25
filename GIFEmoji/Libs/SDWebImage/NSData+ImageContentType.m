@@ -29,16 +29,20 @@
         case 0x49:
         case 0x4D:
             return SDImageFormatTIFF;
-        case 0x52:
+        case 0x52:{
             // R as RIFF for WEBP
             if (data.length < 12) {
                 return SDImageFormatUndefined;
             }
-            
+
             NSString *testString = [[NSString alloc] initWithData:[data subdataWithRange:NSMakeRange(0, 12)] encoding:NSASCIIStringEncoding];
             if ([testString hasPrefix:@"RIFF"] && [testString hasSuffix:@"WEBP"]) {
                 return SDImageFormatWebP;
             }
+        }
+        default:{
+            return SDImageFormatUndefined;
+        }
     }
     return SDImageFormatUndefined;
 }
