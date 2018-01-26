@@ -16,7 +16,8 @@
 @end
 
 
-@interface LWShareViewController : UIViewController<UIGestureRecognizerDelegate,UITextViewDelegate,UIWebViewDelegate>
+@interface LWShareViewController : UIViewController<UIGestureRecognizerDelegate,UITextViewDelegate,
+        UIWebViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property(nonatomic, strong) UIView *containerView;
 
@@ -28,4 +29,8 @@
 
 @property(nonatomic, strong) FLAnimatedImageView *imageView;
 
+@property(nonatomic, strong) PHLivePhotoView *liveView;
+@property(nonatomic, strong) NSData *imageData;
+@property(nonatomic) BOOL isPickerImage;
+@property(nonatomic, strong) UIButton *livePhotoBtn;
 @end

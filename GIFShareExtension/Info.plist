@@ -20,6 +20,14 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>请允许访问媒体库</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>请允许使用日历</string>
+	<key>NSCameraUsageDescription</key>
+	<string>请允许使用相机</string>
+	<key>NSContactsUsageDescription</key>
+	<string>请允许访问联系人</string>
 	<key>NSExtension</key>
 	<dict>
 		<key>NSExtensionAttributes</key>
@@ -70,5 +78,9 @@
 		<key>NSExtensionPrincipalClass</key>
 		<string>ShareNavigationViewController</string>
 	</dict>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>请允许添加照片</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>请允许访问相册</string>
 </dict>
 </plist>

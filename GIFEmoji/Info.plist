@@ -70,6 +70,10 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSCalendarsUsageDescription</key>
+	<string>请允许使用日历</string>
+	<key>NSContactsUsageDescription</key>
+	<string>请允许访问联系人</string>
 	<key>NSAppleMusicUsageDescription</key>
 	<string>请允许使用多媒体内容</string>
 	<key>NSCameraUsageDescription</key>
