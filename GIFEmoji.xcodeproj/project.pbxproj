@@ -164,6 +164,24 @@
 		EA1BEB90200D1DB500CF2BB4 /* OpenShare.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1BEB89200D1DB400CF2BB4 /* OpenShare.m */; };
 		EA1BEB91200D1DB500CF2BB4 /* OpenShare+QQ.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1BEB8A200D1DB400CF2BB4 /* OpenShare+QQ.m */; };
 		EA1BEB92200D1DB500CF2BB4 /* OpenShare+Weixin.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1BEB8B200D1DB400CF2BB4 /* OpenShare+Weixin.m */; };
+		EA230492201AD6C70012ED16 /* ShareNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA230491201AD6C70012ED16 /* ShareNavigationViewController.m */; };
+		EA230499201AD6C70012ED16 /* GIFShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = EA23048E201AD6C70012ED16 /* GIFShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		EA23049E201AE78F0012ED16 /* FLAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF067DCE9AB9AD7D1DFB41D /* FLAnimatedImage.m */; };
+		EA23049F201AE78F0012ED16 /* FLAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF0641D4C3490862D36EBF1 /* FLAnimatedImageView.m */; };
+		EA2304A6201AE82C0012ED16 /* LWMyUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2304A3201AE82C0012ED16 /* LWMyUtils.m */; };
+		EA2304A7201AE82C0012ED16 /* ShareCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2304A4201AE82C0012ED16 /* ShareCategories.m */; };
+		EA2304C2201AE85F0012ED16 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2304AA201AE85F0012ED16 /* NSLayoutConstraint+MASDebugAdditions.m */; };
+		EA2304C3201AE85F0012ED16 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2304B3201AE85F0012ED16 /* ViewController+MASAdditions.m */; };
+		EA2304C4201AE85F0012ED16 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2304B7201AE85F0012ED16 /* MASCompositeConstraint.m */; };
+		EA2304C5201AE85F0012ED16 /* MASConstraintMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2304B8201AE85F0012ED16 /* MASConstraintMaker.m */; };
+		EA2304C6201AE85F0012ED16 /* MASLayoutConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2304B9201AE85F0012ED16 /* MASLayoutConstraint.m */; };
+		EA2304C7201AE85F0012ED16 /* NSArray+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2304BA201AE85F0012ED16 /* NSArray+MASAdditions.m */; };
+		EA2304C8201AE85F0012ED16 /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2304BB201AE85F0012ED16 /* View+MASAdditions.m */; };
+		EA2304C9201AE85F0012ED16 /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2304BE201AE85F0012ED16 /* MASConstraint.m */; };
+		EA2304CA201AE85F0012ED16 /* MASViewConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2304C0201AE85F0012ED16 /* MASViewConstraint.m */; };
+		EA2304CB201AE85F0012ED16 /* MASViewAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2304C1201AE85F0012ED16 /* MASViewAttribute.m */; };
+		EA23053A201AF7FB0012ED16 /* UIColor+HexValue.m in Sources */ = {isa = PBXBuildFile; fileRef = EA230538201AF7FA0012ED16 /* UIColor+HexValue.m */; };
+		EA23053C201AFB180012ED16 /* TitleIcon_Left@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA23053B201AFB180012ED16 /* TitleIcon_Left@2x.png */; };
 		EA7437E91FFCA2E600AD0291 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7437E81FFCA2E600AD0291 /* AppDelegate.m */; };
 		EA7437F21FFCA2E600AD0291 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA7437F01FFCA2E600AD0291 /* Main.storyboard */; };
 		EA7437F41FFCA2E600AD0291 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA7437F31FFCA2E600AD0291 /* Assets.xcassets */; };
@@ -228,6 +246,30 @@
 		EA8A14FE20074C0A004C3DFD /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8A14FB20074C0A004C3DFD /* UIView+Frame.m */; };
 		EA8A15012009C1EF004C3DFD /* LWCategoriesPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8A14FF2009C1EE004C3DFD /* LWCategoriesPopoverViewController.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EA230497201AD6C70012ED16 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA7437DC1FFCA2E600AD0291 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EA23048D201AD6C70012ED16;
+			remoteInfo = GIFShareExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		EA23049D201AD6C70012ED16 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				EA230499201AD6C70012ED16 /* GIFShareExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		BEF0600348CF42ACF8CADEB1 /* SDWebImageDownloaderOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageDownloaderOperation.m; sourceTree = "<group>"; };
@@ -558,6 +600,43 @@
 		EA1BEB8D200D1DB400CF2BB4 /* OpenShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenShare.h; sourceTree = "<group>"; };
 		EA1BEB8E200D1DB400CF2BB4 /* OpenShare+QQ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OpenShare+QQ.h"; sourceTree = "<group>"; };
 		EA1BEB8F200D1DB400CF2BB4 /* OpenShare+Weixin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OpenShare+Weixin.h"; sourceTree = "<group>"; };
+		EA23048E201AD6C70012ED16 /* GIFShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = GIFShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA230490201AD6C70012ED16 /* ShareNavigationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareNavigationViewController.h; sourceTree = "<group>"; };
+		EA230491201AD6C70012ED16 /* ShareNavigationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareNavigationViewController.m; sourceTree = "<group>"; };
+		EA230496201AD6C70012ED16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA2304A1201AE82C0012ED16 /* LWMyUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWMyUtils.h; sourceTree = "<group>"; };
+		EA2304A2201AE82C0012ED16 /* ShareCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareCategories.h; sourceTree = "<group>"; };
+		EA2304A3201AE82C0012ED16 /* LWMyUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWMyUtils.m; sourceTree = "<group>"; };
+		EA2304A4201AE82C0012ED16 /* ShareCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareCategories.m; sourceTree = "<group>"; };
+		EA2304A5201AE82C0012ED16 /* ShareDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareDefines.h; sourceTree = "<group>"; };
+		EA2304A9201AE85F0012ED16 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
+		EA2304AA201AE85F0012ED16 /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
+		EA2304AB201AE85F0012ED16 /* MASConstraint+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASConstraint+Private.h"; sourceTree = "<group>"; };
+		EA2304AC201AE85F0012ED16 /* MASLayoutConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASLayoutConstraint.h; sourceTree = "<group>"; };
+		EA2304AD201AE85F0012ED16 /* NSArray+MASShorthandAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+MASShorthandAdditions.h"; sourceTree = "<group>"; };
+		EA2304AE201AE85F0012ED16 /* MASConstraintMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASConstraintMaker.h; sourceTree = "<group>"; };
+		EA2304AF201AE85F0012ED16 /* View+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+MASAdditions.h"; sourceTree = "<group>"; };
+		EA2304B0201AE85F0012ED16 /* NSArray+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+MASAdditions.h"; sourceTree = "<group>"; };
+		EA2304B1201AE85F0012ED16 /* MASUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASUtilities.h; sourceTree = "<group>"; };
+		EA2304B2201AE85F0012ED16 /* MASViewAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASViewAttribute.h; sourceTree = "<group>"; };
+		EA2304B3201AE85F0012ED16 /* ViewController+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ViewController+MASAdditions.m"; sourceTree = "<group>"; };
+		EA2304B4201AE85F0012ED16 /* MASViewConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASViewConstraint.h; sourceTree = "<group>"; };
+		EA2304B5201AE85F0012ED16 /* MASConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASConstraint.h; sourceTree = "<group>"; };
+		EA2304B6201AE85F0012ED16 /* NSLayoutConstraint+MASDebugAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+MASDebugAdditions.h"; sourceTree = "<group>"; };
+		EA2304B7201AE85F0012ED16 /* MASCompositeConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASCompositeConstraint.m; sourceTree = "<group>"; };
+		EA2304B8201AE85F0012ED16 /* MASConstraintMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASConstraintMaker.m; sourceTree = "<group>"; };
+		EA2304B9201AE85F0012ED16 /* MASLayoutConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASLayoutConstraint.m; sourceTree = "<group>"; };
+		EA2304BA201AE85F0012ED16 /* NSArray+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+MASAdditions.m"; sourceTree = "<group>"; };
+		EA2304BB201AE85F0012ED16 /* View+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "View+MASAdditions.m"; sourceTree = "<group>"; };
+		EA2304BC201AE85F0012ED16 /* View+MASShorthandAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+MASShorthandAdditions.h"; sourceTree = "<group>"; };
+		EA2304BD201AE85F0012ED16 /* Masonry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Masonry.h; sourceTree = "<group>"; };
+		EA2304BE201AE85F0012ED16 /* MASConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASConstraint.m; sourceTree = "<group>"; };
+		EA2304BF201AE85F0012ED16 /* ViewController+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ViewController+MASAdditions.h"; sourceTree = "<group>"; };
+		EA2304C0201AE85F0012ED16 /* MASViewConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASViewConstraint.m; sourceTree = "<group>"; };
+		EA2304C1201AE85F0012ED16 /* MASViewAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASViewAttribute.m; sourceTree = "<group>"; };
+		EA230538201AF7FA0012ED16 /* UIColor+HexValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+HexValue.m"; path = "GIFEmoji/Helper/UIColor+HexValue.m"; sourceTree = SOURCE_ROOT; };
+		EA230539201AF7FB0012ED16 /* UIColor+HexValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+HexValue.h"; path = "GIFEmoji/Helper/UIColor+HexValue.h"; sourceTree = SOURCE_ROOT; };
+		EA23053B201AFB180012ED16 /* TitleIcon_Left@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TitleIcon_Left@2x.png"; sourceTree = "<group>"; };
 		EA7437E41FFCA2E600AD0291 /* GIFEmoji.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GIFEmoji.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA7437E71FFCA2E600AD0291 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EA7437E81FFCA2E600AD0291 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -670,6 +749,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		EA23048B201AD6C70012ED16 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EA7437E11FFCA2E600AD0291 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1327,10 +1413,70 @@
 			path = OpenShare;
 			sourceTree = "<group>";
 		};
+		EA23048F201AD6C70012ED16 /* GIFShareExtension */ = {
+			isa = PBXGroup;
+			children = (
+				EA23053B201AFB180012ED16 /* TitleIcon_Left@2x.png */,
+				EA2304A8201AE85F0012ED16 /* Masonry */,
+				EA2304A0201AE82C0012ED16 /* Utils */,
+				EA2304A5201AE82C0012ED16 /* ShareDefines.h */,
+				EA230490201AD6C70012ED16 /* ShareNavigationViewController.h */,
+				EA230491201AD6C70012ED16 /* ShareNavigationViewController.m */,
+				EA230496201AD6C70012ED16 /* Info.plist */,
+			);
+			path = GIFShareExtension;
+			sourceTree = "<group>";
+		};
+		EA2304A0201AE82C0012ED16 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				EA230539201AF7FB0012ED16 /* UIColor+HexValue.h */,
+				EA230538201AF7FA0012ED16 /* UIColor+HexValue.m */,
+				EA2304A1201AE82C0012ED16 /* LWMyUtils.h */,
+				EA2304A3201AE82C0012ED16 /* LWMyUtils.m */,
+				EA2304A2201AE82C0012ED16 /* ShareCategories.h */,
+				EA2304A4201AE82C0012ED16 /* ShareCategories.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		EA2304A8201AE85F0012ED16 /* Masonry */ = {
+			isa = PBXGroup;
+			children = (
+				EA2304A9201AE85F0012ED16 /* MASCompositeConstraint.h */,
+				EA2304AA201AE85F0012ED16 /* NSLayoutConstraint+MASDebugAdditions.m */,
+				EA2304AB201AE85F0012ED16 /* MASConstraint+Private.h */,
+				EA2304AC201AE85F0012ED16 /* MASLayoutConstraint.h */,
+				EA2304AD201AE85F0012ED16 /* NSArray+MASShorthandAdditions.h */,
+				EA2304AE201AE85F0012ED16 /* MASConstraintMaker.h */,
+				EA2304AF201AE85F0012ED16 /* View+MASAdditions.h */,
+				EA2304B0201AE85F0012ED16 /* NSArray+MASAdditions.h */,
+				EA2304B1201AE85F0012ED16 /* MASUtilities.h */,
+				EA2304B2201AE85F0012ED16 /* MASViewAttribute.h */,
+				EA2304B3201AE85F0012ED16 /* ViewController+MASAdditions.m */,
+				EA2304B4201AE85F0012ED16 /* MASViewConstraint.h */,
+				EA2304B5201AE85F0012ED16 /* MASConstraint.h */,
+				EA2304B6201AE85F0012ED16 /* NSLayoutConstraint+MASDebugAdditions.h */,
+				EA2304B7201AE85F0012ED16 /* MASCompositeConstraint.m */,
+				EA2304B8201AE85F0012ED16 /* MASConstraintMaker.m */,
+				EA2304B9201AE85F0012ED16 /* MASLayoutConstraint.m */,
+				EA2304BA201AE85F0012ED16 /* NSArray+MASAdditions.m */,
+				EA2304BB201AE85F0012ED16 /* View+MASAdditions.m */,
+				EA2304BC201AE85F0012ED16 /* View+MASShorthandAdditions.h */,
+				EA2304BD201AE85F0012ED16 /* Masonry.h */,
+				EA2304BE201AE85F0012ED16 /* MASConstraint.m */,
+				EA2304BF201AE85F0012ED16 /* ViewController+MASAdditions.h */,
+				EA2304C0201AE85F0012ED16 /* MASViewConstraint.m */,
+				EA2304C1201AE85F0012ED16 /* MASViewAttribute.m */,
+			);
+			path = Masonry;
+			sourceTree = "<group>";
+		};
 		EA7437DB1FFCA2E600AD0291 = {
 			isa = PBXGroup;
 			children = (
 				EA7437E61FFCA2E600AD0291 /* GIFEmoji */,
+				EA23048F201AD6C70012ED16 /* GIFShareExtension */,
 				EA7437E51FFCA2E600AD0291 /* Products */,
 				EA7438011FFCBB3900AD0291 /* Frameworks */,
 			);
@@ -1340,6 +1486,7 @@
 			isa = PBXGroup;
 			children = (
 				EA7437E41FFCA2E600AD0291 /* GIFEmoji.app */,
+				EA23048E201AD6C70012ED16 /* GIFShareExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1547,6 +1694,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		EA23048D201AD6C70012ED16 /* GIFShareExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA23049C201AD6C70012ED16 /* Build configuration list for PBXNativeTarget "GIFShareExtension" */;
+			buildPhases = (
+				EA23048A201AD6C70012ED16 /* Sources */,
+				EA23048B201AD6C70012ED16 /* Frameworks */,
+				EA23048C201AD6C70012ED16 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GIFShareExtension;
+			productName = GIFShareExtension;
+			productReference = EA23048E201AD6C70012ED16 /* GIFShareExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		EA7437E31FFCA2E600AD0291 /* GIFEmoji */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EA7437FD1FFCA2E600AD0291 /* Build configuration list for PBXNativeTarget "GIFEmoji" */;
@@ -1554,10 +1718,12 @@
 				EA7437E01FFCA2E600AD0291 /* Sources */,
 				EA7437E11FFCA2E600AD0291 /* Frameworks */,
 				EA7437E21FFCA2E600AD0291 /* Resources */,
+				EA23049D201AD6C70012ED16 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				EA230498201AD6C70012ED16 /* PBXTargetDependency */,
 			);
 			name = GIFEmoji;
 			productName = GIFEmoji;
@@ -1573,6 +1739,10 @@
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Luo Wei";
 				TargetAttributes = {
+					EA23048D201AD6C70012ED16 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
 					EA7437E31FFCA2E600AD0291 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Manual;
@@ -1602,11 +1772,20 @@
 			projectRoot = "";
 			targets = (
 				EA7437E31FFCA2E600AD0291 /* GIFEmoji */,
+				EA23048D201AD6C70012ED16 /* GIFShareExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		EA23048C201AD6C70012ED16 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA23053C201AFB180012ED16 /* TitleIcon_Left@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EA7437E21FFCA2E600AD0291 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1635,6 +1814,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		EA23048A201AD6C70012ED16 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA2304A6201AE82C0012ED16 /* LWMyUtils.m in Sources */,
+				EA23049E201AE78F0012ED16 /* FLAnimatedImage.m in Sources */,
+				EA2304C6201AE85F0012ED16 /* MASLayoutConstraint.m in Sources */,
+				EA230492201AD6C70012ED16 /* ShareNavigationViewController.m in Sources */,
+				EA2304A7201AE82C0012ED16 /* ShareCategories.m in Sources */,
+				EA2304CB201AE85F0012ED16 /* MASViewAttribute.m in Sources */,
+				EA2304C7201AE85F0012ED16 /* NSArray+MASAdditions.m in Sources */,
+				EA23053A201AF7FB0012ED16 /* UIColor+HexValue.m in Sources */,
+				EA2304C4201AE85F0012ED16 /* MASCompositeConstraint.m in Sources */,
+				EA2304C5201AE85F0012ED16 /* MASConstraintMaker.m in Sources */,
+				EA2304C8201AE85F0012ED16 /* View+MASAdditions.m in Sources */,
+				EA2304C3201AE85F0012ED16 /* ViewController+MASAdditions.m in Sources */,
+				EA23049F201AE78F0012ED16 /* FLAnimatedImageView.m in Sources */,
+				EA2304CA201AE85F0012ED16 /* MASViewConstraint.m in Sources */,
+				EA2304C2201AE85F0012ED16 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
+				EA2304C9201AE85F0012ED16 /* MASConstraint.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EA7437E01FFCA2E600AD0291 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1832,6 +2034,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		EA230498201AD6C70012ED16 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EA23048D201AD6C70012ED16 /* GIFShareExtension */;
+			targetProxy = EA230497201AD6C70012ED16 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		EA1BEB75200C891F00CF2BB4 /* LWPickerPanel.xib */ = {
 			isa = PBXVariantGroup;
@@ -1885,6 +2095,36 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		EA23049A201AD6C70012ED16 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G3A2KYKYBU;
+				INFOPLIST_FILE = GIFShareExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wodedata.GIFEmoji.GIFShareExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EA23049B201AD6C70012ED16 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G3A2KYKYBU;
+				INFOPLIST_FILE = GIFShareExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wodedata.GIFEmoji.GIFShareExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		EA7437FB1FFCA2E600AD0291 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2055,6 +2295,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		EA23049C201AD6C70012ED16 /* Build configuration list for PBXNativeTarget "GIFShareExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA23049A201AD6C70012ED16 /* Debug */,
+				EA23049B201AD6C70012ED16 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		EA7437DF1FFCA2E600AD0291 /* Build configuration list for PBXProject "GIFEmoji" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
