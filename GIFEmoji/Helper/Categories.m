@@ -12,6 +12,142 @@
 }
 @end
 
+@implementation NSData (Ext)
+
+
+//FILE SIGNATURES TABLE:https://www.garykessler.net/library/file_sigs.html
+//List of file signatures:https://en.wikipedia.org/wiki/List_of_file_signatures
+
+/*
+video files mimetype
+Video Type	Extension	MIME Type
+Flash	.flv	video/x-flv
+MPEG-4	.mp4	video/mp4
+iPhone Index	.m3u8	application/x-mpegURL
+iPhone Segment	.ts	video/MP2T
+3GP Mobile	.3gp	video/3gpp
+QuickTime	.mov	video/quicktime
+A/V Interleave	.avi	video/x-msvideo
+Windows Media	.wmv	video/x-ms-wmv
+ */
+
+- (NSString *)mimeType {
+    uint8_t c;
+    [self getBytes:&c length:1];
+
+    //文件头签名列表：https://en.wikipedia.org/wiki/List_of_file_signatures
+    //mime type:https://www.sitepoint.com/mime-types-complete-list/
+    switch (c) {
+        case 0xFF:{
+            uint16_t s;
+            [self getBytes:&s length:1];
+            if(s == 0xFFFB){
+                return @"audio/mpeg3";
+            }
+            return @"image/jpeg";
+        }
+        case 0x89:{
+            return @"image/png";
+        }
+        case 0x47:{
+            return @"image/gif";
+        }
+        case 0x49:
+        case 0x4D:{
+            uint16_t s;
+            [self getBytes:&s length:1];
+            if(s == 0x4944){
+                return @"audio/mpeg3";
+            }
+            return @"image/tiff";
+        }
+        case 0x25:{
+            return @"application/pdf";
+        }
+        case 0xD0:{
+            return @"application/vnd";
+        }
+        case 0x23:
+        case 0x7b:  //rtf
+        case 0x81:  //WordPerfect text file
+        case 0x46:{
+            return @"text/plain";
+        }
+        case 0x50:{  //zip,jar,odt,ods,odp,docx,xlsx,pptx,vsdx,apk,aar
+            return @"application/zip";
+        }
+        case 0x52:{ //avi,wav
+            return @"video/avi";
+        }
+        case 0x66:{
+            uint16_t s;
+            [self getBytes:&s length:1];
+            if(s == 0xFFFB){
+                return @"video/x";
+            }
+            return @"application/octet-stream";
+        }
+        default:{
+            return @"application/octet-stream";
+        }
+
+    }
+    return nil;
+}
+
+/*
+[4 byte offset]
+66 74 79 70 33 67 70	 	[4 byte offset]
+ftyp3gp
+3GG, 3GP, 3G2	 	3rd Generation Partnership Project 3GPP multimedia files
+
+[4 byte offset]
+66 74 79 70 4D 34 41 20	 	[4 byte offset]
+ftypM4A
+M4A	 	Apple Lossless Audio Codec file
+
+[4 byte offset]
+66 74 79 70 4D 34 56 20	 	[4 byte offset]
+ftypM4V
+FLV, M4V	 	ISO Media, MPEG v4 system, or iTunes AVC-LC file.
+
+[4 byte offset]
+66 74 79 70 4D 53 4E 56	 	[4 byte offset]
+ftypMSNV
+MP4	 	MPEG-4 video file
+
+[4 byte offset]
+66 74 79 70 69 73 6F 6D	 	[4 byte offset]
+ftypisom
+MP4	 	ISO Base Media file (MPEG-4) v1
+
+[4 byte offset]
+66 74 79 70 6D 70 34 32	 	[4 byte offset]
+ftypmp42
+M4V	 	MPEG-4 video|QuickTime file
+
+[4 byte offset]
+66 74 79 70 71 74 20 20	 	[4 byte offset]
+ftypqt
+MOV	 	QuickTime movie file
+ */
+-(NSString *)videoType {
+
+    uint16_t bytes[4];  // <=>
+    [self getBytes:&bytes length:1];
+
+    NSMutableString *str = nil;
+    for(int i=0;i<4;i++){
+        if(!str){
+            str = @"".mutableCopy;
+        }
+        NSLog(@"===byte%d:%x",i,bytes[i]);
+        [str appendFormat:@"%x",bytes[i]];
+    }
+    return str;
+}
+
+@end
 
 @implementation NSString (Ext)
 

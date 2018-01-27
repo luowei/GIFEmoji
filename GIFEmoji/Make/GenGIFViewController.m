@@ -13,19 +13,15 @@
  */
 
 #import "GenGIFViewController.h"
-#import <Photos/Photos.h>
 #import <PhotosUI/PhotosUI.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "NSGIF.h"
 #import "SVProgressHUD.h"
 #import "View+MASAdditions.h"
 #import "YangMingShan.h"
-#import "YMSPhotoPickerViewController.h"
-#import "UIViewController+YMSPhotoHelper.h"
 #import "FLAnimatedImageView.h"
 #import "LWLivePhotoView.h"
 #import "LWAVPlayerView.h"
-#import "AppDefines.h"
 #import "UIImage+GIF.h"
 #import "FLAnimatedImage.h"
 #import "Categories.h"
@@ -118,25 +114,87 @@
 
     UIViewController *controller = nil;
     if ([scheme isEqualToString:@"gifemoji"]) {
-        NSString *urlString = [queryDict[@"url"] stringByRemovingPercentEncoding];
-        urlString = (NSString *) CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (__bridge CFStringRef) urlString, (CFStringRef) @"!NULL,'()*+,-./:;=?@_~%#[]", NULL, kCFStringEncodingUTF8));
-        NSURL *detailURL = [NSURL URLWithString:urlString];
 
-        if (([hostSufix isEqualToString:@"http"] || [hostSufix isEqualToString:@"https"]) && detailURL) {
-            controller = [LWWKWebViewController wkWebViewControllerWithURL:detailURL];
+        if([host hasPrefix:@"share"]){    //如果是Share Extension跳来的
+
+            if([hostSufix isEqualToString:@"file"]){    //文件
+//                //从app group中获得文件路径
+                NSString *absolutePath = [queryDict[@"url"] stringByRemovingPercentEncoding];
+                if(!absolutePath || absolutePath.length <= 0){
+                    return;
+                }
+                NSData *data = [[NSFileManager defaultManager] contentsAtPath:absolutePath];
+                if(data.length/1024.0f/1024.0f > 10){   //大于10M
+                    [SVProgressHUD showErrorWithStatus:@"file too big"];    //文件太大
+                    return;
+                }
+
+                NSString *mimeType = [data mimeType];
+
+                if([mimeType hasPrefix:@"image"]){  //图片
+                    NSString *fileName = [absolutePath subStringWithRegex:@".*/([^/]*)$" matchIndex:1];
+                    //todo:判断data类型
+
+                    [self.navigationController popToRootViewControllerAnimated:YES];
+                    return;
+                }
+
+                if([mimeType hasPrefix:@"video"]){  //视频
+                    NSString *videoType = [data videoType];
+
+                    [self.navigationController popToRootViewControllerAnimated:YES];
+                    return;
+                }
+
+                return;
+            }
+
+            if([hostSufix isEqualToString:@"livephoto"]){   //livephoto
+
+                [self.navigationController popToRootViewControllerAnimated:YES];
+                return;
+            }
+
+            if([hostSufix containsString:@"http"]){ //链接
+                NSURL *detailURL = [self getHTTPURLFromQueryDict:queryDict];
+                if(!detailURL){
+                    return;
+                }
+                controller = [LWWKWebViewController wkWebViewControllerWithURL:detailURL];
+                [self showViewController:controller withQueryDict:queryDict];
+                return;
+            }
+
+
+        }else if (([hostSufix containsString:@"http"])) {
+            NSURL *detailURL = [self getHTTPURLFromQueryDict:queryDict];
+            if(detailURL){
+                controller = [LWWKWebViewController wkWebViewControllerWithURL:detailURL];
+                [self showViewController:controller withQueryDict:queryDict];
+            }
         }
 
-    }else if (([hostSufix isEqualToString:@"http"] || [hostSufix isEqualToString:@"https"])) {
-        controller = [LWWKWebViewController wkWebViewControllerWithURL:url];
     }
 
+}
+
+- (void)showViewController:(UIViewController *)controller withQueryDict:(NSDictionary *)queryDict {
     if (controller) {
         NSString *title = [queryDict[@"title"] stringByRemovingPercentEncoding];
-        controller.navigationItem.title = title ?: @"";
+        controller.navigationItem.title = title;
         [controller setHidesBottomBarWhenPushed:YES];
+
         [self.navigationController pushViewController:controller animated:YES];
     }
 }
+
+- (NSURL *)getHTTPURLFromQueryDict:(NSDictionary *)queryDict {
+    NSString *urlString = [queryDict[@"url"] stringByRemovingPercentEncoding];
+//    urlString = (NSString *) CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (__bridge CFStringRef) urlString, (CFStringRef) @"!NULL,'()*+,-./:;=?@_~%#[]", NULL, kCFStringEncodingUTF8));
+    NSURL *detailURL = [NSURL URLWithString:urlString];
+    return detailURL;
+}
+
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];

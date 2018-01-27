@@ -11,6 +11,15 @@
 
 @end
 
+@interface NSData (Ext)
+
+- (NSString *)mimeType;
+
+-(NSString *)videoType;
+
+@end
+
+
 @interface NSString (Ext)
 
 - (CGFloat)widthWithFont:(UIFont *)font;
