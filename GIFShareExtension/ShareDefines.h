@@ -25,7 +25,7 @@ _Pragma("clang diagnostic pop")
 
 
 #define Share_Group @"group.com.wodedata.MarkDownEditer"
-#define Share_Scheme @"mymarkdown"
+#define Share_Scheme @"GIFEmoji"
 #define Key_SharedText @"Key_SharedText"
 
 

@@ -648,6 +648,7 @@
 		EA2304C1201AE85F0012ED16 /* MASViewAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASViewAttribute.m; sourceTree = "<group>"; };
 		EA230538201AF7FA0012ED16 /* UIColor+HexValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+HexValue.m"; path = "GIFEmoji/Helper/UIColor+HexValue.m"; sourceTree = SOURCE_ROOT; };
 		EA230539201AF7FB0012ED16 /* UIColor+HexValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+HexValue.h"; path = "GIFEmoji/Helper/UIColor+HexValue.h"; sourceTree = SOURCE_ROOT; };
+		EA55A63F201C74DA009AB65B /* GIFShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GIFShareExtension.entitlements; sourceTree = "<group>"; };
 		EA7437E41FFCA2E600AD0291 /* GIFEmoji.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GIFEmoji.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA7437E71FFCA2E600AD0291 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EA7437E81FFCA2E600AD0291 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -1451,6 +1452,7 @@
 		EA23048F201AD6C70012ED16 /* GIFShareExtension */ = {
 			isa = PBXGroup;
 			children = (
+				EA55A63F201C74DA009AB65B /* GIFShareExtension.entitlements */,
 				BEF064084A21726FF3612530 /* Resources */,
 				EA2304A8201AE85F0012ED16 /* Masonry */,
 				EA2304A0201AE82C0012ED16 /* Utils */,
@@ -1778,11 +1780,19 @@
 					EA23048D201AD6C70012ED16 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					EA7437E31FFCA2E600AD0291 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
@@ -2156,6 +2166,7 @@
 		EA23049A201AD6C70012ED16 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = GIFShareExtension/GIFShareExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G3A2KYKYBU;
 				INFOPLIST_FILE = GIFShareExtension/Info.plist;
@@ -2171,6 +2182,7 @@
 		EA23049B201AD6C70012ED16 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = GIFShareExtension/GIFShareExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G3A2KYKYBU;
 				INFOPLIST_FILE = GIFShareExtension/Info.plist;

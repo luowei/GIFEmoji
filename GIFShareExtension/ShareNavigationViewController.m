@@ -387,6 +387,15 @@
 
         for (NSItemProvider *itemProvider in eItem.attachments) {
 
+            if (@available(iOS 9.1, *)) {   //如果是livePhoto,处理livePhoto
+                if ([itemProvider hasItemConformingToTypeIdentifier:@"com.apple.live-photo"] && self.isLivePhoto){
+                    [self handleLivePhoto:self.liveView.livePhoto];
+                    //执行分享内容处理
+                    [self.extensionContext completeRequestReturningItems:@[eItem] completionHandler:nil];
+                    return;
+                }
+            }
+
             //word,pages,numbers,excel等文档
             void (^wordCompletionBlock)(id <NSSecureCoding>) = ^(id <NSSecureCoding> item) {
                 if ([(NSObject *) item isKindOfClass:[NSURL class]]) {
@@ -494,6 +503,7 @@
 
             //图片
             void (^imageCompletionBlock)(id <NSSecureCoding>) = ^(id <NSSecureCoding> item){
+
                 NSData *data = nil;
                 if ([(NSObject *) item isKindOfClass:[UIImage class]]) {
                     data = UIImagePNGRepresentation(item);
@@ -573,6 +583,48 @@
     return NO;
 }
 
+//处理LivePhoto
+- (void)handleLivePhoto:(PHLivePhoto *)livePhoto {
+    NSArray *resourceArray = [PHAssetResource assetResourcesForLivePhoto:livePhoto];
+    PHAssetResourceManager *assetResourceManager = [PHAssetResourceManager defaultManager];
+
+    NSError *error;
+
+    //保存livePhoto中的图片
+    PHAssetResource *livePhotoImageAsset = resourceArray[0];
+    // Create path.
+    NSURL *groupPathURL = [LWMyUtils URLWithGroupName:Share_Group];
+
+    NSString *imageFileName = [NSString stringWithFormat:@"%@.jpg", [LWMyUtils getCurrentTimeStampText]];
+    NSURL *livePhotoImageURL = [groupPathURL URLByAppendingPathComponent:imageFileName];
+    [[NSFileManager defaultManager] removeItemAtURL:livePhotoImageURL error:nil];
+
+    [assetResourceManager writeDataForAssetResource:livePhotoImageAsset toFile:livePhotoImageURL options:nil completionHandler:^(NSError *_Nullable error) {
+        NSLog(@"error: %@", error);
+    }];
+
+
+    //保存livePhoto中的短视频
+    PHAssetResource *livePhotoVideoAsset = resourceArray[1];
+    // Create path.
+    NSString *videoFileName = [NSString stringWithFormat:@"%@.mov", [LWMyUtils getCurrentTimeStampText]];
+    NSURL *livePhotoVideoURL = [groupPathURL URLByAppendingPathComponent:videoFileName];
+    [[NSFileManager defaultManager] removeItemAtURL:livePhotoVideoURL error:&error];
+
+    [assetResourceManager writeDataForAssetResource:livePhotoVideoAsset toFile:livePhotoVideoURL options:nil completionHandler:^(NSError *_Nullable error) {
+        NSLog(@"error: %@", error);
+    }];
+
+    NSString *livePhotoImageURLString = livePhotoImageURL.path;
+    NSString *livePhotoImageURLText = [livePhotoImageURLString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    NSString *livePhotoVideoURLString = livePhotoVideoURL.path;
+    NSString *livePhotoVideoURLURLText = [livePhotoVideoURLString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+
+    NSString *urlString = [NSString stringWithFormat:@"%@://share.livephoto?from=native&imageURL=%@videoURL=%@", Share_Scheme, livePhotoImageURLText,livePhotoVideoURLURLText];
+    [self openURLWithString:urlString];
+}
+
+
 //处理NSData
 - (void)handleData:(NSData *)data eItem:(NSExtensionItem *)eItem {
     NSURL *groupPathURL = [LWMyUtils URLWithGroupName:Share_Group];
@@ -645,6 +697,7 @@
         [self.textView removeFromSuperview];
         self.liveView.livePhoto = livePhoto;
         [self.liveView startPlaybackWithStyle:PHLivePhotoViewPlaybackStyleFull];
+        self.isLivePhoto = YES;
         return;
 
     } else {

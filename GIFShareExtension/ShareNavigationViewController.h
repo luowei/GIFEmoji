@@ -33,4 +33,5 @@
 @property(nonatomic, strong) NSData *imageData;
 @property(nonatomic) BOOL isPickerImage;
 @property(nonatomic, strong) UIButton *livePhotoBtn;
+@property(nonatomic) BOOL isLivePhoto;
 @end
