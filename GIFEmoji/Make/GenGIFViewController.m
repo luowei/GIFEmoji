@@ -31,6 +31,7 @@
 #import "LWFramePreviewViewController.h"
 #import "LWWKWebViewController.h"
 #import "AppDelegate.h"
+#import "NSData+ImageContentType.h"
 
 @interface GenGIFViewController () {
 }
@@ -132,9 +133,21 @@
                 NSString *mimeType = [data mimeType];
 
                 if([mimeType hasPrefix:@"image"]){  //图片
-                    NSString *fileName = [absolutePath subStringWithRegex:@".*/([^/]*)$" matchIndex:1];
-                    //todo:判断data类型
+                    //NSString *fileName = [absolutePath subStringWithRegex:@".*/([^/]*)$" matchIndex:1];
+                    //判断data类型
 
+                    SDImageFormat imageFormat = [NSData sd_imageFormatForImageData:data];
+                    if (imageFormat == SDImageFormatGIF) {
+                        [self updateSelectedMode:GIFMode];
+
+                        FLAnimatedImage *gifImage = [FLAnimatedImage animatedImageWithGIFData:data];
+                        self.exportGIFImageData = data;
+                        self.imagePreview.animatedImage = gifImage;
+                    }else{
+                        [self updateSelectedMode:StaticPhotosMode];
+                        self.exportImageFrames = @[[[UIImage alloc] initWithData:data]];
+                        [self setImages:self.exportImageFrames toImageView:self.imagePreview];
+                    }
                     [self.navigationController popToRootViewControllerAnimated:YES];
                     return;
                 }
@@ -149,10 +162,43 @@
                 return;
             }
 
-            if([hostSufix isEqualToString:@"livephoto"]){   //livephoto
+            if(@available(iOS 9.1,*)){
+                if([hostSufix isEqualToString:@"livephoto"]){   //livephoto
+                    NSURL *imageURL = [NSURL fileURLWithPath:[queryDict[@"imageURL"] stringByRemovingPercentEncoding]];
+                    NSURL *videoURL = [NSURL fileURLWithPath:[queryDict[@"videoURL"] stringByRemovingPercentEncoding]];
+                    [PHLivePhoto requestLivePhotoWithResourceFileURLs:@[imageURL,videoURL]
+                                                     placeholderImage:[UIImage imageWithContentsOfFile:imageURL.path]
+                                                           targetSize:CGSizeZero
+                                                          contentMode:PHImageContentModeAspectFit
+                                                        resultHandler:^(PHLivePhoto *livePhoto, NSDictionary *info) {
 
-                [self.navigationController popToRootViewControllerAnimated:YES];
-                return;
+                                                            [self updateSelectedMode:LivePhotoMode];
+                                                            self.liveView.hidden = NO;
+                                                            self.liveView.livePhoto = livePhoto;
+                                                            [self.liveView startPlaybackWithStyle:PHLivePhotoViewPlaybackStyleFull];
+                                                        }];
+
+//                [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+//                    PHAssetCreationRequest *request = [PHAssetCreationRequest creationRequestForAsset];
+//
+//                    //These types should be inferred from your files
+//
+//                    //PHAssetResourceCreationOptions *photoOptions = [[PHAssetResourceCreationOptions alloc] init];
+//                    //photoOptions.uniformTypeIdentifier = @"public.jpeg";
+//
+//                    //PHAssetResourceCreationOptions *videoOptions = [[PHAssetResourceCreationOptions alloc] init];
+//                    //videoOptions.uniformTypeIdentifier = @"com.apple.quicktime-movie";
+//
+//                    [request addResourceWithType:PHAssetResourceTypePhoto fileURL:photoURL options:nil /*photoOptions*/];
+//                    [request addResourceWithType:PHAssetResourceTypePairedVideo fileURL:videoURL options:nil /*videoOptions*/];
+//
+//                } completionHandler:^(BOOL success, NSError * _Nullable error) {
+//                    NSLog(@"success? %d, error: %@",success,error);
+//                }];
+
+                    [self.navigationController popToRootViewControllerAnimated:YES];
+                    return;
+                }
             }
 
             if([hostSufix containsString:@"http"]){ //链接
