@@ -389,7 +389,7 @@
 
             if (@available(iOS 9.1, *)) {   //如果是livePhoto,处理livePhoto
                 if ([itemProvider hasItemConformingToTypeIdentifier:@"com.apple.live-photo"] && self.isLivePhoto){
-                    [self handleLivePhoto:self.liveView.livePhoto];
+                    [self handleLivePhoto:self.livePhoto];
                     //执行分享内容处理
                     [self.extensionContext completeRequestReturningItems:@[eItem] completionHandler:nil];
                     return;
@@ -585,7 +585,13 @@
 
 //处理LivePhoto
 - (void)handleLivePhoto:(PHLivePhoto *)livePhoto {
+    if(!livePhoto){
+        return;
+    }
     NSArray *resourceArray = [PHAssetResource assetResourcesForLivePhoto:livePhoto];
+    if(resourceArray || resourceArray.count < 2){
+        return;
+    }
     PHAssetResourceManager *assetResourceManager = [PHAssetResourceManager defaultManager];
 
     NSError *error;
@@ -695,7 +701,8 @@
         self.liveView.hidden = NO;
         [self.imageView removeFromSuperview];
         [self.textView removeFromSuperview];
-        self.liveView.livePhoto = livePhoto;
+        self.livePhoto = livePhoto;
+        self.liveView.livePhoto = self.livePhoto;
         [self.liveView startPlaybackWithStyle:PHLivePhotoViewPlaybackStyleFull];
         self.isLivePhoto = YES;
         return;

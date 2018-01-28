@@ -34,4 +34,5 @@
 @property(nonatomic) BOOL isPickerImage;
 @property(nonatomic, strong) UIButton *livePhotoBtn;
 @property(nonatomic) BOOL isLivePhoto;
+@property(nonatomic, strong) PHLivePhoto *livePhoto;
 @end

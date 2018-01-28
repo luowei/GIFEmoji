@@ -3,6 +3,7 @@
 // Copyright (c) 2018 Luo Wei. All rights reserved.
 //
 
+#import <AVFoundation/AVFoundation.h>
 #import "LWHelper.h"
 #import "FCFileManager.h"
 #import "AppDefines.h"
@@ -144,5 +145,94 @@
     }
 }
 
+//截取视频
++ (void)getTrimmedVideoForFile:(NSString *)filePath
+                     videoType:(NSString *)videoType
+                 withStartTime:(Float64)startTime
+                       endTime:(Float64)endTime
+             completionHandler:(void (^)(NSString *))completionHandler {
+
+//[[NSFileManager defaultManager] removeItemAtURL:outputURL error:nil];
+    NSURL *videoURL = [NSURL fileURLWithPath:filePath];
+    if(!videoURL){
+        if(completionHandler){
+            completionHandler(nil);
+        }
+        return;
+    }
+    AVURLAsset *sourceAsset = [AVURLAsset URLAssetWithURL:videoURL options:nil];
+    CMTime dur = sourceAsset.duration;
+
+// NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSAllDomainsMask, YES);
+// NSString *outputURL = paths[0];
+    NSFileManager *manager = [NSFileManager defaultManager];
+// [manager createDirectoryAtPath:outputURL withIntermediateDirectories:YES attributes:nil error:nil];
+// outputURL = [outputURL stringByAppendingPathComponent:@"output.mp4"];
+
+    NSString *suffix = @"mp4";
+    AVFileType outputFileType = AVFileTypeMPEG4;
+    if([videoType containsString:@"video/m4v"]){
+        suffix = @"m4v";
+        outputFileType = AVFileTypeAppleM4V;
+
+    }else if([videoType containsString:@"video/quicktime"]){
+        suffix = @"mov";
+        outputFileType = AVFileTypeQuickTimeMovie;
+
+    }else if([videoType containsString:@"video/3gpp"]){
+        suffix = @"3gp";
+        outputFileType = AVFileType3GPP;
+    }
+
+    NSString *outputPath = [NSString stringWithFormat:@"%@%@.%@", NSTemporaryDirectory(),[LWHelper getCurrentTimeStampText],suffix];
+    NSLog(@"OUTPUT Path: %@", outputPath);
+// Remove Existing File
+// [manager removeItemAtPath:outputURL error:nil];
+
+    if (![manager fileExistsAtPath:outputPath]) {
+        AVAssetExportSession *exportSession = [[AVAssetExportSession alloc] initWithAsset:sourceAsset presetName:AVAssetExportPresetMediumQuality];
+        exportSession.outputURL = [NSURL fileURLWithPath:outputPath];
+        //exportSession.shouldOptimizeForNetworkUse = YES;
+        exportSession.outputFileType = outputFileType;
+        CMTime start = kCMTimeZero;
+        CMTime duration = kCMTimeIndefinite;
+        if (dur.value > endTime) {
+            start = CMTimeMakeWithSeconds(startTime, 600);
+            duration = CMTimeMakeWithSeconds(endTime, 600);
+        }
+        exportSession.timeRange = CMTimeRangeMake(start, duration);
+        [exportSession exportAsynchronouslyWithCompletionHandler:^(void) {
+            switch (exportSession.status) {
+                case AVAssetExportSessionStatusCompleted:
+                    NSLog(@"Export Complete %d %@", exportSession.status, exportSession.error);
+                    if(completionHandler){
+                        completionHandler(outputPath);
+                    }
+                    break;
+                case AVAssetExportSessionStatusFailed:
+                    NSLog(@"Failed:%@", exportSession.error);
+                    if(completionHandler){
+                        completionHandler(nil);
+                    }
+                    break;
+                case AVAssetExportSessionStatusCancelled:
+                    NSLog(@"Canceled:%@", exportSession.error);
+                    if(completionHandler){
+                        completionHandler(nil);
+                    }
+                    break;
+                default:
+                    if(completionHandler){
+                        completionHandler(nil);
+                    }
+                    break;
+            }
+        }];
+    } else {
+        if(completionHandler){
+            completionHandler(outputPath);
+        }
+    }
+}
 
 @end

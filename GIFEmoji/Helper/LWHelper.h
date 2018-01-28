@@ -34,5 +34,11 @@ typedef NS_OPTIONS(NSUInteger, FileCopyOption) {
 //拷贝文件
 + (void)copyFileSource:(NSString *)sourcePath targetPath:(NSString *)targetPath option:(FileCopyOption)option;
 
+//截取视频
++ (void)getTrimmedVideoForFile:(NSString *)filePath
+                     videoType:(NSString *)videoType
+                 withStartTime:(Float64)startTime
+                       endTime:(Float64)endTime
+             completionHandler:(void (^)(NSString *))completionHandler;
 
 @end

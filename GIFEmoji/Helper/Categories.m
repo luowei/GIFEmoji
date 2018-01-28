@@ -79,12 +79,15 @@ Windows Media	.wmv	video/x-ms-wmv
         case 0x52:{ //avi,wav
             return @"video/avi";
         }
-        case 0x66:{
-            uint16_t s;
-            [self getBytes:&s length:1];
-            if(s == 0xFFFB){
-                return @"video/x";
+        case 0x00:{
+            if(self.length > 8){
+                unsigned char bytes[8];
+                [self getBytes:&bytes length:8];
+                if(bytes[4] == 0x66 && bytes[5] == 0x74 && bytes[6] == 0x79 && bytes[7] == 0x70){
+                    return @"video/x";
+                }
             }
+
             return @"application/octet-stream";
         }
         default:{
@@ -133,18 +136,39 @@ MOV	 	QuickTime movie file
  */
 -(NSString *)videoType {
 
-    uint16_t bytes[4];  // <=>
-    [self getBytes:&bytes length:1];
-
-    NSMutableString *str = nil;
-    for(int i=0;i<4;i++){
-        if(!str){
-            str = @"".mutableCopy;
-        }
-        NSLog(@"===byte%d:%x",i,bytes[i]);
-        [str appendFormat:@"%x",bytes[i]];
+    if(self.length < 12){
+        return nil;
     }
-    return str;
+    unsigned char bytes[12];  // <=>
+    [self getBytes:&bytes length:12];
+
+
+    NSMutableString *sbuf = @"".mutableCopy;
+    NSInteger i;
+    for (i=0; i<12; ++i) {
+        [sbuf appendFormat:@"%02X", (NSUInteger)bytes[i]];
+    }
+    NSLog(@"=======bytes:%@",sbuf);
+
+    if(bytes[8] == 0x33 && bytes[9] == 0x67 && bytes[10] == 0x70){
+        return @"video/3gpp";
+    }
+    if(bytes[8] == 0x4d && bytes[9] == 0x34 && bytes[10] == 0x56 && bytes[11] == 0x20){
+        return @"video/x-flv;video/m4v";
+    }
+    if(bytes[8] == 0x4d && bytes[9] == 0x53 && bytes[10] == 0x4e && bytes[11] == 0x56){
+        return @"video/mp4";
+    }
+    if(bytes[8] == 0x69 && bytes[9] == 0x73 && bytes[10] == 0x6f && bytes[11] == 0x6d){
+        return @"video/mp4";
+    }
+    if(bytes[8] == 0x6D && bytes[9] == 0x70 && bytes[10] == 0x34 && bytes[11] == 0x32){
+        return @"video/m4v";
+    }
+    if(bytes[8] == 0x71 && bytes[9] == 0x74 && bytes[10] == 0x20 && bytes[11] == 0x20){
+        return @"video/quicktime";
+    }
+    return @"video/x";
 }
 
 @end
