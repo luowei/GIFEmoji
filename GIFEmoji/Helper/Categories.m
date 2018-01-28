@@ -168,7 +168,7 @@ MOV	 	QuickTime movie file
     if(bytes[8] == 0x71 && bytes[9] == 0x74 && bytes[10] == 0x20 && bytes[11] == 0x20){
         return @"video/quicktime";
     }
-    return @"video/x";
+    return nil;
 }
 
 @end

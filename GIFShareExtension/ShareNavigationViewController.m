@@ -18,6 +18,8 @@
 #import "FLAnimatedImage.h"
 #import "UIColor+HexValue.h"
 #import "ShareCategories.h"
+#import "Categories.h"
+#import "SDAVAssetExportSession.h"
 
 @interface ShareNavigationViewController ()
 
@@ -531,7 +533,19 @@
                     data = (NSData *) item;
                 } else if ([(NSObject *) item isKindOfClass:[NSURL class]]) {   //路径
                     data = [NSData dataWithContentsOfURL:(NSURL *) item];
+
+                    if([[data mimeType] hasPrefix:@"video"]){    //如果是视频
+                        NSString *videoPath = ((NSURL *)item).path;
+
+                        //注意：如果NSData的方式保存视频文件，会丢失视频的元数据导致无法播放
+                        [self handleVideoWithVideoPath:videoPath];  //根据路径处理视频文件，
+                        [self.okButton setTitle:@"Loading..." forState:UIControlStateNormal];
+                        self.okButton.enabled = NO;
+
+                        return;
+                    }
                 }
+
 
                 [self handleData:data eItem:eItem]; //处理NSData
                 //执行分享内容处理
@@ -553,6 +567,67 @@
     }//第一层for
 
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)handleVideoWithVideoPath:(NSString *)videoPath {
+    AVURLAsset *sourceAsset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:videoPath] options:nil];
+    NSArray *tracks = [sourceAsset tracksWithMediaType:AVMediaTypeVideo];
+    AVAssetTrack *track = tracks.firstObject;
+    CGSize mediaSize = tracks ? track.naturalSize : CGSizeMake(960, 540);
+
+    ////注意：如果NSData的方式保存视频文件，会丢失视频的元数据导致无法播放，所以这里使用SDAVAssetExportSession
+    SDAVAssetExportSession *exportSession = [SDAVAssetExportSession exportSessionWithAsset:sourceAsset];
+    NSURL *groupPathURL = [LWMyUtils writableURLWithGroupName:Share_Group];
+    NSString *outputPath = [NSString stringWithFormat:@"%@/%@.mov", groupPathURL.path, [LWMyUtils getCurrentTimeStampText]];
+    exportSession.outputURL = [NSURL fileURLWithPath:outputPath];
+    exportSession.outputFileType = AVFileTypeQuickTimeMovie;
+    exportSession.videoSettings = @{
+                                AVVideoCodecKey: AVVideoCodecH264,
+                                AVVideoWidthKey: @(mediaSize.width),
+                                AVVideoHeightKey: @(mediaSize.height),
+                                AVVideoCompressionPropertiesKey: @{
+                                        AVVideoAverageBitRateKey: @6000000,
+                                        AVVideoProfileLevelKey: AVVideoProfileLevelH264High40,
+                                },
+                        };
+    exportSession.audioSettings = @{
+                                AVFormatIDKey: @(kAudioFormatMPEG4AAC),
+                                AVNumberOfChannelsKey: @2,
+                                AVSampleRateKey: @44100,
+                                AVEncoderBitRateKey: @128000,
+                        };
+
+    CMTime start = kCMTimeZero;
+    CMTime duration = kCMTimeIndefinite;
+    if (sourceAsset.duration.value > 10) {   //如果视频长度大于10秒,截取前10秒
+                            start = CMTimeMakeWithSeconds(0, 600);
+                            duration = CMTimeMakeWithSeconds(10, 600);
+                        }
+    exportSession.timeRange = CMTimeRangeMake(start, duration);
+    [exportSession exportAsynchronouslyWithCompletionHandler:^(void) {
+
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                switch (exportSession.status) {
+                                    case AVAssetExportSessionStatusCompleted: {
+                                        NSLog(@"====Export video Complete, outPath:%@", outputPath);
+                                        NSString *subURLText = [outputPath stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+                                        NSString *urlString = [NSString stringWithFormat:@"%@://share.file?from=native&url=%@", Share_Scheme, subURLText];
+                                        [self openURLWithString:urlString];
+                                        break;
+                                    }
+                                    default: {
+                                        NSLog(@"Log:%@", exportSession.error);
+                                        NSString *subURLText = [videoPath stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+                                        NSString *urlString = [NSString stringWithFormat:@"%@://share.file?from=native&url=%@", Share_Scheme, subURLText];
+                                        [self openURLWithString:urlString];
+                                        break;
+                                    }
+                                }
+                                //执行分享内容处理
+                                [self.extensionContext completeRequestReturningItems:@[] completionHandler:nil];
+                            });
+
+                        }];
 }
 
 

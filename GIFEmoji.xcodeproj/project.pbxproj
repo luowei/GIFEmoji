@@ -240,6 +240,7 @@
 		EA7AC17F201BA3AD00A6A1D3 /* livephoto@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA7AC17D201BA3AD00A6A1D3 /* livephoto@3x.png */; };
 		EA7AC184201BAAE300A6A1D3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EA7AC186201BAAE300A6A1D3 /* Localizable.strings */; };
 		EA7AC188201BAB8A00A6A1D3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EA7AC18A201BAB8A00A6A1D3 /* InfoPlist.strings */; };
+		EA8242FD201E3B9600000835 /* SDAVAssetExportSession.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8242FB201E3B9600000835 /* SDAVAssetExportSession.m */; };
 		EA8A14CF20029E5E004C3DFD /* NSObject+YYModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8A14CC20029E5E004C3DFD /* NSObject+YYModel.m */; };
 		EA8A14D020029E5E004C3DFD /* YYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8A14CD20029E5E004C3DFD /* YYClassInfo.m */; };
 		EA8A14D32002A920004C3DFD /* LWPickerPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8A14D12002A920004C3DFD /* LWPickerPanel.m */; };
@@ -732,6 +733,8 @@
 		EA7AC187201BAAE400A6A1D3 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		EA7AC189201BAB8A00A6A1D3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		EA7AC18B201BAB8C00A6A1D3 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		EA8242FB201E3B9600000835 /* SDAVAssetExportSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDAVAssetExportSession.m; sourceTree = "<group>"; };
+		EA8242FC201E3B9600000835 /* SDAVAssetExportSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDAVAssetExportSession.h; sourceTree = "<group>"; };
 		EA8A14CA20029E5E004C3DFD /* YYClassInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYClassInfo.h; sourceTree = "<group>"; };
 		EA8A14CB20029E5E004C3DFD /* YYModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYModel.h; sourceTree = "<group>"; };
 		EA8A14CC20029E5E004C3DFD /* NSObject+YYModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+YYModel.m"; sourceTree = "<group>"; };
@@ -1468,6 +1471,7 @@
 		EA2304A0201AE82C0012ED16 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				EA8242FA201E3B9600000835 /* SDAVAssetExportSession */,
 				EA230539201AF7FB0012ED16 /* UIColor+HexValue.h */,
 				EA230538201AF7FA0012ED16 /* UIColor+HexValue.m */,
 				EA2304A1201AE82C0012ED16 /* LWMyUtils.h */,
@@ -1659,6 +1663,15 @@
 				EA74387A2001F63A00AD0291 /* SRPictureHUD.h */,
 			);
 			path = SRPictureBrowser;
+			sourceTree = "<group>";
+		};
+		EA8242FA201E3B9600000835 /* SDAVAssetExportSession */ = {
+			isa = PBXGroup;
+			children = (
+				EA8242FB201E3B9600000835 /* SDAVAssetExportSession.m */,
+				EA8242FC201E3B9600000835 /* SDAVAssetExportSession.h */,
+			);
+			path = SDAVAssetExportSession;
 			sourceTree = "<group>";
 		};
 		EA8A14C920029E5E004C3DFD /* YYModel */ = {
@@ -1875,6 +1888,7 @@
 				EA2304A7201AE82C0012ED16 /* ShareCategories.m in Sources */,
 				EA2304CB201AE85F0012ED16 /* MASViewAttribute.m in Sources */,
 				EA2304C7201AE85F0012ED16 /* NSArray+MASAdditions.m in Sources */,
+				EA8242FD201E3B9600000835 /* SDAVAssetExportSession.m in Sources */,
 				EA23053A201AF7FB0012ED16 /* UIColor+HexValue.m in Sources */,
 				EA2304C4201AE85F0012ED16 /* MASCompositeConstraint.m in Sources */,
 				EA2304C5201AE85F0012ED16 /* MASConstraintMaker.m in Sources */,

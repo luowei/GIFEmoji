@@ -16,6 +16,18 @@
     return groupURL;
 }
 
++(NSURL *)writableURLWithGroupName:(NSString *)group {
+    //获取App分组的共享目录
+    NSURL *groupURL = [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:group];
+    if(![[NSFileManager defaultManager] isWritableFileAtPath:groupURL.path]){
+        groupURL = [groupURL URLByAppendingPathComponent: @"Library" isDirectory: YES];
+        groupURL = [groupURL URLByAppendingPathComponent:@"Caches" isDirectory: YES];
+    }
+    return groupURL;
+}
+
+
+
 +(NSString *)getCurrentTimeStampText {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"yyyyMMddHHmmssSSS";

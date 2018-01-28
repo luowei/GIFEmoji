@@ -10,6 +10,8 @@
 
 +(NSURL *)URLWithGroupName:(NSString *)group;
 
++(NSURL *)writableURLWithGroupName:(NSString *)group;
+
 +(NSString *)getCurrentTimeStampText;
 
 @end

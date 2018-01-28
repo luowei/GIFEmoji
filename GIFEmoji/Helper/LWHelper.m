@@ -160,8 +160,17 @@
         }
         return;
     }
+    //NSDictionary *opts = @{AVURLAssetPreferPreciseDurationAndTimingKey: @YES};
     AVURLAsset *sourceAsset = [AVURLAsset URLAssetWithURL:videoURL options:nil];
     CMTime dur = sourceAsset.duration;
+
+    for(AVMetadataFormat item in sourceAsset.availableMetadataFormats){
+        NSLog(@"========MetadataFormat:%@",item);
+    }
+
+//    // 用 AVAssetExportSession 这个类来导出资源中的属性
+//    NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:sourceAsset];
+
 
 // NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSAllDomainsMask, YES);
 // NSString *outputURL = paths[0];

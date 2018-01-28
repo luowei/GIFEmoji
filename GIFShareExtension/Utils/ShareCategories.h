@@ -9,6 +9,8 @@
 
 - (NSString *)mimeType;
 
+-(NSString *)videoType;
+
 @end
 
 

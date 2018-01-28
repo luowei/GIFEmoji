@@ -127,8 +127,9 @@
                 NSData *data = [[NSFileManager defaultManager] contentsAtPath:absolutePath];
                 NSString *mimeType = [data mimeType];
 
-                if(([mimeType hasPrefix:@"video"] && data.length/1024.0f/1024.0f > 100)
-                        || ([mimeType hasPrefix:@"image"] && data.length/1024.0f/1024.0f > 10) ){   //大于10M
+                if( ([mimeType hasPrefix:@"image"] && data.length/1024.0f/1024.0f > 10)
+                       /*|| ([mimeType hasPrefix:@"video"] && data.length/1024.0f/1024.0f > 100)*/
+                        ){   //大于10M
                     [SVProgressHUD showErrorWithStatus:@"file too big"];    //文件太大
                     return;
                 }
@@ -136,6 +137,8 @@
                 if([mimeType hasPrefix:@"image"]){  //图片
                     //NSString *fileName = [absolutePath subStringWithRegex:@".*/([^/]*)$" matchIndex:1];
                     //判断data类型
+                    self.liveView.hidden = YES;
+                    self.videoPlayerView.hidden = YES;
 
                     SDImageFormat imageFormat = [NSData sd_imageFormatForImageData:data];
                     if (imageFormat == SDImageFormatGIF) {
@@ -154,53 +157,16 @@
                 }
 
                 if ([mimeType hasPrefix:@"video"]) {  //视频
+                    self.liveView.hidden = YES;
+                    self.videoPlayerView.hidden = YES;
+
                     NSString *videoType = [data videoType];
                     if ([videoType containsString:@"video/quicktime"]
                             || [videoType containsString:@"video/mp4"]
                             || [videoType containsString:@"video/m4v"]
                             || [videoType containsString:@"video/3gpp"]) {
 
-/*
-                        AVURLAsset *sourceAsset = [AVURLAsset URLAssetWithURL:absolutePath options:nil];
-                        CMTime dur = sourceAsset.duration;
-
-                        if(dur.value < 20){
-                            [self updateSelectedMode:VideoMode];
-
-                            NSURL *videoURL = [NSURL fileURLWithPath:absolutePath];
-
-                            NSLog(@"Video at URL %@", videoURL.path);
-                            self.selectedVideoFileURL = videoURL;
-
-                            self.videoPlayerView.hidden = NO;
-                            [self.videoPlayerView playVideoWithURL:self.selectedVideoFileURL];
-                        }
-*/
-
-//                        NSString *videoPath = [NSString stringWithFormat:@"%@%@",NSTemporaryDirectory(),[LWHelper getCurrentTimeStampText]];
-//                        [LWHelper copyFileSource:absolutePath targetPath:videoPath option:FileExsist_Update];
-//
-                        [LWHelper getTrimmedVideoForFile:absolutePath
-                                               videoType:videoType
-                                           withStartTime:0
-                                                 endTime:10
-                                       completionHandler:^(NSString *outputPath) {
-                                           dispatch_async(dispatch_get_main_queue(), ^{
-                                               [self updateSelectedMode:VideoMode];
-
-                                               NSURL *videoURL = [NSURL fileURLWithPath:absolutePath];
-                                               if (outputPath) {
-                                                   videoURL = [NSURL fileURLWithPath:outputPath];
-                                               }
-
-                                               NSLog(@"Picked a movie at URL %@", videoURL.path);
-                                               self.selectedVideoFileURL = videoURL;
-                                               NSLog(@"> %@", [self.selectedVideoFileURL path]);
-
-                                               self.videoPlayerView.hidden = NO;
-                                               [self.videoPlayerView playVideoWithURL:self.selectedVideoFileURL];
-                                           });
-                                       }];
+                        [self handleVideoWithVideoPath:absolutePath];  //根据视频文件路径处理视频
                     }
 
                     [self.navigationController popToRootViewControllerAnimated:YES];
@@ -322,38 +288,7 @@
     if ([mediaType isEqualToString:@"public.movie"]) {
 
         self.selectedVideoFileURL = info[UIImagePickerControllerMediaURL];
-        NSString *videoPath = self.selectedVideoFileURL.path;
-        [LWHelper getTrimmedVideoForFile:self.selectedVideoFileURL.path
-                               videoType:nil
-                           withStartTime:0
-                                 endTime:10
-                       completionHandler:^(NSString *outputPath) {
-                           dispatch_async(dispatch_get_main_queue(), ^{
-                               [self updateSelectedMode:VideoMode];
-
-                               NSURL *videoURL = [NSURL fileURLWithPath:videoPath];
-                               if (outputPath) {
-                                   videoURL = [NSURL fileURLWithPath:outputPath];
-                               }
-
-                               NSLog(@"Picked a movie at URL %@", videoURL.path);
-                               self.selectedVideoFileURL = videoURL;
-
-                               self.videoPlayerView.hidden = NO;
-                               [self.videoPlayerView playVideoWithURL:self.selectedVideoFileURL];
-                           });
-                       }];
-
-
-//        [self updateSelectedMode:VideoMode];
-//
-//        NSLog(@"Picked a movie at URL %@", info[UIImagePickerControllerMediaURL]);
-//        self.selectedVideoFileURL = info[UIImagePickerControllerMediaURL];
-//        NSLog(@"> %@", [self.selectedVideoFileURL path]);
-//
-//        self.videoPlayerView.hidden = NO;
-//        [self.videoPlayerView playVideoWithURL:self.selectedVideoFileURL];
-
+        [self handleVideoWithVideoPath:self.selectedVideoFileURL.path];  //根据视频文件路径处理视频
         return;
     }
 
@@ -396,6 +331,59 @@
 
     }
 
+}
+
+//根据视频文件路径处理视频
+- (void)handleVideoWithVideoPath:(NSString *)videoPath {
+    AVURLAsset *sourceAsset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:videoPath] options:nil];
+    if(!sourceAsset.availableMetadataFormats || [sourceAsset.availableMetadataFormats count] < 1) {  //如果没有元数据
+        [self updateVideoUIWithVideoPath:videoPath];
+    }
+
+    AVAssetExportSession *exportSession = [[AVAssetExportSession alloc] initWithAsset:sourceAsset presetName:AVAssetExportPresetMediumQuality];
+    NSString *outputPath = [NSString stringWithFormat:@"%@%@.mov", NSTemporaryDirectory(), [LWHelper getCurrentTimeStampText]];
+    exportSession.outputURL = [NSURL fileURLWithPath:outputPath];
+    exportSession.outputFileType = AVFileTypeQuickTimeMovie;
+//        exportSession.shouldOptimizeForNetworkUse = YES;
+
+    CMTime start = kCMTimeZero;
+    CMTime duration = kCMTimeIndefinite;
+    if (sourceAsset.duration.value > 10) {   //如果视频长度大于10秒,截取前10秒
+        start = CMTimeMakeWithSeconds(0, 600);
+        duration = CMTimeMakeWithSeconds(10, 600);
+    }
+    exportSession.timeRange = CMTimeRangeMake(start, duration);
+    [exportSession exportAsynchronouslyWithCompletionHandler:^(void) {
+        switch (exportSession.status) {
+            case AVAssetExportSessionStatusCompleted: {
+                NSLog(@"Export Complete %d %@", exportSession.status, exportSession.error);
+                [self updateVideoUIWithVideoPath:outputPath];    //更新UI
+                break;
+            }
+            default: {
+                NSLog(@"Log:%@", exportSession.error);
+                [self updateVideoUIWithVideoPath:videoPath];    //更新UI
+                break;
+            }
+        }
+    }];
+
+}
+
+//更新Video UI
+- (void)updateVideoUIWithVideoPath:(NSString *)videoPath{
+    if(!videoPath){
+        return;
+    }
+    [self updateSelectedMode:VideoMode];
+
+    NSURL *videoURL = [NSURL fileURLWithPath:videoPath];
+
+    NSLog(@"Picked a movie at URL %@", videoURL.path);
+    self.selectedVideoFileURL = videoURL;
+
+    self.videoPlayerView.hidden = NO;
+    [self.videoPlayerView playVideoWithURL:self.selectedVideoFileURL];
 }
 
 - (void)updateSelectedMode:(SelectedMode)selectedMode {

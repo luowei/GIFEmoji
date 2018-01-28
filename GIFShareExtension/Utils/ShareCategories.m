@@ -8,6 +8,9 @@
 @implementation NSData (Ext)
 
 
+//FILE SIGNATURES TABLE:https://www.garykessler.net/library/file_sigs.html
+//List of file signatures:https://en.wikipedia.org/wiki/List_of_file_signatures
+
 /*
 video files mimetype
 Video Type	Extension	MIME Type
@@ -69,10 +72,94 @@ Windows Media	.wmv	video/x-ms-wmv
         case 0x52:{ //avi,wav
             return @"video/avi";
         }
+        case 0x00:{
+            if(self.length > 8){
+                unsigned char bytes[8];
+                [self getBytes:&bytes length:8];
+                if(bytes[4] == 0x66 && bytes[5] == 0x74 && bytes[6] == 0x79 && bytes[7] == 0x70){
+                    return @"video/x";
+                }
+            }
+
+            return @"application/octet-stream";
+        }
         default:{
             return @"application/octet-stream";
         }
 
+    }
+    return nil;
+}
+
+/*
+[4 byte offset]
+66 74 79 70 33 67 70	 	[4 byte offset]
+ftyp3gp
+3GG, 3GP, 3G2	 	3rd Generation Partnership Project 3GPP multimedia files
+
+[4 byte offset]
+66 74 79 70 4D 34 41 20	 	[4 byte offset]
+ftypM4A
+M4A	 	Apple Lossless Audio Codec file
+
+[4 byte offset]
+66 74 79 70 4D 34 56 20	 	[4 byte offset]
+ftypM4V
+FLV, M4V	 	ISO Media, MPEG v4 system, or iTunes AVC-LC file.
+
+[4 byte offset]
+66 74 79 70 4D 53 4E 56	 	[4 byte offset]
+ftypMSNV
+MP4	 	MPEG-4 video file
+
+[4 byte offset]
+66 74 79 70 69 73 6F 6D	 	[4 byte offset]
+ftypisom
+MP4	 	ISO Base Media file (MPEG-4) v1
+
+[4 byte offset]
+66 74 79 70 6D 70 34 32	 	[4 byte offset]
+ftypmp42
+M4V	 	MPEG-4 video|QuickTime file
+
+[4 byte offset]
+66 74 79 70 71 74 20 20	 	[4 byte offset]
+ftypqt
+MOV	 	QuickTime movie file
+ */
+-(NSString *)videoType {
+
+    if(self.length < 12){
+        return nil;
+    }
+    unsigned char bytes[12];  // <=>
+    [self getBytes:&bytes length:12];
+
+
+    NSMutableString *sbuf = @"".mutableCopy;
+    NSInteger i;
+    for (i=0; i<12; ++i) {
+        [sbuf appendFormat:@"%02X", (NSUInteger)bytes[i]];
+    }
+    NSLog(@"=======bytes:%@",sbuf);
+
+    if(bytes[8] == 0x33 && bytes[9] == 0x67 && bytes[10] == 0x70){
+        return @"video/3gpp";
+    }
+    if(bytes[8] == 0x4d && bytes[9] == 0x34 && bytes[10] == 0x56 && bytes[11] == 0x20){
+        return @"video/x-flv;video/m4v";
+    }
+    if(bytes[8] == 0x4d && bytes[9] == 0x53 && bytes[10] == 0x4e && bytes[11] == 0x56){
+        return @"video/mp4";
+    }
+    if(bytes[8] == 0x69 && bytes[9] == 0x73 && bytes[10] == 0x6f && bytes[11] == 0x6d){
+        return @"video/mp4";
+    }
+    if(bytes[8] == 0x6D && bytes[9] == 0x70 && bytes[10] == 0x34 && bytes[11] == 0x32){
+        return @"video/m4v";
+    }
+    if(bytes[8] == 0x71 && bytes[9] == 0x74 && bytes[10] == 0x20 && bytes[11] == 0x20){
+        return @"video/quicktime";
     }
     return nil;
 }
