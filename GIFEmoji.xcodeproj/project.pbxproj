@@ -2183,6 +2183,7 @@
 				CODE_SIGN_ENTITLEMENTS = GIFShareExtension/GIFShareExtension.entitlements;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = G3A2KYKYBU;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = GIFShareExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -2202,6 +2203,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = G3A2KYKYBU;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = GIFShareExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -2327,6 +2329,7 @@
 				CODE_SIGN_ENTITLEMENTS = GIFEmoji/GIFEmoji.entitlements;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = G3A2KYKYBU;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = GIFEmoji/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2358,6 +2361,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = G3A2KYKYBU;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = GIFEmoji/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
