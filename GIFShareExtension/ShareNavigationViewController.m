@@ -571,9 +571,25 @@
 
 - (void)handleVideoWithVideoPath:(NSString *)videoPath {
     AVURLAsset *sourceAsset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:videoPath] options:nil];
+
+
+    CMTime start = kCMTimeZero;
+    CMTime duration = kCMTimeIndefinite;
+    Float64 seconds = CMTimeGetSeconds(sourceAsset.duration);
+    if (seconds > 30) {   //如果视频长度大于30秒,截取前30秒
+        start = CMTimeMakeWithSeconds(0, 600);
+        duration = CMTimeMakeWithSeconds(30, 600);
+    }
+
     NSArray *tracks = [sourceAsset tracksWithMediaType:AVMediaTypeVideo];
     AVAssetTrack *track = tracks.firstObject;
     CGSize mediaSize = tracks ? track.naturalSize : CGSizeMake(960, 540);
+//    if(seconds >= 1 ){
+//        AVAssetImageGenerator* generator = [AVAssetImageGenerator assetImageGeneratorWithAsset:sourceAsset];
+//        //Snatch a frame at the 1st frame 1 seconds in
+//        CGImageRef frameRef = [generator copyCGImageAtTime:CMTimeMake(1,1) actualTime:nil error:nil];
+//        mediaSize = CGSizeMake(CGImageGetWidth(frameRef), CGImageGetHeight(frameRef));
+//    }
 
     ////注意：如果NSData的方式保存视频文件，会丢失视频的元数据导致无法播放，所以这里使用SDAVAssetExportSession
     SDAVAssetExportSession *exportSession = [SDAVAssetExportSession exportSessionWithAsset:sourceAsset];
@@ -596,13 +612,6 @@
                                 AVSampleRateKey: @44100,
                                 AVEncoderBitRateKey: @128000,
                         };
-
-    CMTime start = kCMTimeZero;
-    CMTime duration = kCMTimeIndefinite;
-    if (sourceAsset.duration.value > 10) {   //如果视频长度大于10秒,截取前10秒
-                            start = CMTimeMakeWithSeconds(0, 600);
-                            duration = CMTimeMakeWithSeconds(10, 600);
-                        }
     exportSession.timeRange = CMTimeRangeMake(start, duration);
     [exportSession exportAsynchronouslyWithCompletionHandler:^(void) {
 

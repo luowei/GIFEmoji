@@ -348,24 +348,27 @@
 
     CMTime start = kCMTimeZero;
     CMTime duration = kCMTimeIndefinite;
-    if (sourceAsset.duration.value > 10) {   //如果视频长度大于10秒,截取前10秒
+    Float64 seconds = CMTimeGetSeconds(sourceAsset.duration);
+    if (seconds > 30) {   //如果视频长度大于30秒,截取前30秒
         start = CMTimeMakeWithSeconds(0, 600);
-        duration = CMTimeMakeWithSeconds(10, 600);
+        duration = CMTimeMakeWithSeconds(30, 600);
     }
     exportSession.timeRange = CMTimeRangeMake(start, duration);
     [exportSession exportAsynchronouslyWithCompletionHandler:^(void) {
-        switch (exportSession.status) {
-            case AVAssetExportSessionStatusCompleted: {
-                NSLog(@"Export Complete %d %@", exportSession.status, exportSession.error);
-                [self updateVideoUIWithVideoPath:outputPath];    //更新UI
-                break;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            switch (exportSession.status) {
+                case AVAssetExportSessionStatusCompleted: {
+                    NSLog(@"Export Complete %d %@", exportSession.status, exportSession.error);
+                    [self updateVideoUIWithVideoPath:outputPath];    //更新UI
+                    break;
+                }
+                default: {
+                    NSLog(@"Log:%@", exportSession.error);
+                    [self updateVideoUIWithVideoPath:videoPath];    //更新UI
+                    break;
+                }
             }
-            default: {
-                NSLog(@"Log:%@", exportSession.error);
-                [self updateVideoUIWithVideoPath:videoPath];    //更新UI
-                break;
-            }
-        }
+        });
     }];
 
 }
