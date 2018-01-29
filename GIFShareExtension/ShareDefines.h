@@ -24,7 +24,7 @@ __strong typeof(var) var = weak_##var; \
 _Pragma("clang diagnostic pop")
 
 
-#define Share_Group @"group.com.wodedata.MarkDownEditer"
+#define Share_Group @"group.com.wodedata.GIFEmoji"
 #define Share_Scheme @"GIFEmoji"
 #define Key_SharedText @"Key_SharedText"
 
