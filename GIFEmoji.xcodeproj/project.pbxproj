@@ -93,6 +93,7 @@
 		BEF068803A65660358BCF7DC /* FLEXMultilineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06598FE10F37BCB54DA98 /* FLEXMultilineTableViewCell.m */; };
 		BEF0689016B326EE371FE158 /* FLEXIvarEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF069EC90D6036F7BA1D04D /* FLEXIvarEditorViewController.m */; };
 		BEF068CA31D530CE6406E805 /* FLEXViewExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06BF5EBFC7D98D7BEA424 /* FLEXViewExplorerViewController.m */; };
+		BEF068DAC570771781BF74F8 /* ReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06FF0FBAA9AC7BB76C9F0 /* ReportViewController.m */; };
 		BEF068FB132C2A78C02D4F8F /* FLEXManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF0644012C9470A45F7EDC4 /* FLEXManager.m */; };
 		BEF06913870E3CC7FA2C1D05 /* LWContainerScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06A3728BE237A6CF07A58 /* LWContainerScrollView.m */; };
 		BEF06916263E2FA4B4AA26F0 /* FLEXFieldEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF065AD9CB0B999EB38054E /* FLEXFieldEditorViewController.m */; };
@@ -384,6 +385,7 @@
 		BEF064E2EA116FF97796678D /* SDWebImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageDownloader.h; sourceTree = "<group>"; };
 		BEF064EE1CCF93ABC1ADA7B9 /* FLEXSetExplorerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXSetExplorerViewController.m; sourceTree = "<group>"; };
 		BEF064F496CA841E0667338F /* MASConstraintMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASConstraintMaker.h; sourceTree = "<group>"; };
+		BEF06500F27ECD88059D1C97 /* ReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportViewController.h; sourceTree = "<group>"; };
 		BEF065016D000BFB9FB91411 /* FLEXTableContentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXTableContentCell.m; sourceTree = "<group>"; };
 		BEF065170DE25BE86B59D8EC /* SDWebImageCompat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageCompat.h; sourceTree = "<group>"; };
 		BEF0651A00E9BF14D29F71BF /* FLEXExplorerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXExplorerViewController.m; sourceTree = "<group>"; };
@@ -593,6 +595,7 @@
 		BEF06FBE21768F59043E29B7 /* RSColorPickerState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSColorPickerState.m; sourceTree = "<group>"; };
 		BEF06FC2083DC79904E6D06B /* FLEXNetworkHistoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXNetworkHistoryTableViewController.m; sourceTree = "<group>"; };
 		BEF06FDD9D631EBF3840B5B6 /* NSLayoutConstraint+MASDebugAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+MASDebugAdditions.h"; sourceTree = "<group>"; };
+		BEF06FF0FBAA9AC7BB76C9F0 /* ReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportViewController.m; sourceTree = "<group>"; };
 		EA1BEB67200AB22700CF2BB4 /* LWSnapshotMaskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWSnapshotMaskView.h; sourceTree = "<group>"; };
 		EA1BEB68200AB22700CF2BB4 /* LWSnapshotMaskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWSnapshotMaskView.m; sourceTree = "<group>"; };
 		EA1BEB6B200C842400CF2BB4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
@@ -856,6 +859,8 @@
 				BEF06DA9D7E1FBEC7A1ABB26 /* SearchGIFViewController.m */,
 				BEF06CA0BCFCB82E17282530 /* LWImageModel.m */,
 				BEF0669CFC44446B5BAD7002 /* LWImageModel.h */,
+				BEF06FF0FBAA9AC7BB76C9F0 /* ReportViewController.m */,
+				BEF06500F27ECD88059D1C97 /* ReportViewController.h */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -2093,6 +2098,7 @@
 				BEF069F7042702CD1DD21154 /* LWMyGIFCollectionView.m in Sources */,
 				BEF0693049E1BC332C10A10F /* LWCategoriesAlertView.m in Sources */,
 				BEF0606395260B5F47253BB8 /* LWUIActivity.m in Sources */,
+				BEF068DAC570771781BF74F8 /* ReportViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

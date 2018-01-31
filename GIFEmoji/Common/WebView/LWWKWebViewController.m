@@ -9,6 +9,8 @@
 #import "UIPrintPageRenderer+Extentsion.h"
 #import "UIView+extensions.h"
 #import "AppDefines.h"
+#import "ReportViewController.h"
+#import "SearchGIFViewController.h"
 
 
 @implementation LWWKWebViewController {
@@ -46,11 +48,13 @@
 //    self.navigationController.navigationBar.shadowImage = [UIImage new];
 //    self.navigationController.navigationBar.translucent = YES;
 
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
-            initWithImage:[UIImage imageNamed:@"more_dot"]
-                    style:UIBarButtonItemStylePlain
-                   target:self
-                   action:@selector(moreAction:)];
+    UIBarButtonItem *moreButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"more_dot"] style:UIBarButtonItemStylePlain target:self action:@selector(moreAction:)];
+    if([self.isFrom isEqualToString:NSStringFromClass([SearchGIFViewController class])]){
+        UIBarButtonItem *reportItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Report", nil) style:UIBarButtonItemStylePlain target:self action:@selector(reportAction)];
+        self.navigationItem.rightBarButtonItems = @[moreButtonItem,reportItem];
+    }else{
+        self.navigationItem.rightBarButtonItem = moreButtonItem;
+    }
 
     //添加webview
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
@@ -94,6 +98,13 @@
     }
 
     [self loadURL:self.url];
+}
+
+- (void)reportAction {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    ReportViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ReportViewController"];
+    vc.urlString = self.url.absoluteString;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)moreAction:(UIBarButtonItem *)moreBtn {

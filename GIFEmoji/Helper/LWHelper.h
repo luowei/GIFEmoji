@@ -18,6 +18,12 @@ typedef NS_OPTIONS(NSUInteger, FileCopyOption) {
 //获取UserAgent
 +(NSString *)getiOSUserAgent;
 
+//判断是否是指定日期之后,dateString 格式 ：yyyy-MM-dd
++ (BOOL)isAfterDate:(NSString *)dateString;
+
+//获得两个时间之间的日差
++ (NSInteger)daysBetweenDate:(NSString *)fromDateTime andDate:(NSString *)toDateTime;
+
 //在Documents目录下创建一个名为InputBgImg的文件夹
 + (NSString *)createIfNotExistsDirectory:(NSString *)dirName;
 

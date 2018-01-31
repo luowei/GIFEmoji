@@ -77,3 +77,8 @@
 
 @end
 
+@interface NSArray (Contains)
+
+-(BOOL)containsString:(NSString *)str;
+
+@end

@@ -28,6 +28,8 @@
 "Delete" = "删除";
 "Refresh" = "刷新";
 "FullScreen" = "全图";
+"Close" = "关闭";
+"Report" = "投诉";
 
 "Developer App" = "开发者App";
 
@@ -53,4 +55,9 @@
 
 "Export PDF" = "导出PDF";
 
-"Share Data" = "分享数据";
+"Received Report" = "我们已收到你的投诉，谢谢支持";
+"Image is been Reporting" = "这个图片已被投诉";
+
+"Lewd or harassing content" = "不适当的内容对我造成骚扰";
+"Bad Content" = "恶意的令人讨厌的内容";
+"There is infringement" = "存在侵权行为";

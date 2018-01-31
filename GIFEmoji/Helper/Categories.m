@@ -351,5 +351,18 @@ MOV	 	QuickTime movie file
 @end
 
 
+@implementation NSArray (Contains)
+
+-(BOOL)containsString:(NSString *)str{
+    for(id obj in self){
+        if([obj isKindOfClass:[NSString class]] && [(NSString *)obj isEqualToString:str]){
+            return YES;
+        }
+    }
+    return NO;
+}
+
+@end
+
 
 

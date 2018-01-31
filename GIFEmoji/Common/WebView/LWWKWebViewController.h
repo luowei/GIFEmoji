@@ -14,6 +14,8 @@
 
 @property(nonatomic, strong) NSURL *url;
 
+@property(nonatomic, copy) NSString *isFrom;
+
 + (LWWKWebViewController *)loadURL:(NSURL *)url;
 
 + (LWWKWebViewController *)wkWebViewControllerWithURL:(NSURL *)url;

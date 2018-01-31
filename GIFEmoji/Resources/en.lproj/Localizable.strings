@@ -27,6 +27,8 @@
 "Delete" = "Delete";
 "Refresh" = "Refresh";
 "FullScreen" = "FullImage";
+"Close" = "Close";
+"Report" = "Report";
 
 "About" = "About";
 "Categories" = "Categories";
@@ -53,3 +55,11 @@
 "Exist The Image" = "Exist The Image";
 
 "Export PDF" = "Export PDF";
+
+"Received Report" = "We have Received Report";
+"Image is been Reporting" = "Image is been Reporting";
+
+"Lewd or harassing content" = "Lewd or harassing content";
+"Bad Content" = "Bad Content";
+"There is infringement" = "There is infringement";
+

@@ -36,6 +36,34 @@
     return userAgent;
 }
 
+//判断是否是指定日期之后,dateString 格式 ：yyyy-MM-dd
++ (BOOL)isAfterDate:(NSString *)dateString {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *currentDate = [dateFormatter stringFromDate:[NSDate date]];
+    NSInteger days = [LWHelper daysBetweenDate:dateString andDate:currentDate];
+    return days >= 0;
+}
+
+//获得两个时间之间的日差
++ (NSInteger)daysBetweenDate:(NSString *)fromDateTime andDate:(NSString *)toDateTime {
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSDate *from = [dateFormatter dateFromString:fromDateTime];
+    NSDate *to = [dateFormatter dateFromString:toDateTime];
+
+    NSDate *fromDate;
+    NSDate *toDate;
+    [calendar rangeOfUnit:NSCalendarUnitDay startDate:&fromDate interval:NULL forDate:from];
+    [calendar rangeOfUnit:NSCalendarUnitDay startDate:&toDate interval:NULL forDate:to];
+
+    NSDateComponents *difference = [calendar components:NSCalendarUnitDay fromDate:fromDate toDate:toDate options:0];
+    return [difference day];
+}
+
+
 //在Documents目录下创建一个名为InputBgImg的文件夹
 + (NSString *)createIfNotExistsDirectory:(NSString *)dirName {
 

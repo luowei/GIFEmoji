@@ -66,6 +66,7 @@
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
 
+    self.searchTextField.text = [LWHelper isAfterDate:@"2018-02-05"] ? @"GIF" : @"";
 
     //网络请求图片User-Agent要设置为浏览器的
     SDWebImageDownloader *manager = [SDWebImageDownloader sharedDownloader];
@@ -85,6 +86,13 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self reloadSearchResult];
+
+    id obj = [[NSUserDefaults standardUserDefaults] objectForKey:@"ReportList"];
+    if(!obj){
+        self.reportList = @[].mutableCopy;
+    }else{
+        self.reportList = [obj mutableCopy];
+    }
 }
 
 
@@ -111,8 +119,12 @@
     if (!self.imageList || self.imageList.count <= 0) {
         return [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
     }
-    LWImageModel *imageModel = self.imageList[indexPath.row];
+    LWImageModel *imageModel = self.imageList[(NSUInteger) indexPath.row];
     [cell fillWithImageModel:imageModel searchText:self.searchText];
+    if([self.reportList containsString:imageModel.objURL]){
+        cell.imageView.animatedImage = nil;
+        cell.imageView.image = [UIImage imageNamed:@"imagehold"];
+    }
 
     //如果滑到了到最后一条记录，则加载下一页
     if (indexPath.row == [self.imageList count] - 1) {
@@ -128,13 +140,20 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     //LWImageModel *item = self.imageList[(NSUInteger) indexPath.item];
-
     LWCollectionViewCell *cell = (LWCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+
+    if([self.reportList containsString:cell.objURL]){
+        [SVProgressHUD showInfoWithStatus:NSLocalizedString(@"Image is been Reporting", nil)];
+        [SVProgressHUD dismissWithDelay:0.5];
+        return;
+    }
+
     [[UIPasteboard generalPasteboard] setString:cell.objURL];
 
     //用webView打开相应的网址
     NSURL *url = [NSURL URLWithString:cell.objURL];
     LWWKWebViewController *controller = [LWWKWebViewController wkWebViewControllerWithURL:url];
+    controller.isFrom = NSStringFromClass([SearchGIFViewController class]);
     [controller setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:controller animated:YES];
 }
@@ -213,7 +232,8 @@
                    successBlock:(void (^)(NSArray<LWImageModel *> *))successBlock
                    failureBlock:(void (^)(NSError *error))failureBlock {
 
-    NSString *word = (!searchText || [searchText isBlank]) ? [@"表情" URLEncode] : [searchText URLEncode];
+    NSString *defaultWord = [LWHelper isAfterDate:@"2018-02-05"] ? @"表情" : @"flower";
+    NSString *word = (!searchText || [searchText isBlank]) ? [defaultWord URLEncode] : [searchText URLEncode];
     NSString *pnStr = [NSString stringWithFormat:@"%lu", pn ?: 0];
     NSString *rnStr = [NSString stringWithFormat:@"%lu", rn ?: 49];
 //    NSString *URLString = [NSString stringWithFormat:URLString_POST_Image,width,height, word, pnStr, rnStr];
@@ -282,6 +302,8 @@
     self.layer.shadowRadius = 1;
     self.layer.shadowOffset = CGSizeMake(1, 1);
     self.layer.shadowOpacity = 0.25;
+
+    _defaultImage = [UIImage imageNamed:@"imagehold"];
 }
 
 - (IBAction)favoriteBtnTouchUpInside:(UIButton *)btn {
@@ -490,8 +512,8 @@
                 return;
             }
 
-            NSURL *imgURL = [[NSURL alloc] initWithString:self.objURL];
-            NSString *imageKey = [[SDWebImageManager sharedManager] cacheKeyForURL:imgURL];
+            //NSURL *imgURL = [[NSURL alloc] initWithString:self.objURL];
+            NSString *imageKey = [[SDWebImageManager sharedManager] cacheKeyForURL:imageURL];
 
             SDImageFormat imageFormat = [NSData sd_imageFormatForImageData:data];
             if (imageFormat != SDImageFormatGIF) {

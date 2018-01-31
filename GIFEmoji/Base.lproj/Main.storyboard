@@ -658,11 +658,57 @@
                         <outlet property="placehoderView" destination="gFS-tH-POH" id="b3k-Zw-rFV"/>
                         <outlet property="searchBtn" destination="XTd-Wm-WO5" id="pXz-7I-whM"/>
                         <outlet property="searchTextField" destination="Fam-ii-zAh" id="d0X-J7-INi"/>
+                        <segue destination="aOT-eZ-SvM" kind="show" id="PK2-li-2Uu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1501.5999999999999" y="358.4707646176912"/>
+        </scene>
+        <!--Report View Controller-->
+        <scene sceneID="mRt-QD-IUr">
+            <objects>
+                <viewController storyboardIdentifier="ReportViewController" hidesBottomBarWhenPushed="YES" id="aOT-eZ-SvM" customClass="ReportViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sL5-nq-gtU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UAP-To-Cf6">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="rbP-Uq-9pb">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rbP-Uq-9pb" id="dSP-hO-OWX">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                                <connections>
+                                    <outlet property="dataSource" destination="aOT-eZ-SvM" id="2re-H2-Re9"/>
+                                    <outlet property="delegate" destination="aOT-eZ-SvM" id="t1A-hA-F5c"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="UAP-To-Cf6" firstAttribute="leading" secondItem="7mC-eD-c9z" secondAttribute="leading" id="7uX-Vd-g4u"/>
+                            <constraint firstItem="UAP-To-Cf6" firstAttribute="top" secondItem="7mC-eD-c9z" secondAttribute="top" id="Tka-pl-KZg"/>
+                            <constraint firstItem="7mC-eD-c9z" firstAttribute="bottom" secondItem="UAP-To-Cf6" secondAttribute="bottom" id="exx-by-JPw"/>
+                            <constraint firstItem="7mC-eD-c9z" firstAttribute="trailing" secondItem="UAP-To-Cf6" secondAttribute="trailing" id="q7R-ks-1EZ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="7mC-eD-c9z"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="UAP-To-Cf6" id="qv2-2Z-QT4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Eb4-0F-db1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2209" y="359"/>
         </scene>
         <!--MyGIF Navigation-->
         <scene sceneID="azl-Jw-xqq">
