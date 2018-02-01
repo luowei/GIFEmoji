@@ -206,6 +206,8 @@ static WKProcessPool *_pool;
             || [url.scheme.lowercaseString isEqualToString:@"mymarkdown"]
             || [url.scheme.lowercaseString isEqualToString:@"mywallpaper"]
             || [url.scheme.lowercaseString isEqualToString:@"mybrowser"]
+            || [url.scheme.lowercaseString isEqualToString:@"photodiy"]
+            || [url.scheme.lowercaseString isEqualToString:@"gifemoji"]
             || [url.scheme.lowercaseString hasPrefix:@"lw"]){
         [self openURLWithUrl:url];
         decisionHandler(WKNavigationActionPolicyCancel);

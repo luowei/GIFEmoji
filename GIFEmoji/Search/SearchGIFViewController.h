@@ -42,7 +42,7 @@
 
 @property(nonatomic, strong) SDWebImageDownloadToken *downloadToken;
 
-- (void)fillWithImageModel:(LWImageModel *)model searchText:(NSString *)text;
+- (void)fillWithImageModel:(LWImageModel *)model searchText:(NSString *)text favoritedDcit:(NSMutableDictionary *)favoritedDcit;
 
 @end
 

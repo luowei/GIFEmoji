@@ -54,5 +54,6 @@ typedef NS_OPTIONS(NSUInteger, SelectedMode) {
 #define Developer_URLString  @"https://itunes.apple.com/cn/developer/wei-luo/id990121194?mt=8"
 
 #define Notification_CategoryChanged @"Notification_CategoryChanged"
+#define Notification_FavoriteChanged @"Notification_FavoriteChanged"
 
 #endif /* AppDefines_h */

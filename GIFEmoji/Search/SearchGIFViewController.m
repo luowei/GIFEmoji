@@ -72,6 +72,10 @@
     SDWebImageDownloader *manager = [SDWebImageDownloader sharedDownloader];
     [manager setValue:[LWHelper getiOSUserAgent] forHTTPHeaderField:@"User-Agent"];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(favoriteChangeNotify:) name:Notification_FavoriteChanged object:nil];
+
+
+
     //构建分派源
     _source = dispatch_source_create(DISPATCH_SOURCE_TYPE_DATA_ADD, 0, 0, dispatch_get_main_queue());
 //    __weak typeof(self) weakSelf = self;
@@ -104,6 +108,17 @@
 }
 
 
+//收藏发生变化
+- (void)favoriteChangeNotify:(NSNotification *)notification {
+    if([notification.name isEqualToString:@""]){}
+    NSDictionary* userInfo = notification.userInfo;
+    NSString *objURLString = userInfo[@"objURLString"];
+    NSNumber *value = userInfo[@"favoriteValue"];
+
+    self.favoritedDcitionary[objURLString] = value;
+}
+
+
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -120,7 +135,7 @@
         return [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
     }
     LWImageModel *imageModel = self.imageList[(NSUInteger) indexPath.row];
-    [cell fillWithImageModel:imageModel searchText:self.searchText];
+    [cell fillWithImageModel:imageModel searchText:self.searchText favoritedDcit:self.favoritedDcitionary];
     if([self.reportList containsString:imageModel.objURL]){
         cell.imageView.animatedImage = nil;
         cell.imageView.image = [UIImage imageNamed:@"imagehold"];
@@ -334,6 +349,8 @@
         }
 
         if (isContains) {
+            controller.favoritedDcitionary[self.objURL] = @(YES);
+            btn.selected = YES;
             [SVProgressHUD showInfoWithStatus:NSLocalizedString(@"Exist The Image", nil)];
             [SVProgressHUD dismissWithDelay:1.5];
             return;
@@ -474,7 +491,7 @@
     }
 }
 
-- (void)fillWithImageModel:(LWImageModel *)model searchText:(NSString *)text {
+- (void)fillWithImageModel:(LWImageModel *)model searchText:(NSString *)text favoritedDcit:(NSMutableDictionary *)favoritedDcit {
     self.thumbnailURL = model.thumbURL;
     self.objURL = model.objURL;
     self.fromURL = model.fromURL;
@@ -493,6 +510,8 @@
         if (imageFormat != SDImageFormatGIF) {
             UIImage *img = [UIImage imageWithData:iData];
             self.imageView.image = img ?: _defaultImage;
+
+            [self updateFavoriteBtnWithDict:favoritedDcit];    //更新favoriteBtn状态
             return;
         }
         FLAnimatedImage *animatedImage = [FLAnimatedImage animatedImageWithGIFData:iData];
@@ -537,14 +556,20 @@
         }];
     }
     //[self.imageView sd_setImageWithURL:imageURL placeholderImage:_defaultImage];
+    [self updateFavoriteBtnWithDict:favoritedDcit];    //更新favoriteBtn状态
+}
 
-    //判断是否已添加收藏
-    SearchGIFViewController *vc = [self superViewWithClass:[SearchGIFViewController class]];
-    NSNumber *value = vc.favoritedDcitionary[self.objURL];
+//更新favoriteBtn状态
+- (void)updateFavoriteBtnWithDict:(NSMutableDictionary *)favoritedDcit {
+//判断是否已添加收藏
+    NSNumber *value = favoritedDcit[self.objURL];
     BOOL isContains = [value boolValue];
     if (value == nil) {
         isContains = [self checkFavoritesContainsURLString:self.objURL];    //如果数据库中存在
-        vc.favoritedDcitionary[self.objURL] = @(isContains);
+        favoritedDcit[self.objURL] = @(isContains);
+    }
+    if(isContains){
+        self.faveritaBtn.selected = YES;
     }
     self.faveritaBtn.selected = isContains;
 }

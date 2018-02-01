@@ -62,7 +62,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>20180130</string>
+	<string>20180131</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -71,17 +71,17 @@
 		<true/>
 	</dict>
 	<key>NSAppleMusicUsageDescription</key>
-	<string>请允许使用多媒体内容</string>
+	<string>请允许使用多媒体视频文件导入斗图王</string>
 	<key>NSCalendarsUsageDescription</key>
 	<string>请允许使用日历</string>
 	<key>NSCameraUsageDescription</key>
-	<string>请允许使用相机</string>
+	<string>请允许使用相机拍摄照片导入斗图王</string>
 	<key>NSContactsUsageDescription</key>
 	<string>请允许访问联系人</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>请允许添加照片</string>
+	<string>请允许斗图王添加照片</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>请允许使用照片</string>
+	<string>请允许使用相册照片导入斗图王</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>

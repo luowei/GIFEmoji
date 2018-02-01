@@ -19,13 +19,13 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>20180130</string>
+	<string>20180131</string>
 	<key>NSAppleMusicUsageDescription</key>
-	<string>请允许访问媒体库</string>
+	<string>请允许访问媒体库视频文件用作GIF导出</string>
 	<key>NSCalendarsUsageDescription</key>
 	<string>请允许使用日历</string>
 	<key>NSCameraUsageDescription</key>
-	<string>请允许使用相机</string>
+	<string>请允许使用相机拍摄照片</string>
 	<key>NSContactsUsageDescription</key>
 	<string>请允许访问联系人</string>
 	<key>NSExtension</key>
@@ -81,6 +81,6 @@
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>请允许添加照片</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>请允许访问相册</string>
+	<string>请允许访问相册照片导入斗图王</string>
 </dict>
 </plist>

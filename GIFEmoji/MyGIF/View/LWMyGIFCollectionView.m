@@ -370,6 +370,9 @@
 
         LWMyGIFCollectionView *collectionView = [self superViewWithClass:[LWMyGIFCollectionView class]];
         [collectionView reloadData];
+
+        NSDictionary *userInfo = @{@"objURLString":self.symbol.http_url,@"favoriteValue":@(0)};
+        [[NSNotificationCenter defaultCenter] postNotificationName:Notification_FavoriteChanged object:nil userInfo:userInfo];
     }
 }
 
