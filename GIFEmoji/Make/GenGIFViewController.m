@@ -678,6 +678,7 @@
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
     imagePicker.delegate = self;
     imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    imagePicker.allowsEditing = YES;
     imagePicker.allowsEditing = NO;
 
     NSArray *mediaTypes = @[(NSString *) kUTTypeImage, (NSString *) kUTTypeGIF];
@@ -699,7 +700,8 @@
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
     imagePicker.delegate = self;
     imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    imagePicker.allowsEditing = NO;
+    imagePicker.allowsEditing = YES;
+    imagePicker.videoMaximumDuration = 15;
 
     NSArray *mediaTypes = @[(NSString *) kUTTypeMovie];
     imagePicker.mediaTypes = mediaTypes;

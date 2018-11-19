@@ -39,7 +39,6 @@
 		BEF0625AE7BE78C691DB019C /* FLEXViewControllerExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF067B1B9FE60C43060D591 /* FLEXViewControllerExplorerViewController.m */; };
 		BEF0626E5F351A4059A85396 /* FLEXImageExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06D0D1275D3C6879A4C6E /* FLEXImageExplorerViewController.m */; };
 		BEF06279FE2F772EFCF1C7C6 /* FLEXNetworkObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF062920B6E27C3D31432EC /* FLEXNetworkObserver.m */; };
-		BEF062DDCDC117BAB6E5C713 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = BEF06F220B39FD142D777A58 /* LICENSE */; };
 		BEF062FA466462C9FA55291E /* LWLivePhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF062AB592F9E26210C9821 /* LWLivePhotoView.m */; };
 		BEF0631F8F29E32015ED1B83 /* RSGenerateOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF060418D950A7D8D968D87 /* RSGenerateOperation.m */; };
 		BEF0638E2E629B4FD8523323 /* BitmapContextRep.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF063E9198F9A06A95CDA1C /* BitmapContextRep.m */; };
@@ -585,7 +584,6 @@
 		BEF06EF3AF3B1E7F43CF0A00 /* FLEXRealmDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXRealmDatabaseManager.h; sourceTree = "<group>"; };
 		BEF06F02B848D8FB54B61B7C /* FLEXNetworkTransaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXNetworkTransaction.m; sourceTree = "<group>"; };
 		BEF06F0A7131A90BC1020BDF /* SDImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDImageCache.m; sourceTree = "<group>"; };
-		BEF06F220B39FD142D777A58 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		BEF06F564AA6ED07C72BFA3A /* FLEXGlobalsTableViewControllerEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXGlobalsTableViewControllerEntry.h; sourceTree = "<group>"; };
 		BEF06F6D460FC4C045AAE0CE /* LWHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWHelper.m; sourceTree = "<group>"; };
 		BEF06F71C04059E5DA1F8FE4 /* LWHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWHelper.h; sourceTree = "<group>"; };
@@ -1216,7 +1214,6 @@
 		BEF06979C236DF80004398E2 /* PonyDebugger */ = {
 			isa = PBXGroup;
 			children = (
-				BEF06F220B39FD142D777A58 /* LICENSE */,
 				BEF0643C386D17C8F17EA8AA /* FLEXNetworkObserver.h */,
 				BEF062920B6E27C3D31432EC /* FLEXNetworkObserver.m */,
 			);
@@ -1873,7 +1870,6 @@
 				EA74386220008F5600AD0291 /* Localizable.strings in Resources */,
 				EA7437F21FFCA2E600AD0291 /* Main.storyboard in Resources */,
 				EA1BEB87200CAE7100CF2BB4 /* default.gif in Resources */,
-				BEF062DDCDC117BAB6E5C713 /* LICENSE in Resources */,
 				BEF06C69D6DD23DCB6FA737F /* LICENSE in Resources */,
 				EA1BEB73200C891F00CF2BB4 /* LWPickerPanel.xib in Resources */,
 			);
