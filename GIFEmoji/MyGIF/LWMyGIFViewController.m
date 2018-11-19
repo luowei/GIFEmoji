@@ -64,6 +64,12 @@
 //右侧的按钮被点击
 - (void)rightBarItemAction {
     LWCategoriesPopoverViewController *saveVC = [LWCategoriesPopoverViewController popoverViewControllerWithDelegate:self size:CGSizeMake(150, 145) sourceView:self.addBtn];
+    if ([saveVC respondsToSelector:@selector(popoverPresentationController)]) {
+        if(!saveVC.popoverPresentationController.sourceView){
+            saveVC.popoverPresentationController.sourceView = self.view;
+            saveVC.popoverPresentationController.permittedArrowDirections = UIPopoverArrowDirectionRight | UIPopoverArrowDirectionUp;
+        }
+    }
     [self presentViewController:saveVC animated: YES completion: nil];
 }
 

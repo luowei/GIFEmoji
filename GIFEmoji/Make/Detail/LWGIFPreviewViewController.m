@@ -320,6 +320,13 @@
 
     UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[self.gifData] applicationActivities:@[wechatActivity,qqActivity]];
     activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypePrint];
+    if ([activityVC respondsToSelector:@selector(popoverPresentationController)]) {
+        if(!activityVC.popoverPresentationController.sourceView){
+            activityVC.popoverPresentationController.sourceView = self.view;
+            activityVC.popoverPresentationController.permittedArrowDirections = UIPopoverArrowDirectionRight | UIPopoverArrowDirectionUp;
+        }
+    }
+
     [self presentViewController:activityVC animated:TRUE completion:nil];
 }
 

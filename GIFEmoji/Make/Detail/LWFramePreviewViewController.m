@@ -67,6 +67,12 @@
 - (void)rightBarItemAction:(UIBarButtonItem *)rightBarItemAction {
     UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:self.images applicationActivities:nil];
     activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypePrint];
+    if ([activityVC respondsToSelector:@selector(popoverPresentationController)]) {
+        if(!activityVC.popoverPresentationController.sourceView){
+            activityVC.popoverPresentationController.sourceView = self.view;
+            activityVC.popoverPresentationController.permittedArrowDirections = UIPopoverArrowDirectionRight | UIPopoverArrowDirectionUp;
+        }
+    }
     [self presentViewController:activityVC animated:TRUE completion:nil];
 }
 

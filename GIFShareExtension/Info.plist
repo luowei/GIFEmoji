@@ -17,9 +17,9 @@
 	<key>CFBundlePackageType</key>
 	<string>XPC!</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.1</string>
 	<key>CFBundleVersion</key>
-	<string>20180131</string>
+	<string>20181118</string>
 	<key>NSAppleMusicUsageDescription</key>
 	<string>请允许访问媒体库视频文件用作GIF导出</string>
 	<key>NSCalendarsUsageDescription</key>
