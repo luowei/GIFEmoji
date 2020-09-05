@@ -42,6 +42,8 @@
 
 @property(nonatomic, strong) SDWebImageDownloadToken *downloadToken;
 
+@property(nonatomic, copy) NSString *imgURLString;
+
 - (void)fillWithImageModel:(LWImageModel *)model searchText:(NSString *)text favoritedDcit:(NSMutableDictionary *)favoritedDcit;
 
 @end

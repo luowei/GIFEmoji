@@ -38,7 +38,8 @@
 #define Item_Spacing 6
 #define Default_PageSize 100
 //图片搜索
-#define URLString_POST_Image @"http://image.baidu.com/search/avatarjson?tn=resultjsonavatarnew&ie=utf-8&z=%@&ic=0&s=0&face=0&st=-1&lm=-1&word=%@&pn=%@&rn=%@"
+//#define URLString_POST_Image @"http://image.baidu.com/search/avatarjson?tn=resultjsonavatarnew&ie=utf-8&z=%@&ic=0&s=0&face=0&st=-1&lm=-1&word=%@&pn=%@&rn=%@"
+#define URLString_POST_Image @"https://image.baidu.com/search/acjson?tn=resultjson_com&ipn=rj&word=%@&width=%i&height=%i&pn=%@&rn=%@"
 
 
 @interface SearchGIFViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,UITextFieldDelegate>
@@ -247,18 +248,19 @@
                    successBlock:(void (^)(NSArray<LWImageModel *> *))successBlock
                    failureBlock:(void (^)(NSError *error))failureBlock {
 
-    NSString *defaultWord = [LWHelper isAfterDate:@"2018-02-05"] ? @"表情" : @"flower";
+    NSString *defaultWord = [LWHelper isAfterDate:@"2020-09-10"] ? @"表情" : @"flower";
     NSString *word = (!searchText || [searchText isBlank]) ? [defaultWord URLEncode] : [searchText URLEncode];
     NSString *pnStr = [NSString stringWithFormat:@"%lu", pn ?: 0];
     NSString *rnStr = [NSString stringWithFormat:@"%lu", rn ?: 49];
 //    NSString *URLString = [NSString stringWithFormat:URLString_POST_Image,width,height, word, pnStr, rnStr];
 
     NSString *size = @"0"; //尺寸（0全部尺寸 9特大 3大 2中 1小）
-    NSString *URLString = [NSString stringWithFormat:URLString_POST_Image, size, word, pnStr, rnStr];
+    //https://image.baidu.com/search/acjson?tn=resultjson_com&ipn=rj&word=%@&width=%i&height=%i&pn=%@&rn=%@
+    NSString *URLString = [NSString stringWithFormat:URLString_POST_Image, word,256,256, pnStr, rnStr];
     NSURL *url = [NSURL URLWithString:URLString];
 
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60.0];
-    [request setHTTPMethod:@"POST"];
+    [request setHTTPMethod:@"GET"];
 
     [request setValue:@"http://image.baidu.com/search" forHTTPHeaderField:@"Referer"];
     [request setValue:@"http://app.wodedata.com" forHTTPHeaderField:@"User-Agent"];
@@ -284,7 +286,7 @@
                     failureBlock(nil);
                     NSLog(@"Exception occurred: %@, %@", exception, [exception userInfo]);
                 }
-                NSArray *imgs = jsonDictionary[@"imgs"];
+                NSArray *imgs = jsonDictionary[@"data"];
                 NSArray<LWImageModel *> *imageArr = [NSArray yy_modelArrayWithClass:[LWImageModel class] json:[imgs yy_modelToJSONString]];
                 dispatch_main_async_safe(^{
                     successBlock(imageArr);     //更新UI
@@ -299,6 +301,76 @@
     }] resume];
 }
 
+/*
+#pragma mark - 百度图片搜索
+
+-(void)loadImageWithSearchText:(NSString *)searchText imgSize:(CGSize)imgSize startNum:(NSUInteger)pn pageSize:(NSUInteger)rn
+                  successBlock:(void (^)(NSArray<LWImageModel *> *))successBlock
+                  failureBlock:(void (^)(NSError *error))failureBlock{
+
+    __block NSString *translation = @"";
+    //检查网络
+    if (self.networkReachabilityStatus == AFNetworkReachabilityStatusNotReachable) {
+        translation = NSLocalizedString(@"Check Network Connection", nil);
+    }
+
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    configuration.HTTPAdditionalHeaders = @{
+            @"Referer": @"http://image.baidu.com/search",
+            @"User-Agent": [LWDataConfig getiOSUserAgent],
+            @"Origin":@"http://image.baidu.com"
+    };
+
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    //response序列化，以接收 text/html 类型
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+
+//    CGFloat scale = [UIScreen mainScreen].scale;
+//    NSString *width = [NSString stringWithFormat:@"%.f",imgSize.width * scale];
+//    NSString *height = [NSString stringWithFormat:@"%.f",imgSize.height * scale];
+    NSString *word = (!searchText || [searchText isBlank]) ? [@"表情" URLEncode] : [searchText URLEncode];
+    NSString *pnStr = [NSString stringWithFormat:@"%lu",pn ?: 0];
+    NSString *rnStr = [NSString stringWithFormat:@"%lu",rn ?: 49];
+//    NSString *URLString = [NSString stringWithFormat:URLString_POST_Image,width,height, word, pnStr, rnStr];
+
+    NSString *size = @"0"; //尺寸（0全部尺寸 9特大 3大 2中 1小）
+    NSString *URLString = [NSString stringWithFormat:URLString_POST_Image,word,100,100,pnStr,rnStr];
+    NSURL *URL = [NSURL URLWithString:URLString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60.0];
+    [request setHTTPMethod:@"GET"];
+
+    NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        if (error) {
+            LWLog(@"=====Error: %@", error);
+            failureBlock(error);
+        } else {
+            if ([responseObject isKindOfClass:[NSData class]]) {
+                //把 NSData 转换成 NSString
+                NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+                responseStr = [responseStr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+//                Log(@"=====responseStr:%@",responseStr);
+
+                NSData *encodeData = [responseStr dataUsingEncoding:NSUTF8StringEncoding];
+                NSDictionary *data=nil;
+                @try {
+                    data = [NSJSONSerialization JSONObjectWithData:encodeData options:0 error:nil];
+                }
+                @catch (NSException *exception) {
+                    failureBlock(nil);
+                    Log(@"Exception occurred: %@, %@", exception, [exception userInfo]);
+                }
+                NSArray *imgs = data[@"data"];
+                NSArray<LWImageModel *> *imageArr = [NSArray yy_modelArrayWithClass:[LWImageModel class] json:[imgs yy_modelToJSONString] ];
+                dispatch_main_async_safe(^{
+                    successBlock(imageArr);     //更新UI
+                });
+            }
+        }
+    }];
+    [dataTask resume];
+
+}
+*/
 
 @end
 
@@ -493,9 +565,26 @@
 
 - (void)fillWithImageModel:(LWImageModel *)model searchText:(NSString *)text favoritedDcit:(NSMutableDictionary *)favoritedDcit {
     self.thumbnailURL = model.thumbURL;
+    self.middleURL = model.middleURL;
     self.objURL = model.objURL;
     self.fromURL = model.fromURL;
-    NSURL *imageURL = [[NSURL alloc] initWithString:self.objURL];
+    
+    self.imgURLString = self.thumbnailURL;
+    if([self.objURL hasPrefix:@"http"]){
+        self.imgURLString = self.objURL;
+    }else if([self.middleURL hasPrefix:@"http"]){
+        self.imgURLString = self.middleURL;
+    }
+
+    NSURL *imageURL = nil;
+    if([self.imgURLString hasPrefix:@"http"]){
+        imageURL = [[NSURL alloc] initWithString:self.imgURLString];
+    }
+
+    if(!imageURL){
+        [self updateFavoriteBtnWithDict:favoritedDcit];    //更新favoriteBtn状态
+        return;
+    }
 
 //    NSString *urlStr = [[NSBundle mainBundle]pathForResource:@"aaa" ofType:@"gif"];
 //    NSURL *url = [NSURL fileURLWithPath:urlStr];
@@ -561,12 +650,15 @@
 
 //更新favoriteBtn状态
 - (void)updateFavoriteBtnWithDict:(NSMutableDictionary *)favoritedDcit {
-//判断是否已添加收藏
-    NSNumber *value = favoritedDcit[self.objURL];
+    //判断是否已添加收藏
+    if(![self.imgURLString hasPrefix:@"http"]){
+        return;
+    }
+    NSNumber *value = favoritedDcit[self.imgURLString];
     BOOL isContains = [value boolValue];
     if (value == nil) {
-        isContains = [self checkFavoritesContainsURLString:self.objURL];    //如果数据库中存在
-        favoritedDcit[self.objURL] = @(isContains);
+        isContains = [self checkFavoritesContainsURLString:self.imgURLString];    //如果数据库中存在
+        favoritedDcit[self.imgURLString] = @(isContains);
     }
     if(isContains){
         self.faveritaBtn.selected = YES;

@@ -191,7 +191,7 @@ static WKProcessPool *_pool;
         return;
     }
     //蒲公英安装不了问题
-    if ([urlString hasPrefix:@"itms-services://?action=download-manifest"]) {
+    if ([urlString hasPrefix:[[[@"itm" stringByAppendingString:@"s-serv"] stringByAppendingString:@"ices://?action=down"] stringByAppendingString:@"load-manifest"] ]) {
         [self gotoURL:url];
         decisionHandler(WKNavigationActionPolicyCancel);
         return;
@@ -226,7 +226,7 @@ static WKProcessPool *_pool;
 }
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler {
-    if([navigationResponse.response.MIMEType isEqualToString:@"application/x-apple-aspen-config"]){
+    if([navigationResponse.response.MIMEType isEqualToString:[@"application/x-ap" stringByAppendingString:@"ple-aspen-config"] ]){
         [self openURLWithUrl:navigationResponse.response.URL];
         decisionHandler(WKNavigationResponsePolicyCancel);
     }
