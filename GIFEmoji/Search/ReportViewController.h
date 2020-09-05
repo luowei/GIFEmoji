@@ -4,12 +4,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GoogleMobileAds/GADBannerView.h>
 
 
-@interface ReportViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface ReportViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,GADBannerViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+@property(nonatomic, strong) GADBannerView *bannerView;
 
 @property(nonatomic, copy) NSString *urlString;
 @property(nonatomic, strong) NSMutableArray <NSString *>*reportList;

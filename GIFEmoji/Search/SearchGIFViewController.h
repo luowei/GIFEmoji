@@ -11,6 +11,7 @@
 @class LWImageModel;
 @class FLAnimatedImageView;
 @class SDWebImageDownloadToken;
+@class GADInterstitial;
 
 
 @interface LWPlacehoderView : UIView
@@ -60,6 +61,8 @@
 @property (strong, nonatomic) NSMutableDictionary <NSString*,NSNumber*>* favoritedDcitionary;
 @property(nonatomic, strong) NSMutableArray <NSString *>*reportList;;
 
+@property(nonatomic, strong) GADInterstitial *interstitial;
+@property(nonatomic, copy) void (^afterAdShowBlock)();
 
 - (IBAction)searchBtnAction:(UIButton *)sender;
 

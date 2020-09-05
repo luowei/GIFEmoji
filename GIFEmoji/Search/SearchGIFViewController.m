@@ -33,7 +33,10 @@
 #import "UIImage+Extension.h"
 #import "OpenShareHeader.h"
 #import "LWUIActivity.h"
-
+#import "LWPurchaseHelper.h"
+#import "LWPurchaseViewController.h"
+#import <GoogleMobileAds/GADBannerView.h>
+#import <GoogleMobileAds/GADInterstitial.h>
 
 #define Item_Spacing 6
 #define Default_PageSize 100
@@ -42,10 +45,13 @@
 #define URLString_POST_Image @"https://image.baidu.com/search/acjson?tn=resultjson_com&ipn=rj&word=%@&width=%i&height=%i&pn=%@&rn=%@"
 
 
-@interface SearchGIFViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,UITextFieldDelegate>
+@interface SearchGIFViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,UITextFieldDelegate,
+                                    GADBannerViewDelegate,GADInterstitialDelegate>
 
 @property(nonatomic, strong) NSMutableArray <LWImageModel *> *imageList;
 @property(nonatomic, assign) NSUInteger startNum;
+
+@property(nonatomic, strong) GADBannerView *bannerView;
 
 @end
 
@@ -86,6 +92,13 @@
     dispatch_resume(_source);
 
     [self reloadSearchResult];  //发送发派源Merge信息，调用网络请求
+
+    //创建并加载广告
+    self.interstitial = [self createAndLoadInterstitial];
+    if(![LWPurchaseHelper isPurchased]){
+        //添加谷歌横幅广告
+        [self addGADBanner];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -166,12 +179,25 @@
 
     [[UIPasteboard generalPasteboard] setString:cell.objURL];
 
+    cell.imgURLString = cell.thumbnailURL;
+    if(![cell.imgURLString hasPrefix:@"http"]){
+        cell.imgURLString = cell.middleURL;
+    }
+
     //用webView打开相应的网址
-    NSURL *url = [NSURL URLWithString:cell.objURL];
+    NSURL *url = [NSURL URLWithString:cell.imgURLString];
     LWWKWebViewController *controller = [LWWKWebViewController wkWebViewControllerWithURL:url];
     controller.isFrom = NSStringFromClass([SearchGIFViewController class]);
     [controller setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:controller animated:YES];
+
+//    //显示广告
+//    [self showAdWithNumRate:30];
+//
+//    //显示评分按钮
+//    if ([LWPurchaseHelper isAfterDate:kAfterDate]) {
+//        [LWPurchaseHelper showRating];
+//    }
 }
 
 #pragma mark - UICollectionViewDelegateFlowLayout
@@ -372,6 +398,80 @@
 }
 */
 
+
+#pragma mark - GAD Banner
+
+//添加谷歌横幅广告
+- (void)addGADBanner {
+    GADAdSize size = GADAdSizeFromCGSize(CGSizeMake(Screen_W, 50));
+    self.bannerView = [[GADBannerView alloc] initWithAdSize:size];
+    self.bannerView.adUnitID = @"ca-app-pub-8760692904992206/9036563441";
+    self.bannerView.rootViewController = self;
+    self.bannerView.delegate = self;
+
+    self.bannerView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:self.bannerView];
+    [self.view addConstraints:@[
+            [NSLayoutConstraint constraintWithItem:self.bannerView
+                                         attribute:NSLayoutAttributeBottom
+                                         relatedBy:NSLayoutRelationEqual
+                                            toItem:self.bottomLayoutGuide
+                                         attribute:NSLayoutAttributeTop
+                                        multiplier:1
+                                          constant:-6],
+            [NSLayoutConstraint constraintWithItem:self.bannerView
+                                         attribute:NSLayoutAttributeCenterX
+                                         relatedBy:NSLayoutRelationEqual
+                                            toItem:self.view
+                                         attribute:NSLayoutAttributeCenterX
+                                        multiplier:1
+                                          constant:0]
+    ]];
+
+    //加载广告
+    [self.bannerView loadRequest:[GADRequest request]];
+}
+
+#pragma mark - Google Ads
+
+//创建GADInterstitial，谷歌广告
+- (GADInterstitial *)createAndLoadInterstitial {
+    GADInterstitial *interstitial = [[GADInterstitial alloc] initWithAdUnitID:@"ca-app-pub-8760692904992206/1789995794"];
+    interstitial.delegate = self;
+    [interstitial loadRequest:[GADRequest request]];
+    return interstitial;
+}
+
+//展示广告
+- (BOOL)showAdWithNumRate:(NSUInteger) numRate {
+    NSString *key = [NSString stringWithFormat:@"%@_InterstitialAd_Counter", NSStringFromClass(self.class)];
+    NSInteger toolOpenCount = [[NSUserDefaults standardUserDefaults] integerForKey:key];
+    if (self.interstitial.isReady && toolOpenCount >= numRate && ![LWPurchaseHelper isPurchased]) {  //判断是否弹出广告
+        [self.interstitial presentFromRootViewController:self];
+        [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:key];
+        return YES;
+
+    } else {
+        [[NSUserDefaults standardUserDefaults] setInteger:toolOpenCount + 1 forKey:key];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        if(self.afterAdShowBlock){
+            self.afterAdShowBlock();
+            self.afterAdShowBlock=nil;
+        }
+        return NO;
+    }
+}
+
+//创建一个新的 GADInterstitial 对象
+- (void)interstitialDidDismissScreen:(GADInterstitial *)interstitial {
+    self.interstitial = [self createAndLoadInterstitial];
+    //广告关闭后，继续做该做的事
+    if(self.afterAdShowBlock){
+        self.afterAdShowBlock();
+        self.afterAdShowBlock=nil;
+    }
+}
+
 @end
 
 
@@ -529,14 +629,25 @@
 }
 
 -(IBAction)wechatBtnTouchUpInside:(UIButton *)sender {
-    OSMessage *msg = [self getShareMessage];    //获取分享的消息数据
-
     SearchGIFViewController *controller = [self superViewWithClass:[SearchGIFViewController class]];
-    [OpenShare shareToWeixinSession:msg fromView:controller.view Success:^(OSMessage *message){
-        Log(@"分享到微信成功");
-    } Fail:^(OSMessage *message,NSError *error){
-        Log(@"分享到微信失败");
-    }];
+
+    __weak typeof(self) weakSelf = self;
+    controller.afterAdShowBlock = ^{
+        OSMessage *msg = [weakSelf getShareMessage];    //获取分享的消息数据
+        [OpenShare shareToWeixinSession:msg fromView:controller.view Success:^(OSMessage *message){
+            Log(@"分享到微信成功");
+        } Fail:^(OSMessage *message,NSError *error){
+            Log(@"分享到微信失败");
+        }];
+    };
+
+    //显示广告
+    [controller showAdWithNumRate:3];
+
+    //显示评分按钮
+    if ([LWPurchaseHelper isAfterDate:kAfterDate]) {
+        [LWPurchaseHelper showRating];
+    }
 }
 
 - (void)linkGenGIFVC {
@@ -701,7 +812,6 @@
             }];
     return downloadToken;
 }
-
 
 @end
 

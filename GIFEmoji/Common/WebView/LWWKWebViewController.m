@@ -11,7 +11,7 @@
 #import "AppDefines.h"
 #import "ReportViewController.h"
 #import "SearchGIFViewController.h"
-
+#import "LWPurchaseHelper.h"
 
 @implementation LWWKWebViewController {
     CALayer *_bgLayer;
@@ -98,6 +98,11 @@
     }
 
     [self loadURL:self.url];
+
+    if(![LWPurchaseHelper isPurchased]){
+        //添加谷歌横幅广告
+        [self addGADBanner];
+    }
 }
 
 - (void)reportAction {
@@ -165,6 +170,39 @@
 //加载URL
 - (void)loadURL:(NSURL *)url {
     [self.wkWebView loadRequest:[NSURLRequest requestWithURL:url]];
+}
+
+#pragma mark - GAD Banner
+
+//添加谷歌横幅广告
+- (void)addGADBanner {
+    GADAdSize size = GADAdSizeFromCGSize(CGSizeMake(Screen_W, 50));
+    self.bannerView = [[GADBannerView alloc] initWithAdSize:size];
+    self.bannerView.adUnitID = @"ca-app-pub-8760692904992206/9036563441";
+    self.bannerView.rootViewController = self;
+    self.bannerView.delegate = self;
+
+    self.bannerView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:self.bannerView];
+    [self.view addConstraints:@[
+            [NSLayoutConstraint constraintWithItem:self.bannerView
+                                         attribute:NSLayoutAttributeBottom
+                                         relatedBy:NSLayoutRelationEqual
+                                            toItem:self.bottomLayoutGuide
+                                         attribute:NSLayoutAttributeTop
+                                        multiplier:1
+                                          constant:-6],
+            [NSLayoutConstraint constraintWithItem:self.bannerView
+                                         attribute:NSLayoutAttributeCenterX
+                                         relatedBy:NSLayoutRelationEqual
+                                            toItem:self.view
+                                         attribute:NSLayoutAttributeCenterX
+                                        multiplier:1
+                                          constant:0]
+    ]];
+
+    //加载广告
+    [self.bannerView loadRequest:[GADRequest request]];
 }
 
 

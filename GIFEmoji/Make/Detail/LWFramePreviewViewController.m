@@ -8,13 +8,17 @@
 #import "SRPictureModel.h"
 #import "OpenShare.h"
 #import "LWUIActivity.h"
+#import "LWPurchaseHelper.h"
+#import "AppDefines.h"
+#import <GoogleMobileAds/GADBannerView.h>
 
-
-@interface LWFramePreviewViewController ()<SRPictureBrowserDelegate>
+@interface LWFramePreviewViewController ()<SRPictureBrowserDelegate,GADBannerViewDelegate>
 
 @property(nonatomic, strong) NSArray<UIImage *> *images;
 
 @property(nonatomic, strong) SRPictureBrowser *pictureBrowser;
+
+@property(nonatomic, strong) GADBannerView *bannerView;
 @end
 
 @implementation LWFramePreviewViewController {
@@ -44,6 +48,10 @@
     }
     self.pictureBrowser = [SRPictureBrowser sr_showPictureBrowserWithModels:imageBrowserModels currentIndex:0 delegate:self inView:self.view];
 
+    if(![LWPurchaseHelper isPurchased]){
+        //添加谷歌横幅广告
+        [self addGADBanner];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -76,5 +84,37 @@
     [self presentViewController:activityVC animated:TRUE completion:nil];
 }
 
+#pragma mark - GAD Banner
+
+//添加谷歌横幅广告
+- (void)addGADBanner {
+    GADAdSize size = GADAdSizeFromCGSize(CGSizeMake(Screen_W, 50));
+    self.bannerView = [[GADBannerView alloc] initWithAdSize:size];
+    self.bannerView.adUnitID = @"ca-app-pub-8760692904992206/9036563441";
+    self.bannerView.rootViewController = self;
+    self.bannerView.delegate = self;
+
+    self.bannerView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:self.bannerView];
+    [self.view addConstraints:@[
+            [NSLayoutConstraint constraintWithItem:self.bannerView
+                                         attribute:NSLayoutAttributeBottom
+                                         relatedBy:NSLayoutRelationEqual
+                                            toItem:self.bottomLayoutGuide
+                                         attribute:NSLayoutAttributeTop
+                                        multiplier:1
+                                          constant:-6],
+            [NSLayoutConstraint constraintWithItem:self.bannerView
+                                         attribute:NSLayoutAttributeCenterX
+                                         relatedBy:NSLayoutRelationEqual
+                                            toItem:self.view
+                                         attribute:NSLayoutAttributeCenterX
+                                        multiplier:1
+                                          constant:0]
+    ]];
+
+    //加载广告
+    [self.bannerView loadRequest:[GADRequest request]];
+}
 
 @end

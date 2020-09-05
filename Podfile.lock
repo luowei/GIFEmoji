@@ -1,4 +1,5 @@
 PODS:
+  - FCAlertView (1.4.0)
   - Google-Mobile-Ads-SDK (7.63.0):
     - GoogleAppMeasurement (~> 6.0)
   - GoogleAppMeasurement (6.7.0):
@@ -24,12 +25,20 @@ PODS:
   - "GoogleUtilities/NSData+zlib (6.7.1)"
   - GoogleUtilities/Reachability (6.7.1):
     - GoogleUtilities/Logger
+  - LWHUD (1.0.0)
+  - LWPurchase (1.0.0):
+    - FCAlertView
+    - LWHUD
+    - Masonry
+    - Reachability
+  - Masonry (1.1.0)
   - nanopb (1.30905.0):
     - nanopb/decode (= 1.30905.0)
     - nanopb/encode (= 1.30905.0)
   - nanopb/decode (1.30905.0)
   - nanopb/encode (1.30905.0)
   - PromisesObjC (1.2.9)
+  - Reachability (3.2)
   - UMCAnalytics (6.1.0):
     - UMCCommon
   - UMCCommon (2.1.4)
@@ -39,6 +48,8 @@ PODS:
 
 DEPENDENCIES:
   - Google-Mobile-Ads-SDK
+  - LWHUD (from `../../libs/LWHUD`)
+  - LWPurchase (from `../../libs/LWPurchase`)
   - UMCAnalytics (= 6.1.0)
   - UMCCommon (= 2.1.4)
   - UMCPush
@@ -46,27 +57,41 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - FCAlertView
     - Google-Mobile-Ads-SDK
     - GoogleAppMeasurement
     - GoogleUtilities
+    - Masonry
     - nanopb
     - PromisesObjC
+    - Reachability
     - UMCAnalytics
     - UMCCommon
     - UMCPush
     - UMCSecurityPlugins
 
+EXTERNAL SOURCES:
+  LWHUD:
+    :path: "../../libs/LWHUD"
+  LWPurchase:
+    :path: "../../libs/LWPurchase"
+
 SPEC CHECKSUMS:
+  FCAlertView: fdddd63381898c1d1a5a20c9f084fbd2c6d12f8b
   Google-Mobile-Ads-SDK: a71d6bc14f9cf1f66d686dbdf9ad2091de04059c
   GoogleAppMeasurement: 345d365fd105e6682bf5084783a5352a3db26820
   GoogleUtilities: e121a3867449ce16b0e35ddf1797ea7a389ffdf2
+  LWHUD: 40e254ee27a8b55b9dff5a03a21f93859e499f9a
+  LWPurchase: 0c021c31deb3617284234117cab73a0f1a5d5e08
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
   PromisesObjC: b48e0338dbbac2207e611750777895f7a5811b75
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   UMCAnalytics: 3503f179f7af932b30af9ac161ac11fb48fa72b6
   UMCCommon: b0703b0053323f598e01670ea702b8eb1e66e611
   UMCPush: 1edd856027dcf905333effb4040ace5d236a7316
   UMCSecurityPlugins: 0831a08f3988f3cea9f1d3a7626cd9bee4fef150
 
-PODFILE CHECKSUM: 541a13e3c1ac7ebcd2f4d8f333c2b1e44c6dc224
+PODFILE CHECKSUM: 6d2c86baba7f69732cfe23ad55df3031702bd543
 
 COCOAPODS: 1.9.2

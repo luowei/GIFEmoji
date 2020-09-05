@@ -32,14 +32,22 @@
 #import "LWWKWebViewController.h"
 #import "AppDelegate.h"
 #import "NSData+ImageContentType.h"
+#import "LWPurchaseHelper.h"
+#import "LWPurchaseViewController.h"
+#import <GoogleMobileAds/GADBannerView.h>
+#import <GoogleMobileAds/GADInterstitial.h>
 
-@interface GenGIFViewController () {
+@interface GenGIFViewController ()<GADBannerViewDelegate,GADInterstitialDelegate> {
 }
 
 @property(nonatomic, strong) NSURL *selectedVideoFileURL;
 
 @property(nonatomic, strong) NSURL *livePhotoVideoURL;
 @property(nonatomic, strong) NSURL *livePhotoFirstImageURL;
+
+@property(nonatomic, strong) GADBannerView *bannerView;
+@property(nonatomic, strong) GADInterstitial *interstitial;
+@property(nonatomic, copy) void (^afterAdShowBlock)();
 
 @end
 
@@ -72,6 +80,13 @@
     self.videoPlayerView.hidden = YES;
 
     [self setupDefaultImage];
+
+    //创建并加载广告
+    self.interstitial = [self createAndLoadInterstitial];
+    if(![LWPurchaseHelper isPurchased]){
+        //添加谷歌横幅广告
+        [self addGADBanner];
+    }
 }
 
 //设置默认的图片
@@ -712,6 +727,14 @@
 #pragma mark - 导出图片
 
 - (IBAction)exportVideoAction:(UIButton *)sender {
+    //显示广告
+    [self showAdWithNumRate:30];
+
+    //显示评分按钮
+    if ([LWPurchaseHelper isAfterDate:kAfterDate]) {
+        [LWPurchaseHelper showRating];
+    }
+
     if (self.selectedMode == LivePhotoMode) {
         if (!self.livePhotoVideoURL) {
             //处理LivePhoto
@@ -728,6 +751,14 @@
 }
 
 - (IBAction)exportGIFAction:(UIButton *)sender {
+
+    //显示广告
+    [self showAdWithNumRate:3];
+
+    //显示评分按钮
+    if ([LWPurchaseHelper isAfterDate:kAfterDate]) {
+        [LWPurchaseHelper showRating];
+    }
 
     if (self.exportGIFImageData) {
         [self showGIFPreviewVCWithGIFData:self.exportGIFImageData];
@@ -782,6 +813,14 @@
 }
 
 - (IBAction)exportFrameAction:(UIButton *)sender {
+    //显示广告
+    [self showAdWithNumRate:30];
+
+    //显示评分按钮
+    if ([LWPurchaseHelper isAfterDate:kAfterDate]) {
+        [LWPurchaseHelper showRating];
+    }
+
     //跳转到图片集预览页面
     if (self.exportImageFrames) {
         LWFramePreviewViewController *vc = [LWFramePreviewViewController viewControllerWithImages:self.exportImageFrames];
@@ -885,5 +924,73 @@
 
 }
 
+#pragma mark - GAD Banner
+
+//添加谷歌横幅广告
+- (void)addGADBanner {
+    GADAdSize size = GADAdSizeFromCGSize(CGSizeMake(Screen_W, 50));
+    self.bannerView = [[GADBannerView alloc] initWithAdSize:size];
+    self.bannerView.adUnitID = @"ca-app-pub-8760692904992206/9036563441";
+    self.bannerView.rootViewController = self;
+    self.bannerView.delegate = self;
+
+    self.bannerView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:self.bannerView];
+    [self.view addConstraints:@[
+            [NSLayoutConstraint constraintWithItem:self.bannerView
+                                         attribute:NSLayoutAttributeBottom
+                                         relatedBy:NSLayoutRelationEqual
+                                            toItem:self.bottomStackView
+                                         attribute:NSLayoutAttributeTop
+                                        multiplier:1
+                                          constant:-6],
+            [NSLayoutConstraint constraintWithItem:self.bannerView
+                                         attribute:NSLayoutAttributeCenterX
+                                         relatedBy:NSLayoutRelationEqual
+                                            toItem:self.view
+                                         attribute:NSLayoutAttributeCenterX
+                                        multiplier:1
+                                          constant:0]
+    ]];
+
+    //加载广告
+    [self.bannerView loadRequest:[GADRequest request]];
+}
+
+#pragma mark - Google Ads
+
+//创建GADInterstitial，谷歌广告
+- (GADInterstitial *)createAndLoadInterstitial {
+    GADInterstitial *interstitial = [[GADInterstitial alloc] initWithAdUnitID:@"ca-app-pub-8760692904992206/1789995794"];
+    interstitial.delegate = self;
+    [interstitial loadRequest:[GADRequest request]];
+    return interstitial;
+}
+
+//展示广告
+- (BOOL)showAdWithNumRate:(NSUInteger) numRate {
+    NSString *key = [NSString stringWithFormat:@"%@_InterstitialAd_Counter", NSStringFromClass(self.class)];
+    NSInteger toolOpenCount = [[NSUserDefaults standardUserDefaults] integerForKey:key];
+    if (self.interstitial.isReady && toolOpenCount >= numRate && ![LWPurchaseHelper isPurchased]) {  //判断是否弹出广告
+        [self.interstitial presentFromRootViewController:self];
+        [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:key];
+        return YES;
+
+    } else {
+        [[NSUserDefaults standardUserDefaults] setInteger:toolOpenCount + 1 forKey:key];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        return NO;
+    }
+}
+
+//创建一个新的 GADInterstitial 对象
+- (void)interstitialDidDismissScreen:(GADInterstitial *)interstitial {
+    self.interstitial = [self createAndLoadInterstitial];
+    //广告关闭后，继续做该做的事
+    if(self.afterAdShowBlock){
+        self.afterAdShowBlock();
+        self.afterAdShowBlock=nil;
+    }
+}
 
 @end

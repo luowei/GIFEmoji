@@ -25,6 +25,8 @@
 #import "OpenShareHeader.h"
 #import "LWUIActivity.h"
 #import "SVProgressHUD.h"
+#import "LWPurchaseHelper.h"
+#import "LWPurchaseViewController.h"
 
 #define GIFItem_Spacing 6
 
@@ -388,42 +390,56 @@
 }
 
 - (void)wechatAction:(UIButton *)wechatBtn {
-    //构建消息
-    OSMessage *msg = [[OSMessage alloc] init];
-    msg.title = NSLocalizedString(@"Share Image", nil);
-    msg.desc = NSLocalizedString(@"Share Image", nil);
 
-    UIImage *thumbnailImg = [self.imageView.image scaleToWXThumbnailSizeKeepAspect:CGSizeMake(200, 200)];
-    NSData *data = self.imageView.animatedImage.data;
-    if (data) {
-        SDImageFormat imageFormat = [NSData sd_imageFormatForImageData:data];
-        if (imageFormat == SDImageFormatGIF) {
-            msg.messageType = Msg_ImageGif;
-            thumbnailImg = self.imageView.animatedImage.posterImage;
-            NSData *thumbnailData = [thumbnailImg compressWithInMaxFileSize:32 * 1024];
-            msg.thumbnail = thumbnailData;
+    LWMyGIFViewController *vc = [self superViewWithClass:[LWMyGIFViewController class]];
+    __weak typeof(self) weakSelf = self;
+    vc.afterAdShowBlock = ^{
+        //构建消息
+        OSMessage *msg = [[OSMessage alloc] init];
+        msg.title = NSLocalizedString(@"Share Image", nil);
+        msg.desc = NSLocalizedString(@"Share Image", nil);
+
+        UIImage *thumbnailImg = [weakSelf.imageView.image scaleToWXThumbnailSizeKeepAspect:CGSizeMake(200, 200)];
+        NSData *data = weakSelf.imageView.animatedImage.data;
+        if (data) {
+            SDImageFormat imageFormat = [NSData sd_imageFormatForImageData:data];
+            if (imageFormat == SDImageFormatGIF) {
+                msg.messageType = Msg_ImageGif;
+                thumbnailImg = self.imageView.animatedImage.posterImage;
+                NSData *thumbnailData = [thumbnailImg compressWithInMaxFileSize:32 * 1024];
+                msg.thumbnail = thumbnailData;
+            } else {
+                msg.messageType = Msg_Image;
+
+                NSData *thumbnailData = [thumbnailImg compressWithInMaxFileSize:32 * 1024];
+                msg.thumbnail = thumbnailData;
+            }
+
         } else {
             msg.messageType = Msg_Image;
-
             NSData *thumbnailData = [thumbnailImg compressWithInMaxFileSize:32 * 1024];
             msg.thumbnail = thumbnailData;
+            data = UIImagePNGRepresentation(weakSelf.imageView.image);
         }
+        msg.image = data;
+        msg.file = data;
 
-    } else {
-        msg.messageType = Msg_Image;
-        NSData *thumbnailData = [thumbnailImg compressWithInMaxFileSize:32 * 1024];
-        msg.thumbnail = thumbnailData;
-        data = UIImagePNGRepresentation(self.imageView.image);
+        LWMyGIFViewController *controller = [weakSelf superViewWithClass:[LWMyGIFViewController class]];
+        [OpenShare shareToWeixinSession:msg fromView:controller.view Success:^(OSMessage *message) {
+            Log(@"分享到微信成功");
+        }                          Fail:^(OSMessage *message, NSError *error) {
+            Log(@"分享到微信失败");
+        }];
+
+    };
+
+    //显示广告
+    [vc showAdWithNumRate:3];
+
+    //显示评分按钮
+    if ([LWPurchaseHelper isAfterDate:kAfterDate]) {
+        [LWPurchaseHelper showRating];
     }
-    msg.image = data;
-    msg.file = data;
-
-    LWMyGIFViewController *controller = [self superViewWithClass:[LWMyGIFViewController class]];
-    [OpenShare shareToWeixinSession:msg fromView:controller.view Success:^(OSMessage *message) {
-        Log(@"分享到微信成功");
-    }                          Fail:^(OSMessage *message, NSError *error) {
-        Log(@"分享到微信失败");
-    }];
 }
 
 

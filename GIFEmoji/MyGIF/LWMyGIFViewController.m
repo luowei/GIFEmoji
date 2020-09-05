@@ -11,10 +11,16 @@
 #import "UIImage+Extension.h"
 #import "LWContainerScrollView.h"
 #import "UIView+Frame.h"
+#import "LWPurchaseHelper.h"
+#import <GoogleMobileAds/GADBannerView.h>
+#import <GoogleMobileAds/GADInterstitial.h>
 
-@interface LWMyGIFViewController() <UIPopoverPresentationControllerDelegate>
+@interface LWMyGIFViewController() <UIPopoverPresentationControllerDelegate,GADBannerViewDelegate,GADInterstitialDelegate>
 
 @property(nonatomic, strong) UIButton *addBtn;
+
+@property(nonatomic, strong) GADBannerView *bannerView;
+
 @end
 
 @implementation LWMyGIFViewController {
@@ -39,6 +45,13 @@
     self.navigationItem.rightBarButtonItem = barItem;
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(categoryChangedNotifyAction) name:Notification_CategoryChanged object:nil];
+
+    //创建并加载广告
+    self.interstitial = [self createAndLoadInterstitial];
+    if(![LWPurchaseHelper isPurchased]){
+        //添加谷歌横幅广告
+        [self addGADBanner];
+    }
 }
 
 - (void)dealloc {
@@ -90,6 +103,81 @@
 -(void)updateContainerScrollView {
     [self.containerScrollView showChannelWithChannelId:self.containerScrollView.currentChannel];
 }
+
+
+#pragma mark - GAD Banner
+
+//添加谷歌横幅广告
+- (void)addGADBanner {
+    GADAdSize size = GADAdSizeFromCGSize(CGSizeMake(Screen_W, 50));
+    self.bannerView = [[GADBannerView alloc] initWithAdSize:size];
+    self.bannerView.adUnitID = @"ca-app-pub-8760692904992206/9036563441";
+    self.bannerView.rootViewController = self;
+    self.bannerView.delegate = self;
+
+    self.bannerView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:self.bannerView];
+    [self.view addConstraints:@[
+            [NSLayoutConstraint constraintWithItem:self.bannerView
+                                         attribute:NSLayoutAttributeBottom
+                                         relatedBy:NSLayoutRelationEqual
+                                            toItem:self.bottomLayoutGuide
+                                         attribute:NSLayoutAttributeTop
+                                        multiplier:1
+                                          constant:-6],
+            [NSLayoutConstraint constraintWithItem:self.bannerView
+                                         attribute:NSLayoutAttributeCenterX
+                                         relatedBy:NSLayoutRelationEqual
+                                            toItem:self.view
+                                         attribute:NSLayoutAttributeCenterX
+                                        multiplier:1
+                                          constant:0]
+    ]];
+
+    //加载广告
+    [self.bannerView loadRequest:[GADRequest request]];
+}
+
+#pragma mark - Google Ads
+
+//创建GADInterstitial，谷歌广告
+- (GADInterstitial *)createAndLoadInterstitial {
+    GADInterstitial *interstitial = [[GADInterstitial alloc] initWithAdUnitID:@"ca-app-pub-8760692904992206/1789995794"];
+    interstitial.delegate = self;
+    [interstitial loadRequest:[GADRequest request]];
+    return interstitial;
+}
+
+//展示广告
+- (BOOL)showAdWithNumRate:(NSUInteger) numRate {
+    NSString *key = [NSString stringWithFormat:@"%@_InterstitialAd_Counter", NSStringFromClass(self.class)];
+    NSInteger toolOpenCount = [[NSUserDefaults standardUserDefaults] integerForKey:key];
+    if (self.interstitial.isReady && toolOpenCount >= numRate && ![LWPurchaseHelper isPurchased]) {  //判断是否弹出广告
+        [self.interstitial presentFromRootViewController:self];
+        [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:key];
+        return YES;
+
+    } else {
+        [[NSUserDefaults standardUserDefaults] setInteger:toolOpenCount + 1 forKey:key];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        if(self.afterAdShowBlock){
+            self.afterAdShowBlock();
+            self.afterAdShowBlock=nil;
+        }
+        return NO;
+    }
+}
+
+//创建一个新的 GADInterstitial 对象
+- (void)interstitialDidDismissScreen:(GADInterstitial *)interstitial {
+    self.interstitial = [self createAndLoadInterstitial];
+    //广告关闭后，继续做该做的事
+    if(self.afterAdShowBlock){
+        self.afterAdShowBlock();
+        self.afterAdShowBlock=nil;
+    }
+}
+
 
 @end
 

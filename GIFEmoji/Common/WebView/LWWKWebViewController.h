@@ -4,10 +4,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GoogleMobileAds/GADBannerView.h>
 
 @class MyWKWebView;
 
-@interface LWWKWebViewController : UIViewController
+@interface LWWKWebViewController : UIViewController<GADBannerViewDelegate>
 
 @property (nonatomic, strong) MyWKWebView *wkWebView;
 @property (strong, nonatomic) UIProgressView *webProgress;
@@ -15,6 +16,8 @@
 @property(nonatomic, strong) NSURL *url;
 
 @property(nonatomic, copy) NSString *isFrom;
+
+@property(nonatomic, strong) GADBannerView *bannerView;
 
 + (LWWKWebViewController *)loadURL:(NSURL *)url;
 

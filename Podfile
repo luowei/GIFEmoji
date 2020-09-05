@@ -16,6 +16,9 @@ target 'GIFEmoji' do
 
   pod 'Google-Mobile-Ads-SDK'
 
+  pod 'LWPurchase', :path => '../../libs/LWPurchase'
+  pod 'LWHUD', :path => '../../libs/LWHUD'
+
 end
 
 target 'GIFShareExtension' do
