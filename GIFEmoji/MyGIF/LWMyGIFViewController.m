@@ -12,12 +12,14 @@
 #import "LWContainerScrollView.h"
 #import "UIView+Frame.h"
 #import "LWPurchaseHelper.h"
+#import "LWPurchaseViewController.h"
 #import <GoogleMobileAds/GADBannerView.h>
 #import <GoogleMobileAds/GADInterstitial.h>
 
 @interface LWMyGIFViewController() <UIPopoverPresentationControllerDelegate,GADBannerViewDelegate,GADInterstitialDelegate>
 
 @property(nonatomic, strong) UIButton *addBtn;
+@property(nonatomic, strong) UIButton *purchaseBtn;
 
 @property(nonatomic, strong) GADBannerView *bannerView;
 
@@ -35,14 +37,22 @@
     [self.containerScrollView setupSubviewWithCategoryList:categoryList];
 
 //    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"add"] style:UIBarButtonItemStylePlain target:self action:@selector(rightBarItemAction)];
-    
+
+    self.purchaseBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.purchaseBtn.frame = CGRectMake(0, 0, 40, 40);
+    UIImage *purchaseImg = [[UIImage imageNamed:@"purchase"] imageWithOverlayColor:[UIColor colorWithHexString:ButtonTextColor]];
+    [self.purchaseBtn setImage:purchaseImg forState:UIControlStateNormal];
+    [self.purchaseBtn addTarget:self action:@selector(leftBarItemAction) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *leftBarItem = [[UIBarButtonItem alloc] initWithCustomView:self.purchaseBtn];
+    self.navigationItem.leftBarButtonItem = leftBarItem;
+
     self.addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.addBtn.frame = CGRectMake(0, 0, 40, 40);
     UIImage *addImg = [[UIImage imageNamed:@"add"] imageWithOverlayColor:[UIColor colorWithHexString:ButtonTextColor]];
     [self.addBtn setImage:addImg forState:UIControlStateNormal];
     [self.addBtn addTarget:self action:@selector(rightBarItemAction) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *barItem = [[UIBarButtonItem alloc] initWithCustomView:self.addBtn];
-    self.navigationItem.rightBarButtonItem = barItem;
+    UIBarButtonItem *rightBarItem = [[UIBarButtonItem alloc] initWithCustomView:self.addBtn];
+    self.navigationItem.rightBarButtonItem = rightBarItem;
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(categoryChangedNotifyAction) name:Notification_CategoryChanged object:nil];
 
@@ -73,6 +83,17 @@
     [self updateContainerScrollView];
 }
 
+
+//右侧的按钮被点击
+- (void)leftBarItemAction {
+    //购买
+    UINavigationController *nvc = [LWPurchaseViewController navigationViewController];
+    nvc.modalPresentationStyle = UIModalPresentationFullScreen;
+    LWPurchaseViewController *vc = nvc.viewControllers.firstObject;
+//    vc.needPrePurchase = YES;
+    vc.title = NSLocalizedString(@"In-App Purchase No Ad", nil);
+    [self presentViewController:nvc animated:YES completion:nil];
+}
 
 //右侧的按钮被点击
 - (void)rightBarItemAction {
