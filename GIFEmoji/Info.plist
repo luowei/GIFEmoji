@@ -71,17 +71,15 @@
 		<true/>
 	</dict>
 	<key>NSAppleMusicUsageDescription</key>
-	<string>请允许使用多媒体视频文件导入斗图王</string>
+	<string>请允许使用多媒体，以用于选择视频文件导入斗图王</string>
 	<key>NSCalendarsUsageDescription</key>
-	<string>请允许使用日历</string>
+	<string>请允许使用日历，以用于您为日历设置事项提醒</string>
 	<key>NSCameraUsageDescription</key>
-	<string>请允许使用相机拍摄照片导入斗图王</string>
-	<key>NSContactsUsageDescription</key>
-	<string>请允许访问联系人</string>
+	<string>请允许使用相机，以用于拍摄照片导入斗图王制作GIF</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>请允许斗图王添加照片</string>
+	<string>请允许斗图王访问相册，以用于添加照片到斗图王制作GIF</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>请允许使用相册照片导入斗图王</string>
+	<string>请允许使用相册,以用于添加照片到斗图王制作GIF</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>
@@ -90,6 +88,8 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-8760692904992206~3975808451</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

@@ -23,3 +23,10 @@
 
 @end
 
+@interface AppDelegate (UPush)
+
+//配置UPush
+- (void)configUPush:(NSDictionary *)launchOptions;
+
+@end
+

@@ -4,7 +4,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "sqlite3+sqlcipher.h"
 
 @class LWCategory;
 @class LWSymbol;

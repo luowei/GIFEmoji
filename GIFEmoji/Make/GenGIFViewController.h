@@ -32,6 +32,8 @@
 @property (nonatomic, weak) IBOutlet UIButton *exportGIFBtn;
 @property (nonatomic, weak) IBOutlet UIButton *exportFrameBtn;
 
+@property (weak, nonatomic) IBOutlet UIStackView *topStackView;
+@property (weak, nonatomic) IBOutlet UIStackView *bottomStackView;
 
 @property(nonatomic, readonly) SelectedMode selectedMode;
 

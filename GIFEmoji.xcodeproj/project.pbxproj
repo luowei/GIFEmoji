@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06DF2C27BD2DCE2BC171B41C /* libPods-GIFEmoji.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4EED25948EC998648D69554 /* libPods-GIFEmoji.a */; };
+		070BBBCA9BDA55B9BD7987C5 /* libPods-GIFShareExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2839958CA30FA2EC6127E072 /* libPods-GIFShareExtension.a */; };
 		BEF06006B314B5FD24701619 /* BitmapCropManipulator.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF06CFD5E3C131475DE7212 /* BitmapCropManipulator.m */; };
 		BEF060110B96DE805E6D3AEC /* UIPrintPageRenderer+Extentsion.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF063C594F59312CD30ECB6 /* UIPrintPageRenderer+Extentsion.m */; };
 		BEF06012635574B049DAF125 /* FLEXToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF0681828A847DC64653168 /* FLEXToolbarItem.m */; };
@@ -244,8 +246,6 @@
 		EA8A14D020029E5E004C3DFD /* YYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8A14CD20029E5E004C3DFD /* YYClassInfo.m */; };
 		EA8A14D32002A920004C3DFD /* LWPickerPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8A14D12002A920004C3DFD /* LWPickerPanel.m */; };
 		EA8A14D92002A9C9004C3DFD /* FCFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8A14D82002A9C9004C3DFD /* FCFileManager.m */; };
-		EA8A14E02002AC39004C3DFD /* libsqlcipher-iOS-Release.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA8A14DD2002AC38004C3DFD /* libsqlcipher-iOS-Release.a */; };
-		EA8A14E12002AC39004C3DFD /* libsqlcipher-iOS-Debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA8A14DE2002AC38004C3DFD /* libsqlcipher-iOS-Debug.a */; };
 		EA8A14E72002B3AF004C3DFD /* LWSymbolService.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8A14DB2002AB4E004C3DFD /* LWSymbolService.m */; };
 		EA8A14EC20034F02004C3DFD /* LWWKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8A14EB20034F02004C3DFD /* LWWKWebViewController.m */; };
 		EA8A14F220034F16004C3DFD /* failedPage.htm in Resources */ = {isa = PBXBuildFile; fileRef = EA8A14EF20034F16004C3DFD /* failedPage.htm */; };
@@ -282,6 +282,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2839958CA30FA2EC6127E072 /* libPods-GIFShareExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GIFShareExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		40FE4F2511A3FADDA187D49D /* Pods-GIFShareExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GIFShareExtension.release.xcconfig"; path = "Target Support Files/Pods-GIFShareExtension/Pods-GIFShareExtension.release.xcconfig"; sourceTree = "<group>"; };
+		422759C12606F02C9BED47C4 /* Pods-GIFShareExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GIFShareExtension.debug.xcconfig"; path = "Target Support Files/Pods-GIFShareExtension/Pods-GIFShareExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		701885BB648E0444346FA228 /* Pods-GIFEmoji.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GIFEmoji.debug.xcconfig"; path = "Target Support Files/Pods-GIFEmoji/Pods-GIFEmoji.debug.xcconfig"; sourceTree = "<group>"; };
+		767A5FE52DC0EC7797FE8253 /* Pods-GIFEmoji.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GIFEmoji.release.xcconfig"; path = "Target Support Files/Pods-GIFEmoji/Pods-GIFEmoji.release.xcconfig"; sourceTree = "<group>"; };
+		B4EED25948EC998648D69554 /* libPods-GIFEmoji.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GIFEmoji.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEF0600348CF42ACF8CADEB1 /* SDWebImageDownloaderOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageDownloaderOperation.m; sourceTree = "<group>"; };
 		BEF060175606E1A4E77FE7D6 /* BitmapScaleManipulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BitmapScaleManipulator.h; sourceTree = "<group>"; };
 		BEF0601AD52006A3FF5868B6 /* TitleIcon_Left@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TitleIcon_Left@2x.png"; sourceTree = "<group>"; };
@@ -743,9 +749,6 @@
 		EA8A14D82002A9C9004C3DFD /* FCFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCFileManager.m; sourceTree = "<group>"; };
 		EA8A14DA2002AB4E004C3DFD /* LWSymbolService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LWSymbolService.h; sourceTree = "<group>"; };
 		EA8A14DB2002AB4E004C3DFD /* LWSymbolService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LWSymbolService.m; sourceTree = "<group>"; };
-		EA8A14DD2002AC38004C3DFD /* libsqlcipher-iOS-Release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libsqlcipher-iOS-Release.a"; sourceTree = "<group>"; };
-		EA8A14DE2002AC38004C3DFD /* libsqlcipher-iOS-Debug.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libsqlcipher-iOS-Debug.a"; sourceTree = "<group>"; };
-		EA8A14DF2002AC38004C3DFD /* sqlite3+sqlcipher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "sqlite3+sqlcipher.h"; sourceTree = "<group>"; };
 		EA8A14E820031E1E004C3DFD /* GIFEmoji.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GIFEmoji.entitlements; sourceTree = "<group>"; };
 		EA8A14EA20034F02004C3DFD /* LWWKWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWWKWebViewController.h; sourceTree = "<group>"; };
 		EA8A14EB20034F02004C3DFD /* LWWKWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWWKWebViewController.m; sourceTree = "<group>"; };
@@ -775,6 +778,7 @@
 				EA7AC176201B9BA600A6A1D3 /* Photos.framework in Frameworks */,
 				EA7AC177201B9BA600A6A1D3 /* PhotosUI.framework in Frameworks */,
 				EA7AC175201B9B9400A6A1D3 /* SystemConfiguration.framework in Frameworks */,
+				070BBBCA9BDA55B9BD7987C5 /* libPods-GIFShareExtension.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -785,7 +789,6 @@
 				EA74386B2000947000AD0291 /* AVKit.framework in Frameworks */,
 				EA743869200093D800AD0291 /* AVFoundation.framework in Frameworks */,
 				EA74381C1FFE1C9600AD0291 /* MobileCoreServices.framework in Frameworks */,
-				EA8A14E02002AC39004C3DFD /* libsqlcipher-iOS-Release.a in Frameworks */,
 				EA74381A1FFE1C7E00AD0291 /* AssetsLibrary.framework in Frameworks */,
 				EA7438171FFE1C7100AD0291 /* PhotosUI.framework in Frameworks */,
 				EA7438181FFE1C7100AD0291 /* Photos.framework in Frameworks */,
@@ -793,14 +796,25 @@
 				EA7438091FFCBB5800AD0291 /* libz.tbd in Frameworks */,
 				EA7438071FFCBB4D00AD0291 /* UserNotifications.framework in Frameworks */,
 				EA7438051FFCBB4100AD0291 /* SystemConfiguration.framework in Frameworks */,
-				EA8A14E12002AC39004C3DFD /* libsqlcipher-iOS-Debug.a in Frameworks */,
 				EA7438031FFCBB3900AD0291 /* CoreTelephony.framework in Frameworks */,
+				06DF2C27BD2DCE2BC171B41C /* libPods-GIFEmoji.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7F1E1EBA8310DC47924EE245 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				701885BB648E0444346FA228 /* Pods-GIFEmoji.debug.xcconfig */,
+				767A5FE52DC0EC7797FE8253 /* Pods-GIFEmoji.release.xcconfig */,
+				422759C12606F02C9BED47C4 /* Pods-GIFShareExtension.debug.xcconfig */,
+				40FE4F2511A3FADDA187D49D /* Pods-GIFShareExtension.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		BEF0603F6F481D03AD751D4B /* ExplorerInterface */ = {
 			isa = PBXGroup;
 			children = (
@@ -1058,7 +1072,6 @@
 			children = (
 				EA1BEB88200D1DB400CF2BB4 /* OpenShare */,
 				EA8A14ED20034F16004C3DFD /* MyWKWebview */,
-				EA8A14DC2002AC38004C3DFD /* sqlcipher */,
 				EA8A14D62002A9C9004C3DFD /* FCFileManager */,
 				EA8A14C920029E5E004C3DFD /* YYModel */,
 				EA74386C2001F63A00AD0291 /* SRPictureBrowser */,
@@ -1512,6 +1525,7 @@
 				EA23048F201AD6C70012ED16 /* GIFShareExtension */,
 				EA7437E51FFCA2E600AD0291 /* Products */,
 				EA7438011FFCBB3900AD0291 /* Frameworks */,
+				7F1E1EBA8310DC47924EE245 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1562,6 +1576,8 @@
 				EA7438061FFCBB4D00AD0291 /* UserNotifications.framework */,
 				EA7438041FFCBB4100AD0291 /* SystemConfiguration.framework */,
 				EA7438021FFCBB3900AD0291 /* CoreTelephony.framework */,
+				B4EED25948EC998648D69554 /* libPods-GIFEmoji.a */,
+				2839958CA30FA2EC6127E072 /* libPods-GIFShareExtension.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1686,16 +1702,6 @@
 			path = FCFileManager;
 			sourceTree = "<group>";
 		};
-		EA8A14DC2002AC38004C3DFD /* sqlcipher */ = {
-			isa = PBXGroup;
-			children = (
-				EA8A14DD2002AC38004C3DFD /* libsqlcipher-iOS-Release.a */,
-				EA8A14DE2002AC38004C3DFD /* libsqlcipher-iOS-Debug.a */,
-				EA8A14DF2002AC38004C3DFD /* sqlite3+sqlcipher.h */,
-			);
-			path = sqlcipher;
-			sourceTree = "<group>";
-		};
 		EA8A14E920034F02004C3DFD /* WebView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1730,6 +1736,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EA23049C201AD6C70012ED16 /* Build configuration list for PBXNativeTarget "GIFShareExtension" */;
 			buildPhases = (
+				1E49F4D2CB9C8415C7D865D8 /* [CP] Check Pods Manifest.lock */,
 				EA23048A201AD6C70012ED16 /* Sources */,
 				EA23048B201AD6C70012ED16 /* Frameworks */,
 				EA23048C201AD6C70012ED16 /* Resources */,
@@ -1747,6 +1754,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EA7437FD1FFCA2E600AD0291 /* Build configuration list for PBXNativeTarget "GIFEmoji" */;
 			buildPhases = (
+				40E66FECA274DB9177EA2ECF /* [CP] Check Pods Manifest.lock */,
 				EA7437E01FFCA2E600AD0291 /* Sources */,
 				EA7437E11FFCA2E600AD0291 /* Frameworks */,
 				EA7437E21FFCA2E600AD0291 /* Resources */,
@@ -1855,6 +1863,53 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1E49F4D2CB9C8415C7D865D8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GIFShareExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		40E66FECA274DB9177EA2ECF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GIFEmoji-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EA23048A201AD6C70012ED16 /* Sources */ = {
@@ -2159,6 +2214,7 @@
 /* Begin XCBuildConfiguration section */
 		EA23049A201AD6C70012ED16 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 422759C12606F02C9BED47C4 /* Pods-GIFShareExtension.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = GIFShareExtension/GIFShareExtension.entitlements;
 				CODE_SIGN_STYLE = Manual;
@@ -2167,6 +2223,7 @@
 				INFOPLIST_FILE = GIFShareExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wodedata.GIFEmoji.GIFShareExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "b5b72f3e-08e6-49c9-8a66-d40975e0dee8";
@@ -2178,6 +2235,7 @@
 		};
 		EA23049B201AD6C70012ED16 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 40FE4F2511A3FADDA187D49D /* Pods-GIFShareExtension.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = GIFShareExtension/GIFShareExtension.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
@@ -2187,6 +2245,7 @@
 				INFOPLIST_FILE = GIFShareExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wodedata.GIFEmoji.GIFShareExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "bb1f7e6d-30b8-44a6-879b-ccfdae9481e0";
@@ -2304,6 +2363,7 @@
 		};
 		EA7437FE1FFCA2E600AD0291 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 701885BB648E0444346FA228 /* Pods-GIFEmoji.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = GIFEmoji/GIFEmoji.entitlements;
@@ -2318,7 +2378,10 @@
 				INFOPLIST_FILE = GIFEmoji/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/GIFEmoji/Libs/sqlcipher";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/GIFEmoji/Libs/sqlcipher",
+				);
 				OTHER_CFLAGS = (
 					"-DSQLITE_HAS_CODEC",
 					"-DSQLITE_TEMP_STORE=2",
@@ -2336,6 +2399,7 @@
 		};
 		EA7437FF1FFCA2E600AD0291 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 767A5FE52DC0EC7797FE8253 /* Pods-GIFEmoji.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = GIFEmoji/GIFEmoji.entitlements;
@@ -2351,7 +2415,10 @@
 				INFOPLIST_FILE = GIFEmoji/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/GIFEmoji/Libs/sqlcipher";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/GIFEmoji/Libs/sqlcipher",
+				);
 				OTHER_CFLAGS = (
 					"-DSQLITE_HAS_CODEC",
 					"-DSQLITE_TEMP_STORE=2",

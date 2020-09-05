@@ -180,6 +180,7 @@
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="斗图王" id="xfz-uK-xc6"/>
                     <connections>
+                        <outlet property="bottomStackView" destination="wI9-pg-lx5" id="zVw-ty-ior"/>
                         <outlet property="exportFrameBtn" destination="LBe-9g-yXI" id="RyN-4F-IM9"/>
                         <outlet property="exportGIFBtn" destination="WpN-Eq-N8N" id="bQv-P8-7UA"/>
                         <outlet property="exportVideoBtn" destination="yUk-PJ-Hip" id="KcB-Xm-lKd"/>
@@ -187,6 +188,7 @@
                         <outlet property="selectLivePhotoBtn" destination="5mq-eK-yuW" id="HMF-Np-Exh"/>
                         <outlet property="selectStaticPhotoBtn" destination="tEg-XX-Igp" id="bWP-6V-Igl"/>
                         <outlet property="selectVideoBtn" destination="lnF-60-x3p" id="Ube-Tf-M4T"/>
+                        <outlet property="topStackView" destination="0L8-Pn-7Ad" id="NvS-qU-j8H"/>
                         <segue destination="bvE-fR-Jae" kind="show" id="f1Z-0i-6aQ"/>
                         <segue destination="U6E-3f-pcN" kind="show" id="wHM-ee-b9e"/>
                         <segue destination="YOf-Bq-uVf" kind="show" id="MDY-Wb-86x"/>

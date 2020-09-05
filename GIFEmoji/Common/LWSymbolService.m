@@ -3,6 +3,7 @@
 // Copyright (c) 2017 wodedata. All rights reserved.
 //
 
+#import <sqlite3.h>
 #import "LWSymbolService.h"
 #import "AppDefines.h"
 #import "LWHelper.h"
@@ -40,14 +41,14 @@
         _db = nil;
         return NO;
     }
-    //验证密码
-    const char* key = [@"luowei.wodedata.com" UTF8String];
-    sqlite3_key(_db, key, (int) strlen(key));
+//    //验证密码
+//    const char* key = [@"luowei.wodedata.com" UTF8String];
+//    sqlite3_key(_db, key, (int) strlen(key));
     int res = sqlite3_exec(_db, (const char*) "SELECT count(*) FROM sqlite_master;", NULL, NULL, NULL);
     if (res == SQLITE_OK) {
-        NSLog(@"password is correct, or, database has been initialized");
+        Log(@"password is correct, or, database has been initialized");
     } else {
-        NSLog(@"incorrect password! errCode:%d",result);
+        Log(@"incorrect password! errCode:%d",result);
         return NO;
     }
 
