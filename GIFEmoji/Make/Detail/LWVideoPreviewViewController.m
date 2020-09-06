@@ -51,13 +51,14 @@
 
     UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[self.videoURL] applicationActivities:nil];
     activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypePrint];
-    if ([activityVC respondsToSelector:@selector(popoverPresentationController)]) {
-        if(!activityVC.popoverPresentationController.sourceView){
-            activityVC.popoverPresentationController.sourceView = self.view;
-            activityVC.popoverPresentationController.permittedArrowDirections = UIPopoverArrowDirectionRight | UIPopoverArrowDirectionUp;
-        }
+
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
+        activityVC.popoverPresentationController.sourceView = self.view;
+        activityVC.popoverPresentationController.permittedArrowDirections = UIPopoverArrowDirectionAny;
+        activityVC.popoverPresentationController.sourceRect = CGRectMake(CGRectGetWidth(self.view.frame) - 40, 0, 40, 40);
     }
     [self presentViewController:activityVC animated:TRUE completion:nil];
+
 }
 
 #pragma mark - GAD Banner

@@ -406,7 +406,7 @@
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         UIPopoverController *popoverController = [[UIPopoverController alloc] initWithContentViewController:activityVC];
         CGRect rect = [[UIScreen mainScreen] bounds];
-        [popoverController presentPopoverFromRect:rect inView:vc.view permittedArrowDirections:0 animated:YES];
+        [popoverController presentPopoverFromRect:rect inView:vc.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
     } else {
         [vc presentViewController:activityVC animated:YES completion:nil];
     }

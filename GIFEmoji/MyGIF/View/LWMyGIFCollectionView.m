@@ -229,13 +229,15 @@
 
     UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[imageData] applicationActivities:@[wechatActivity, qqActivity]];
     activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypePrint];
-    if ([activityVC respondsToSelector:@selector(popoverPresentationController)]) {
-        if(!activityVC.popoverPresentationController.sourceView){
-            activityVC.popoverPresentationController.sourceView = controller.view;
-            activityVC.popoverPresentationController.permittedArrowDirections = UIPopoverArrowDirectionRight | UIPopoverArrowDirectionUp;
-        }
+
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        UIPopoverController *popoverController = [[UIPopoverController alloc] initWithContentViewController:activityVC];
+        CGRect rect = [[UIScreen mainScreen] bounds];
+        [popoverController presentPopoverFromRect:rect inView:self permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    }else{
+        [controller presentViewController:activityVC animated:TRUE completion:nil];
     }
-    [controller presentViewController:activityVC animated:TRUE completion:nil];
+
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {

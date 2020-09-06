@@ -275,7 +275,15 @@
 
         UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[self.currentPictureView.imageView.image] applicationActivities:@[wechatActivity,qqActivity]];
         activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypePrint];
-        [vc presentViewController:activityVC animated:TRUE completion:nil];
+
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            UIPopoverController *popoverController = [[UIPopoverController alloc] initWithContentViewController:activityVC];
+            CGRect rect = [[UIScreen mainScreen] bounds];
+            [popoverController presentPopoverFromRect:rect inView:self permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        }else{
+            [vc presentViewController:activityVC animated:TRUE completion:nil];
+        }
+
     }
 }
 

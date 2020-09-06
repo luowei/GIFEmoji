@@ -314,7 +314,7 @@
 
 
 //右侧的按钮被点击
-- (void)rightBarItemAction:(UIBarButtonItem *)rightBarItemAction {
+- (void)rightBarItemAction:(UIBarButtonItem *)rightBarItem {
 
     OSMessage *msg = [self getShareMessage];
 
@@ -328,13 +328,12 @@
 
     UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[self.gifData] applicationActivities:@[wechatActivity,qqActivity]];
     activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypePrint];
-    if ([activityVC respondsToSelector:@selector(popoverPresentationController)]) {
-        if(!activityVC.popoverPresentationController.sourceView){
-            activityVC.popoverPresentationController.sourceView = self.view;
-            activityVC.popoverPresentationController.permittedArrowDirections = UIPopoverArrowDirectionRight | UIPopoverArrowDirectionUp;
-        }
-    }
 
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
+        activityVC.popoverPresentationController.sourceView = self.view;
+        activityVC.popoverPresentationController.permittedArrowDirections = UIPopoverArrowDirectionAny;
+        activityVC.popoverPresentationController.sourceRect = CGRectMake(CGRectGetWidth(self.view.frame) - 40, 0, 40, 40);
+    }
     [self presentViewController:activityVC animated:TRUE completion:nil];
 }
 

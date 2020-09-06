@@ -2147,12 +2147,14 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = GIFShareExtension/GIFShareExtension.entitlements;
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 20200906;
 				DEVELOPMENT_TEAM = G3A2KYKYBU;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = GIFShareExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wodedata.GIFEmoji.GIFShareExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "b5b72f3e-08e6-49c9-8a66-d40975e0dee8";
@@ -2169,12 +2171,14 @@
 				CODE_SIGN_ENTITLEMENTS = GIFShareExtension/GIFShareExtension.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 20200906;
 				DEVELOPMENT_TEAM = G3A2KYKYBU;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = GIFShareExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wodedata.GIFEmoji.GIFShareExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "bb1f7e6d-30b8-44a6-879b-ccfdae9481e0";
@@ -2297,6 +2301,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = GIFEmoji/GIFEmoji.entitlements;
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 20200906;
 				DEVELOPMENT_TEAM = G3A2KYKYBU;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2311,6 +2316,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/GIFEmoji/Libs/sqlcipher",
 				);
+				MARKETING_VERSION = 1.2;
 				OTHER_CFLAGS = (
 					"-DSQLITE_HAS_CODEC",
 					"-DSQLITE_TEMP_STORE=2",
@@ -2335,6 +2341,7 @@
 				CODE_SIGN_ENTITLEMENTS = GIFEmoji/GIFEmoji.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 20200906;
 				DEVELOPMENT_TEAM = G3A2KYKYBU;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2349,6 +2356,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/GIFEmoji/Libs/sqlcipher",
 				);
+				MARKETING_VERSION = 1.2;
 				OTHER_CFLAGS = (
 					"-DSQLITE_HAS_CODEC",
 					"-DSQLITE_TEMP_STORE=2",
