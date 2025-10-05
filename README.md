@@ -328,7 +328,7 @@ typedef NS_OPTIONS(NSUInteger, SelectedMode) {
 
 ## 👨‍💻 作者 | Author
 
-**Luo Wei** (罗威)
+**Luo Wei** 
 - Copyright © 2018 Luo Wei. All rights reserved.
 
 ## 🙏 致谢 | Acknowledgments
