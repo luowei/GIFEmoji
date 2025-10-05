@@ -26,3 +26,6 @@ DerivedData
 Pods/
 
 .idea/
+
+# Claude Code
+.claude/

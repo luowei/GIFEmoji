@@ -1,251 +1,352 @@
-# 斗图王GIFMaster
-===========
+# GIFEmoji - 斗图王 (GIFMaster)
+
+<p align="center">
+  <img src="doc/icon.png" width="120" alt="GIFEmoji Icon">
+</p>
+
+一个功能强大的 iOS GIF 动画表情制作、编辑、搜索和分享应用
+A powerful iOS app for creating, editing, searching, and sharing GIF animations
+
+[![Platform](https://img.shields.io/badge/platform-iOS-lightgrey.svg)]()
+[![Language](https://img.shields.io/badge/language-Objective--C-blue.svg)]()
+[![License](https://img.shields.io/badge/license-MIT-green.svg)]()
+
+---
+
+## 📱 应用简介 | Overview
+
+**斗图王 (GIFMaster)** 是一款全功能的 GIF 动画制作工具，支持从多种来源创建 GIF，包括 LivePhoto、视频、静态照片。同时提供 GIF 编辑、搜索、收藏和分享等完整功能。
+
+**GIFMaster** is a comprehensive GIF animation tool that supports creating GIFs from various sources including LivePhotos, videos, and static photos. It also provides complete features for editing, searching, bookmarking, and sharing GIFs.
+
+## ✨ 核心功能 | Key Features
+
+### 🎨 GIF 制作 | GIF Creation
+- **LivePhoto 转换**: 将 LivePhoto 转换为 GIF 动画或短视频
+- **多图合成**: 选择多张照片生成 GIF 动画
+- **视频转 GIF**: 从视频中提取并生成 GIF
+- **帧率调整**: 自定义 GIF 播放速度
+- **尺寸缩放**: 调整 GIF 输出大小
+
+### ✂️ GIF 编辑 | GIF Editing
+- 裁剪指定区域
+- 调整帧率和尺寸
+- 批量导出图片帧
+- 单帧保存和分享
+
+### 🔍 GIF 搜索 | GIF Search
+- 海量 GIF 图片搜索
+- 支持复制 GIF 网址
+- 在线 GIF 预览
+- 直接分享搜索结果
+
+### 💾 收藏管理 | Collection Management
+- 自定义分类管理
+- 收藏夹功能
+- 本地数据库存储
+- 分类编辑和删除
+
+### 📤 分享功能 | Sharing
+- 微信/QQ 分享
+- 系统分享扩展
+- 其他应用导入
+
+## 📸 应用截图 | Screenshots
+
+<p align="center">
+  <img src="doc/ScreenShot/iPhone/a.png" width="200">
+  <img src="doc/ScreenShot/iPhone/b.png" width="200">
+  <img src="doc/ScreenShot/iPhone/c.png" width="200">
+</p>
+
+## 🏗️ 技术架构 | Architecture
+
+### 项目结构 | Project Structure
+
+```
+GIFEmoji/
+├── GIFEmoji/                    # 主应用
+│   ├── Make/                    # GIF 制作模块
+│   │   ├── GenGIFViewController # 主创建界面
+│   │   ├── Detail/              # 预览控制器
+│   │   └── View/                # 自定义视图
+│   ├── Search/                  # GIF 搜索模块
+│   │   ├── SearchGIFViewController
+│   │   └── LWImageModel         # 图片数据模型
+│   ├── MyGIF/                   # 收藏管理模块
+│   │   ├── LWMyGIFViewController
+│   │   └── LWCategoriesPopoverViewController
+│   ├── Common/                  # 公共组件
+│   │   ├── LWSymbolService      # 数据库服务
+│   │   └── WebView/             # Web 浏览器
+│   ├── Helper/                  # 工具类和扩展
+│   │   ├── NSGIF                # GIF 生成核心
+│   │   └── Categories           # UIKit 扩展
+│   ├── Libs/                    # 第三方库
+│   └── Resources/               # 资源文件
+│       └── data/                # 默认数据库
+└── GIFShareExtension/           # 分享扩展
+    └── ShareNavigationViewController
+```
+
+### 核心技术栈 | Tech Stack
+
+#### 开发语言
+- **Objective-C** - 主要开发语言
+- **Xcode** - 开发工具
+
+#### 依赖管理
+- **CocoaPods** - 第三方库管理
+
+#### 主要框架
+- `AVFoundation` - 视频处理
+- `Photos` / `PhotosUI` - LivePhoto 和相册访问
+- `ImageIO` - GIF 编解码
+- `CoreGraphics` - 图像处理
+- `SQLite` - 本地数据库
+
+#### 第三方库
+
+**UI 框架**
+- `FLAnimatedImage` - 高性能 GIF 渲染
+- `SDWebImage` - 图片加载和缓存
+- `YMSPhotoPicker` - 自定义相册选择器
+- `SVProgressHUD` - 加载指示器
+- `Masonry` - 自动布局
+
+**功能库**
+- `NSGIF` - 视频转 GIF 核心算法
+- `OpenShare` - 微信/QQ 分享
+- `FCFileManager` - 文件管理
+- `YYModel` - 数据模型
+
+**集成服务**
+- `Google-Mobile-Ads-SDK` - 广告
+- `UMCAnalytics` - 友盟统计
+- `UMCPush` - 推送通知
+- `LWPurchase` - 内购管理 (自定义库)
+- `LWHUD` - HUD 组件 (自定义库)
+
+**调试工具**
+- `FLEX` - 运行时调试工具
+
+## 🚀 开发指南 | Development Guide
+
+### 环境要求 | Requirements
+
+- **Xcode**: 11.0+
+- **iOS Deployment Target**: iOS 9.0+
+- **CocoaPods**: 1.9.0+
+- **macOS**: 10.14+
+
+### 安装步骤 | Installation
+
+1. **克隆仓库**
+```bash
+git clone https://github.com/yourusername/GIFEmoji.git
+cd GIFEmoji
+```
+
+2. **安装依赖**
+```bash
+pod install
+```
+
+3. **打开工作空间**
+```bash
+open GIFEmoji.xcworkspace
+```
+
+⚠️ **注意**: 必须打开 `.xcworkspace` 文件，而不是 `.xcodeproj`
+
+### 项目配置 | Configuration
+
+#### 1. 第三方服务配置
+
+**友盟 (UMeng)**
+- App Key: 在 `AppDelegate.m` 中配置
+- 注册地址: https://www.umeng.com/
 
+**Google AdMob**
+- 广告单元 ID 需要在代码中配置
+- 注册地址: https://admob.google.com/
 
-一个GIF斗图动画表情制作和搜索APP
-一個GIF鬥圖動畫表情製作和搜索APP
-GIF make and search
+**微信开放平台**
+- App ID: `wxb4b64828a439e04b` (需替换为你的)
+- 注册地址: https://open.weixin.qq.com/
 
+**QQ 开放平台**
+- App ID: `1106605943` (需替换为你的)
+- 注册地址: https://open.tencent.com/
 
+#### 2. Bundle Identifier
+修改为你自己的 Bundle ID: `com.yourcompany.GIFEmoji`
 
-### 宣传文本：
+#### 3. URL Schemes
+在 `Info.plist` 中配置以下 URL Schemes:
+- `GIFEmoji` - 应用自定义 Scheme
+- `wxb4b64828a439e04b` - 微信回调
+- `tencent1106605943` - QQ 回调
 
-一个GIF斗图动画表情制作及搜索工具，支持LivePhoto、短视频及照片集生成GIF,以及GIF的截剪、保存、收藏及分享，是一个非常实用的斗图浏览器与斗图编辑器。
+### 编译运行 | Build & Run
 
+```bash
+# 使用 Xcode 编译
+1. 选择目标设备或模拟器
+2. 按 Cmd + R 运行
 
-### 描述:
+# 或使用命令行
+xcodebuild -workspace GIFEmoji.xcworkspace \
+           -scheme GIFEmoji \
+           -configuration Debug \
+           -destination 'platform=iOS Simulator,name=iPhone 14'
+```
 
-斗图王是一个GIF斗图动画表情制作及搜索工具，兼具斗图浏览器与斗图编辑器的功能。
+## 📊 数据存储 | Data Storage
+
+### SQLite 数据库
+- **位置**: `Resources/data/GIFEmojiData`
+- **服务类**: `LWSymbolService`
+- **表结构**:
+  - `Category` - 收藏分类表
+  - `Symbol` - GIF 符号/图片表
 
-斗图制作：
-斗图王支持对GIF帧率调整；
-斗图王支持对GIF缩放大小；
-斗图王支持对GIF编辑截剪部分区域；
-斗图王支持批量导出GIF的图片帧的集合；
-斗图王支持对GIF图片指定一帧的图片保存和分享；
+### 本地文件
+- **GIF 文件**: 存储在应用沙盒的 `animoji` 目录
+- **管理工具**: `FCFileManager`
+
+## 🔧 核心模块说明 | Core Modules
+
+### 1. GIF 生成模块 (Make)
+
+**主要类**: `GenGIFViewController`
+
+**支持的输入模式** (`SelectedMode` 枚举):
+```objc
+typedef NS_OPTIONS(NSUInteger, SelectedMode) {
+    LivePhotoMode = 0,      // LivePhoto 模式
+    StaticPhotosMode = 1,   // 多图模式
+    VideoMode = 2,          // 视频模式
+    GIFMode = 3,           // GIF 编辑模式
+};
+```
 
-斗图编辑：
-斗图王支持选择多张照片生成GIF动画；
-斗图王支持对生成的GIF斗图编辑进行截剪、缩放大小、调整帧率；
+**核心流程**:
+1. 选择输入源 (LivePhoto/照片/视频)
+2. 预览和调整参数
+3. 生成 GIF 或导出其他格式
+4. 保存到相册或分享
 
-LivePhoto导出：
-斗图王支持将LivePhoto生成为GIF动画图片；
-斗图王支持将LivePhoto导出短视频；
-斗图王支持将LivePhoto导出成图片帧；
-斗图王支持对LivePhoto内的短视频播放、保存及分享；
+### 2. GIF 搜索模块 (Search)
 
-短视频转斗画：
-斗图王支持将短视频制作为GIF动画图片；
-斗图王支持将短视频导出成图片帧；
-斗图王支持对短视频指定一帧的图片保存和分享；
+**主要类**: `SearchGIFViewController`
 
-斗图搜索、斗图浏览及斗图收藏：
-斗图王支持海量的图片搜索，编辑、分享、保存以及收藏；
-斗图王支持复制搜索到的GIF斗图图片网址以及打开对应的GIF斗图；
-斗图王支持将喜欢或常用的图片及斗图动画添加到自定义的收藏分类里；
-斗图王支持对收藏分类的添加、修改及删除；
-斗图王支持对收藏的图片进行修改及删除；
+**功能**:
+- 网络图片搜索
+- 瀑布流展示
+- 下拉刷新/上拉加载
+- 收藏和分享
+- 内容举报
 
-支持网站：wodedata.com
+**广告集成**: 使用 `GADInterstitial` 展示插页广告
 
+### 3. 收藏管理模块 (MyGIF)
 
+**主要类**: `LWMyGIFViewController`
 
-### 关键词:
+**功能**:
+- 分类管理
+- 图片收藏
+- 编辑和删除
+- 频率统计
 
-斗图王,斗图,斗图动画,斗图制作,斗图搜索,斗图编辑,GIF动画,GIF斗图,GIF制作,GIF编辑,GIF图片,图片搜索,LivePhoto,LivePhoto导出,浏览器,编辑器
+**数据同步通知**:
+- `Notification_CategoryChanged` - 分类变更
+- `Notification_FavoriteChanged` - 收藏变更
 
-//=======================================
+## 📦 分享扩展 | Share Extension
 
-### 宣传文本：
+**Target**: `GIFShareExtension`
 
-A GIF make and search tools, support for LivePhoto, short video and photo album to generate GIF, and GIF cut, save, collect and share, a useful GIF Browser and Editer.
+允许从其他应用直接导入图片/视频到 GIFEmoji 进行处理。
 
+**入口**: `ShareNavigationViewController`
 
-### 描述
+## 🔐 隐私权限 | Privacy Permissions
 
-GIFMaster is a GIF bucket animation expression production and search tools, both GIF browser and Doudu editor features.
+需要在 `Info.plist` 中声明:
+- `NSPhotoLibraryUsageDescription` - 访问相册
+- `NSPhotoLibraryAddUsageDescription` - 保存到相册
+- `NSCameraUsageDescription` - 相机访问
 
-GIF Make:
-GIFMaster support GIF frame rate adjustment;
-GIFMaster support GIF zoom size;
-GIFMaster support GIF editing cut part of the region;
-GIFMaster support batch export GIF picture frame collection;
-GIFMaster support GIF images to specify a picture of the picture preservation and sharing;
+## 🐛 调试技巧 | Debugging
 
-GIF edit:
-GIFMaster support the choice of multiple photos generated GIF animation;
-GIFMaster support for the generation of GIF bucket diagram editing cut, zoom size, adjust the frame rate;
+### 使用 FLEX
+```objc
+#ifdef DEBUG
+[[FLEXManager sharedManager] showExplorer];
+#endif
+```
 
-LivePhoto Export:
-GIFMaster supports LivePhoto generated as animated GIF images;
-GIFMaster support LivePhoto export short video;
-GIFMaster support LivePhoto exported into a picture frame;
-GIFMaster supports short video playback within LivePhoto, save and share;
+### 日志输出
+```objc
+#ifdef DEBUG
+#define Log(format, ...) NSLog(format, ## __VA_ARGS__)
+#else
+#define Log(format, ...)
+#endif
+```
 
-Short video transfer to GIF:
-GIFMaster support short video production as animated GIF images;
-GIFMaster support the short video export to a picture frame;
-GIFMaster supports the short video to specify a picture to save and share;
+## 📝 开发规范 | Code Guidelines
 
-GIF search, browsing and collection:
-GIFMaster supports massive image search, editing, sharing, preservation and collection;
-GIFMaster support copy search to the GIF bucket map image URL and open the corresponding GIF bucket map;
-GIFMaster supports the favorite or commonly used pictures and bucket animation added to the custom collection category;
-GIFMaster support for the collection of add, modify and delete;
-GIFMaster support for the collection of pictures to be modified and deleted;
+### 命名约定
+- **前缀**: `LW` 用于自定义类
+- **类别**: 使用 `+` 分类命名 (如 `UIColor+HexValue`)
+- **宏定义**: 全大写下划线分隔
 
-Support Website: wodedata.com
+### 内存管理
+```objc
+#define weakify(var) __weak typeof(var) weak_##var = var;
+#define strongify(var) __strong typeof(var) var = weak_##var;
+```
 
+### 版本兼容
+```objc
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v) \
+    ([[[UIDevice currentDevice] systemVersion] compare:v \
+      options:NSNumericSearch] != NSOrderedAscending)
+```
 
-### 关键词:
+## 🌐 支持网站 | Support
 
-斗图王,斗图,斗图动画,斗图制作,斗图搜索,斗图编辑,GIFMaster,LivePhoto,LivePhoto Export,GIF Animation,GIF Search,Browser
+- **官方网站**: http://app.wodedata.com/myapp/gifemoji.html
+- **开发者主页**: https://itunes.apple.com/cn/developer/wei-luo/id990121194
 
-//=====================================
+## 📄 许可证 | License
 
-### 宣传文本：
+本项目采用 MIT 许可证 - 详见 [LICENSE](LICENSE) 文件
 
-GIFバケットアニメーション表現の制作と検索ツール、LivePhotoのサポート、GIFを生成するための短いビデオとフォトアルバム、GIFカット、保存、収集、共有は非常に便利なバケットマップビューアとバケットマップエディタです。
+## 👨‍💻 作者 | Author
 
+**Luo Wei** (罗威)
+- Copyright © 2018 Luo Wei. All rights reserved.
 
-### 描述:
+## 🙏 致谢 | Acknowledgments
 
-GIFMasterは、GIFブラウザとDouduエディタの両方の機能を備えたGIFバケットアニメーション表現の制作と検索ツールです。
+感谢以下开源项目的贡献:
+- [FLAnimatedImage](https://github.com/Flipboard/FLAnimatedImage)
+- [SDWebImage](https://github.com/SDWebImage/SDWebImage)
+- [NSGIF](https://github.com/NSRare/NSGIF)
+- [FLEX](https://github.com/FLEXTool/FLEX)
+- 以及所有使用的开源库
 
-GIFプロダクション：
-GIFMasterサポートGIFフレームレート調整;
-GIFMasterのサポートGIFズームサイズ。
-GIFMasterのサポートGIF編集地域の一部をカット。
-GIFMasterのサポートバッチエクスポートGIF画像フレームコレクション;
-GIFMasterは、画像の保存と共有の画像を指定するGIF画像をサポートしています。
+## 📮 联系方式 | Contact
 
-GIF編集：
-GIFMasterは複数の写真をGIFアニメーションで生成しました。
-GIFバケットダイアグラム編集カット、ズームサイズの生成のためのGIFMasterのサポートは、フレームレートを調整します。
+如有问题或建议，欢迎通过以下方式联系:
+- 提交 Issue
+- Pull Request
+- 邮件联系开发者
 
-LivePhotoエクスポート：
-GIFMasterは、アニメーションGIF画像として生成されたLivePhotoをサポートしています。
-GIFMasterはLivePhotoのショートビデオをサポートしています。
-GIFMasterは、LivePhotoを写真フレームにエクスポートすることをサポートしています。
-GIFMasterは、LivePhoto内で短いビデオ再生をサポートし、保存して共有します。
+---
 
-描画する短いビデオ転送：
-GIFMasterはアニメーションGIF画像として短いビデオ制作をサポートしています。
-GIFMasterは、短いビデオをフレームにエクスポートする機能をサポートしています。
-GIFMasterは、保存して共有する画像を指定する短いビデオをサポートしています。
-
-GIF検索、バケットマップ閲覧、バケットマップ収集：
-GIFMasterは大規模な画像検索、編集、共有、保存、収集をサポートしています。
-GIFMasterは、GIFバケットマップイメージURLにコピー検索をサポートし、対応するGIFバケットマップを開きます。
-GIFMasterは、カスタムコレクションカテゴリに追加されたお気に入りまたは一般的に使用されている画像とバケットアニメーションをサポートしています。
-追加、変更、削除のコレクションのGIFMasterのサポート。
-写真のコレクションの変更と削除を行うためのGIFMasterのサポート。
-
-サポートウェブサイト：wodedata.com
-
-### 关键词:
-
-斗图王,GIF作成,GIF検索,GIFMaster,LivePhoto,LivePhoto Export,GIF Animation,GIF Search,Browser
-
-
-//=====================================
-
-### 宣传文本：
-
-GIF 버킷 애니메이션 표현 제작 및 검색 도구, LivePhoto 지원, GIF 생성을위한 짧은 비디오 및 사진 앨범, GIF 잘라 내기, 저장, 수집 및 공유는 매우 유용한 버킷지도 뷰어 및 버킷지도 편집기입니다.
-
-### 描述:
-
-GIFMaster은 GIF 브라우저와 GIF 편집기 기능 모두에서 GIF 버킷 애니메이션 표현 제작 및 검색 도구입니다.
-
-GIF 제작 :
-GIFMaster은 GIF 프레임 속도 조정을 지원합니다.
-GIFMaster은 GIF 줌 크기를 지원합니다.
-GIFMaster은 GIF 편집 지원 지역의 일부를 잘라 냈습니다.
-GIFMaster 지원 일괄 내보내기 GIF 그림 프레임 컬렉션;
-GIFMaster은 GIF 이미지를 지원하여 그림 보존 및 공유 그림을 지정합니다.
-
-두두 편집 :
-GIFMaster은 GIF 애니메이션을 생성하기 위해 여러 사진을 선택할 수 있도록 지원합니다.
-GIF 버킷 다이어그램 편집 잘라내 기, 줌 크기 생성을위한 GIFMaster 지원, 프레임 속도 조정;
-
-LivePhoto 내보내기 :
-GIFMaster은 애니메이션 GIF 이미지로 생성 된 LivePhoto를 지원합니다.
-GIFMaster 지원 LivePhoto 짧은 비디오;
-GIFMaster은 LivePhoto를 그림 프레임으로 내 보냅니다.
-GIFMaster은 LivePhoto에서 짧은 비디오 재생을 지원하고 저장하고 공유합니다.
-
-그릴 짧은 비디오 전송 :
-GIFMaster은 짧은 비디오 작품을 애니메이션 GIF 이미지로 지원합니다.
-GIFMaster은 그림 프레임으로의 짧은 비디오 내보내기를 지원합니다.
-GIFMaster은 저장하고 공유 할 그림을 지정하기 위해 짧은 비디오를 지원합니다.
-
-GIF 검색, 양동이지도 탐색 및 양동이지도 수집 :
-GIFMaster은 방대한 이미지 검색, 편집, 공유, 보존 및 수집을 지원합니다.
-GIFMaster은 GIF 버킷 맵 이미지 URL로 사본 검색을 지원하고 해당 GIF 버킷 맵을 엽니 다.
-GIFMaster은 사용자 지정 컬렉션 범주에 추가 된 자주 사용되는 그림과 버킷 애니메이션을 지원합니다.
-GIFMaster은 추가, 수정 및 삭제 컬렉션을 지원합니다.
-편집 및 삭제할 사진 컬렉션에 대한 GIFMaster 지원;
-
-지원 웹 사이트 : wodedata.com
-
-
-### 关键词:
-
-斗图王,斗图,斗图动画,斗图制作,斗图搜索,斗图编辑,GIF动画,GIF斗图,GIF制作,GIF编辑,GIF图片,图片搜索,LivePhoto,LivePhoto导出,浏览器,编辑器
-
-GIF, GIF Animation, GIF Generate, GIF Search, GIF Make, LivePhoto, LivePhoto 내보내기, 브라우저, 편집자
-
-
-//=================================
-
-### 宣傳文本：
-
-一個GIF鬥圖動畫表情製作及搜索工具，支持LivePhoto、短視頻及照片集生成GIF,以及GIF的截剪、保存、收藏及分享，是一個非常實用的鬥圖瀏覽器與鬥圖編輯器。
-
-
-### 描述:
-
-鬥圖王是一個GIF鬥圖動畫表情製作及搜索工具，兼具鬥圖瀏覽器與鬥圖編輯器的功能。
-
-鬥圖製作：
-鬥圖王支持對GIF幀率調整；
-鬥圖王支持對GIF縮放大小；
-鬥圖王支持對GIF編輯截剪部分區域；
-鬥圖王支持批量導出GIF的圖片幀的集合；
-鬥圖王支持對GIF圖片指定一幀的圖片保存和分享；
-
-鬥圖編輯：
-鬥圖王支持選擇多張照片生成GIF動畫；
-鬥圖王支持對生成的GIF鬥圖編輯進行截剪、縮放大小、調整幀率；
-
-LivePhoto導出：
-鬥圖王支持將LivePhoto生成為GIF動畫圖片；
-鬥圖王支持將LivePhoto導出短視頻；
-鬥圖王支持將LivePhoto導出成圖片幀；
-鬥圖王支持對LivePhoto內的短視頻播放、保存及分享；
-
-短視頻轉鬥畫：
-鬥圖王支持將短視頻製作為GIF動畫圖片；
-鬥圖王支持將短視頻導出成圖片幀；
-鬥圖王支持對短視頻指定一幀的圖片保存和分享；
-
-鬥圖搜索、鬥圖瀏覽及鬥圖收藏：
-鬥圖王支持海量的圖片搜索，編輯、分享、保存以及收藏；
-鬥圖王支持複製搜索到的GIF鬥圖圖片網址以及打開對應的GIF鬥圖；
-鬥圖王支持將喜歡或常用的圖片及鬥圖動畫添加到自定義的收藏分類裡；
-鬥圖王支持對收藏分類的添加、修改及刪除；
-鬥圖王支持對收藏的圖片進行修改及刪除；
-
-支持網站：wodedata.com
-
-
-
-### 關鍵詞:
-
-鬥圖王,鬥圖,鬥圖動畫,鬥圖製作,鬥圖搜索,鬥圖編輯,GIF動畫,GIF鬥圖,GIF製作,GIF編輯,GIF圖片,圖片搜索,LivePhoto,LivePhoto導出,瀏覽器,編輯器
-
-
-
-
-
+**注意**: 本项目仅供学习和参考使用。如需商业使用，请替换所有第三方服务的 API Key 和 App ID。
